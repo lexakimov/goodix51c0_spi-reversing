@@ -1,0 +1,1781 @@
+[0104-09:12:58:365][info][InitLogOutput:00300] Goodix>>> WBDI Build Apr 22 2022 16:33:55, LogTarget 1, LogLevel 9, LogPath C:\ProgramData\Goodix\WBDI.log, driver version 1.1.142.8
+[0104-09:12:58:366][debug][GetPowerInformation:00422] Goodix>>> PowerCapability::0x01010100000001010101010000010000000001000100020100000000000001000000000000000000000000000000000000000000000000000000000000000000050000000000000000000000
+[0104-09:12:58:367][debug][GetPowerInformation:00424] Goodix>>> supports Modern Standby: Yes
+[0104-09:12:58:367][info][DriverEntry:00116] Goodix>>> Driver Entry Morndern Standby, config: log  1 9, dump 1, firm_up 1, key_sim 0, hlk 0 s0idle 1, submit_delay 1, af 0 0, nav 0, choose 1 1, retry 1
+[0104-09:12:58:367][debug][DriverEntry:00136] Goodix>>> before WdfDriverCreate
+[0104-09:12:58:368][debug][StartSessionDetection:00200] Goodix>>> session thread enter
+[0104-09:12:58:368][info][DriverEntry:00153] Goodix>>> exit WBVer 16
+[0104-09:12:58:368][info][PowerNotificationCallback:00454] Goodix>>> display state 0x1(0x2-dim/0x1-on/0x0-off)
+[0104-09:12:58:369][debug][milanFusbEvtDeviceAdd:00185] Goodix>>> Entry
+[0104-09:12:58:369][info][milanFusbCreateDevice:02064] Goodix>>> enter
+[0104-09:12:58:369][info][GetCurrentFingerprintHardwareID:01855] Goodix>>> enter
+[0104-09:12:58:369][info][GetCurrentFingerprintHardwareID:01877] Goodix>>> HardwareID: ACPI\VEN_GDIX&DEV_51C0
+[0104-09:12:58:370][warn][GetCurrentFingerprintHardwareID:01986] Goodix>>> HardwareID not match
+[0104-09:12:58:370][info][GetCurrentFingerprintHardwareID:01877] Goodix>>> HardwareID: ACPI\GDIX51C0
+[0104-09:12:58:370][info][GetCurrentFingerprintHardwareID:02001] Goodix>>> HardwareID match for product 18, ACPI\GDIX51C0
+[0104-09:12:58:370][debug][milanFusbCreateDevice:02116] Goodix>>> to support disable and enable
+[0104-09:12:58:370][debug][milanFusbCreateDevice:02126] Goodix>>> support S0Idle
+[0104-09:12:58:370][info][milanFusbCreateDevice:02165] Goodix>>> support DFx on MS system
+[0104-09:12:58:370][debug][milanFusbCreateDevice:02169] Goodix>>> S0Idle: 10s, switch 0
+[0104-09:12:58:371][info][milanFusbCreateDevice:02249] Goodix>>> Interrupt created, to set interrupt priority
+[0104-09:12:58:371][info][milanFusbQueueInitialize:00092] Goodix>>> PowerManaged:TRUE
+[0104-09:12:58:372][info][milanFusbCreateDevice:02416] Goodix>>> exit, status: 0x0
+[0104-09:12:58:372][debug][milanFusbEvtDeviceAdd:00187] Goodix>>> Exit 0x0
+[0104-09:12:58:374][info][MilanEvtDevicePrepareHardware:05187] Goodix>>> enter, driver version:1.1.142.8
+[0104-09:12:58:374][debug][MilanEvtDevicePrepareHardware:05204] Goodix>>> resource count: 3
+[0104-09:12:58:374][info][MilanEvtDevicePrepareHardware:05228] Goodix>>> gpio.LowPart:6, gpio.HighPart:0
+[0104-09:12:58:374][info][MilanEvtDevicePrepareHardware:05327] Goodix>>> gpio-io count: 1, spi count: 1, interrupt count: 1, spi.LowPart:4, spi.HighPart:0
+[0104-09:12:58:374][info][SpbPeripheralOpen:00867] Goodix>>> enter, LowPart:4, HighPart:0, DesiredAccess:0x12019f
+[0104-09:12:58:375][info][SpbPeripheralOpen:00867] Goodix>>> enter, LowPart:6, HighPart:0, DesiredAccess:0x120116
+
+[0104-09:12:58:375][info][MilanEvtDevicePrepareHardware:05442] Goodix>>> Start to create the target
+[0104-09:12:58:375][info][MilanEvtDevicePrepareHardware:05455] Goodix>>> Start to open IO target
+[0104-09:12:58:375][info][MilanEvtDevicePrepareHardware:05469] Goodix>>> Open the target success
+[0104-09:12:58:375][info][_init_global_hal_context:00554] Goodix>>> enter inital headcount 0xe407
+[0104-09:12:58:375][info] SPI Connection Descriptor FFFF9D0309D29EA8 ConnectionSpeed:10000000
+[0104-09:12:58:375][info] Connected to SPBTARGET 000062FD03670728 at address 0x0 from WDFDEVICE 000062FD01CE1498
+[0104-09:12:58:375][info] Opening handle to SPB target via \Device\RESOURCE_HUB\0000000000000003
+
+[0104-09:12:58:376][info][device_data_analyze:03078] Goodix>>> --- start
+[0104-09:12:58:392][info][startDataAnalyzeMonitoring:03354] Goodix>>> Resume Thread device_fdtdata_analyze
+[0104-09:12:58:392][info][device_fdtdata_analyze:07746] Goodix>>> --- start
+[0104-09:12:58:408][info][startfdtDataAnalyzeMonitoring:08065] Goodix>>> Resume fdtdata analyze
+[0104-09:12:58:408][info][_init_global_hal_context:00639] Goodix>>> exit 1
+[0104-09:12:58:408][debug][MilanEvtDevicePrepareHardware:05491] Goodix>>> exit, status: 0x0, bret:1
+[0104-09:12:58:409][info][MilanEvtDeviceD0Entry:04731] Goodix>>> entry, prev state: 5(4-D3,5-D3Final), power action: 0, driver version 1.1.142.8
+[0104-09:12:58:409][debug][_StartInitCreaterThread:06477] Goodix>>> enter
+[0104-09:12:58:409][info][_StartInitCreaterThread:06502] Goodix>>> to create init creater
+[0104-09:12:58:409][debug][_StartInitCreaterThread:06510] Goodix>>> exit
+[0104-09:12:58:409][info][init_creater:06468] Goodix>>> --- start
+[0104-09:12:58:409][debug][_StartInitThread:06425] Goodix>>> enter
+[0104-09:12:58:409][debug][_StopInitThread:06416] Goodix>>> exit
+[0104-09:12:58:410][info][_StartInitThread:06452] Goodix>>> to create init thread
+[0104-09:12:58:409][info][MilanEvtDeviceD0Entry:04771] Goodix>>> exit
+[0104-09:12:58:410][debug][_StartInitThread:06462] Goodix>>> exit
+[0104-09:12:58:410][info][init_creater:06471] Goodix>>> --- exit
+[0104-09:12:58:410][info][InitThread:01359] Goodix>>> --- Init: start
+[0104-09:12:58:410][info][InitThread:01398] Goodix>>> Init: pov 1, pba 0, tls-client-server-rebuild-session 1-0-0-0-0, have config 0, device inited 0, base inited 0
+[0104-09:12:58:410][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
+[0104-09:12:58:426] write    4 -  0000: a0 08 00 a8
+
+[0104-09:12:58:440][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0104-09:12:58:440] write    8 -  0000: 01 05 00 00 00 00 00 88
+
+[0104-09:12:58:456][info][UnlockTlsForce:01327] Goodix>>> force unlock it
+[0104-09:12:58:456][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xd-2-0x2-0-0
+[0104-09:12:58:457] write    4 -  0000: a0 06 00 a6
+
+[0104-09:12:58:472][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0104-09:12:58:472] write    6 -  0000: d5 03 00 00 00 d3
+
+[0104-09:12:58:488][info][GetEvkVersionWithRetry:01514] Goodix>>> Get Evk Version...retry count 3
+[0104-09:12:58:488][debug][GetEvkVersion:05982] Goodix>>> enter, project type 18
+[0104-09:12:58:488][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
+[0104-09:12:58:489] write    4 -  0000: a0 08 00 a8
+
+[0104-09:12:58:504][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0104-09:12:58:504] write    8 -  0000: 01 05 00 00 00 00 00 88
+
+[0104-09:12:58:520][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-4-0x2-1000-0
+[0104-09:12:58:520] write    4 -  0000: a0 06 00 a6
+
+[0104-09:12:58:535] write    6 -  0000: a8 03 00 00 00 ff
+
+[0104-09:12:58:536][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0104-09:12:58:536][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0xa8, cfg flag 0x7
+[0104-09:12:58:537]  read    4 -  0000: a0 06 00 a6
+
+[0104-09:12:58:537]  read    6 -  0000: b0 03 00 a8 07 48
+
+[0104-09:12:58:537][warn][get_msg_data:06277] Goodix>>> MCU has no config
+[0104-09:12:58:538][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xa8-23
+[0104-09:12:58:538][debug][data_from_device:05100] Goodix>>> --- cmd: other
+[0104-09:12:58:538]  read    4 -  0000: a0 1a 00 ba
+
+[0104-09:12:58:538]  read   26 -  0000: a8 17 00 47 46 5f 48 43 34 36 30 53 45 43 5f 41
+[0104-09:12:58:538]  read   26 -  0010: 50 50 5f 31 34 32 31 30 00 68
+
+[0104-09:12:58:551][info][GetEvkVersion:06001] Goodix>>> got evk version: GF_HC460SEC_APP_14210
+[0104-09:12:58:551][debug][_QucikCheckMCU:00876] Goodix>>> DriverState:Install
+[0104-09:12:58:551][debug][SetDriverState:00220] Goodix>>> driver type win spi
+[0104-09:12:58:551][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
+[0104-09:12:58:552] write    4 -  0000: a0 08 00 a8
+
+[0104-09:12:58:567][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0104-09:12:58:567] write    8 -  0000: 01 05 00 00 00 00 00 88
+
+[0104-09:12:58:583][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x9-3-0x2-0-0
+[0104-09:12:58:584] write    4 -  0000: a0 06 00 a6
+
+[0104-09:12:58:599][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0104-09:12:58:599] write    6 -  0000: 97 03 00 01 01 0f
+
+[0104-09:12:58:615][warn][GetMcuState:04101] Goodix>>> mcu-state TIMESTAMP 0xe4f7
+[0104-09:12:58:615][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-7-0x5-0-0
+[0104-09:12:58:616] write    4 -  0000: a0 09 00 a9
+
+[0104-09:12:58:631][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0104-09:12:58:632][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xae-23
+[0104-09:12:58:632][debug][data_from_device:05100] Goodix>>> --- cmd: other
+[0104-09:12:58:632] write    9 -  0000: af 06 00 55 f7 e4 00 00 c6
+
+[0104-09:12:58:632]  read    4 -  0000: a0 1a 00 ba
+
+[0104-09:12:58:633][info][GetMcuState:04178] Goodix>>> pov 1, pba 0, tls-client-server-lock 1-0-0-0, have config 0, pov valid 0
+[0104-09:12:58:633][debug][PrintMcuState:04046] Goodix>>> mcu state::0x04003000000000002000000000010000042502000000
+[0104-09:12:58:633][info][PrintMcuState:04074] Goodix>>> mcu state: version:4, isPOVImageValid:0, isTlsConnected:0, isTlsUsed:0, isLocked:0, availImgCnt:0, povImgCnt:3
+[0104-09:12:58:633][info][PrintMcuState:04076] Goodix>>> mcu state: sensor_data_int_timeout_count:0, image_crc_fail_count:0, povTouchAccidentCnt:0x0, readChipIDCnt:0, sensorExceptionFlag:0, sensorUnexpectedIntCnt:0, to_master_timeout_count:0
+[0104-09:12:58:633][info][PrintMcuState:04078] Goodix>>> mcu state: psk_len:32, psk_check_fail:0, psk_write_fail:0, ec_falling_count:0, system_up_stop_cnt:0, system_down_pov_stop_cnt:0, system_up_cleared_pov_count:0
+[0104-09:12:58:633][info][PrintMcuState:04080] Goodix>>> mcu state: pov_wake_by_fp:1, pov_wake_by_ec:0, pov_procedure:0x0, config_down_flag:0, sensor_chip_id:0x2504, sensor_type:2, pov_capture_count:0, normal_capture_count:0, otp_mcu_check_status:0x0
+[0104-09:12:58:633][info][InitThread:01422] Goodix>>> tls not alive
+[0104-09:12:58:633]  read   26 -  0000: ae 17 00 04 00 30 00 00 00 00 00 20 00 00 00 00
+[0104-09:12:58:633]  read   26 -  0010: 01 00 00 04 25 02 00 00 00 65
+
+[0104-09:12:58:633][warn][InitThread:01432] Goodix>>> ensure tls handshake will be done 0
+[0104-09:12:58:633][info][InitThread:01457] Goodix>>> Init: pov 1, pba 0, tls-client-server-rebuild-session 1-0-0-0-0, have config 0, device inited 0, base inited 0, d0exit 0
+[0104-09:12:58:634][info][_DeviceInit:00900] Goodix>>> ---- enter
+[0104-09:12:58:634][info][_DeviceInit:00911] Goodix>>> [BEGIN] _DeviceInit
+[0104-09:12:58:634][debug][set_state:00872] Goodix>>> to set state from 0 to 1
+[0104-09:12:58:634][info][ReadBiosTmlTableFromFile:03378] Goodix>>> Not support PBA.
+[0104-09:12:58:634][debug][device_action:04222] Goodix>>> to set state to DEVICE_ACTION
+[0104-09:12:58:634][debug][set_state:00872] Goodix>>> to set state from 1 to 3
+[0104-09:12:58:634][debug][device_action:04377] Goodix>>> besdenable:0
+[0104-09:12:58:634][debug][device_action:04408] Goodix>>> to set state to DEVICE_ENABLE
+[0104-09:12:58:634][debug][set_state:00872] Goodix>>> to set state from 3 to 1
+[0104-09:12:58:634][info][init_MCU:01570] Goodix>>> enter, project 18, tls 1, firmware update 1, simulation 0, retry count 3
+[0104-09:12:58:634][info][GetEvkVersionWithRetry:01514] Goodix>>> Get Evk Version...retry count 3
+[0104-09:12:58:634][debug][GetEvkVersion:05982] Goodix>>> enter, project type 18
+[0104-09:12:58:635][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
+[0104-09:12:58:635] write    4 -  0000: a0 08 00 a8
+
+[0104-09:12:58:647][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0104-09:12:58:647] write    8 -  0000: 01 05 00 00 00 00 00 88
+
+[0104-09:12:58:663][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-4-0x2-1000-0
+[0104-09:12:58:663] write    4 -  0000: a0 06 00 a6
+
+[0104-09:12:58:679] write    6 -  0000: a8 03 00 00 00 ff
+
+[0104-09:12:58:680][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0104-09:12:58:680]  read    4 -  0000: a0 06 00 a6
+
+[0104-09:12:58:681][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0xa8, cfg flag 0x7
+[0104-09:12:58:681]  read    6 -  0000: b0 03 00 a8 07 48
+
+[0104-09:12:58:681][warn][get_msg_data:06277] Goodix>>> MCU has no config
+[0104-09:12:58:682][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xa8-23
+[0104-09:12:58:682][debug][data_from_device:05100] Goodix>>> --- cmd: other
+[0104-09:12:58:682]  read    4 -  0000: a0 1a 00 ba
+
+[0104-09:12:58:683]  read   26 -  0000: a8 17 00 47 46 5f 48 43 34 36 30 53 45 43 5f 41
+[0104-09:12:58:683]  read   26 -  0010: 50 50 5f 31 34 32 31 30 00 68
+
+[0104-09:12:58:695][info][GetEvkVersion:06001] Goodix>>> got evk version: GF_HC460SEC_APP_14210
+[0104-09:12:58:695][info][init_MCU:01740] Goodix>>> !!!REE SPI MCU:Update firmware
+[0104-09:12:58:695][error][init_MCU:01743] Goodix>>> !!!Update HDSC firmware
+[0104-09:12:58:695][info][gdx_UpdateFirmware_LockState:01928] Goodix>>> => update switch 1
+[0104-09:12:58:695][debug][gdx_UpdateFirmware_LockState:01936] Goodix>>> current state is 1, to set state to DEVICE_UPDATE
+[0104-09:12:58:695][debug][set_state:00872] Goodix>>> to set state from 1 to 4
+[0104-09:12:58:695][debug][gfUpdatefirmware:01971] Goodix>>> CONFIG DATA: retry_count_for_common_init 3
+[0104-09:12:58:695][info][gfUpdatefirmware:01991] Goodix>>> Nowversion len21 :GF_HC460SEC_APP_14210, firmwareLen=109514, UpdateByDriver=1
+[0104-09:12:58:695][info][gfUpdatefirmware:01992] Goodix>>> Current MCU Version: GF_HC460SEC_APP_14210
+[0104-09:12:58:696][info][gf_findAPPOrIAP:08142] Goodix>>> Not Find :IAP
+[0104-09:12:58:696][info][gfUpdatefirmware:01999] Goodix>>> MCU not runs IAP
+[0104-09:12:58:696][info][gfUpdatefirmware:02002] Goodix>>> Driver auto update firmware
+[0104-09:12:58:697][info][gf_compareVersionNum:08164] Goodix>>> Current MCU Version GF_HC460SEC_APP_14210, Version in Driver GF_HC460SEC_APP_14210
+[0104-09:12:58:697][info][gfUpdatefirmware:02005] Goodix>>> the same version, no need to update firmware
+[0104-09:12:58:697][debug][gfUpdatefirmware:02097] Goodix>>> exit 0x1
+[0104-09:12:58:697][debug][gdx_UpdateFirmware_LockState:01948] Goodix>>> to restore, to set state to 1
+[0104-09:12:58:697][debug][set_state:00872] Goodix>>> to set state from 4 to 1
+[0104-09:12:58:697][info][gdx_UpdateFirmware_LockState:01954] Goodix>>> <= with 0x1.
+[0104-09:12:58:698][info][init_MCU:01758] Goodix>>> update firmware result 1
+[0104-09:12:58:698][info][gf_findAPPOrIAP:08138] Goodix>>> Find :APP
+[0104-09:12:58:698][debug][init_MCU:01792] Goodix>>> production process...
+[0104-09:12:58:698][debug][production_psk_process:01927] Goodix>>> Entry
+[0104-09:12:58:698][debug][production_psk_process:01936] Goodix>>> . check psk if valid (total times:2)
+[0104-09:12:58:698][debug][production_psk_process:01939] Goodix>>> check psk times: 1
+[0104-09:12:58:698][debug][production_check_psk_is_valid:02862] Goodix>>> entry
+[0104-09:12:58:699][debug][production_check_psk_is_valid:02887] Goodix>>> 1.get host hash
+[0104-09:12:58:699][debug][production_get_host_psk_data:02703] Goodix>>> entry
+[0104-09:12:58:699][debug][production_get_host_psk_data:02733] Goodix>>> .get seal data
+
+[0104-09:12:58:699][debug][production_get_host_psk_data:02738] Goodix>>> read 332 bytes
+
+[0104-09:12:58:699][info][generate_entropy2:02094] Goodix>>> generate rootkey
+[0104-09:12:58:700][info][gf_unseal_data:00102] Goodix>>> inbuf_len 324, entropy_len 48, len_out 32
+[0104-09:12:58:704][debug][gf_unseal_data:00129] Goodix>>> The decryption phase worked, 324, 32
+[0104-09:12:58:705][debug][production_get_host_psk_data:02764] Goodix>>> unseal return 0x0 length before 324, length after:32
+[0104-09:12:58:705][debug][production_get_host_psk_data:02827] Goodix>>> .wb data
+[0104-09:12:58:705][debug][production_get_host_psk_data:02829] Goodix>>> wb return 0x0 length before 32, length after:102
+[0104-09:12:58:705][debug][production_get_host_psk_data:02838] Goodix>>> .hash
+[0104-09:12:58:705][debug][production_get_host_psk_data:02845] Goodix>>> hash return 0x0 length before 102, length after:32
+[0104-09:12:58:705][debug][production_get_host_psk_data:02854] Goodix>>> exit with 0x0
+[0104-09:12:58:706][debug][production_check_psk_is_valid:02889] Goodix>>> ret 0x0, psk len 32, hash len 32, seal len 332, data from file flag 1
+[0104-09:12:58:706][debug][production_check_psk_is_valid:02897] Goodix>>> 2.get mcu hash
+[0104-09:12:58:706][debug][production_read_specific_data:02942] Goodix>>> Entry
+[0104-09:12:58:706][debug][production_read_specific_data:02956] Goodix>>> 0.read specific data_type 0xbb020003
+[0104-09:12:58:706][debug][production_read_specific_data:02961] Goodix>>> 2.read data from mcu
+[0104-09:12:58:706][debug][production_read_mcu:02349] Goodix>>> Entry
+[0104-09:12:58:706][debug][production_read_mcu:02360] Goodix>>> 1.SpiSendDataToDeviceLock
+[0104-09:12:58:706][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xe-2-0x8-1000-0
+[0104-09:12:58:707] write    4 -  0000: a0 0c 00 ac
+
+[0104-09:12:58:711] write   12 -  0000: e4 09 00 03 00 02 bb 00 00 00 00 fd
+
+[0104-09:12:58:712][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0104-09:12:58:712][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0xe4, cfg flag 0x7
+[0104-09:12:58:712]  read    4 -  0000: a0 06 00 a6
+
+[0104-09:12:58:712]  read    6 -  0000: b0 03 00 e4 07 0c
+
+[0104-09:12:58:712][warn][get_msg_data:06277] Goodix>>> MCU has no config
+[0104-09:12:58:714][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xe4-42
+[0104-09:12:58:714][debug][data_from_device:05201] Goodix>>> --- Received production response
+[0104-09:12:58:714][debug][data_from_device:05205] Goodix>>> production response pure data length=41
+[0104-09:12:58:714]  read    4 -  0000: a0 2d 00 cd
+
+[0104-09:12:58:714]  read   45 -  0000: e4 2a 00 00 03 00 02 bb 20 00 00 00 fb 67 d3 ed
+[0104-09:12:58:714]  read   45 -  0010: e2 44 ff ee b2 76 3c b5 0e e3 81 a3 e6 18 d5 23
+[0104-09:12:58:714]  read   45 -  0020: 8d 61 94 53 43 35 8d 08 0f d0 2d a7 ce
+
+[0104-09:12:58:727][debug][production_read_mcu:02375] Goodix>>> 2.parse return data
+[0104-09:12:58:727][info][production_read_mcu:02380] Goodix>>> return data, len_payload_mcu  41 bytes, passed 2048 bytes, result 0.
+[0104-09:12:58:727][debug][production_read_mcu:02402] Goodix>>> read from mcu done, copy 40 bytes back
+[0104-09:12:58:727][debug][production_read_mcu:02418] Goodix>>> Exit ret:0x0.
+[0104-09:12:58:727][debug][production_read_specific_data:02964] Goodix>>> read data from mcu ret:0x0, length: 40
+[0104-09:12:58:727][debug][production_read_specific_data:02980] Goodix>>> Exit with 0x0
+[0104-09:12:58:727][debug][production_check_psk_is_valid:02900] Goodix>>> get mcu hash, ret 0x0, len 32
+[0104-09:12:58:727][debug][production_check_psk_is_valid:02909] Goodix>>> 3.verify
+[0104-09:12:58:728][info][production_check_psk_is_valid:02921] Goodix>>> !!!hash equal !!!
+[0104-09:12:58:728][debug][production_check_psk_is_valid:02935] Goodix>>> exit with 0x0
+[0104-09:12:58:728][debug][production_psk_process:01947] Goodix>>> check psk: psk is valid!
+[0104-09:12:58:728][debug][production_psk_process:01981] Goodix>>> Exit ret:0x0
+[0104-09:12:58:728][info][init_MCU:01803] Goodix>>> Production Process...Success!
+[0104-09:12:58:728][info][init_MCU:01810] Goodix>>> exit return 0x0, inited 1
+[0104-09:12:58:728][info][init_FPSensor:01170] Goodix>>> enter
+[0104-09:12:58:728][info][init_FPSensor:01190] Goodix>>> --- to get CHIP ID
+[0104-09:12:58:728][debug][init_FPSensor:01191] Goodix>>> --- SetIdle
+[0104-09:12:58:729][debug][gfresetMCUAndfingerprint:06383] Goodix>>> reset sensor
+[0104-09:12:58:729][debug][gfresetMCUAndfingerprint:06393] Goodix>>> reset device, reset_flag 1
+[0104-09:12:58:729][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-1-0x2-1000-0
+[0104-09:12:58:730] write    4 -  0000: a0 06 00 a6
+
+[0104-09:12:58:743] write    6 -  0000: a2 03 00 01 14 f0
+
+[0104-09:12:58:744][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0104-09:12:58:744][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0xa2, cfg flag 0x7
+[0104-09:12:58:744]  read    4 -  0000: a0 06 00 a6
+
+[0104-09:12:58:745]  read    6 -  0000: b0 03 00 a2 07 4e
+
+[0104-09:12:58:745][warn][get_msg_data:06277] Goodix>>> MCU has no config
+[0104-09:12:58:788][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xa2-4
+[0104-09:12:58:788][debug][data_from_device:05100] Goodix>>> --- cmd: other
+[0104-09:12:58:788][debug][get_other_data:06094] Goodix>>> CHIP_RESET::0x010008
+[0104-09:12:58:788]  read    4 -  0000: a0 07 00 a7
+
+[0104-09:12:58:788]  read    7 -  0000: a2 04 00 01 00 08 fb
+
+[0104-09:12:58:791][debug][init_FPSensor:01198] Goodix>>> --- MILAN_CHIPID
+[0104-09:12:58:791][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x8-1-0x5-1000-0
+[0104-09:12:58:792] write    4 -  0000: a0 09 00 a9
+
+[0104-09:12:58:807] write    9 -  0000: 82 06 00 00 00 00 04 00 1e
+
+[0104-09:12:58:808][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0104-09:12:58:808][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x82, cfg flag 0x7
+[0104-09:12:58:808]  read    4 -  0000: a0 06 00 a6
+
+[0104-09:12:58:808]  read    6 -  0000: b0 03 00 82 07 6e
+
+[0104-09:12:58:808][warn][get_msg_data:06277] Goodix>>> MCU has no config
+[0104-09:12:58:809]  read    4 -  0000: a0 08 00 a8
+
+[0104-09:12:58:810][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x82-5
+[0104-09:12:58:810][debug][data_from_device:05037] Goodix>>> --- cmd: regrw
+[0104-09:12:58:810]  read    8 -  0000: 82 05 00 a2 04 25 00 58
+
+[0104-09:12:58:823][info][init_FPSensor:01216] Goodix>>> Get Chip ID: 0x2504
+[0104-09:12:58:823][info][device_enable_init_by_chip:02739] Goodix>>> enter
+[0104-09:12:58:823][info][device_enable_init_by_chip:02756] Goodix>>> to init device by chipid 0x2504
+[0104-09:12:58:823][info][device_enable_init_by_chip:02776] Goodix>>> !!!! to Open ChicagoHS, sensor type: 12
+[0104-09:12:58:823][info][device_enable_init_by_chip:02814] Goodix>>> sensor info ready, chipid:0x2504, sensorType:12, col:80, row:64
+[0104-09:12:58:824][debug][InitOneKeyImgBuffer:00123] Goodix>>> Index 1 buffer address:0x00000249F2D17BE0
+[0104-09:12:58:824][debug][InitOneKeyImgBuffer:00123] Goodix>>> Index 2 buffer address:0x00000249F2D1A3F0
+[0104-09:12:58:824][debug][InitOneKeyImgBuffer:00123] Goodix>>> Index 3 buffer address:0x00000249F2D1CC00
+[0104-09:12:58:824][debug][InitOneKeyImgBuffer:00123] Goodix>>> Index 4 buffer address:0x00000249F2D1F410
+[0104-09:12:58:824][info][device_enable_init_by_chip:02889] Goodix>>> exit 1
+[0104-09:12:58:825][info][init_FPSensor:01234] Goodix>>> Get Chip ID: 0x2504 in 0 try
+[0104-09:12:58:825][debug][device_action:04222] Goodix>>> to set state to DEVICE_ACTION
+[0104-09:12:58:825][debug][set_state:00872] Goodix>>> to set state from 1 to 3
+[0104-09:12:58:825][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-3-0x2-1000-0
+[0104-09:12:58:825] write    4 -  0000: a0 06 00 a6
+
+[0104-09:12:58:839] write    6 -  0000: a6 03 00 00 00 01
+
+[0104-09:12:58:840][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0104-09:12:58:840][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0xa6, cfg flag 0x7
+[0104-09:12:58:840]  read    4 -  0000: a0 06 00 a6
+
+[0104-09:12:58:840]  read    6 -  0000: b0 03 00 a6 07 4a
+
+[0104-09:12:58:840][warn][get_msg_data:06277] Goodix>>> MCU has no config
+[0104-09:12:58:862][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xa6-65
+[0104-09:12:58:862]  read    4 -  0000: a0 44 00 e4
+
+[0104-09:12:58:862]  read   68 -  0000: a6 41 00 53 34 30 36 36 36 2e 00 0a 7d 82 b3 72
+[0104-09:12:58:862]  read   68 -  0010: a0 46 0a 51 07 05 0e 7d 4b 17 27 41 02 9a 0c f1
+[0104-09:12:58:862]  read   68 -  0020: 80 7f 0c 07 81 30 38 e4 80 dd fc 0a be bb 44 01
+[0104-09:12:58:862]  read   68 -  0030: bb b3 b5 b3 b3 b3 b5 b3 b3 41 33 e4 1b dd 22 0c
+[0104-09:12:58:862]  read   68 -  0040: f0 17 db 1c
+
+[0104-09:12:58:863][debug][data_from_device:05100] Goodix>>> --- cmd: other
+[0104-09:12:58:863][debug][device_action:04408] Goodix>>> to set state to DEVICE_ENABLE
+[0104-09:12:58:863][debug][set_state:00872] Goodix>>> to set state from 3 to 1
+[0104-09:12:58:863][debug][init_FPSensor:01266] Goodix>>> Got sensor OTP::0x5334303636362e000a7d82b372a0460a5107050e7d4b172741029a0cf1807f0c07813038e480ddfc0abebb4401bbb3b5b3b3b3b5b3b34133e41bdd220cf017db
+[0104-09:12:58:864][info][init_FPSensor:01274] Goodix>>> Success to get OTP data
+[0104-09:12:58:864][debug][device_action:04222] Goodix>>> to set state to DEVICE_ACTION
+[0104-09:12:58:865][debug][set_state:00872] Goodix>>> to set state from 1 to 3
+[0104-09:12:58:865][debug][ChicagoHU_check_and_parse_otp:01338] Goodix>>> enter, OTP size 64, internal tcode adjust 0, default tcode 128, default fdt delta 21
+[0104-09:12:58:866][info][ChicagoHU_check_and_parse_otp:01341] Goodix>>> read 64 bytes from C:\ProgramData\Goodix\goodix.dat
+[0104-09:12:58:867][debug][ChicagoHU_check_and_parse_otp:01342] Goodix>>> got file OTP::0x5334303636362e000a7d82b372a0460a5107050e7d4b172741029a0cf1807f0c07813038e480ddfc0abebb4401bbb3b5b3b3b3b5b3b34133e41bdd220cf017db
+[0104-09:12:58:867][info][ChicagoHU_check_and_parse_otp:01347] Goodix>>> the same OTP in file and from FP
+[0104-09:12:58:867][debug][ChicagoHU_OTP_CRC_Check:01110] Goodix>>> entry
+[0104-09:12:58:867][debug][ChicagoHU_OTP_CRC_Check:01132] Goodix>>> cp check CRC=12, chip cp CRC=12
+[0104-09:12:58:868][debug][ChicagoHU_OTP_CRC_Check:01158] Goodix>>> ft check CRC=240, chip ft CRC=240
+[0104-09:12:58:868][debug][ChicagoHU_OTP_CRC_Check:01182] Goodix>>> mt check CRC=219, chip mt CRC=219
+[0104-09:12:58:868][debug][ChicagoHU_OTP_DAC_Check:01204] Goodix>>> entry
+[0104-09:12:58:868][debug][ChicagoHU_OTP_DAC_Check:01227] Goodix>>> ft dac crc check CRC=23, otp CRC=23
+[0104-09:12:58:868][debug][ChicagoHU_check_otp:00160] Goodix>>> from otp dac 0xb38, dac1 0xb5, dac2 0xb3, dac3 0xb3
+[0104-09:12:58:868][info][modify_sensor_config:00424] Goodix>>> reg 0x0220, before update: 0x0808, after update:0x0b38 (0x0b38: 0xb|0x38)
+[0104-09:12:58:868][info][modify_sensor_config:00424] Goodix>>> reg 0x0236, before update: 0x0080, after update:0x00b5 (0x00b5: 0x0|0xb5)
+[0104-09:12:58:868][info][modify_sensor_config:00424] Goodix>>> reg 0x0238, before update: 0x0080, after update:0x00b3 (0x00b3: 0x0|0xb3)
+[0104-09:12:58:869][info][modify_sensor_config:00424] Goodix>>> reg 0x023a, before update: 0x0080, after update:0x00b3 (0x00b3: 0x0|0xb3)
+[0104-09:12:58:869][debug][ChicagoHU_check_and_parse_otp:01366] Goodix>>> USED OTP::0x5334303636362e000a7d82b372a0460a5107050e7d4b172741029a0cf1807f0c07813038e480ddfc0abebb4401bbb3b5b3b3b3b5b3b34133e41bdd220cf017db
+[0104-09:12:58:869][info][modify_sensor_config:00424] Goodix>>> reg 0x005c, before update: 0x0180, after update:0x0100 (0x0100: 0x1|0x0)
+[0104-09:12:58:869][info][modify_sensor_config:00424] Goodix>>> reg 0x0082, before update: 0x1580, after update:0x1b80 (0x1b00: 0x1b|0x0)
+[0104-09:12:58:869][info][ChicagoHU_check_and_parse_otp:01426] Goodix>>> OTP tcode 256, fdt delta 27
+[0104-09:12:58:869][debug][ChicagoHU_check_and_parse_otp:01458] Goodix>>> fdtOffset:0x0
+[0104-09:12:58:869][debug][device_action:04408] Goodix>>> to set state to DEVICE_ENABLE
+[0104-09:12:58:869][debug][set_state:00872] Goodix>>> to set state from 3 to 1
+[0104-09:12:58:869][info][init_FPSensor:01279] Goodix>>> FDT_Init, sensortype: 12, fdt_delta:27, tcode:256
+[0104-09:12:58:870][debug][device_action:04222] Goodix>>> to set state to DEVICE_ACTION
+[0104-09:12:58:870][debug][set_state:00872] Goodix>>> to set state from 1 to 3
+[0104-09:12:58:870][debug][gf_download_config:06474] Goodix>>> enter
+[0104-09:12:58:870][debug][gfresetMCUAndfingerprint:06383] Goodix>>> reset sensor
+[0104-09:12:58:870][debug][gfresetMCUAndfingerprint:06393] Goodix>>> reset device, reset_flag 1
+[0104-09:12:58:871][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-1-0x2-1000-0
+[0104-09:12:58:871] write    4 -  0000: a0 06 00 a6
+
+[0104-09:12:58:887] write    6 -  0000: a2 03 00 01 14 f0
+
+[0104-09:12:58:888][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0104-09:12:58:888][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0xa2, cfg flag 0x7
+[0104-09:12:58:888]  read    4 -  0000: a0 06 00 a6
+
+[0104-09:12:58:888]  read    6 -  0000: b0 03 00 a2 07 4e
+
+[0104-09:12:58:888][warn][get_msg_data:06277] Goodix>>> MCU has no config
+[0104-09:12:58:931][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xa2-4
+[0104-09:12:58:931]  read    4 -  0000: a0 07 00 a7
+
+[0104-09:12:58:931]  read    7 -  0000: a2 04 00 01 00 08 fb
+
+[0104-09:12:58:932][debug][data_from_device:05100] Goodix>>> --- cmd: other
+[0104-09:12:58:932][debug][get_other_data:06094] Goodix>>> CHIP_RESET::0x010008
+[0104-09:12:58:932][info][ChicagoHUSetMode:00541] Goodix>>> enter, Mode 7, Type 0, base_type 0
+[0104-09:12:58:932][info][ChicagoHUSetMode:00652] Goodix>>> setmode: idle
+[0104-09:12:58:933][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x7-0-0x2-1000-0
+[0104-09:12:58:933] write    4 -  0000: a0 06 00 a6
+
+[0104-09:12:58:950] write    6 -  0000: 70 03 00 14 00 23
+
+[0104-09:12:58:951][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0104-09:12:58:951]  read    4 -  0000: a0 06 00 a6
+
+[0104-09:12:58:951]  read    6 -  0000: b0 03 00 70 07 80
+
+[0104-09:12:58:952][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x70, cfg flag 0x7
+[0104-09:12:58:952][warn][get_msg_data:06277] Goodix>>> MCU has no config
+[0104-09:12:58:966][debug][ChicagoHUsetDac:00419] Goodix>>> Dac sent::0x380bb500b300b300
+[0104-09:12:58:966][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x9-4-0x8-1000-0
+[0104-09:12:58:966] write    4 -  0000: a0 0c 00 ac
+
+[0104-09:12:58:982] write   12 -  0000: 98 09 00 38 0b b5 00 b3 00 b3 00 ab
+
+[0104-09:12:58:984][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0104-09:12:58:984]  read    4 -  0000: a0 06 00 a6
+
+[0104-09:12:58:984]  read    6 -  0000: b0 03 00 98 07 58
+
+[0104-09:12:58:985][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x98, cfg flag 0x7
+[0104-09:12:58:985][warn][get_msg_data:06277] Goodix>>> MCU has no config
+[0104-09:12:58:986][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x98-3
+[0104-09:12:58:986]  read    4 -  0000: a0 06 00 a6
+
+[0104-09:12:58:986]  read    6 -  0000: 98 03 00 01 00 0e
+
+[0104-09:12:58:998][debug][ChicagoHUsetDac:00451] Goodix>>> wrote down dac 0xb38, dac1 0xb5,dac2 0xb3, dac3 0xb3
+[0104-09:12:59:014][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x9-0-0xe0-1000-0
+[0104-09:12:59:014] write    4 -  0000: a0 e4 00 84
+
+[0104-09:12:59:029] write  228 -  0000: 90 e1 00 70 11 74 85 00 85 2c b1 18 c9 14 dd 00
+[0104-09:12:59:029] write  228 -  0010: dd 00 dd 00 ba 00 01 80 ca 00 04 00 84 00 15 b3
+[0104-09:12:59:029] write  228 -  0020: 86 00 00 c4 88 00 00 ba 8a 00 00 b2 8c 00 00 aa
+[0104-09:12:59:029] write  228 -  0030: 8e 00 00 c1 90 00 bb bb 92 00 b1 b1 94 00 00 a8
+[0104-09:12:59:029] write  228 -  0040: 96 00 00 b6 98 00 00 00 9a 00 00 00 d2 00 00 00
+[0104-09:12:59:029] write  228 -  0050: d4 00 00 00 d6 00 00 00 d8 00 00 00 50 00 01 05
+[0104-09:12:59:029] write  228 -  0060: d0 00 00 00 70 00 00 00 72 00 78 56 74 00 34 12
+[0104-09:12:59:029] write  228 -  0070: 20 00 10 40 5c 00 00 01 20 02 38 0b 36 02 b5 00
+[0104-09:12:59:029] write  228 -  0080: 38 02 b3 00 3a 02 b3 00 2a 01 82 03 22 00 01 20
+[0104-09:12:59:029] write  228 -  0090: 24 00 14 00 80 00 01 00 5c 00 00 01 56 00 04 20
+[0104-09:12:59:029] write  228 -  00a0: 58 00 03 02 32 00 0c 02 66 00 03 00 7c 00 00 58
+[0104-09:12:59:029] write  228 -  00b0: 82 00 80 1b 2a 01 08 00 54 00 10 01 62 00 04 03
+[0104-09:12:59:029] write  228 -  00c0: 64 00 19 00 66 00 03 00 7c 00 00 58 2a 01 08 00
+[0104-09:12:59:029] write  228 -  00d0: 52 00 08 00 54 00 00 01 66 00 03 00 7c 00 00 58
+[0104-09:12:59:029] write  228 -  00e0: 00 53 66 8f
+
+[0104-09:12:59:030][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0104-09:12:59:030][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x90, cfg flag 0x7
+[0104-09:12:59:030]  read    4 -  0000: a0 06 00 a6
+
+[0104-09:12:59:030]  read    6 -  0000: b0 03 00 90 07 60
+
+[0104-09:12:59:030][warn][get_msg_data:06277] Goodix>>> MCU has no config
+[0104-09:12:59:031][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x90-3
+[0104-09:12:59:031]  read    4 -  0000: a0 06 00 a6
+
+[0104-09:12:59:031]  read    6 -  0000: 90 03 00 01 00 16
+
+[0104-09:12:59:045][debug][gf_download_config:06492] Goodix>>> exit, ret 1
+[0104-09:12:59:045][debug][device_action:04408] Goodix>>> to set state to DEVICE_ENABLE
+[0104-09:12:59:045][debug][set_state:00872] Goodix>>> to set state from 3 to 1
+[0104-09:12:59:045][info][init_FPSensor:01282] Goodix>>> OTP data valid, download config 1
+[0104-09:12:59:045][info][init_FPSensor:01291] Goodix>>> otp_valid 1, have config 1
+[0104-09:12:59:045][info][init_FPSensor:01393] Goodix>>> exit return 1, inited 1
+[0104-09:12:59:045][debug][device_action:04222] Goodix>>> to set state to DEVICE_ACTION
+[0104-09:12:59:046][debug][set_state:00872] Goodix>>> to set state from 1 to 3
+[0104-09:12:59:046][debug][device_action:04377] Goodix>>> besdenable:1
+[0104-09:12:59:046][debug][device_action:04408] Goodix>>> to set state to DEVICE_ENABLE
+[0104-09:12:59:046][debug][set_state:00872] Goodix>>> to set state from 3 to 1
+[0104-09:12:59:046][info][_DeviceInit:00949] Goodix>>> Init Device Done Successfully
+[0104-09:12:59:046][info][InitThread:01483] Goodix>>> Init Device Success
+[0104-09:12:59:046][info][InitThread:01511] Goodix>>> tls handshake flag is marked to false
+[0104-09:12:59:046][info][_TlsInitAndHandShake:00974] Goodix>>> ---- enter
+[0104-09:12:59:046][debug][_TlsInitAndHandShake:00991] Goodix>>> CONFIG DATA: time_wait_for_tls 1100, time_wait_for_pov 2000
+[0104-09:12:59:046][info][tlsapp_init_tls_state:00127] Goodix>>> enter
+[0104-09:12:59:047][info][_TlsInitAndHandShake:01015] Goodix>>> tls init...
+[0104-09:12:59:047][info][tlsapp_tls_server_init:00269] Goodix>>> enter 32
+[0104-09:12:59:047][info][tlslib_server_init:00384] Goodix>>> => tlslib_server_init
+[0104-09:12:59:047][info][tlslib_server_exit:00509] Goodix>>> => tlslib_server_exit.
+[0104-09:12:59:048][info][tlslib_server_exit:00524] Goodix>>> <= tlslib_server_exit.
+[0104-09:12:59:049][info][tlslib_server_init:00479] Goodix>>>  <= tlslib_server_init [Successfully] ret:0
+[0104-09:12:59:049][info][tlsapp_tls_server_init:00294] Goodix>>> exit with ret:0
+[0104-09:12:59:049][info][TLSServerInit:00785] Goodix>>> TLS Init Success, Set tls inited to TRUE
+[0104-09:12:59:049][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xd-0-0x2-0-0
+[0104-09:12:59:049] write    4 -  0000: a0 06 00 a6
+
+[0104-09:12:59:061][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0104-09:12:59:061] write    6 -  0000: d1 03 00 00 00 d7
+
+[0104-09:12:59:062][debug][MilanEvtInterruptWorkItem:05895] Goodix>>> enter
+[0104-09:12:59:062][debug][MilanEvtInterruptWorkItem:05951] Goodix>>>  ---- pack len: 52
+[0104-09:12:59:062][debug][process_tls_data:05125] Goodix>>> enter
+[0104-09:12:59:062][debug][process_tls_data:05131] Goodix>>> tls handshake package, state: 0
+[0104-09:12:59:062]  read    4 -  0000: b0 34 00 e4
+
+[0104-09:12:59:062]  read   52 -  0000: 16 03 03 00 2f 01 00 00 2b 03 03 2d f4 51 58 cf
+[0104-09:12:59:062]  read   52 -  0010: 8c b1 40 46 f6 b5 4b 29 31 03 47 04 5b 70 30 b4
+[0104-09:12:59:062]  read   52 -  0020: 5d fd 20 78 7f 8b 1a d8 59 29 50 00 00 04 00 a8
+[0104-09:12:59:062]  read   52 -  0030: 00 ff 01 00
+
+[0104-09:12:59:063][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read
+[0104-09:12:59:063][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => handshake
+[0104-09:12:59:063][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 0
+[0104-09:12:59:063][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:063][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:063][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 1
+[0104-09:12:59:063][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:063][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:063][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => parse client hello
+[0104-09:12:59:064][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0104-09:12:59:064][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0104-09:12:59:064][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0104-09:12:59:064][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 5, bytes left: 52
+[0104-09:12:59:064][info][RecvTLSPackage:06650] Goodix>>> bytes read: 5, bytes left: 47
+[0104-09:12:59:064][info][tls_callback_recv:00165] Goodix>>> recv ret:5.
+[0104-09:12:59:064][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0104-09:12:59:064][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 5 (-0xfffffffb)
+[0104-09:12:59:064][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0104-09:12:59:064][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0104-09:12:59:064][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 52
+[0104-09:12:59:065][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0104-09:12:59:065][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 47, bytes left: 47
+[0104-09:12:59:065][info][RecvTLSPackage:06650] Goodix>>> bytes read: 47, bytes left: 0
+[0104-09:12:59:065][info][tls_callback_recv:00165] Goodix>>> recv ret:47.
+[0104-09:12:59:065][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 52
+[0104-09:12:59:065][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 47 (-0xffffffd1)
+[0104-09:12:59:065][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0104-09:12:59:065][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: selected ciphersuite: TLS-PSK-WITH-AES-128-GCM-SHA256
+[0104-09:12:59:066][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= parse client hello
+[0104-09:12:59:066][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 2
+[0104-09:12:59:066][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:066][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:066][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write server hello
+[0104-09:12:59:066][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write handshake message
+[0104-09:12:59:066][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write record
+[0104-09:12:59:066][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:066][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: message length: 86, out_left: 86
+[0104-09:12:59:067][info][tls_callback_send:00186] Goodix>>> enter, tls inited 1
+[0104-09:12:59:067][info][SendTLSPackage:06572] Goodix>>> SENT DATA LEN: 86, 90
+[0104-09:12:59:067] write    4 -  0000: b0 56 00 06
+
+[0104-09:12:59:077][info][_TlsInitAndHandShake:01065] Goodix>>> tls init...done within 15ms, system slow index 2, time for checking tls-hand-shake 1100ms, time_tls_handshake:2200
+[0104-09:12:59:077] write   86 -  0000: 16 03 03 00 51 02 00 00 4d 03 03 d3 2c cf 4e 96
+[0104-09:12:59:077] write   86 -  0010: 09 a7 a5 f7 92 7b ab 2c ab 81 59 84 52 81 81 ee
+[0104-09:12:59:077] write   86 -  0020: 78 fe ca b0 2a cf 1b e2 4e a7 c3 20 fd cb 8e 9b
+[0104-09:12:59:077] write   86 -  0030: 9a c3 d3 8f 41 dd b8 e3 44 84 8b 43 8f d1 15 6f
+[0104-09:12:59:077] write   86 -  0040: 7f 29 1a f9 5e 97 14 e4 71 29 a1 37 00 a8 00 00
+[0104-09:12:59:077] write   86 -  0050: 05 ff 01 00 01 00
+
+[0104-09:12:59:093][debug][SendTLSPackage:06624] Goodix>>> exit len 86
+[0104-09:12:59:093][fatal][tls_callback_send:00193] Goodix>>> sent ret:86.
+[0104-09:12:59:093][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_send() returned 86 (-0xffffffaa)
+[0104-09:12:59:093][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:093][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write record
+[0104-09:12:59:093][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write handshake message
+[0104-09:12:59:093][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write server hello
+[0104-09:12:59:093][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 3
+[0104-09:12:59:094][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:094][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:094][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write certificate
+[0104-09:12:59:094][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= skip write certificate
+[0104-09:12:59:094][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 4
+[0104-09:12:59:094][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:094][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:094][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write server key exchange
+[0104-09:12:59:094][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= skip write server key exchange
+[0104-09:12:59:094][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 5
+[0104-09:12:59:094][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:095][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:095][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write certificate request
+[0104-09:12:59:095][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= skip write certificate request
+[0104-09:12:59:095][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 6
+[0104-09:12:59:095][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:095][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:095][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write server hello done
+[0104-09:12:59:096][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write handshake message
+[0104-09:12:59:096][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write record
+[0104-09:12:59:096][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:096][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: message length: 9, out_left: 9
+[0104-09:12:59:096][info][tls_callback_send:00186] Goodix>>> enter, tls inited 1
+[0104-09:12:59:096][info][SendTLSPackage:06572] Goodix>>> SENT DATA LEN: 9, 13
+[0104-09:12:59:096] write    4 -  0000: b0 09 00 b9
+
+[0104-09:12:59:109] write    9 -  0000: 16 03 03 00 04 0e 00 00 00
+
+[0104-09:12:59:110][debug][MilanEvtInterruptWorkItem:05895] Goodix>>> enter
+[0104-09:12:59:110]  read    4 -  0000: b0 1a 00 ca
+
+[0104-09:12:59:110]  read   26 -  0000: 16 03 03 00 15 10 00 00 11 00 0f 43 6c 69 65 6e
+[0104-09:12:59:110]  read   26 -  0010: 74 5f 69 64 65 6e 74 69 74 79
+
+[0104-09:12:59:122][debug][MilanEvtInterruptWorkItem:05895] Goodix>>> enter
+[0104-09:12:59:122]  read    4 -  0000: b0 06 00 b6
+
+[0104-09:12:59:123]  read    6 -  0000: 14 03 03 00 01 01
+
+[0104-09:12:59:124][debug][SendTLSPackage:06624] Goodix>>> exit len 9
+[0104-09:12:59:124][fatal][tls_callback_send:00193] Goodix>>> sent ret:9.
+[0104-09:12:59:124][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_send() returned 9 (-0xfffffff7)
+[0104-09:12:59:124][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:124][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write record
+[0104-09:12:59:124][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write handshake message
+[0104-09:12:59:124][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write server hello done
+[0104-09:12:59:125][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 7
+[0104-09:12:59:125][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:125][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:125][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => parse certificate
+[0104-09:12:59:125][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= skip parse certificate
+[0104-09:12:59:125][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 8
+[0104-09:12:59:125][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:125][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:125]  read    4 -  0000: b0 2d 00 dd
+
+[0104-09:12:59:126][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => parse client key exchange
+[0104-09:12:59:126][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read record
+[0104-09:12:59:126][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0104-09:12:59:126][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0104-09:12:59:125][debug][MilanEvtInterruptWorkItem:05895] Goodix>>> enter
+[0104-09:12:59:126][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0104-09:12:59:126][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 5, bytes left: 0
+[0104-09:12:59:126]  read   45 -  0000: 16 03 03 00 28 00 00 00 00 00 00 00 00 f1 24 45
+[0104-09:12:59:126]  read   45 -  0010: 61 dc a1 84 af ee fa cb 5e 0c 70 fe d1 49 a0 87
+[0104-09:12:59:126]  read   45 -  0020: e2 ff 99 3d ae 16 41 3a 2b 23 6f 34 cd
+
+[0104-09:12:59:126][warn][RecvTLSPackage:06644] Goodix>>> data not enough
+[0104-09:12:59:126][info][RecvTLSPackage:06650] Goodix>>> bytes read: 0, bytes left: 0
+[0104-09:12:59:127][info][tls_callback_recv:00165] Goodix>>> recv ret:0.
+[0104-09:12:59:127][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0104-09:12:59:127][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 0 (-0x0000)
+[0104-09:12:59:127][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: mbedtls_ssl_fetch_input() returned -29312 (-0x7280)
+[0104-09:12:59:127][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: ssl_get_next_record() returned -29312 (-0x7280)
+[0104-09:12:59:127][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: mbedtls_ssl_read_record() returned -29312 (-0x7280)
+[0104-09:12:59:127][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= handshake
+[0104-09:12:59:127][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: mbedtls_ssl_handshake() returned -29312 (-0x7280)
+[0104-09:12:59:127][error][tlslib_read:00578] Goodix>>> tlslib_read error ret(abs): 0x7280, meaning:SSL - The connection indicated an EOF.
+[0104-09:12:59:127][info][set_tls_state:00219] Goodix>>> enter
+[0104-09:12:59:127][debug][tlsapp_set_tls_state:00033] Goodix>>> TLS now IN handshake state:8.
+[0104-09:12:59:128][info][tlslib_read:00571] Goodix>>> <= tlslib_read exit with ret:-29312 tls server state:8.
+[0104-09:12:59:128][debug][process_tls_data:05161] Goodix>>> exit
+[0104-09:12:59:128][debug][MilanEvtInterruptWorkItem:05951] Goodix>>>  ---- pack len: 26
+[0104-09:12:59:128][debug][process_tls_data:05125] Goodix>>> enter
+[0104-09:12:59:128][debug][process_tls_data:05131] Goodix>>> tls handshake package, state: 8
+[0104-09:12:59:128][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read
+[0104-09:12:59:128][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => handshake
+[0104-09:12:59:128][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 8
+[0104-09:12:59:128][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:129][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:129][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => parse client key exchange
+[0104-09:12:59:129][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read record
+[0104-09:12:59:129][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0104-09:12:59:129][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0104-09:12:59:129][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0104-09:12:59:129][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 5, bytes left: 26
+[0104-09:12:59:129][info][RecvTLSPackage:06650] Goodix>>> bytes read: 5, bytes left: 21
+[0104-09:12:59:129][info][tls_callback_recv:00165] Goodix>>> recv ret:5.
+[0104-09:12:59:129][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0104-09:12:59:130][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 5 (-0xfffffffb)
+[0104-09:12:59:130][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0104-09:12:59:130][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0104-09:12:59:130][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 26
+[0104-09:12:59:130][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0104-09:12:59:130][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 21, bytes left: 21
+[0104-09:12:59:130][info][RecvTLSPackage:06650] Goodix>>> bytes read: 21, bytes left: 0
+[0104-09:12:59:130][info][tls_callback_recv:00165] Goodix>>> recv ret:21.
+[0104-09:12:59:130][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 26
+[0104-09:12:59:130][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 21 (-0xffffffeb)
+[0104-09:12:59:130][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0104-09:12:59:131][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= read record
+[0104-09:12:59:131][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => derive keys
+[0104-09:12:59:131][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= derive keys
+[0104-09:12:59:131][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= parse client key exchange
+[0104-09:12:59:131][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 9
+[0104-09:12:59:131][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:131][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:131][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => parse certificate verify
+[0104-09:12:59:131][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= skip parse certificate verify
+[0104-09:12:59:132][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 10
+[0104-09:12:59:132][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:132][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:132][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => parse change cipher spec
+[0104-09:12:59:132][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read record
+[0104-09:12:59:132][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0104-09:12:59:132][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0104-09:12:59:132][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0104-09:12:59:132][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 5, bytes left: 0
+[0104-09:12:59:133][warn][RecvTLSPackage:06644] Goodix>>> data not enough
+[0104-09:12:59:133][info][RecvTLSPackage:06650] Goodix>>> bytes read: 0, bytes left: 0
+[0104-09:12:59:133][info][tls_callback_recv:00165] Goodix>>> recv ret:0.
+[0104-09:12:59:133][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0104-09:12:59:133][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 0 (-0x0000)
+[0104-09:12:59:133][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: mbedtls_ssl_fetch_input() returned -29312 (-0x7280)
+[0104-09:12:59:133][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: ssl_get_next_record() returned -29312 (-0x7280)
+[0104-09:12:59:133][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: mbedtls_ssl_read_record() returned -29312 (-0x7280)
+[0104-09:12:59:133][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= handshake
+[0104-09:12:59:133][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: mbedtls_ssl_handshake() returned -29312 (-0x7280)
+[0104-09:12:59:134][error][tlslib_read:00578] Goodix>>> tlslib_read error ret(abs): 0x7280, meaning:SSL - The connection indicated an EOF.
+[0104-09:12:59:134][info][set_tls_state:00219] Goodix>>> enter
+[0104-09:12:59:134][debug][tlsapp_set_tls_state:00033] Goodix>>> TLS now IN handshake state:10.
+[0104-09:12:59:134][info][tlslib_read:00571] Goodix>>> <= tlslib_read exit with ret:-29312 tls server state:10.
+[0104-09:12:59:134][debug][process_tls_data:05161] Goodix>>> exit
+[0104-09:12:59:134][debug][MilanEvtInterruptWorkItem:05951] Goodix>>>  ---- pack len: 6
+[0104-09:12:59:134][debug][process_tls_data:05125] Goodix>>> enter
+[0104-09:12:59:134][debug][process_tls_data:05131] Goodix>>> tls handshake package, state: 10
+[0104-09:12:59:134][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read
+[0104-09:12:59:134][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => handshake
+[0104-09:12:59:134][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 10
+[0104-09:12:59:135][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:135][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:135][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => parse change cipher spec
+[0104-09:12:59:135][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read record
+[0104-09:12:59:135][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0104-09:12:59:135][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0104-09:12:59:135][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0104-09:12:59:135][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 5, bytes left: 6
+[0104-09:12:59:135][info][RecvTLSPackage:06650] Goodix>>> bytes read: 5, bytes left: 1
+[0104-09:12:59:135][info][tls_callback_recv:00165] Goodix>>> recv ret:5.
+[0104-09:12:59:135][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0104-09:12:59:136][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 5 (-0xfffffffb)
+[0104-09:12:59:136][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0104-09:12:59:136][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0104-09:12:59:136][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 6
+[0104-09:12:59:136][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0104-09:12:59:136][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 1, bytes left: 1
+[0104-09:12:59:136][info][RecvTLSPackage:06650] Goodix>>> bytes read: 1, bytes left: 0
+[0104-09:12:59:136][info][tls_callback_recv:00165] Goodix>>> recv ret:1.
+[0104-09:12:59:136][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 6
+[0104-09:12:59:136][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 1 (-0xffffffff)
+[0104-09:12:59:137][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0104-09:12:59:137][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= read record
+[0104-09:12:59:137][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= parse change cipher spec
+[0104-09:12:59:137][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 11
+[0104-09:12:59:137][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:137][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:137][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => parse finished
+[0104-09:12:59:137][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => calc  finished tls sha256
+[0104-09:12:59:137][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= calc  finished
+[0104-09:12:59:138][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read record
+[0104-09:12:59:138][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0104-09:12:59:138][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0104-09:12:59:138][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0104-09:12:59:138][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 5, bytes left: 0
+[0104-09:12:59:139][warn][RecvTLSPackage:06644] Goodix>>> data not enough
+[0104-09:12:59:139][info][RecvTLSPackage:06650] Goodix>>> bytes read: 0, bytes left: 0
+[0104-09:12:59:139][info][tls_callback_recv:00165] Goodix>>> recv ret:0.
+[0104-09:12:59:139][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0104-09:12:59:139][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 0 (-0x0000)
+[0104-09:12:59:139][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: mbedtls_ssl_fetch_input() returned -29312 (-0x7280)
+[0104-09:12:59:139][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: ssl_get_next_record() returned -29312 (-0x7280)
+[0104-09:12:59:139][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: mbedtls_ssl_read_record() returned -29312 (-0x7280)
+[0104-09:12:59:140][debug][_TlsInitAndHandShake:01074] Goodix>>> tls handshake already started
+[0104-09:12:59:140][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= handshake
+[0104-09:12:59:140][info][_TlsInitAndHandShake:01093] Goodix>>> TLS Handshake Started, waif for TLS handshake done(2200-0)...
+[0104-09:12:59:140][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: mbedtls_ssl_handshake() returned -29312 (-0x7280)
+[0104-09:12:59:140][error][tlslib_read:00578] Goodix>>> tlslib_read error ret(abs): 0x7280, meaning:SSL - The connection indicated an EOF.
+[0104-09:12:59:140][info][set_tls_state:00219] Goodix>>> enter
+[0104-09:12:59:140][debug][tlsapp_set_tls_state:00033] Goodix>>> TLS now IN handshake state:11.
+[0104-09:12:59:140][info][tlslib_read:00571] Goodix>>> <= tlslib_read exit with ret:-29312 tls server state:11.
+[0104-09:12:59:141][debug][process_tls_data:05161] Goodix>>> exit
+[0104-09:12:59:141][debug][MilanEvtInterruptWorkItem:05951] Goodix>>>  ---- pack len: 45
+[0104-09:12:59:141][debug][process_tls_data:05125] Goodix>>> enter
+[0104-09:12:59:141][debug][process_tls_data:05131] Goodix>>> tls handshake package, state: 11
+[0104-09:12:59:141][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read
+[0104-09:12:59:141][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => handshake
+[0104-09:12:59:141][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 11
+[0104-09:12:59:141][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:141][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:141][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => parse finished
+[0104-09:12:59:142][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => calc  finished tls sha256
+[0104-09:12:59:142][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= calc  finished
+[0104-09:12:59:142][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read record
+[0104-09:12:59:142][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0104-09:12:59:142][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0104-09:12:59:142][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0104-09:12:59:142][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 5, bytes left: 45
+[0104-09:12:59:142][info][RecvTLSPackage:06650] Goodix>>> bytes read: 5, bytes left: 40
+[0104-09:12:59:142][info][tls_callback_recv:00165] Goodix>>> recv ret:5.
+[0104-09:12:59:142][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0104-09:12:59:142][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 5 (-0xfffffffb)
+[0104-09:12:59:143][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0104-09:12:59:143][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0104-09:12:59:143][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 45
+[0104-09:12:59:143][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0104-09:12:59:143][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 40, bytes left: 40
+[0104-09:12:59:143][info][RecvTLSPackage:06650] Goodix>>> bytes read: 40, bytes left: 0
+[0104-09:12:59:143][info][tls_callback_recv:00165] Goodix>>> recv ret:40.
+[0104-09:12:59:143][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 45
+[0104-09:12:59:143][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 40 (-0xffffffd8)
+[0104-09:12:59:143][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0104-09:12:59:143][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => decrypt buf
+[0104-09:12:59:144][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= decrypt buf
+[0104-09:12:59:144][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= read record
+[0104-09:12:59:144][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= parse finished
+[0104-09:12:59:144][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 12
+[0104-09:12:59:144][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:144][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:144][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write change cipher spec
+[0104-09:12:59:144][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write handshake message
+[0104-09:12:59:144][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write record
+[0104-09:12:59:144][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:144][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: message length: 6, out_left: 6
+[0104-09:12:59:145][info][tls_callback_send:00186] Goodix>>> enter, tls inited 1
+[0104-09:12:59:145][info][SendTLSPackage:06572] Goodix>>> SENT DATA LEN: 6, 10
+[0104-09:12:59:145] write    4 -  0000: b0 06 00 b6
+
+[0104-09:12:59:330] write    6 -  0000: 14 03 03 00 01 01
+
+[0104-09:12:59:345][debug][SendTLSPackage:06624] Goodix>>> exit len 6
+[0104-09:12:59:345][fatal][tls_callback_send:00193] Goodix>>> sent ret:6.
+[0104-09:12:59:345][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_send() returned 6 (-0xfffffffa)
+[0104-09:12:59:346][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:346][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write record
+[0104-09:12:59:346][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write handshake message
+[0104-09:12:59:346][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write change cipher spec
+[0104-09:12:59:347][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 13
+[0104-09:12:59:347][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:347][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:347][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write finished
+[0104-09:12:59:348][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => calc  finished tls sha256
+[0104-09:12:59:348][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= calc  finished
+[0104-09:12:59:348][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write handshake message
+[0104-09:12:59:348][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write record
+[0104-09:12:59:349][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => encrypt buf
+[0104-09:12:59:349][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= encrypt buf
+[0104-09:12:59:349][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:349][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: message length: 45, out_left: 45
+[0104-09:12:59:350][info][tls_callback_send:00186] Goodix>>> enter, tls inited 1
+[0104-09:12:59:350][info][SendTLSPackage:06572] Goodix>>> SENT DATA LEN: 45, 49
+[0104-09:12:59:351] write    4 -  0000: b0 2d 00 dd
+
+[0104-09:12:59:362] write   45 -  0000: 16 03 03 00 28 00 00 00 00 00 00 00 00 24 92 ce
+[0104-09:12:59:362] write   45 -  0010: 34 1a 50 24 4d b9 c9 27 9c 9b 44 0c 4d 51 86 f8
+[0104-09:12:59:362] write   45 -  0020: bd 97 8f ed 84 cb 12 87 de 6b f5 29 b1
+
+[0104-09:12:59:376][debug][SendTLSPackage:06624] Goodix>>> exit len 45
+[0104-09:12:59:376][fatal][tls_callback_send:00193] Goodix>>> sent ret:45.
+[0104-09:12:59:376][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_send() returned 45 (-0xffffffd3)
+[0104-09:12:59:377][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:377][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write record
+[0104-09:12:59:377][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write handshake message
+[0104-09:12:59:378][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write finished
+[0104-09:12:59:378][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 14
+[0104-09:12:59:378][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:379][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:379][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: handshake: done
+[0104-09:12:59:379][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 15
+[0104-09:12:59:380][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0104-09:12:59:380][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0104-09:12:59:380][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= handshake
+[0104-09:12:59:380][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read record
+[0104-09:12:59:380][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0104-09:12:59:381][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0104-09:12:59:381][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0104-09:12:59:381][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 5, bytes left: 0
+[0104-09:12:59:381][warn][RecvTLSPackage:06644] Goodix>>> data not enough
+[0104-09:12:59:381][info][RecvTLSPackage:06650] Goodix>>> bytes read: 0, bytes left: 0
+[0104-09:12:59:381][info][tls_callback_recv:00165] Goodix>>> recv ret:0.
+[0104-09:12:59:382][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0104-09:12:59:382][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 0 (-0x0000)
+[0104-09:12:59:382][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: mbedtls_ssl_fetch_input() returned -29312 (-0x7280)
+[0104-09:12:59:382][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: ssl_get_next_record() returned -29312 (-0x7280)
+[0104-09:12:59:383][info][set_tls_state:00219] Goodix>>> enter
+[0104-09:12:59:383][debug][tlsapp_set_tls_state:00033] Goodix>>> TLS now IN handshake state:16.
+[0104-09:12:59:383][info][tlslib_read:00565] Goodix>>> TLS handshake over successfully.
+[0104-09:12:59:384][info][tlsapp_trig_tlsconnected:00072] Goodix>>> TLS Connection Ready
+[0104-09:12:59:384][info][tlslib_read:00571] Goodix>>> <= tlslib_read exit with ret:0 tls server state:16.
+[0104-09:12:59:384][debug][process_tls_data:05161] Goodix>>> exit
+[0104-09:12:59:384][debug][MilanEvtInterruptWorkItem:05985] Goodix>>> exit
+[0104-09:12:59:384][debug][MilanEvtInterruptWorkItem:05985] Goodix>>> exit
+[0104-09:12:59:384][debug][MilanEvtInterruptWorkItem:05985] Goodix>>> exit
+[0104-09:12:59:385][debug][MilanEvtInterruptWorkItem:05985] Goodix>>> exit
+[0104-09:12:59:408][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xd-2-0x2-1000-0
+[0104-09:12:59:408] write    4 -  0000: a0 06 00 a6
+
+[0104-09:12:59:424] write    6 -  0000: d4 03 00 00 00 d3
+
+[0104-09:12:59:425][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0104-09:12:59:425][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0xd4, cfg flag 0x1
+[0104-09:12:59:425]  read    4 -  0000: a0 06 00 a6
+
+[0104-09:12:59:426]  read    6 -  0000: b0 03 00 d4 01 22
+
+[0104-09:12:59:426][warn][get_msg_data:06289] Goodix>>> Client TLS connection setup
+[0104-09:12:59:440][info][_TlsInitAndHandShake:01118] Goodix>>> tls handshake done (server side), 328ms(since start of tls init)
+[0104-09:12:59:471][warn][GetMcuState:04101] Goodix>>> mcu-state TIMESTAMP 0xe84f
+[0104-09:12:59:471][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-7-0x5-0-0
+[0104-09:12:59:472] write    4 -  0000: a0 09 00 a9
+
+[0104-09:12:59:487][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0104-09:12:59:487] write    9 -  0000: af 06 00 55 4f e8 00 00 6a
+
+[0104-09:12:59:488][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xae-23
+[0104-09:12:59:488][debug][data_from_device:05100] Goodix>>> --- cmd: other
+[0104-09:12:59:488]  read    4 -  0000: a0 1a 00 ba
+
+[0104-09:12:59:488]  read   26 -  0000: ae 17 00 04 06 30 00 00 00 00 00 20 00 00 00 00
+[0104-09:12:59:488]  read   26 -  0010: 01 00 01 04 25 02 00 00 00 5e
+
+[0104-09:12:59:489][info][GetMcuState:04178] Goodix>>> pov 1, pba 0, tls-client-server-lock 1-1-0-0, have config 1, pov valid 0
+[0104-09:12:59:489][debug][PrintMcuState:04046] Goodix>>> mcu state::0x04063000000000002000000000010001042502000000
+[0104-09:12:59:489][info][PrintMcuState:04074] Goodix>>> mcu state: version:4, isPOVImageValid:0, isTlsConnected:1, isTlsUsed:1, isLocked:0, availImgCnt:0, povImgCnt:3
+[0104-09:12:59:490][info][PrintMcuState:04076] Goodix>>> mcu state: sensor_data_int_timeout_count:0, image_crc_fail_count:0, povTouchAccidentCnt:0x0, readChipIDCnt:0, sensorExceptionFlag:0, sensorUnexpectedIntCnt:0, to_master_timeout_count:0
+[0104-09:12:59:490][info][PrintMcuState:04078] Goodix>>> mcu state: psk_len:32, psk_check_fail:0, psk_write_fail:0, ec_falling_count:0, system_up_stop_cnt:0, system_down_pov_stop_cnt:0, system_up_cleared_pov_count:0
+[0104-09:12:59:490][info][PrintMcuState:04080] Goodix>>> mcu state: pov_wake_by_fp:1, pov_wake_by_ec:0, pov_procedure:0x0, config_down_flag:1, sensor_chip_id:0x2504, sensor_type:2, pov_capture_count:0, normal_capture_count:0, otp_mcu_check_status:0x0
+[0104-09:12:59:490][notice][_TlsInitAndHandShake:01150] Goodix>>> tls connected success confirmed
+[0104-09:12:59:490][info][_TlsInitAndHandShake:01177] Goodix>>> tls handshake done (client/mcu side)
+[0104-09:12:59:490][info][_TlsInitAndHandShake:01193] Goodix>>> exit, ret 1, bResetMCU 0, tls inited 1
+[0104-09:12:59:491][info][InitThread:01547] Goodix>>> TLS Handshake Success
+[0104-09:12:59:491][info][InitThread:01572] Goodix>>> power not lost
+[0104-09:12:59:491][info][InitThread:01679] Goodix>>> Init: update all base...
+[0104-09:12:59:491][info][device_check_imagebase_exist:06679] Goodix>>> read data from file 13520 bytes
+[0104-09:12:59:491][info][device_check_imagebase_exist:06681] Goodix>>> read 13520-13520 bytes from C:\ProgramData\Goodix\goodix.dat
+[0104-09:12:59:492][info][device_check_imagebase_exist:06690] Goodix>>> check crc :Crchost:0x525ac69e----crcchip:0x525ac69e
+[0104-09:12:59:492][debug][device_check_imagebase_exist:06700] Goodix>>> got file otp::0x5334303636362e000a7d82b372a0460a5107050e7d4b172741029a0cf1807f0c07813038e480ddfc0abebb4401bbb3b5b3b3b3b5b3b34133e41bdd220cf017db
+[0104-09:12:59:492][info][device_check_imagebase_exist:06705] Goodix>>> get nav base and image base from from file
+[0104-09:12:59:492][info][device_check_imagebase_exist:06721] Goodix>>> imagebase exist: 1
+[0104-09:12:59:492][info][gf_update_all_base:06867] Goodix>>> enter
+[0104-09:12:59:492][info][gf_update_all_base:06891] Goodix>>> gf_get_fdtbase 0
+[0104-09:12:59:492][debug][gf_get_fdtbase:06789] Goodix>>> enter
+[0104-09:12:59:493][info][ChicagoHUSetMode:00541] Goodix>>> enter, Mode 3, Type 3, base_type 1
+[0104-09:12:59:493][info][ChicagoHUSetMode:00599] Goodix>>> setmode: Fdt manual
+[0104-09:12:59:493][debug][ChicagoHUSetMode:00640] Goodix>>> switch to FDT mode 3
+[0104-09:12:59:493][debug][ChicagoHUSetMode:00641] Goodix>>> data sent::0xb1b1c4c4a7a7b9b9a9a9b9b9
+[0104-09:12:59:493][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-3-0xe-1000-0
+[0104-09:12:59:494] write    4 -  0000: a0 12 00 b2
+
+[0104-09:12:59:503] write   18 -  0000: 36 0f 00 09 01 b1 b1 c4 c4 a7 a7 b9 b9 a9 a9 b9
+[0104-09:12:59:503] write   18 -  0010: b9 ed
+
+[0104-09:12:59:504][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0104-09:12:59:504][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x36, cfg flag 0x1
+[0104-09:12:59:504]  read    4 -  0000: a0 06 00 a6
+
+[0104-09:12:59:504]  read    6 -  0000: b0 03 00 36 01 c0
+
+[0104-09:12:59:524][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x36-17
+[0104-09:12:59:524][debug][data_from_device:05033] Goodix>>> --- cmd: fdt
+[0104-09:12:59:524][debug][chicagoHUget_fdtdata:00815] Goodix>>> IrqStatus:0x100 cmd1 3
+[0104-09:12:59:524][info][chicagoHUget_fdtdata:00874] Goodix>>> IRQ for fdt-manual, get fdt-up base, current mode is fdt-manual, touchflag 0x0
+[0104-09:12:59:524][debug][chicagoHUget_fdtdata:00877] Goodix>>> received fdt base::0x63018a014d01720151017101
+[0104-09:12:59:524]  read    4 -  0000: a0 14 00 b4
+
+[0104-09:12:59:524]  read   20 -  0000: 36 11 00 00 01 00 00 63 01 8a 01 4d 01 72 01 51
+[0104-09:12:59:524]  read   20 -  0010: 01 71 01 ee
+
+[0104-09:12:59:525][info][chicagoHUget_fdtdata:00888] Goodix>>> get fdt-down base, current mode is fdt-manual
+[0104-09:12:59:525][debug][gfCheckFDTBase:00936] Goodix>>> fdt base:0x63018a014d01720151017101
+[0104-09:12:59:525][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[0]:0xb180
+[0104-09:12:59:525][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[1]:0xc580
+[0104-09:12:59:525][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[2]:0xa680
+[0104-09:12:59:526][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[3]:0xb980
+[0104-09:12:59:526][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[4]:0xa880
+[0104-09:12:59:526][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[5]:0xb880
+[0104-09:12:59:526][debug][gf_get_fdtbase:06808] Goodix>>> exit
+[0104-09:12:59:526][info][gf_update_all_base:06901] Goodix>>> gf_get_navbase
+[0104-09:12:59:527][info][ChicagoHUSetMode:00541] Goodix>>> enter, Mode 5, Type 0, base_type 0
+[0104-09:12:59:527][info][ChicagoHUSetMode:00692] Goodix>>> setmode: nav
+[0104-09:12:59:527][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x5-0-0x2-1000-0
+[0104-09:12:59:528] write    4 -  0000: a0 06 00 a6
+
+[0104-09:12:59:531][debug][OnGetAttributes:02450] Goodix>>> entry
+[0104-09:12:59:532][debug][OnGetAttributes:02496] Goodix>>> outputBufferSize:0x62c, struct size:0x62c
+[0104-09:12:59:532][debug][OnGetAttributes:02533] Goodix>>> exit
+[0104-09:12:59:535] write    6 -  0000: 50 03 00 01 00 56
+
+[0104-09:12:59:536]  read    4 -  0000: a0 06 00 a6
+
+[0104-09:12:59:537][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0104-09:12:59:537][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x50, cfg flag 0x1
+[0104-09:12:59:537]  read    6 -  0000: b0 03 00 50 01 a6
+
+[0104-09:12:59:554]  read    4 -  0000: a0 6d 09 16
+
+[0104-09:12:59:556][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x50-2410
+[0104-09:12:59:556][debug][data_from_device:05080] Goodix>>> --- recv nav data......length:2410
+[0104-09:12:59:556]  read 2413 -  0000: 50 6a 09 00 00 00 00 00 38 00 c3 80 93 08 f9 c8
+[0104-09:12:59:556]  read 2413 -  0010: 28 a0 a4 0a 0a 1c 30 ac a9 8a 7a e0 18 a9 b0 fb
+[0104-09:12:59:556]  read 2413 -  0020: fb 00 48 b3 b9 bb fb 7c ac b2 bb 3b 3b 64 e0 be
+[0104-09:12:59:556]  read 2413 -  0030: c0 4b 8b e4 eb c3 c1 fb cb e4 f7 ba bf 4b 7c 37
+[0104-09:12:59:556]  read 2413 -  0040: 2f c1 c7 fc bc 54 5b bf bf 8c 3c 2b 2f c7 c6 3c
+[0104-09:12:59:556]  read 2413 -  0050: fc 50 53 c0 c6 8c 3c a4 f4 c9 c2 7b 8c 7f 2f c4
+[0104-09:12:59:556]  read 2413 -  0060: be 7c cb c4 17 b2 a1 7a 47 df c4 7e 97 88 89 f4
+[0104-09:12:59:556]  read 2413 -  0070: 33 9e a5 0a f9 f4 37 ab a9 7a 3a a3 18 ab ae fb
+[0104-09:12:59:556]  read 2413 -  0080: ba eb 6b b5 b6 0b 8b 88 84 b1 b7 7b 0b 8b 8c bb
+[0104-09:12:59:556]  read 2413 -  0090: bf cb 8b c0 b0 bd c0 8b 4b f8 c4 ba c2 bb fb df
+[0104-09:12:59:556]  read 2413 -  00a0: 1b bd c1 3c 3c 2c 0c be bf bc fb df 13 c3 c1 cc
+[0104-09:12:59:556]  read 2413 -  00b0: cc 34 18 c2 c2 fc cc 20 e0 c4 c0 8b fc 57 23 bc
+[0104-09:12:59:556]  read 2413 -  00c0: ba 8c 3b a0 10 af a1 3a b8 57 f7 85 97 f8 09 e7
+[0104-09:12:59:556]  read 2413 -  00d0: e0 9d a3 c9 0a 0b 44 a8 a5 ca 7a 7c d4 a6 ad ba
+[0104-09:12:59:556]  read 2413 -  00e0: 0a d3 cc b6 b3 7a 8b 4f 9b b2 b4 3b bb 63 83 b5
+[0104-09:12:59:556]  read 2413 -  00f0: bc 8b cb 88 d7 b7 b9 8b cb cc c8 b9 c0 0b fb bc
+[0104-09:12:59:556]  read 2413 -  0100: 90 bf be 4b 0b ef e0 bc be fb 3c 1b c4 bb bd 0b
+[0104-09:12:59:556]  read 2413 -  0110: fc 24 00 bb bb 8c fb e7 ac bc bf 8b 8b bf b8 b9
+[0104-09:12:59:556]  read 2413 -  0120: c0 3b 0b 33 c7 a8 9c 79 c7 cc c4 7c 95 38 79 9c
+[0104-09:12:59:556]  read 2413 -  0130: 27 98 a0 0a 4a 43 e8 a2 a3 89 7a 44 83 a7 a8 ca
+[0104-09:12:59:556]  read 2413 -  0140: 7a 84 80 b1 b0 ba 3b 18 38 ac b3 8b fb 18 47 b7
+[0104-09:12:59:556]  read 2413 -  0150: b1 fb cb 67 57 b1 b4 fb bb a3 4f b8 b4 cb cb 80
+[0104-09:12:59:556]  read 2413 -  0160: a7 b9 b4 4b fb 5f 6b b6 ba cb 3b 3b 63 ba b5 cb
+[0104-09:12:59:556]  read 2413 -  0170: bb 8f 8f ba bd cb 8b 8f 78 ba b9 4b 4b 48 6c b5
+[0104-09:12:59:556]  read 2413 -  0180: b6 0b fa e8 74 a6 97 79 f7 7c d0 77 94 48 b9 94
+[0104-09:12:59:556]  read 2413 -  0190: b3 9d a1 49 f9 e4 b4 a3 a3 f9 8a 9b ac a3 ab 8a
+[0104-09:12:59:556]  read 2413 -  01a0: 4a 80 af ad b0 7a 8a cf 23 b2 af 7b 8b 74 97 b6
+[0104-09:12:59:556]  read 2413 -  01b0: b5 cb 7b 67 b8 b5 b3 7b 4b 7f 6f b5 b8 3b 3b 38
+[0104-09:12:59:556]  read 2413 -  01c0: 8f b6 bc 8b bb 6f ab b8 b9 bb 8b b7 60 b6 bb 7b
+[0104-09:12:59:556]  read 2413 -  01d0: bb ac bc b8 ba 0b bb 9f 98 ba bb 0b cb 73 8c b4
+[0104-09:12:59:556]  read 2413 -  01e0: b3 bb 4a cc 94 ad 99 89 b7 c7 f3 7c 97 08 f9 e0
+[0104-09:12:59:556]  read 2413 -  01f0: 14 a0 a0 0a 7a 10 24 a6 a5 ca 7a 9c cf aa ad ba
+[0104-09:12:59:556]  read 2413 -  0200: 3a dc e3 af b5 ca fb 03 40 b3 b2 7b 4b 73 b3 b6
+[0104-09:12:59:556]  read 2413 -  0210: b8 bb bb 53 9f b8 bb cb 7b 8c 90 b8 ba 4b 4b 87
+[0104-09:12:59:556]  read 2413 -  0220: d8 bc b9 8b 4b a4 c0 b9 b7 8b 3b c3 a3 b9 ba 7b
+[0104-09:12:59:556]  read 2413 -  0230: 8b c7 c8 b8 ba 0b bb 98 a3 bb ba fb 7b 5b 9b b3
+[0104-09:12:59:556]  read 2413 -  0240: b4 8b cb 13 7b a9 97 f9 37 c3 bc 7c 96 38 b9 a8
+[0104-09:12:59:556]  read 2413 -  0250: c8 9c 9e 79 09 dc 64 a2 a4 fa 4a 6b 8c a4 ac ba
+[0104-09:12:59:556]  read 2413 -  0260: fa ac 98 ab b0 8a 7b 0c 5c b6 b1 4b 7b 88 5b b5
+[0104-09:12:59:556]  read 2413 -  0270: be bb 8b 78 88 b8 b6 fb 7b 80 47 ba ba fb fb 84
+[0104-09:12:59:556]  read 2413 -  0280: a3 bc ba 8b 7b 8f bc b5 bd cb fb bf 58 bc bb 0b
+[0104-09:12:59:556]  read 2413 -  0290: cb bc ec bc b8 4b 4b 90 63 b9 b8 4b 8b 94 8f bc
+[0104-09:12:59:556]  read 2413 -  02a0: b3 cb fa f4 73 a8 97 79 c7 7b bb 77 94 48 49 7c
+[0104-09:12:59:556]  read 2413 -  02b0: 9b 9a 9d 79 39 df c0 a0 9f 09 7a 3c 88 a5 a6 0a
+[0104-09:12:59:556]  read 2413 -  02c0: 8a b7 ef aa b4 ba 4a cb 33 ac ac 7b 3b 3f 23 b3
+[0104-09:12:59:556]  read 2413 -  02d0: b5 cb 3b 63 68 b2 b1 bb fb 63 54 b4 b5 4b fb 38
+[0104-09:12:59:556]  read 2413 -  02e0: 44 b5 b6 4b 3b 53 7f b7 b2 0b 4b 20 4f b6 b8 4b
+[0104-09:12:59:556]  read 2413 -  02f0: 0b 73 77 b8 b6 7b bb 7c 44 b8 b6 bb cb 34 fb ad
+[0104-09:12:59:556]  read 2413 -  0300: af fa ba a0 03 a0 90 89 b7 c8 a8 7c 94 78 79 a3
+[0104-09:12:59:556]  read 2413 -  0310: b7 9c 9e 09 fa 48 20 9e a3 8a 3a 44 db a8 aa ba
+[0104-09:12:59:556]  read 2413 -  0320: ba 88 87 ae ae 8a 4a e8 38 b0 b2 8b 7b 0c 93 b9
+[0104-09:12:59:556]  read 2413 -  0330: bc fb cb 34 68 b4 b4 bb 8b 7b 63 b5 b8 cb 8b bc
+[0104-09:12:59:556]  read 2413 -  0340: 6c b9 b9 cb cb a8 88 ba ba fb cb 98 90 be ba 7b
+[0104-09:12:59:556]  read 2413 -  0350: cb e4 83 b7 bc 8b fb 9c 90 bb b8 8b fb 58 78 b3
+[0104-09:12:59:556]  read 2413 -  0360: b2 3b ca d4 73 a4 97 39 f7 bf e0 7b 93 c8 c9 a3
+[0104-09:12:59:556]  read 2413 -  0370: cf 9a 9d 09 ba 03 74 a2 a5 8a ba 8f 9c a8 a8 ba
+[0104-09:12:59:556]  read 2413 -  0380: 8a cf b3 ae b1 ca cb 13 78 b4 b1 7b 4b 2f 73 b9
+[0104-09:12:59:556]  read 2413 -  0390: bb cb cb 90 84 b5 b8 0b 8c 03 87 b6 bb 7b bb af
+[0104-09:12:59:556]  read 2413 -  03a0: bb b7 b6 3b bb c3 bb bb bb 8b 0b a8 8b bc b9 7b
+[0104-09:12:59:556]  read 2413 -  03b0: fb b4 8b b8 bd fb 0b 63 8b bb bb 8b 3b 77 8c b4
+[0104-09:12:59:556]  read 2413 -  03c0: b4 3b ba d8 6c a2 96 f9 c7 ec c4 7e 91 48 b9 83
+[0104-09:12:59:556]  read 2413 -  03d0: 83 97 9d c9 39 cc 00 a2 a5 0a 8a 7f 60 a5 a6 3a
+[0104-09:12:59:556]  read 2413 -  03e0: fa f3 cb af b0 fa fb 2c 1c b0 b4 8b 7b 3f 4c b6
+[0104-09:12:59:556]  read 2413 -  03f0: b8 8b fb 58 b4 ba b7 3b cb ec 77 b2 b5 cb fb ab
+[0104-09:12:59:556]  read 2413 -  0400: 5b b7 b4 4b cb ac 9f b6 b6 cb 8b 88 60 bc ba 8b
+[0104-09:12:59:556]  read 2413 -  0410: 0b c0 87 b9 b6 4b 4b 70 74 b6 b8 3b fb 97 5f b3
+[0104-09:12:59:556]  read 2413 -  0420: ae cb 7a e8 9b a4 99 c9 77 88 a3 78 90 b8 39 2c
+[0104-09:12:59:556]  read 2413 -  0430: 97 98 98 39 09 c0 c0 a0 a2 b9 7a 37 78 9f a7 4a
+[0104-09:12:59:556]  read 2413 -  0440: 0a 8f 6f a9 ac 8a ca e3 34 a9 b0 3b 3b 44 f7 b4
+[0104-09:12:59:556]  read 2413 -  0450: af fa 4b 33 34 b2 b0 8b 4b 58 80 b6 b8 4b 0b 2c
+[0104-09:12:59:556]  read 2413 -  0460: 70 b6 b1 3b cb 8f 50 b1 b9 cb bb 3f 58 b6 b5 4b
+[0104-09:12:59:556]  read 2413 -  0470: 4b 6f 70 b6 b6 cb cb 6b 43 b8 b7 0b 4b 38 3b ad
+[0104-09:12:59:556]  read 2413 -  0480: ae 3b 8a db d8 a5 8d c8 87 5c bf 75 8d c8 b9 48
+[0104-09:12:59:556]  read 2413 -  0490: 78 91 9b 79 89 93 f0 9d 9e b9 3a 18 44 a5 aa 8a
+[0104-09:12:59:556]  read 2413 -  04a0: 3a ac ab a9 af ba fa f8 0b a9 b2 8b bb 2b 23 b5
+[0104-09:12:59:556]  read 2413 -  04b0: b4 4b fb 34 88 b2 b4 cb 3b 64 38 b8 b5 cb 0b 2b
+[0104-09:12:59:556]  read 2413 -  04c0: 7c b6 b4 cb 7b ac 74 b7 ba 0b 3b 9c 54 bc b8 fb
+[0104-09:12:59:556]  read 2413 -  04d0: 7b bf 80 b6 b6 3b 0b b0 17 ba b9 bb cb 83 5b b3
+[0104-09:12:59:556]  read 2413 -  04e0: b2 fb 8a fb 63 a5 96 39 b7 db 17 7d 96 c9 b9 cc
+[0104-09:12:59:556]  read 2413 -  04f0: 0f 9c 9e 8a ca 28 f8 a6 a6 b9 7a df 9c a7 af 8a
+[0104-09:12:59:556]  read 2413 -  0500: cb 17 00 b1 b6 4b fb 7b ab b4 b4 3b 4b 77 7b bb
+[0104-09:12:59:556]  read 2413 -  0510: bb 0b 4b 8b e0 b7 ba fb bb ab 6f bc b9 cb 7b 6b
+[0104-09:12:59:556]  read 2413 -  0520: cc b9 bc 0b cc 03 b4 bd ba 0b bb 9c 83 be ba bb
+[0104-09:12:59:556]  read 2413 -  0530: cb cf 10 bc bf 4c 3b 9b b8 bc bc 7b 8b a7 c4 bb
+[0104-09:12:59:556]  read 2413 -  0540: b5 fb cb 3b ec ab 9e c9 87 78 9c 77 8e 08 49 a4
+[0104-09:12:59:556]  read 2413 -  0550: 8f 99 9d 39 b9 c7 1b 9f a2 3a 4a bb 33 a4 ae 0a
+[0104-09:12:59:556]  read 2413 -  0560: fa 68 a0 a9 ae 0a 8a eb 0f ae af fb 4b 1b 3b b4
+[0104-09:12:59:556]  read 2413 -  0570: b8 4b 8b 2f 28 b2 b6 0b bb 44 d4 b5 b6 0a fb 48
+[0104-09:12:59:556]  read 2413 -  0580: 37 b7 b5 0b 4b 3c 64 b8 b2 fb bb 38 33 b1 b1 bb
+[0104-09:12:59:556]  read 2413 -  0590: 4b 24 24 b3 b4 7b bb 24 28 b6 b4 3b 7b 58 27 ab
+[0104-09:12:59:556]  read 2413 -  05a0: ae bb 4a a4 1f a5 92 39 b7 5c 80 75 92 08 b9 4b
+[0104-09:12:59:556]  read 2413 -  05b0: ef 97 9d f9 39 ec a0 a3 9c 79 ba 60 50 a2 a2 0a
+[0104-09:12:59:556]  read 2413 -  05c0: 7a db 9c ac ab fa fa a3 17 aa aa 0b ba c8 24 b0
+[0104-09:12:59:556]  read 2413 -  05d0: b0 0b bb 04 fb b3 b9 fa 4b 60 33 b0 ae 4b 3b 43
+[0104-09:12:59:556]  read 2413 -  05e0: 8c b4 b6 bb 0a f0 3b b1 b0 cb 3b 3b 3c b8 b3 3b
+[0104-09:12:59:556]  read 2413 -  05f0: 4b 74 8f b3 b2 3b 8b 2f bb ae b4 8a 4b 00 03 af
+[0104-09:12:59:556]  read 2413 -  0600: af fb 4a b3 1c a2 92 09 c7 af 83 7a 8c c8 89 83
+[0104-09:12:59:556]  read 2413 -  0610: bc 96 99 b9 39 97 f4 a0 a1 c9 ba 50 ac a5 a9 4a
+[0104-09:12:59:556]  read 2413 -  0620: 7a c4 d7 ad b2 fa 8a d8 1f b2 b2 4b cb 54 4c b9
+[0104-09:12:59:556]  read 2413 -  0630: ba 4b 8b 74 50 b5 b7 4b cb 58 88 b4 ba 3b bb 6b
+[0104-09:12:59:556]  read 2413 -  0640: 98 bb b4 8b 8b 6f 48 b7 b9 cb 8b c3 7b b7 be 0b
+[0104-09:12:59:556]  read 2413 -  0650: cb bc bf ba b6 0b 4b 9b 97 b9 b7 0b 3b 9b 5b b9
+[0104-09:12:59:556]  read 2413 -  0660: b0 fb bb 0f 9b a2 99 89 c7 c3 db 7b 93 38 09 73
+[0104-09:12:59:556]  read 2413 -  0670: db 9a 9c c9 7a 0b f8 a3 a3 49 ba 74 98 a5 ac 8a
+[0104-09:12:59:556]  read 2413 -  0680: 7a c3 04 ab b2 3b 3b 08 14 b2 b0 fb 3b 33 34 b3
+[0104-09:12:59:556]  read 2413 -  0690: b6 fb 0b 64 53 b5 b4 fb 0b 80 8b b5 bb 7b 3b 88
+[0104-09:12:59:556]  read 2413 -  06a0: 83 b9 b6 fb 8b 87 a4 b9 b9 8b 8b 98 77 bb bd 0b
+[0104-09:12:59:556]  read 2413 -  06b0: 8b cf b4 ba ba 4b 0b cf a3 be b8 4b fb 90 57 b6
+[0104-09:12:59:556]  read 2413 -  06c0: b0 bb bb 67 b0 a5 9b 39 37 b7 cf 7b 91 08 f9 6b
+[0104-09:12:59:556]  read 2413 -  06d0: a0 98 9d b9 49 df 1b 9e 9f 8a ba 7b 73 a3 a8 fa
+[0104-09:12:59:556]  read 2413 -  06e0: 0a b4 af ae ab fa 3b 13 fb b0 ae 4a 0b 44 db b2
+[0104-09:12:59:556]  read 2413 -  06f0: b2 ba 7a e7 87 b4 b6 bb 0b ac 78 b3 b7 cb 8b 1f
+[0104-09:12:59:556]  read 2413 -  0700: 73 b6 b9 bb 4b 4f 6f b3 b0 7b 0b 53 a8 b6 b6 8b
+[0104-09:12:59:556]  read 2413 -  0710: 4b ef 44 b8 b2 fb bb 7c 87 b9 b7 fb 4b 20 54 b3
+[0104-09:12:59:556]  read 2413 -  0720: b1 bb ba c8 ff a4 8f f8 b7 5f c8 75 90 88 c9 a8
+[0104-09:12:59:556]  read 2413 -  0730: a3 94 9b b9 f9 af 2c 9b 9f ba ba 68 40 a6 a9 fa
+[0104-09:12:59:556]  read 2413 -  0740: fa 7c a7 a7 b1 ca 0a c0 24 b0 af cb ba cb fc b4
+[0104-09:12:59:556]  read 2413 -  0750: b4 4a 7b 0c 0f af b6 4b 3b 28 ec b4 b8 4a fb 24
+[0104-09:12:59:556]  read 2413 -  0760: 4b b4 b3 fb cb 07 0f b0 b9 fb 8b 74 4c b4 b4 fb
+[0104-09:12:59:556]  read 2413 -  0770: 8b 2b 93 b6 b6 7b fa c8 67 b5 b5 4b bb 70 68 b4
+[0104-09:12:59:556]  read 2413 -  0780: b1 3b 3a b8 28 a8 92 89 c7 8c 9b 78 8a 78 c9 57
+[0104-09:12:59:556]  read 2413 -  0790: cc 93 9c 49 f9 b8 e8 9e a2 79 3a 13 74 a5 a3 ca
+[0104-09:12:59:556]  read 2413 -  07a0: 3a 4c 8c ae b2 4a fa b8 c7 ad ab 0a cb 23 1b b1
+[0104-09:12:59:556]  read 2413 -  07b0: b5 8b 3b 50 57 b4 b5 4b 0b 5c 4c b2 ba 7b fb 74
+[0104-09:12:59:556]  read 2413 -  07c0: 3f b9 b6 3b bb 2b 73 b5 b7 3b 8b 83 18 b6 b3 4b
+[0104-09:12:59:556]  read 2413 -  07d0: cb 9b 87 b8 b7 bb 8b 43 5c b7 b6 7b bb 5f 04 b2
+[0104-09:12:59:556]  read 2413 -  07e0: b4 4b 4a ec 4f a7 94 f9 47 78 fb 77 93 b8 79 bf
+[0104-09:12:59:556]  read 2413 -  07f0: e3 97 a1 79 b9 dc 3c a5 a2 8a 8a 63 74 a5 a9 0a
+[0104-09:12:59:556]  read 2413 -  0800: 3a b8 d4 ae b1 3a 3b 0c 38 b1 b4 fb 4b 43 53 b4
+[0104-09:12:59:556]  read 2413 -  0810: b9 8b 4b 4f 63 b8 b3 4b 8b af 74 b8 ba 7b 3b 4c
+[0104-09:12:59:556]  read 2413 -  0820: ac b8 b8 8b 0b c4 b4 b8 b9 3b cb ef 6f bd b6 fb
+[0104-09:12:59:556]  read 2413 -  0830: 8b d3 c3 bb bb bb 0b 8b 43 bd bd 7b bb 64 5b b4
+[0104-09:12:59:556]  read 2413 -  0840: b3 4b bb 27 60 aa 96 39 f7 84 bc 77 90 f8 f9 68
+[0104-09:12:59:556]  read 2413 -  0850: db 99 a1 89 79 d4 2b a2 a5 7a 3a 7b c3 a9 a5 7a
+[0104-09:12:59:556]  read 2413 -  0860: ca ab ff ae af 8a 3b 33 4f b2 b1 4b bb 08 5f b6
+[0104-09:12:59:556]  read 2413 -  0870: b9 cb fb 2f 93 b4 b4 3b 4b 9b 8f ba ba 3b 4b 8f
+[0104-09:12:59:556]  read 2413 -  0880: 88 c0 b6 cb bb 37 6b b7 b5 fb bb 97 c7 b5 ba 0b
+[0104-09:12:59:556]  read 2413 -  0890: bb 8c ac b9 bd 0b 3b 7f 7c bf b8 8b 7b 63 8c b5
+[0104-09:12:59:556]  read 2413 -  08a0: b1 bb bb 4f 9c a6 99 c9 47 6b 70 76 90 b8 09 70
+[0104-09:12:59:556]  read 2413 -  08b0: f4 99 9e b9 c9 ec 97 a3 a3 79 3a 84 a4 a5 a6 ba
+[0104-09:12:59:556]  read 2413 -  08c0: 0a 7f b3 ac ad 8a fa d8 38 aa b0 0b 8a fb 4b b1
+[0104-09:12:59:556]  read 2413 -  08d0: b3 fb 8b 07 84 b2 b2 3b 8b 44 4b b4 b3 3b 4b 24
+[0104-09:12:59:556]  read 2413 -  08e0: 53 b2 b5 7b 0b 2f 78 b6 b5 fb cb 38 23 b8 b7 bb
+[0104-09:12:59:556]  read 2413 -  08f0: 7b 9b 54 b5 b2 7b 4b 74 2c b8 b4 bb bb 3b 13 b4
+[0104-09:12:59:556]  read 2413 -  0900: ae 7b 8a c0 44 a0 94 49 47 9b cc 79 91 48 39 87
+[0104-09:12:59:556]  read 2413 -  0910: a0 97 a0 39 ba 08 38 a5 a3 ba ba 64 88 a8 aa 0a
+[0104-09:12:59:556]  read 2413 -  0920: ca 94 c0 af b3 fa ba cf 4c b1 b4 4b 4b 5c 48 b9
+[0104-09:12:59:556]  read 2413 -  0930: b8 fb cb 3c d4 b5 b7 4b 4b cb 58 b7 bc 4b 8b db
+[0104-09:12:59:556]  read 2413 -  0940: b3 ba be 8b 7b 7c eb b3 bc 7b 8b 80 eb b8 ba 4b
+[0104-09:12:59:556]  read 2413 -  0950: fb 80 eb bc bb bb fb b7 ab b7 ba fb bb 97 8c ba
+[0104-09:12:59:556]  read 2413 -  0960: b4 0b cb 33 48 a8 94 b9 3b 23 2a 8b 88
+
+[0104-09:12:59:557][info][chicagoHUget_navdata:00778] Goodix>>> 2404 2404 3200
+[0104-09:12:59:557][debug][ChicagoHUDataRegroup:00519] Goodix>>> Regroup pixels:1600
+[0104-09:12:59:557][debug][data_from_device:05090] Goodix>>> nav crc check ok
+[0104-09:12:59:557][info][gf_update_all_base:06911] Goodix>>> gf_get_fdtbase 1
+[0104-09:12:59:557][debug][gf_get_fdtbase:06789] Goodix>>> enter
+[0104-09:12:59:557][info][ChicagoHUSetMode:00541] Goodix>>> enter, Mode 3, Type 3, base_type 1
+[0104-09:12:59:558][info][ChicagoHUSetMode:00599] Goodix>>> setmode: Fdt manual
+[0104-09:12:59:558][debug][ChicagoHUSetMode:00640] Goodix>>> switch to FDT mode 3
+[0104-09:12:59:558][debug][ChicagoHUSetMode:00641] Goodix>>> data sent::0x80b180c580a680b980a880b8
+[0104-09:12:59:558][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-3-0xe-1000-0
+[0104-09:12:59:559] write    4 -  0000: a0 12 00 b2
+
+[0104-09:12:59:567] write   18 -  0000: 36 0f 00 09 01 80 b1 80 c5 80 a6 80 b9 80 a8 80
+[0104-09:12:59:567] write   18 -  0010: b8 26
+
+[0104-09:12:59:568][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0104-09:12:59:568][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x36, cfg flag 0x1
+[0104-09:12:59:568]  read    4 -  0000: a0 06 00 a6
+
+[0104-09:12:59:568]  read    6 -  0000: b0 03 00 36 01 c0
+
+[0104-09:12:59:587][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x36-17
+[0104-09:12:59:588][debug][data_from_device:05033] Goodix>>> --- cmd: fdt
+[0104-09:12:59:588][debug][chicagoHUget_fdtdata:00815] Goodix>>> IrqStatus:0x100 cmd1 3
+[0104-09:12:59:588][info][chicagoHUget_fdtdata:00874] Goodix>>> IRQ for fdt-manual, get fdt-up base, current mode is fdt-manual, touchflag 0x0
+[0104-09:12:59:588][debug][chicagoHUget_fdtdata:00877] Goodix>>> received fdt base::0x620188014e01730152017201
+[0104-09:12:59:588][info][chicagoHUget_fdtdata:00888] Goodix>>> get fdt-down base, current mode is fdt-manual
+[0104-09:12:59:588][debug][gfCheckFDTBase:00936] Goodix>>> fdt base:0x620188014e01730152017201
+[0104-09:12:59:588][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[0]:0xb180
+[0104-09:12:59:588][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[1]:0xc480
+[0104-09:12:59:588]  read    4 -  0000: a0 14 00 b4
+
+[0104-09:12:59:588]  read   20 -  0000: 36 11 00 00 01 00 00 62 01 88 01 4e 01 73 01 52
+[0104-09:12:59:588]  read   20 -  0010: 01 72 01 ed
+
+[0104-09:12:59:589][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[2]:0xa780
+[0104-09:12:59:589][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[3]:0xb980
+[0104-09:12:59:589][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[4]:0xa980
+[0104-09:12:59:589][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[5]:0xb980
+[0104-09:12:59:597][debug][gf_get_fdtbase:06808] Goodix>>> exit
+[0104-09:12:59:597][debug][gf_update_all_base:06920] Goodix>>> fdt_base1::0x620188014e01730152017201fb7f000050c8cef2490200000800000000000000
+[0104-09:12:59:597][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x8-1-0x5-1000-0
+[0104-09:12:59:598][debug][OnGetPBAInfo:03504] Goodix>>> Entry
+[0104-09:12:59:598] write    4 -  0000: a0 09 00 a9
+
+[0104-09:12:59:599][debug][OnGetPBAInfo:03550] Goodix>>> Exit
+[0104-09:12:59:600][debug][OnGetSensorInfo:03355] Goodix>>> Entry
+[0104-09:12:59:601][info][OnGetSensorInfo:03412] Goodix>>> FP Info ready
+[0104-09:12:59:601][info][OnGetSensorInfo:03422] Goodix>>> FP Info ready now, chipid:0x2504, sensorType:12, col:80, row:64
+[0104-09:12:59:613] write    9 -  0000: 82 06 00 00 82 00 02 00 9e
+
+[0104-09:12:59:614][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0104-09:12:59:614][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x82, cfg flag 0x1
+[0104-09:12:59:614]  read    4 -  0000: a0 06 00 a6
+
+[0104-09:12:59:614]  read    6 -  0000: b0 03 00 82 01 74
+
+[0104-09:12:59:616][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x82-3
+[0104-09:12:59:616][debug][data_from_device:05037] Goodix>>> --- cmd: regrw
+[0104-09:12:59:616]  read    4 -  0000: a0 06 00 a6
+
+[0104-09:12:59:616]  read    6 -  0000: 82 03 00 80 1b 8a
+
+[0104-09:12:59:629][info][gf_update_all_base:06935] Goodix>>> fdt_delta 0x1b
+[0104-09:12:59:629][info][gf_get_oneframe:06818] Goodix>>> enter, tls-client-server 1-1-1
+[0104-09:12:59:629][debug][gf_get_oneframe:06829] Goodix>>> g_halcontext.sensor_ops.SetMode:0x00007FFBA6AEBB50.
+[0104-09:12:59:629][info][ChicagoHUSetMode:00541] Goodix>>> enter, Mode 2, Type 0, base_type 0
+[0104-09:12:59:630][info][ChicagoHUSetMode:00554] Goodix>>> setmode: Image
+[0104-09:12:59:630][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x2-0-0x2-1000-0
+[0104-09:12:59:631] write    4 -  0000: a0 06 00 a6
+
+[0104-09:12:59:645] write    6 -  0000: 20 03 00 01 00 86
+
+[0104-09:12:59:646][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0104-09:12:59:646][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x20, cfg flag 0x1
+[0104-09:12:59:646]  read    4 -  0000: a0 06 00 a6
+
+[0104-09:12:59:646]  read    6 -  0000: b0 03 00 20 01 d6
+
+[0104-09:12:59:710]  read    4 -  0000: b0 2a 1e f8
+
+[0104-09:12:59:717][debug][MilanEvtInterruptWorkItem:05895] Goodix>>> enter
+[0104-09:12:59:717][debug][MilanEvtInterruptWorkItem:05951] Goodix>>>  ---- pack len: 7722
+[0104-09:12:59:717]  read 7722 -  0000: 17 03 03 1e 25 00 00 00 00 00 00 00 01 24 6f ff
+[0104-09:12:59:717]  read 7722 -  0010: 02 a3 7d f8 f3 ad 11 4b ed 03 ad 90 3c 73 a0 7b
+[0104-09:12:59:717]  read 7722 -  0020: d7 82 17 65 a5 cb e0 c7 d1 e2 9d be 75 e3 98 de
+[0104-09:12:59:717]  read 7722 -  0030: cc 45 a7 37 74 d7 a4 13 a4 06 92 86 a9 a3 c8 df
+[0104-09:12:59:717]  read 7722 -  0040: 21 08 4e b8 53 3f f1 fc 97 b3 ed cf 60 32 ae 74
+[0104-09:12:59:717]  read 7722 -  0050: 40 e0 60 b7 4c 62 d5 14 10 42 95 2b 09 3e 0e 34
+[0104-09:12:59:717]  read 7722 -  0060: b5 8d a3 a8 50 3d 14 56 70 64 c1 f6 16 b4 f9 64
+[0104-09:12:59:717]  read 7722 -  0070: 09 f5 7f 22 d0 38 7d 5e 9b 59 cd 23 fe 89 99 87
+[0104-09:12:59:717]  read 7722 -  0080: 35 a2 16 6a cc bc a6 8c d8 8c 11 98 01 b0 52 8f
+[0104-09:12:59:717]  read 7722 -  0090: 87 df c2 f0 10 44 5c b4 8d 36 5b 6e d3 2d 34 c9
+[0104-09:12:59:717]  read 7722 -  00a0: d8 f6 3d 24 c5 e0 5e b5 17 64 7f c6 68 bd c3 83
+[0104-09:12:59:717]  read 7722 -  00b0: 7f 9d 40 ad 33 25 4b d8 3a 12 e9 fe 06 21 f9 bc
+[0104-09:12:59:717]  read 7722 -  00c0: 98 c0 27 11 8a 3f 60 01 ec bc a3 77 5d 91 41 83
+[0104-09:12:59:717]  read 7722 -  00d0: c2 da bf d6 d0 3a 4c a5 33 cd 91 fb 0d 4e f2 7b
+[0104-09:12:59:717]  read 7722 -  00e0: 03 12 00 de 80 2e 8f d1 20 f5 59 97 51 58 44 f9
+[0104-09:12:59:717]  read 7722 -  00f0: ad 6d a9 14 99 22 a1 79 91 84 9a 0c cf ea a4 be
+[0104-09:12:59:717]  read 7722 -  0100: 60 41 fe be a1 aa f7 8c cc e8 29 66 2b 7e c8 4f
+[0104-09:12:59:717]  read 7722 -  0110: 6a 01 91 fc 84 7e 3d f8 35 50 15 1c b5 9c 8a 58
+[0104-09:12:59:717]  read 7722 -  0120: c2 ae be 65 51 03 75 3f 4d 7c d3 c3 e3 03 5d 11
+[0104-09:12:59:717]  read 7722 -  0130: 56 9f cf f2 69 29 3a fc 1b f9 f6 83 52 cf d6 19
+[0104-09:12:59:717]  read 7722 -  0140: 76 2a 87 72 5e 5b ea e4 20 a6 24 68 c0 81 63 ab
+[0104-09:12:59:717]  read 7722 -  0150: dc 79 44 72 7a 17 bf f0 3c 4c 49 77 eb 2f ae bc
+[0104-09:12:59:717]  read 7722 -  0160: 3f ae 29 49 19 57 fb 27 3a 64 c4 57 c0 b8 1c a9
+[0104-09:12:59:717]  read 7722 -  0170: 47 6f 7e 9c 9c 87 27 34 02 c0 70 63 f4 81 5b f3
+[0104-09:12:59:717]  read 7722 -  0180: c9 23 1a 6d 27 eb ac e4 9c d1 f0 ca bd f4 ee 6a
+[0104-09:12:59:717]  read 7722 -  0190: 84 1d f3 a1 37 88 c1 39 8b fe 00 c9 81 33 8a 76
+[0104-09:12:59:717]  read 7722 -  01a0: e1 c7 46 3c ac cb a7 44 b1 ec 34 9c cb 2f 2f 7f
+[0104-09:12:59:717]  read 7722 -  01b0: 2e d9 97 56 06 d8 25 0e 90 7c 17 a6 6d 84 ef e9
+[0104-09:12:59:717]  read 7722 -  01c0: 27 d3 e8 75 23 df ab 99 24 3c 67 22 d3 dc 0f 54
+[0104-09:12:59:717]  read 7722 -  01d0: 74 2e 89 74 d9 aa e6 31 e0 13 d2 21 22 1a 74 4f
+[0104-09:12:59:717]  read 7722 -  01e0: 75 dc 9b 48 93 91 16 5b 08 9c df db 85 f3 96 5a
+[0104-09:12:59:717]  read 7722 -  01f0: 9e 6b ff bf 4d c2 ea 12 02 da 68 a6 98 77 06 de
+[0104-09:12:59:717]  read 7722 -  0200: 09 09 70 bd bc b8 2a e4 26 5c 09 23 39 f1 b6 16
+[0104-09:12:59:717]  read 7722 -  0210: 1f 67 4a e5 29 34 6b 18 c4 fc e5 af e8 2c f4 65
+[0104-09:12:59:717]  read 7722 -  0220: a9 f8 2a 9c 7e 6a 40 6b ed 1b 11 da 7a ad a0 80
+[0104-09:12:59:717]  read 7722 -  0230: f1 dc 4f a0 d4 64 50 2a 7c 89 7b e4 5c 20 79 a6
+[0104-09:12:59:717]  read 7722 -  0240: a5 c3 9f 7d 09 0d 28 49 e6 35 1f b8 7e e8 7f 4f
+[0104-09:12:59:717]  read 7722 -  0250: 9e b2 35 e4 0f a8 a3 d8 a3 e5 9d 4a 49 7e e9 37
+[0104-09:12:59:717]  read 7722 -  0260: db de da 5b 7a db 15 6b fa ad 1c d6 9d ef a4 2f
+[0104-09:12:59:717]  read 7722 -  0270: a5 6d f5 28 96 0d 08 26 9c db 07 cc c1 ba 3f 92
+[0104-09:12:59:717]  read 7722 -  0280: 4d c8 87 67 2c bc bb 41 5f d7 2d d2 54 df af a3
+[0104-09:12:59:717]  read 7722 -  0290: 1c a7 6b 6c 84 7a 9b 6f 40 3e 26 cb 6f b8 18 0f
+[0104-09:12:59:717]  read 7722 -  02a0: ff 23 ca 02 b3 5f 61 8a db b2 ad 80 41 2d 9d 81
+[0104-09:12:59:717]  read 7722 -  02b0: 66 d9 76 61 5b 84 19 8c d8 ab d5 c4 31 0b 7e 7a
+[0104-09:12:59:717]  read 7722 -  02c0: da 1e 6d d4 8f 9a cb 89 cf 19 a1 8b 07 05 b2 f7
+[0104-09:12:59:717]  read 7722 -  02d0: 1f 8b cd bc 66 f9 d5 87 4f b8 1a f5 19 46 9f 8f
+[0104-09:12:59:717]  read 7722 -  02e0: 6e d9 21 66 b4 95 8f 01 83 b0 c5 1c 72 54 a0 b1
+[0104-09:12:59:717]  read 7722 -  02f0: bb 2e 7b f8 8a 8b 20 da 95 5f 74 41 57 61 76 2d
+[0104-09:12:59:717]  read 7722 -  0300: 2e 49 84 6a 32 26 01 01 f3 73 ad e1 c5 15 5e a3
+[0104-09:12:59:717]  read 7722 -  0310: 42 f9 d6 b2 94 dd 75 3c 1e 49 0d e5 a6 36 df d8
+[0104-09:12:59:717]  read 7722 -  0320: 3f 35 a6 d6 4f 1c e4 6d 42 df 25 c1 ac 6b 33 d9
+[0104-09:12:59:717]  read 7722 -  0330: 5f 00 0d ff fd 62 d9 71 09 77 b8 32 4c 6f 73 9c
+[0104-09:12:59:717]  read 7722 -  0340: 7d e6 8d 5d 85 bf e4 f6 e3 14 5b 4a 74 c6 36 c7
+[0104-09:12:59:717]  read 7722 -  0350: 90 fa 6b f6 58 54 2c 11 99 80 c0 e5 9f 4a f8 21
+[0104-09:12:59:717]  read 7722 -  0360: 95 d6 4a fe 6c 26 02 56 a6 df 5f a5 91 d0 6a 5a
+[0104-09:12:59:717]  read 7722 -  0370: 61 94 c7 b0 8e 34 1d 38 88 9a 7c e2 54 2f 6f 95
+[0104-09:12:59:717]  read 7722 -  0380: ed e1 4f 27 98 01 49 6a c6 97 2e e0 e8 58 9c d2
+[0104-09:12:59:717]  read 7722 -  0390: 85 49 6a bb 21 cd 94 ad c9 01 90 37 41 2d 2c da
+[0104-09:12:59:717]  read 7722 -  03a0: a4 72 5f 50 64 09 4d b0 5e 95 5d 6c 4a 8d 9c f5
+[0104-09:12:59:717]  read 7722 -  03b0: a1 18 1c 7e 42 02 3d 92 3f d9 eb 63 83 0e 52 22
+[0104-09:12:59:717]  read 7722 -  03c0: ce 2b 94 3e b8 c9 73 3b 69 6e 11 51 9a 33 31 56
+[0104-09:12:59:717]  read 7722 -  03d0: 52 e0 1b 11 ef 9d 36 a5 40 fa 07 d5 7d a8 32 24
+[0104-09:12:59:717]  read 7722 -  03e0: 29 5f cb 95 99 9d b5 98 d7 fa 28 b0 7e a9 32 df
+[0104-09:12:59:717]  read 7722 -  03f0: 0b fe e7 cd d5 81 a5 bf 4f ad fd 6f 04 c4 30 eb
+[0104-09:12:59:717]  read 7722 -  0400: ea 24 c1 9e ef 0b db e4 20 6c 53 69 8b 5f 69 fd
+[0104-09:12:59:717]  read 7722 -  0410: 01 aa 23 5d 02 f7 88 82 84 b3 a8 72 fa 39 61 b7
+[0104-09:12:59:717]  read 7722 -  0420: f4 c8 a2 89 6c a4 dc 8e 85 e6 00 07 37 2c 60 c0
+[0104-09:12:59:717]  read 7722 -  0430: 09 27 aa 04 2c 42 cc 1c 4c f9 12 0c 03 dc 8d 12
+[0104-09:12:59:717]  read 7722 -  0440: 47 4e 7a ab f5 01 61 5f 31 33 16 08 02 b4 67 82
+[0104-09:12:59:717]  read 7722 -  0450: c2 e0 e7 ab 25 29 5e c8 38 04 72 0e 44 07 3f 5d
+[0104-09:12:59:717]  read 7722 -  0460: cb c9 36 66 bb 4d 78 46 25 b8 1a 55 15 b0 35 8a
+[0104-09:12:59:717]  read 7722 -  0470: 5d 74 94 c2 a6 f5 85 f3 69 d5 12 d6 85 5b 0c ca
+[0104-09:12:59:717]  read 7722 -  0480: d4 3d f6 71 3c 48 1c 86 f2 61 cb de f4 10 ca b5
+[0104-09:12:59:717]  read 7722 -  0490: b1 0f 11 97 95 9a 34 f2 6c 17 ab f3 9b 8c 33 13
+[0104-09:12:59:717]  read 7722 -  04a0: ca bf 27 9e 78 9d f6 ee 15 e9 61 4b 6d fc 4d 89
+[0104-09:12:59:717]  read 7722 -  04b0: 9e d3 ae 8a e0 20 80 5f aa 05 ca d9 60 41 37 0c
+[0104-09:12:59:717]  read 7722 -  04c0: f8 5e b1 26 b9 93 01 1c 59 ee 04 49 be c7 d2 c0
+[0104-09:12:59:717]  read 7722 -  04d0: fd ca 72 2d 22 78 b0 8b 65 8b 2e ef 0d 0e 5e d5
+[0104-09:12:59:717]  read 7722 -  04e0: 79 51 f2 62 83 c9 4d 7e a1 3b 6a b5 4c c6 f5 e1
+[0104-09:12:59:717]  read 7722 -  04f0: 27 28 5f 19 09 29 3b 0d c5 8e 61 b2 a9 86 d9 42
+[0104-09:12:59:717]  read 7722 -  0500: 54 a4 e5 42 53 27 48 77 fd 48 3b 56 66 55 33 22
+[0104-09:12:59:717]  read 7722 -  0510: 38 ab 08 57 f0 c2 ef 8a dd 24 cb 33 98 e1 ff b5
+[0104-09:12:59:717]  read 7722 -  0520: 38 42 88 43 34 5e 55 18 1f e2 4d 32 ed ca fe 15
+[0104-09:12:59:717]  read 7722 -  0530: ea 83 c0 a9 d8 27 71 74 e3 d6 be 36 d5 fd 4b 0d
+[0104-09:12:59:717]  read 7722 -  0540: 24 84 c4 cd 7c 0f a7 38 47 cb 1b 0f 28 68 f1 df
+[0104-09:12:59:717]  read 7722 -  0550: f5 d1 34 1a 5b b7 f1 7f a1 53 2e 19 41 66 96 1f
+[0104-09:12:59:717]  read 7722 -  0560: f3 90 67 91 c6 6e 6e 7a 97 68 45 33 b1 c2 4d 5b
+[0104-09:12:59:717]  read 7722 -  0570: ae 7b 81 6f 5f 70 b3 60 7b 5f 8f 17 84 f9 99 db
+[0104-09:12:59:717]  read 7722 -  0580: 41 50 c1 1a d2 34 71 8c df aa 50 5f 41 11 2f 6c
+[0104-09:12:59:717]  read 7722 -  0590: eb 9f bf a7 da b8 56 62 77 f0 28 40 04 86 ea 48
+[0104-09:12:59:717]  read 7722 -  05a0: 0f 0c 09 25 23 b8 d7 1b 02 01 6c c4 65 d7 f6 32
+[0104-09:12:59:717]  read 7722 -  05b0: 07 94 ae 2f e0 c0 3c 7d cb 15 ce 8e ad 76 b8 24
+[0104-09:12:59:717]  read 7722 -  05c0: c6 46 0a c9 fb 14 56 e6 7c 67 47 1a 1a 95 d3 9c
+[0104-09:12:59:717]  read 7722 -  05d0: f4 12 59 87 45 b9 59 92 51 e1 98 80 d6 85 ef d6
+[0104-09:12:59:717]  read 7722 -  05e0: 10 67 60 17 8f c0 e8 37 a0 88 5e d2 01 59 b9 7b
+[0104-09:12:59:717]  read 7722 -  05f0: ae d1 3b a9 5e de b2 ed b4 6a 5f c4 14 72 da 90
+[0104-09:12:59:717]  read 7722 -  0600: 45 40 0b 26 b7 c8 1f 2e cb 3f ba 58 44 2c 8d 98
+[0104-09:12:59:717]  read 7722 -  0610: 41 8e ba 83 28 e8 dc 30 6e d6 d8 ab 0e a0 80 96
+[0104-09:12:59:717]  read 7722 -  0620: 60 c9 b7 2c c8 55 23 4d f5 72 ff 9f 40 00 7c dc
+[0104-09:12:59:717]  read 7722 -  0630: af 62 bd ba 47 74 46 6d 02 20 44 65 ae 2a 84 6f
+[0104-09:12:59:717]  read 7722 -  0640: 37 58 c7 93 6b a2 45 06 b7 86 7a f5 0a ae 5f 79
+[0104-09:12:59:717]  read 7722 -  0650: 9b cd 60 b0 bc 9c fa d7 6a c1 b2 ab a9 ba 82 a0
+[0104-09:12:59:717]  read 7722 -  0660: e5 0b cb a8 c1 f6 4c 5b e4 01 ef 1d 87 e7 a9 c0
+[0104-09:12:59:717]  read 7722 -  0670: 58 e9 79 82 de c7 5b e1 19 3e d2 ea b5 8a b1 9e
+[0104-09:12:59:717]  read 7722 -  0680: 9c ba ca 05 3c a9 47 59 53 55 aa f2 83 d2 9d eb
+[0104-09:12:59:717]  read 7722 -  0690: c6 43 ae fc 8a 62 a3 86 6d cc 47 4c 7c 6d 3b 7c
+[0104-09:12:59:717]  read 7722 -  06a0: a6 e5 8c f1 04 61 63 69 6a 97 74 5a 62 06 66 9c
+[0104-09:12:59:717]  read 7722 -  06b0: cf f5 c7 3c b6 cd 1d dc 60 6f 81 5b 38 00 ec 14
+[0104-09:12:59:717]  read 7722 -  06c0: ee 6c b7 b8 37 3d 8c 5d 3a 53 22 ce a1 e1 22 57
+[0104-09:12:59:717]  read 7722 -  06d0: 8d 8a 54 53 d4 31 57 e6 7b 42 45 8b 54 a4 57 27
+[0104-09:12:59:717]  read 7722 -  06e0: 99 31 3e 89 ee b1 9c cf 29 69 f3 8f eb 90 cb 8f
+[0104-09:12:59:717]  read 7722 -  06f0: 97 7e 1a b3 1c 1c 6b fb c1 d6 aa ed dd 87 80 d2
+[0104-09:12:59:717]  read 7722 -  0700: 16 68 44 31 e1 eb 20 35 6f cc 93 82 03 ae e7 08
+[0104-09:12:59:717]  read 7722 -  0710: 5d 32 86 4c 1a 8d 9b de 50 ff 91 b1 95 2c 3c 21
+[0104-09:12:59:717]  read 7722 -  0720: 11 9e bd 28 0f 5b d7 24 7e ca 85 37 54 fc 1a af
+[0104-09:12:59:717]  read 7722 -  0730: ee 94 e6 2d df f3 f8 4f 33 1b a8 19 b6 34 f7 b8
+[0104-09:12:59:717]  read 7722 -  0740: f0 bd 1c cf d5 16 6e 61 d5 83 25 69 2a 96 9d 86
+[0104-09:12:59:717]  read 7722 -  0750: 7b a1 6b 1e e6 94 cd 27 f4 51 e1 58 10 02 ca 9e
+[0104-09:12:59:717]  read 7722 -  0760: 43 cc 66 64 8b f9 3e 84 52 8b 17 89 b1 f7 81 36
+[0104-09:12:59:717]  read 7722 -  0770: 1b e9 ac cc 50 8a 8e 07 2d b0 bc d4 ad 99 26 6d
+[0104-09:12:59:717]  read 7722 -  0780: 81 13 45 35 2e 93 a0 1e 06 96 dd 78 50 84 b0 9b
+[0104-09:12:59:717]  read 7722 -  0790: 55 21 a4 42 a0 ad ee fb ef 1f b2 2d 45 97 73 c2
+[0104-09:12:59:717]  read 7722 -  07a0: dd d9 e2 99 d4 1a f3 b8 08 0e 70 d6 18 f1 c7 3f
+[0104-09:12:59:717]  read 7722 -  07b0: df 57 37 7e a4 49 38 55 42 37 4a f5 28 94 5d 0d
+[0104-09:12:59:717]  read 7722 -  07c0: 98 ea 55 fd d5 a1 a6 13 9c a8 f1 1d f6 1d 2e 96
+[0104-09:12:59:717]  read 7722 -  07d0: ff 48 64 2b b5 95 01 8b 9f 7d 27 d1 2a e9 10 cf
+[0104-09:12:59:717]  read 7722 -  07e0: c9 86 ac 1e 00 24 17 c8 99 65 ca 9c 92 8a f0 e9
+[0104-09:12:59:717]  read 7722 -  07f0: d7 75 97 3d 16 e9 17 7a 9b 28 3e 7a db 0d 84 63
+[0104-09:12:59:717]  read 7722 -  0800: a6 45 3f c0 e0 57 98 c9 66 95 8a be bf 7a a8 7d
+[0104-09:12:59:717]  read 7722 -  0810: 7e 75 f2 54 3e a7 ac f6 ff c2 e8 b2 26 48 ef d5
+[0104-09:12:59:717]  read 7722 -  0820: 35 25 ec 95 39 5a c6 3d 64 c7 e4 ee e5 fd 50 ee
+[0104-09:12:59:717]  read 7722 -  0830: a4 52 d8 83 f0 52 95 fa f8 e6 17 c4 f8 3a ca fe
+[0104-09:12:59:717]  read 7722 -  0840: b3 89 86 86 3b 4c 37 98 eb ad 96 5a 49 aa 55 c5
+[0104-09:12:59:717]  read 7722 -  0850: e2 94 0c 4c ab 1a 5c 70 cf a5 a1 31 08 31 e7 ad
+[0104-09:12:59:717]  read 7722 -  0860: 00 b9 78 62 fa 8f b6 04 58 e8 9e 21 72 5a be a1
+[0104-09:12:59:717]  read 7722 -  0870: 0b b5 f6 cb b3 13 f1 6e 54 20 16 56 6b f4 95 14
+[0104-09:12:59:717]  read 7722 -  0880: b8 df e1 5f 94 a6 83 7f d6 5f bd 6b 26 43 8e 2c
+[0104-09:12:59:717]  read 7722 -  0890: a6 32 c8 65 e2 d5 a8 a2 fa e7 e7 a4 2e 81 25 e2
+[0104-09:12:59:717]  read 7722 -  08a0: 0e f3 e6 57 0c 38 a7 57 10 56 e5 fd fe 37 ba 15
+[0104-09:12:59:717]  read 7722 -  08b0: 77 f1 8a 37 49 d7 50 f1 ac 79 79 d4 15 96 b5 41
+[0104-09:12:59:717]  read 7722 -  08c0: 73 24 12 7d 81 4a b7 d9 0e 15 05 a2 f5 bc 79 9b
+[0104-09:12:59:717]  read 7722 -  08d0: 59 9f 4a 77 8f c5 40 04 b5 00 81 b4 2f 0c 1e d6
+[0104-09:12:59:717]  read 7722 -  08e0: c7 d7 77 4d 50 4f e4 42 33 45 27 49 af 76 30 d8
+[0104-09:12:59:717]  read 7722 -  08f0: 57 3e 03 3b a8 59 ef be c2 7f fb b9 97 36 17 6b
+[0104-09:12:59:717]  read 7722 -  0900: 0a fe 52 81 4c 38 de 70 dc dc 01 35 bc 71 62 69
+[0104-09:12:59:717]  read 7722 -  0910: 83 8c 29 a1 33 9c 17 22 5f a5 fc f2 b3 15 1e b4
+[0104-09:12:59:717]  read 7722 -  0920: 71 86 44 fa 7b 31 58 0b 35 b2 6a d7 30 ef d5 3e
+[0104-09:12:59:717]  read 7722 -  0930: 50 e9 1c dc ec 0e 2f d0 bc 16 df 8d 3c be c8 6d
+[0104-09:12:59:717]  read 7722 -  0940: 85 84 ea c4 1e 6c 87 76 39 71 a0 b2 4b 33 68 7d
+[0104-09:12:59:717]  read 7722 -  0950: d2 f7 31 65 ce 43 22 e0 a1 5a c2 1f f3 38 d7 64
+[0104-09:12:59:717]  read 7722 -  0960: 2a b3 26 94 ab 00 5e 68 4e 26 2f 0d e5 63 08 ba
+[0104-09:12:59:717]  read 7722 -  0970: 3e 1c 4a 32 ec 0a 8d b0 8f 9d 56 81 54 88 5f 8e
+[0104-09:12:59:717]  read 7722 -  0980: c6 ef bc 2a 4d 64 34 b1 8d 6e 47 54 43 ec 10 56
+[0104-09:12:59:717]  read 7722 -  0990: c8 ce a4 b4 f6 de 6b a9 e0 74 62 1c de a4 ab 3b
+[0104-09:12:59:717]  read 7722 -  09a0: 1b a9 3e 9d af 96 67 53 38 cb f4 28 1d 71 46 f8
+[0104-09:12:59:717]  read 7722 -  09b0: 3a ad fa fe db 64 6c e2 33 f3 07 b7 da b6 b1 7d
+[0104-09:12:59:717]  read 7722 -  09c0: f0 18 a0 84 0c 76 19 4b ec 0b 60 c7 7a 57 f6 57
+[0104-09:12:59:717]  read 7722 -  09d0: b5 94 9c 06 41 58 8b 02 78 46 48 46 a9 4d 20 25
+[0104-09:12:59:717]  read 7722 -  09e0: 55 d3 bd 57 c9 6c 42 22 94 ed 08 bd 1e 71 d3 fb
+[0104-09:12:59:717]  read 7722 -  09f0: 73 d8 e4 d2 c3 b6 dd 16 cb 6f d4 22 9c 35 fc aa
+[0104-09:12:59:717]  read 7722 -  0a00: 71 8f 13 3d ee c4 db c9 e4 20 c2 ed 38 68 c7 97
+[0104-09:12:59:717]  read 7722 -  0a10: 8d c8 f7 06 d0 1d db 7e 9d c3 9d 8e b7 61 c8 db
+[0104-09:12:59:717]  read 7722 -  0a20: f5 b8 4d 76 d2 f2 51 e5 91 00 e5 a4 73 7a 89 8e
+[0104-09:12:59:717]  read 7722 -  0a30: 77 7b 76 63 09 76 2e 19 45 e1 c4 48 0e d3 e2 b0
+[0104-09:12:59:717]  read 7722 -  0a40: 4e a3 39 75 a1 35 c7 6f 43 c1 6d b7 09 58 4a 44
+[0104-09:12:59:717]  read 7722 -  0a50: 84 18 f4 c0 4f f0 ac 0d a2 63 c4 1a 33 8a aa bc
+[0104-09:12:59:717]  read 7722 -  0a60: 5d 6b 37 db 12 10 9d 86 07 26 a4 32 86 86 0a c2
+[0104-09:12:59:717]  read 7722 -  0a70: 2d ec 00 08 65 44 5d ba 3b e2 5b f0 d6 3d dd 00
+[0104-09:12:59:717]  read 7722 -  0a80: f4 ec 90 e2 a4 67 c5 45 39 94 cb 69 ec bc 5d 50
+[0104-09:12:59:717]  read 7722 -  0a90: 1e 0b 8c b3 e4 cb b3 46 68 75 57 bc 52 bd 40 90
+[0104-09:12:59:717]  read 7722 -  0aa0: 74 2c 37 51 7c 33 49 25 66 63 42 24 59 e4 dc cd
+[0104-09:12:59:717]  read 7722 -  0ab0: f4 19 7e 07 38 c0 f1 a8 35 43 06 f9 3e a6 ec d4
+[0104-09:12:59:717]  read 7722 -  0ac0: e3 c8 4f cc 38 5d a0 1f 44 b2 a4 b4 6a 04 bc d9
+[0104-09:12:59:717]  read 7722 -  0ad0: db 1b bc 79 75 16 9c 1c 6e 35 ce 27 4b 43 9a 7e
+[0104-09:12:59:717]  read 7722 -  0ae0: 91 d7 c0 64 fb ba a9 37 30 e0 70 25 13 82 9a be
+[0104-09:12:59:717]  read 7722 -  0af0: 06 d9 cf d7 af 69 e1 ba 93 3b d6 57 a9 1a 42 11
+[0104-09:12:59:717]  read 7722 -  0b00: 65 52 ce 6e 90 68 fc f3 36 e1 15 a6 38 2b 79 84
+[0104-09:12:59:717]  read 7722 -  0b10: 13 62 1c 93 5d 3f 18 5f a8 06 9d 46 c9 a3 8a b5
+[0104-09:12:59:717]  read 7722 -  0b20: af db 34 6d aa ca 0b e1 9a 80 a1 f0 d3 70 3f 76
+[0104-09:12:59:717]  read 7722 -  0b30: 5b be 0a c4 b9 17 9d 24 d7 2d 43 37 1b 32 88 c4
+[0104-09:12:59:717]  read 7722 -  0b40: 03 cf a8 6a a2 a9 6e d6 52 12 5c 3e a8 99 b4 2d
+[0104-09:12:59:717]  read 7722 -  0b50: 20 aa 08 ed a5 b7 b3 f0 5c 9f 11 19 a7 c3 f9 c9
+[0104-09:12:59:717]  read 7722 -  0b60: 25 61 fe 6f c2 c4 e5 3a a6 c9 7f 74 ae 3e e2 f7
+[0104-09:12:59:717]  read 7722 -  0b70: 51 5e 66 5c 4f 3d fe 5d 7a 53 53 a4 c3 bc 1c d8
+[0104-09:12:59:717]  read 7722 -  0b80: b7 a0 5a 67 03 36 3c f6 d3 cf 66 5b 57 b3 f2 b7
+[0104-09:12:59:717]  read 7722 -  0b90: 6c 5c d4 a7 98 db bc 05 cf 15 82 1d 03 ad 1d 4f
+[0104-09:12:59:717]  read 7722 -  0ba0: db 88 dc 09 45 f4 c0 c2 54 05 2b 91 b0 59 4f fc
+[0104-09:12:59:717]  read 7722 -  0bb0: 78 44 20 a0 a1 89 18 87 17 37 2e 6b c4 c6 8a 8d
+[0104-09:12:59:717]  read 7722 -  0bc0: 96 56 e5 98 85 34 7d 5d 91 08 bb dc 73 b0 27 d7
+[0104-09:12:59:717]  read 7722 -  0bd0: ef 89 95 09 4d 7c be c6 19 86 11 0f 5b 8d 25 b2
+[0104-09:12:59:717]  read 7722 -  0be0: d2 c7 54 7b 3a 8a f2 37 14 63 aa 1c 4a 72 8a a9
+[0104-09:12:59:717]  read 7722 -  0bf0: 00 b6 0e bb 6b 16 b8 f1 c8 af 02 3e e9 09 af f2
+[0104-09:12:59:717]  read 7722 -  0c00: e3 75 de b2 fc 35 07 36 75 2d 83 44 b1 df 24 f1
+[0104-09:12:59:717]  read 7722 -  0c10: fd 5c 7a 47 df 05 bd a0 9d ef 6c 9e cb e3 5e fe
+[0104-09:12:59:717]  read 7722 -  0c20: 5e 92 4d 99 f6 cb 43 fa 35 13 d3 fe 8f 54 06 c8
+[0104-09:12:59:717]  read 7722 -  0c30: 2c f8 26 ea d4 23 5f ff 30 f5 cd 4a 57 4c d3 d8
+[0104-09:12:59:717]  read 7722 -  0c40: 3b c1 21 99 dc 8f 98 13 2c a7 75 30 15 db a3 61
+[0104-09:12:59:717]  read 7722 -  0c50: 4b b7 f5 16 f1 df 87 a2 ed 05 64 e2 16 0f 2e dc
+[0104-09:12:59:717]  read 7722 -  0c60: 04 b8 b9 8e 38 ce 92 14 b3 32 c2 e7 c3 9b 7a 76
+[0104-09:12:59:717]  read 7722 -  0c70: 2e f8 53 a2 1a 08 6d 8c 35 41 60 15 f9 5d 86 05
+[0104-09:12:59:717]  read 7722 -  0c80: 1f 03 66 5b 3f c2 28 c5 7c 07 38 06 46 73 22 18
+[0104-09:12:59:717]  read 7722 -  0c90: 10 55 6d 70 6b 22 99 3f f2 be ad d7 5e cc 7d a5
+[0104-09:12:59:717]  read 7722 -  0ca0: 60 d5 ee 65 5a 10 93 df 8e 79 f9 2d f9 d1 ca b3
+[0104-09:12:59:717]  read 7722 -  0cb0: 4d ac ed 02 2f 1f 9c 32 81 bc 89 08 82 c0 f9 91
+[0104-09:12:59:717]  read 7722 -  0cc0: 87 df 32 61 d9 76 e3 f2 60 09 4d 92 de 78 b3 63
+[0104-09:12:59:717]  read 7722 -  0cd0: fc f9 d1 dd 0b 7d 42 e3 fc 70 97 37 30 72 ea cf
+[0104-09:12:59:717]  read 7722 -  0ce0: e2 f8 cc ff 8a 5c 75 d6 9e d0 4b 7f cd cb a8 a3
+[0104-09:12:59:717]  read 7722 -  0cf0: aa c2 d1 c7 a4 0e f6 15 6c f0 12 ca ff d3 ae e6
+[0104-09:12:59:717]  read 7722 -  0d00: f2 60 1f d4 e8 f1 ed c8 fb 9b ad 81 ec b7 87 f9
+[0104-09:12:59:717]  read 7722 -  0d10: 48 a3 da 7b 5f ee a8 ef 7c 25 53 23 d8 c8 c8 52
+[0104-09:12:59:717]  read 7722 -  0d20: 1a 9f 1b 48 be dd 97 15 98 99 62 c5 83 f2 7d 8e
+[0104-09:12:59:717]  read 7722 -  0d30: 6d 17 d7 90 92 59 1e 4f e7 36 8d 6b b5 d9 b3 97
+[0104-09:12:59:717]  read 7722 -  0d40: 08 b9 98 14 52 d5 80 74 a4 8f 4e e3 cf 59 be f8
+[0104-09:12:59:717]  read 7722 -  0d50: 24 c3 94 2f af 6f 35 66 8d 38 a1 b3 88 66 9b 70
+[0104-09:12:59:717]  read 7722 -  0d60: d8 4b f3 c9 9e 12 41 34 8e 46 17 a5 47 13 be bc
+[0104-09:12:59:717]  read 7722 -  0d70: 5a ba 1f 55 3f af f9 ee b0 71 90 9a 1e 52 16 64
+[0104-09:12:59:717]  read 7722 -  0d80: ce 7f 15 b1 54 d1 ab 7d fc 0b 6d 75 b3 c6 19 c9
+[0104-09:12:59:717]  read 7722 -  0d90: 4a 9a 18 ea 85 6c ed ab 98 cd 1a d1 a3 88 2f 86
+[0104-09:12:59:717]  read 7722 -  0da0: d6 dc 62 38 69 db 54 fa 00 02 31 51 a3 8f c4 5b
+[0104-09:12:59:717]  read 7722 -  0db0: 8a bd 2f c4 58 70 f6 2a 28 48 34 3e 4f 1b 70 de
+[0104-09:12:59:717]  read 7722 -  0dc0: 04 a0 5a 8c d9 48 4a af 33 35 88 87 87 47 62 19
+[0104-09:12:59:717]  read 7722 -  0dd0: 27 86 8b 50 05 e7 15 b3 b3 2a f6 b2 21 fe b0 0e
+[0104-09:12:59:717]  read 7722 -  0de0: e3 13 ee 63 f2 c2 e2 73 97 a4 0a 37 8b c9 32 28
+[0104-09:12:59:717]  read 7722 -  0df0: 8f c6 60 31 60 36 63 cf eb e6 c9 2d 79 05 06 30
+[0104-09:12:59:717]  read 7722 -  0e00: 0d b5 47 b5 81 4f 25 4d 43 c3 37 88 1b 32 c8 16
+[0104-09:12:59:717]  read 7722 -  0e10: 1f 80 91 a6 84 3e 2a d3 22 ba 4a b8 ef 9f d7 a5
+[0104-09:12:59:717]  read 7722 -  0e20: 80 6d 0b d2 d4 0b db 10 d2 23 0c f3 57 ae 46 99
+[0104-09:12:59:717]  read 7722 -  0e30: 00 77 26 5b 45 a5 bf 84 e1 fd 75 70 d1 13 61 bc
+[0104-09:12:59:717]  read 7722 -  0e40: 79 31 14 b3 0e 92 f1 dc 38 36 38 12 cf 74 b9 7a
+[0104-09:12:59:717]  read 7722 -  0e50: 13 38 61 44 0c 20 da 75 89 59 2f 7d 25 ac d3 3d
+[0104-09:12:59:717]  read 7722 -  0e60: d1 16 ee c9 4e 53 ba 2a 97 c6 20 ec e9 2c e3 05
+[0104-09:12:59:717]  read 7722 -  0e70: 3d c5 dc 26 f6 3d ec 63 88 ea 30 2c 00 ff 1d b3
+[0104-09:12:59:717]  read 7722 -  0e80: 70 23 c8 b1 f0 bf 42 3c 98 b8 96 20 fd 22 88 97
+[0104-09:12:59:717]  read 7722 -  0e90: 66 f3 2c f4 e2 37 98 57 65 92 b0 25 0e f3 96 f8
+[0104-09:12:59:717]  read 7722 -  0ea0: fe f8 9b 76 49 c4 e1 33 9e bc c1 51 68 0d 48 5a
+[0104-09:12:59:717]  read 7722 -  0eb0: 72 2a 52 d7 39 0e 68 26 da 52 30 84 05 04 f5 ca
+[0104-09:12:59:717]  read 7722 -  0ec0: 9c 4d c7 bc 41 70 4a 06 d5 ca 2a ee 13 08 27 f1
+[0104-09:12:59:717]  read 7722 -  0ed0: bc 5a 63 dd 17 bc 0e 4d 61 02 a1 f3 95 b7 c9 50
+[0104-09:12:59:717]  read 7722 -  0ee0: 49 50 a2 cd a7 01 31 69 3a 57 e7 68 5b 65 1a 78
+[0104-09:12:59:717]  read 7722 -  0ef0: 61 31 da 76 f9 ce 7c 04 1c df 4b a3 67 0c 3b 85
+[0104-09:12:59:717]  read 7722 -  0f00: e8 94 b2 6b 25 ea 70 2f b5 1d 25 04 10 b5 ba f7
+[0104-09:12:59:717]  read 7722 -  0f10: f3 6c 3f 9b 56 0f 56 bd c1 43 49 7d a6 cc ca 5e
+[0104-09:12:59:717]  read 7722 -  0f20: 5c 96 3d e3 1a 57 de a9 d1 b2 8c d7 56 21 4f 78
+[0104-09:12:59:717]  read 7722 -  0f30: 0e 52 f4 1e 3f 5d 2c 88 04 4f 1b 01 83 c5 69 38
+[0104-09:12:59:717]  read 7722 -  0f40: 56 13 ff 7b cd 5b a6 97 29 c3 ef 86 82 79 62 50
+[0104-09:12:59:717]  read 7722 -  0f50: c4 54 90 4e 9b 57 ab 57 1c d9 de 5c d1 1f 68 ff
+[0104-09:12:59:717]  read 7722 -  0f60: 33 99 22 0b 8d 70 ba 12 d4 e1 b4 c8 c7 91 93 49
+[0104-09:12:59:717]  read 7722 -  0f70: d9 b0 bf a7 55 05 bd dd 1c 51 0e 2d 8f 08 d9 8e
+[0104-09:12:59:717]  read 7722 -  0f80: 62 2f 94 2f 53 bb 34 0c 5c 1c e8 1e 58 59 39 db
+[0104-09:12:59:717]  read 7722 -  0f90: 11 86 2b c9 cb 27 43 f3 a3 45 0f ad bd 7c 16 ae
+[0104-09:12:59:717]  read 7722 -  0fa0: c5 f5 dd f5 1c b2 dd 46 df a4 12 fe 2a be 44 1c
+[0104-09:12:59:717]  read 7722 -  0fb0: 3e b1 23 70 94 79 f2 7e cb 63 c8 62 f6 6e 70 94
+[0104-09:12:59:717]  read 7722 -  0fc0: 79 2a 42 0c e7 1f ae 86 a4 67 b6 5c ed 95 f0 1d
+[0104-09:12:59:717]  read 7722 -  0fd0: a5 03 de 1f 34 e3 87 dc 84 36 b7 d6 f0 f1 83 fb
+[0104-09:12:59:717]  read 7722 -  0fe0: ca 00 60 13 39 bb d0 a8 e0 a1 77 16 6d 88 cc c6
+[0104-09:12:59:717]  read 7722 -  0ff0: 2e 4e 8b 10 8d 10 5f c9 81 50 08 ee 35 86 66 06
+[0104-09:12:59:717]  read 7722 -  1000: 4b af 69 2f ff 9f 27 b9 2c 51 97 90 26 c3 66 cd
+[0104-09:12:59:717]  read 7722 -  1010: bc e4 8e d8 df f5 fb 1c 15 82 7e c8 3a d6 4b 11
+[0104-09:12:59:717]  read 7722 -  1020: 53 db 07 7c 08 25 45 fa fb d7 50 8d 8e 94 62 41
+[0104-09:12:59:717]  read 7722 -  1030: c1 46 7b 25 bf 1f 05 c8 dd 38 06 3a d9 65 de 65
+[0104-09:12:59:717]  read 7722 -  1040: 99 55 47 d2 6a 43 52 e8 df 41 a3 ce 97 7a 04 a4
+[0104-09:12:59:717]  read 7722 -  1050: 18 52 6d 87 b9 66 8a 17 00 b4 f3 6b 05 ff 5f 57
+[0104-09:12:59:717]  read 7722 -  1060: af 59 5e f2 4c 25 7d 99 f8 dd fb 27 8f af 67 cb
+[0104-09:12:59:717]  read 7722 -  1070: d9 11 8f 39 f8 e5 27 53 9a b3 64 1e ce 02 ad b8
+[0104-09:12:59:717]  read 7722 -  1080: 62 e7 8f c3 f1 dc 3f b0 6b a0 01 9b 76 a0 c1 e4
+[0104-09:12:59:717]  read 7722 -  1090: 42 de 8b 56 f5 42 45 25 56 9e 59 aa cf 46 08 28
+[0104-09:12:59:717]  read 7722 -  10a0: 72 b0 54 7e 20 f7 ab d5 b1 1b 53 28 5a 8f ca de
+[0104-09:12:59:717]  read 7722 -  10b0: 40 3c 23 3d 97 b8 54 8b ef d6 12 7f 77 45 72 6a
+[0104-09:12:59:717]  read 7722 -  10c0: 8d 41 08 71 0d c8 6f 5b 3b 47 14 35 0d de fa 0b
+[0104-09:12:59:717]  read 7722 -  10d0: 00 2e 96 9f e5 eb 4f 7c 7d 3b 2f ea 0b 0d 2e 91
+[0104-09:12:59:717]  read 7722 -  10e0: e3 7a ad 85 08 b3 78 ce ff a6 16 c9 53 46 fd 7d
+[0104-09:12:59:717]  read 7722 -  10f0: 2d c1 18 7b f7 51 6b fe af 48 57 50 d1 83 79 6d
+[0104-09:12:59:717]  read 7722 -  1100: d4 fc 5c be 03 9f 67 06 04 72 5c 4b e5 90 5a 34
+[0104-09:12:59:717]  read 7722 -  1110: 94 8c f5 26 37 81 84 f6 2e 1a 2e 3a 22 21 1b 9c
+[0104-09:12:59:717]  read 7722 -  1120: f5 2c cf 33 de 7b 46 60 6d 3c ed 3c 43 26 39 06
+[0104-09:12:59:717]  read 7722 -  1130: 33 e8 3f c0 cf 95 ed 49 72 fa 34 66 b1 80 27 20
+[0104-09:12:59:717]  read 7722 -  1140: 93 a1 c2 cc 2d 75 95 36 a3 6a 44 6c f3 e8 5e a8
+[0104-09:12:59:717]  read 7722 -  1150: 4e c8 8a ec 55 c3 f6 05 a5 f4 6e eb 74 0d ff 76
+[0104-09:12:59:717]  read 7722 -  1160: 91 71 e6 4f a2 3c 4a 5f 50 15 c0 dc 7e 9f 24 9d
+[0104-09:12:59:717]  read 7722 -  1170: d8 5d d2 00 d8 ad 56 91 aa f1 af 3e e2 61 e0 94
+[0104-09:12:59:717]  read 7722 -  1180: d3 46 0f 90 e6 49 02 fa 04 26 ca 95 35 aa b2 f8
+[0104-09:12:59:717]  read 7722 -  1190: 18 18 8a 87 85 b7 b8 c4 ca 2c 44 38 f2 9b 68 6f
+[0104-09:12:59:717]  read 7722 -  11a0: 6c 99 d4 b6 ec b0 22 31 56 84 48 4f d0 6c ee 05
+[0104-09:12:59:717]  read 7722 -  11b0: f1 a8 05 08 b6 49 81 81 fd 9d 3b ad 2e d6 b1 67
+[0104-09:12:59:717]  read 7722 -  11c0: 7c 4d 88 0d dc 40 0e 6e 57 fa 81 81 e6 bd da 68
+[0104-09:12:59:717]  read 7722 -  11d0: 3b 75 7b 1e 8d fb ee 5e f6 09 43 3e 90 66 14 e8
+[0104-09:12:59:717]  read 7722 -  11e0: 26 81 78 0b 0c 00 d3 9d c4 e5 9b f8 90 81 38 c9
+[0104-09:12:59:717]  read 7722 -  11f0: 0f 6d 4d 26 3b 36 5f 8d 28 e7 4a 6c b8 42 f3 16
+[0104-09:12:59:717]  read 7722 -  1200: 3b 20 f2 1f 80 5b b4 77 e8 71 6e 84 2c 4c 95 cd
+[0104-09:12:59:717]  read 7722 -  1210: d7 e3 59 14 9b 51 fd d6 6d b2 24 1b cb 61 bb cd
+[0104-09:12:59:717]  read 7722 -  1220: fe 85 1d d3 97 cb 8f 92 95 a2 09 0d 4a 11 4e 2b
+[0104-09:12:59:717]  read 7722 -  1230: 24 ce 8f bd db 92 ee 4e 5a 96 d9 82 b6 d4 a3 49
+[0104-09:12:59:717]  read 7722 -  1240: a8 a0 30 2d c0 f2 2b dc 90 68 90 0f 51 16 33 85
+[0104-09:12:59:717]  read 7722 -  1250: a4 a5 ea eb e1 df 40 d5 59 52 71 dd e2 1c 58 bb
+[0104-09:12:59:717]  read 7722 -  1260: 01 31 a8 f1 6a 4b 07 ce 26 f9 17 e2 5f 57 2b 36
+[0104-09:12:59:717]  read 7722 -  1270: bd 5b b6 eb d8 32 42 40 e0 db ba 8d b5 ee f2 c7
+[0104-09:12:59:717]  read 7722 -  1280: b0 97 2c 50 48 4f c1 3a 00 8c 66 b1 26 b2 0e 99
+[0104-09:12:59:717]  read 7722 -  1290: bb 31 58 08 d8 a8 1e 8e 23 9a c0 b7 b1 fe 4e 4f
+[0104-09:12:59:717]  read 7722 -  12a0: 20 34 b6 a6 e8 72 7a 35 d7 58 7a 78 48 a0 89 6c
+[0104-09:12:59:717]  read 7722 -  12b0: 32 3e 30 ea 3e 93 42 d2 71 e4 c6 b8 14 43 2b c0
+[0104-09:12:59:717]  read 7722 -  12c0: 5a 9a 92 3f ae 14 df b2 2d 1b ed 04 d2 9c 5f 0c
+[0104-09:12:59:717]  read 7722 -  12d0: 30 a2 0c cf 62 f6 1e 3c 00 06 92 33 df 09 3f 20
+[0104-09:12:59:717]  read 7722 -  12e0: c0 69 61 7b 4e 0c 90 1a 4a 76 8e 9f 28 1f be 07
+[0104-09:12:59:717]  read 7722 -  12f0: 1a 90 65 4a bc ab a3 b7 37 0d 28 75 b3 48 85 18
+[0104-09:12:59:717]  read 7722 -  1300: 44 11 3b 2b 56 cd 0f 7b 6d 14 4d 93 78 20 f7 20
+[0104-09:12:59:717]  read 7722 -  1310: 2b 77 3f 75 b8 b7 49 38 25 40 9f c8 c9 be e4 c9
+[0104-09:12:59:717]  read 7722 -  1320: af 1b 5a f7 48 89 07 84 12 ca bf e9 e8 b9 c8 d3
+[0104-09:12:59:717]  read 7722 -  1330: 15 78 79 56 97 e8 d7 79 1b 5e 31 6f 7c 1e d2 11
+[0104-09:12:59:717]  read 7722 -  1340: d3 37 44 0a f2 3e 23 55 2b 80 66 7c 35 ae 45 25
+[0104-09:12:59:717]  read 7722 -  1350: 00 cc 59 14 fa c5 eb d7 b0 f2 35 ee c8 b5 ad 01
+[0104-09:12:59:717]  read 7722 -  1360: c6 a2 89 e6 dc 40 eb 93 e4 1e 22 4a 7a 55 67 6e
+[0104-09:12:59:717]  read 7722 -  1370: 17 c8 9f f6 02 c0 f5 22 d3 d7 c6 b6 95 46 89 74
+[0104-09:12:59:717]  read 7722 -  1380: 81 b1 f8 15 3c 72 26 23 24 0d 34 88 fe 20 3e 6b
+[0104-09:12:59:717]  read 7722 -  1390: 65 b8 01 b8 c4 2a a6 f7 a1 a2 df 8d 0c e0 0e c2
+[0104-09:12:59:717]  read 7722 -  13a0: 58 50 19 54 94 3b 7b 54 fe 4e 47 46 28 76 c4 d1
+[0104-09:12:59:717]  read 7722 -  13b0: 43 66 68 d9 57 73 b8 5e a1 6f fc fd 54 3f 7c 70
+[0104-09:12:59:717]  read 7722 -  13c0: 23 4a 56 a6 2d aa 99 d3 a2 5b e0 dd d5 49 7e b3
+[0104-09:12:59:717]  read 7722 -  13d0: 1e ff 16 a3 c2 51 bb 22 ee df c1 8b aa 8b b3 66
+[0104-09:12:59:717]  read 7722 -  13e0: 4a 86 00 a5 91 cf cf 05 da 16 9a 29 ec 0a 15 5c
+[0104-09:12:59:717]  read 7722 -  13f0: 79 ea f2 bc dc 44 6b 98 a9 5e b8 47 b8 9a c3 55
+[0104-09:12:59:717]  read 7722 -  1400: 43 83 10 1c e8 85 64 b2 b6 9a 06 e4 96 6a d4 7f
+[0104-09:12:59:717]  read 7722 -  1410: 64 5b 27 61 d2 65 5f 4f 4c fb b4 d8 7b 27 f2 1d
+[0104-09:12:59:717]  read 7722 -  1420: 3d 31 95 37 6e bd 97 8a 69 23 b5 27 f9 6d f1 3d
+[0104-09:12:59:717]  read 7722 -  1430: 8b 73 00 8c d1 f4 04 cf 80 de 9f 54 de bf 5c 2a
+[0104-09:12:59:717]  read 7722 -  1440: 83 61 83 56 b5 bb 8c f0 0b 19 46 e6 69 dd 58 c7
+[0104-09:12:59:717]  read 7722 -  1450: b7 fb 13 48 81 4e 84 74 ed 17 0f 68 a7 2a c9 cb
+[0104-09:12:59:717]  read 7722 -  1460: ae c3 cf a5 3e a7 92 eb 01 5d 0c 62 79 3e 57 b0
+[0104-09:12:59:717]  read 7722 -  1470: fd d9 ee 30 69 b6 66 cf 8c 46 55 c2 4e 35 f6 a2
+[0104-09:12:59:717]  read 7722 -  1480: 4e 4c e9 fa a0 a5 db df bc c3 3a f4 30 9e cc 84
+[0104-09:12:59:717]  read 7722 -  1490: c0 af e6 a9 c4 bc 78 de 90 dd 7d 84 fd 73 76 16
+[0104-09:12:59:717]  read 7722 -  14a0: 20 9a 05 b9 13 ee dd 5b 05 bd 6b 3d 34 1a a4 93
+[0104-09:12:59:717]  read 7722 -  14b0: 67 56 af 57 dd 9c cf 26 25 60 52 26 14 7d 60 82
+[0104-09:12:59:717]  read 7722 -  14c0: 06 0d 39 34 0f 39 e5 e2 d3 89 6a a9 77 ae 0c f3
+[0104-09:12:59:717]  read 7722 -  14d0: b6 fb d7 57 60 c5 7d f2 3f c7 a0 b3 ae ba 7d 69
+[0104-09:12:59:717]  read 7722 -  14e0: 76 24 ff 8a 78 67 6b ed 27 e1 8c 39 33 9d 29 d9
+[0104-09:12:59:717]  read 7722 -  14f0: 0a eb e8 36 f2 5b 6e 51 79 77 31 21 75 cd 98 3e
+[0104-09:12:59:717]  read 7722 -  1500: cb 07 93 1e ec 11 33 d7 70 af c0 50 e4 45 92 92
+[0104-09:12:59:717]  read 7722 -  1510: 56 ce 49 61 ad ed c4 1b 9a a7 a9 85 7d a9 df fd
+[0104-09:12:59:717]  read 7722 -  1520: 2d 82 4f 5a 72 65 b9 fb 4d 8c 45 4d 92 d8 f9 20
+[0104-09:12:59:717]  read 7722 -  1530: f0 28 5e 30 18 e0 ec 18 07 27 5b 5a f0 49 0d 52
+[0104-09:12:59:717]  read 7722 -  1540: 7a 55 45 a9 87 58 f3 06 af fb 04 c6 f5 53 95 a6
+[0104-09:12:59:717]  read 7722 -  1550: 4f 15 d4 23 dd 76 d0 98 c3 a8 49 19 82 ed 19 be
+[0104-09:12:59:717]  read 7722 -  1560: a1 db 2b d6 d4 a1 f0 1a 71 f1 5e 61 80 75 f0 cf
+[0104-09:12:59:717]  read 7722 -  1570: 79 c9 78 1e a8 78 ff 7c a2 bc cc 83 85 c1 3e 4d
+[0104-09:12:59:717]  read 7722 -  1580: 0e 7b a2 7a 5f 17 d1 ae cd 6e ee db 14 56 11 e6
+[0104-09:12:59:717]  read 7722 -  1590: da 1b 43 5d ef 53 5a 85 b0 0f 09 a2 ef 33 4c 41
+[0104-09:12:59:717]  read 7722 -  15a0: 7a 57 c8 0a 9c a1 a4 0e 69 a5 eb 4f 36 bb a9 b0
+[0104-09:12:59:717]  read 7722 -  15b0: 33 96 f2 21 fd ab 99 62 34 91 fd 09 ab 61 e6 f1
+[0104-09:12:59:717]  read 7722 -  15c0: 20 0c 59 13 a6 89 f7 a1 b7 d9 12 3f 58 08 56 47
+[0104-09:12:59:717]  read 7722 -  15d0: f0 7f d4 cc e4 72 9d be d8 75 84 e5 19 25 2d 82
+[0104-09:12:59:717]  read 7722 -  15e0: 4b 53 91 e4 c0 be 8d 9c ae ea 79 6d f3 a7 47 e6
+[0104-09:12:59:717]  read 7722 -  15f0: 02 6b 4b 07 7c 1e d0 c8 16 2d c9 97 86 55 45 ed
+[0104-09:12:59:717]  read 7722 -  1600: c6 3d ad 2c e1 ba a2 03 55 5c 5b 02 91 26 6e e8
+[0104-09:12:59:717]  read 7722 -  1610: 4a 9e c6 6e c8 fd 53 01 df 0b 27 ad 14 46 bc 42
+[0104-09:12:59:717]  read 7722 -  1620: 02 f5 de 90 49 29 6b b7 33 74 6d a3 34 d7 3a 63
+[0104-09:12:59:717]  read 7722 -  1630: e0 31 99 dd 8e c0 0c 40 80 ab 02 b3 b2 7d ea e8
+[0104-09:12:59:717]  read 7722 -  1640: e0 2e 6e 23 f4 a5 c0 34 d1 18 05 ce 70 cd 4d 96
+[0104-09:12:59:717]  read 7722 -  1650: 7a f6 34 24 9f d6 1c 92 1c 72 70 3d a5 b3 e6 b8
+[0104-09:12:59:717]  read 7722 -  1660: c4 94 b4 6a 53 cf 6e ba 27 94 1f c4 cd 5e 1c 90
+[0104-09:12:59:717]  read 7722 -  1670: 6f ab 4a ab 17 40 8a b6 3f c6 83 65 b4 a8 a7 e6
+[0104-09:12:59:717]  read 7722 -  1680: ce e5 94 3b ba 2e eb 34 9b c9 34 8f 9d ab f0 fb
+[0104-09:12:59:717]  read 7722 -  1690: d3 5b ec 64 53 8b 56 f6 ef 8f 4c 10 fc 76 e2 15
+[0104-09:12:59:717]  read 7722 -  16a0: 29 84 da 72 a3 6b 1d f1 d4 9a b1 ac 20 8e 29 ef
+[0104-09:12:59:717]  read 7722 -  16b0: bb 74 ae ec ae 39 57 c6 37 3e 4e f4 40 5c 14 da
+[0104-09:12:59:717]  read 7722 -  16c0: f0 3a 83 9e 6f fe a5 57 b1 a6 e7 fa 9f d2 7f e1
+[0104-09:12:59:717]  read 7722 -  16d0: 2d ec f4 77 8e f7 97 01 50 0a 72 08 5b df 4e aa
+[0104-09:12:59:717]  read 7722 -  16e0: 86 98 79 04 6a 47 f2 d9 d4 1d 7c 82 1b f3 d2 5b
+[0104-09:12:59:717]  read 7722 -  16f0: a9 c2 fa db cd 5d 6a 52 90 49 d5 68 94 d3 70 9a
+[0104-09:12:59:717]  read 7722 -  1700: c4 f5 cc ca f4 e5 26 49 ee 32 6a 3c 8b 9a f9 c8
+[0104-09:12:59:717]  read 7722 -  1710: 07 83 e1 9e e9 e4 98 d7 7d 43 c4 6c 98 de 57 dd
+[0104-09:12:59:717]  read 7722 -  1720: b5 d6 93 0d 5a 2e 8d 4a 1e fd b9 a4 23 2e 1c d5
+[0104-09:12:59:717]  read 7722 -  1730: e5 cc 19 62 3a a8 c2 0c f6 2f 8f f1 08 2c 34 e4
+[0104-09:12:59:717]  read 7722 -  1740: b9 d4 57 c5 97 fc 80 f0 72 49 1c da e0 2f 34 ba
+[0104-09:12:59:717]  read 7722 -  1750: 43 7e ef f1 8b f5 81 cb af 48 1f a8 01 90 e5 55
+[0104-09:12:59:717]  read 7722 -  1760: aa 1a 10 94 3a f6 63 78 88 5d 4d 1f 0e 0d 56 bc
+[0104-09:12:59:717]  read 7722 -  1770: 7c 91 0f 72 0e 37 c7 b8 4c 94 c5 73 cd 53 57 a7
+[0104-09:12:59:717]  read 7722 -  1780: 7f 77 00 c9 e6 38 79 b7 80 29 ea 6f 02 79 1c 18
+[0104-09:12:59:717]  read 7722 -  1790: de d7 65 b2 99 08 1f 7c bc 03 e7 c6 92 51 aa a0
+[0104-09:12:59:717]  read 7722 -  17a0: f3 40 14 33 07 3b 70 e4 74 5b 14 81 81 69 5e df
+[0104-09:12:59:717]  read 7722 -  17b0: c8 46 76 b4 60 1e 6c 9c 4d 95 bc 9a 75 a3 91 c1
+[0104-09:12:59:717]  read 7722 -  17c0: d9 2b 99 54 20 11 67 08 b8 13 82 64 68 be b4 2e
+[0104-09:12:59:717]  read 7722 -  17d0: 47 7c b2 c5 9d 2b c7 26 b3 de 39 07 3d aa 2f 82
+[0104-09:12:59:717]  read 7722 -  17e0: a1 18 57 1a 51 e3 e5 f8 a8 e8 8c 50 3f 2a d3 47
+[0104-09:12:59:717]  read 7722 -  17f0: 6c 2a 9f 4f e8 09 b2 bf b9 d5 37 b7 70 bb f1 bc
+[0104-09:12:59:717]  read 7722 -  1800: db 45 bd cc 5f 94 24 0e 7a 37 45 2a 1b 8b 96 ee
+[0104-09:12:59:717]  read 7722 -  1810: 59 bb fe b6 a2 18 56 3c 8e 68 59 39 c5 5b 13 f9
+[0104-09:12:59:717]  read 7722 -  1820: 49 81 dd 1f 02 6e 44 bb 16 22 73 e9 10 15 6a 2b
+[0104-09:12:59:717]  read 7722 -  1830: 39 02 8b 20 23 ea 00 22 fd 2d e6 b3 04 1b 1d c5
+[0104-09:12:59:717]  read 7722 -  1840: bf 8b 72 bb c7 8e 3f be 70 13 75 51 db d1 5d 64
+[0104-09:12:59:717]  read 7722 -  1850: f9 06 f2 70 79 4b 16 4c af a1 43 c6 f0 e6 ca 9d
+[0104-09:12:59:717]  read 7722 -  1860: af 86 8f 15 cf 73 7e b0 4d 44 13 4e 52 0c 3c 07
+[0104-09:12:59:717]  read 7722 -  1870: 88 f4 fb 86 fe e7 f0 8f 08 fb 68 23 f9 42 81 d6
+[0104-09:12:59:717]  read 7722 -  1880: 90 0f bc 50 8d b0 48 ce 27 04 d1 d7 4b 78 e2 a7
+[0104-09:12:59:717]  read 7722 -  1890: aa e2 38 c1 52 d0 77 8b e6 97 d6 cf 75 d0 57 b1
+[0104-09:12:59:717]  read 7722 -  18a0: 7e c9 db d8 0e 71 b7 e8 31 a8 bb 55 49 3c 7d 15
+[0104-09:12:59:717]  read 7722 -  18b0: 87 c3 52 ad 5b 64 62 cc 88 85 f8 11 ed 7a 7a fb
+[0104-09:12:59:717]  read 7722 -  18c0: 28 62 7c bd 8e 5d 71 4b 1f fa 76 65 a0 28 fa 77
+[0104-09:12:59:717]  read 7722 -  18d0: ad ca 8d 13 d7 26 a8 97 30 d1 a3 af 2f bc 5b 6c
+[0104-09:12:59:717]  read 7722 -  18e0: 4d ed b7 92 7a 58 5c a6 e5 1b b4 e1 1c 1d 72 aa
+[0104-09:12:59:717]  read 7722 -  18f0: 6c a1 f0 f3 ec 6e b6 ac d1 e7 92 40 15 83 5f e9
+[0104-09:12:59:717]  read 7722 -  1900: a6 f3 65 0e 68 e7 8f ab 84 c7 5b 0d 1a 25 b7 5d
+[0104-09:12:59:717]  read 7722 -  1910: 6c 91 4b cb 18 c1 ec db a2 01 5a 19 cb 05 45 3f
+[0104-09:12:59:717]  read 7722 -  1920: 35 4d f1 35 9c 9f 97 5a c5 db 25 19 5a 36 5d 16
+[0104-09:12:59:717]  read 7722 -  1930: ad 5d 80 a8 d0 b5 93 75 94 69 58 d4 90 32 f8 64
+[0104-09:12:59:717]  read 7722 -  1940: 53 04 78 fc 36 d5 13 bf 6f de 9e cf 21 48 46 cb
+[0104-09:12:59:717]  read 7722 -  1950: 93 8b 15 6b 01 ef 2b c1 ee 98 df 48 65 42 b3 01
+[0104-09:12:59:717]  read 7722 -  1960: 15 ac 5a 14 40 9b 6d f6 e8 24 d4 32 e5 ea 7e f0
+[0104-09:12:59:717]  read 7722 -  1970: 33 52 4a dc 9c f5 7b 6e 8b 81 ad c2 ad 7c 39 47
+[0104-09:12:59:717]  read 7722 -  1980: 2f 75 ad 0f 0d 08 08 dc 29 ae a2 38 7c d2 fe 0a
+[0104-09:12:59:717]  read 7722 -  1990: db a3 e6 6b 27 5c f4 ea ea e8 35 36 71 3b fc c3
+[0104-09:12:59:717]  read 7722 -  19a0: 4b 17 f5 01 9c 84 fc fa 88 49 b5 56 d4 c3 10 62
+[0104-09:12:59:717]  read 7722 -  19b0: ea 65 f0 f9 97 21 ac 47 56 6f b1 9d 28 09 68 80
+[0104-09:12:59:717]  read 7722 -  19c0: 39 dc 82 4a 9f 51 66 c8 35 e4 a9 7e 2b 73 f6 03
+[0104-09:12:59:717]  read 7722 -  19d0: 81 d4 c5 a5 43 84 fe 15 84 63 71 ad a5 0e 94 5e
+[0104-09:12:59:717]  read 7722 -  19e0: 0d 33 81 d4 3e b3 76 92 7a ee e3 76 d2 b1 a2 4e
+[0104-09:12:59:717]  read 7722 -  19f0: 9e 69 c4 32 f5 cf 3c 0a 7e c6 2b 07 07 e9 3e 38
+[0104-09:12:59:717]  read 7722 -  1a00: c8 07 83 a2 3c 44 1a d4 1b 56 00 16 62 7b 41 fc
+[0104-09:12:59:717]  read 7722 -  1a10: 87 0c 17 f8 0f fb 43 f1 c5 fe e9 a4 20 d1 66 c4
+[0104-09:12:59:717]  read 7722 -  1a20: 18 58 40 72 c9 09 36 39 23 cc 52 5c d5 75 50 3c
+[0104-09:12:59:717]  read 7722 -  1a30: 10 4c ff 2f eb b8 d8 3f 8b 50 8a 6d cd fe 03 94
+[0104-09:12:59:717]  read 7722 -  1a40: e3 f9 1f 81 19 2a 71 bd 88 de 2e 05 df 62 98 7c
+[0104-09:12:59:717]  read 7722 -  1a50: e3 95 62 04 af b1 f3 5f dd 5a 53 5c 42 d3 63 90
+[0104-09:12:59:717]  read 7722 -  1a60: 84 0c ef 52 f8 34 f4 fb 33 bd 20 09 26 63 9b d0
+[0104-09:12:59:717]  read 7722 -  1a70: 09 f7 ea ce 0d 5e 04 df 92 ef 1b 4f 67 a1 6e 97
+[0104-09:12:59:717]  read 7722 -  1a80: d3 ec bc 5e 75 3c e5 7f 33 d4 dd 60 3a 27 95 a1
+[0104-09:12:59:717]  read 7722 -  1a90: a0 b1 97 d3 dc 2e c8 36 64 bf 1c e1 39 ee e5 3b
+[0104-09:12:59:717]  read 7722 -  1aa0: 65 ab 0c 83 db a9 f2 95 66 48 30 5b 23 1b 58 3b
+[0104-09:12:59:717]  read 7722 -  1ab0: 06 0c d9 e0 9b 23 dc 1e 30 43 90 4b a8 d0 b6 c1
+[0104-09:12:59:717]  read 7722 -  1ac0: fb c2 8c 0d f3 ff ef 5a ca 8d 4e b8 2e 22 d2 4e
+[0104-09:12:59:717]  read 7722 -  1ad0: fb be 7d 22 b0 9d 61 97 b9 55 b9 8d a3 7f 97 35
+[0104-09:12:59:717]  read 7722 -  1ae0: e6 f9 ba a7 87 7d bd c2 7f 3d 0d a8 df 8f d6 4f
+[0104-09:12:59:717]  read 7722 -  1af0: ac bb be f7 64 2d 5f 5f c6 ab 82 1d a7 e2 79 48
+[0104-09:12:59:717]  read 7722 -  1b00: 14 c8 73 96 ed 65 41 fc b2 0a fb 96 e6 c1 25 fc
+[0104-09:12:59:717]  read 7722 -  1b10: ab aa af ea 5e a9 7b d8 b5 e6 14 ff 42 8f 2f f0
+[0104-09:12:59:717]  read 7722 -  1b20: 61 62 4b 47 a0 80 89 00 86 c9 28 02 cf 93 0c 42
+[0104-09:12:59:717]  read 7722 -  1b30: 4d 94 6f 34 a4 b1 84 b5 aa 5f 2a a4 d1 b8 dc 37
+[0104-09:12:59:717]  read 7722 -  1b40: 1c e4 b2 55 ea 96 1c 35 e9 e1 12 46 39 d8 c0 ce
+[0104-09:12:59:717]  read 7722 -  1b50: 7f 88 e1 ed 9a a5 a3 e7 e6 44 32 18 4f 27 90 f8
+[0104-09:12:59:717]  read 7722 -  1b60: 0b 6d 63 2c bb bd a3 f0 4a ef b4 d7 56 5c e0 33
+[0104-09:12:59:717]  read 7722 -  1b70: 63 ed 32 59 b4 42 d6 3f 7c 84 1e 7a 52 72 11 5e
+[0104-09:12:59:717]  read 7722 -  1b80: 2b 99 76 44 9b fe 0c a7 e8 25 03 d4 d3 4f bf 2e
+[0104-09:12:59:717]  read 7722 -  1b90: 56 9b d1 99 07 8e e8 4a 49 03 31 7d 5e c9 13 00
+[0104-09:12:59:717]  read 7722 -  1ba0: 23 92 9e 0d 6d 8c 99 a1 04 7b c6 06 da ba 82 56
+[0104-09:12:59:717]  read 7722 -  1bb0: f8 ab 82 88 54 15 12 21 84 01 3f ac 61 ea fc c6
+[0104-09:12:59:717]  read 7722 -  1bc0: 32 66 c5 2b 13 82 24 24 70 10 7d 2d e8 2a 1c 6f
+[0104-09:12:59:717]  read 7722 -  1bd0: 1c 8f 4d b9 9d 3a c3 dd 6a 33 ff af ec 61 d2 a9
+[0104-09:12:59:717]  read 7722 -  1be0: dc 36 3b 9a 57 b2 1a 23 08 fc 58 85 2e 7d c3 3b
+[0104-09:12:59:717]  read 7722 -  1bf0: 7d ef 83 75 50 35 32 01 09 a9 65 3b de 47 01 e4
+[0104-09:12:59:717]  read 7722 -  1c00: 4f 67 bc 67 46 ac 98 a8 b7 2e b1 56 bd 41 69 d3
+[0104-09:12:59:717]  read 7722 -  1c10: 89 e0 b6 5f b8 e9 04 f6 40 f2 f0 2b bc 16 ab 1e
+[0104-09:12:59:717]  read 7722 -  1c20: 32 f3 af 83 de 34 a2 f1 e0 58 1d 18 9b 3e 62 db
+[0104-09:12:59:717]  read 7722 -  1c30: dd c3 e7 87 b5 6f de 87 51 a9 7d 85 0b 5b df 9a
+[0104-09:12:59:717]  read 7722 -  1c40: 05 77 35 50 7c ed 0c 0c da 01 3b ee 04 a6 9f 5f
+[0104-09:12:59:717]  read 7722 -  1c50: 8b 77 61 4f d4 f0 23 94 0d 7e 78 71 38 10 a9 01
+[0104-09:12:59:717]  read 7722 -  1c60: f3 d2 c1 87 99 19 de 5e e3 13 6d 5f bb 86 6b 6d
+[0104-09:12:59:717]  read 7722 -  1c70: 30 62 90 5a 57 35 f4 82 e6 fa 61 a1 d4 a0 55 a7
+[0104-09:12:59:717]  read 7722 -  1c80: 50 16 9a ca 53 7a d7 b3 80 26 d7 a2 eb cc 53 9a
+[0104-09:12:59:717]  read 7722 -  1c90: da e4 8b bd f6 83 83 1d 73 26 46 24 ef 2c b6 be
+[0104-09:12:59:717]  read 7722 -  1ca0: 36 30 6f bb 1a 55 72 c8 f6 c5 67 65 a3 dd 88 30
+[0104-09:12:59:717]  read 7722 -  1cb0: 44 34 1d db f5 da 34 ca f7 39 42 95 5c d0 7d 16
+[0104-09:12:59:717]  read 7722 -  1cc0: b9 9b 40 1e 3c 13 83 93 f7 2a bb 14 79 c1 16 59
+[0104-09:12:59:717]  read 7722 -  1cd0: 39 a1 59 52 32 03 f1 b6 fd d9 e6 f9 2c 71 7c 21
+[0104-09:12:59:717]  read 7722 -  1ce0: e2 a4 a7 f6 c4 13 ce 64 ba d9 1c fb 94 f9 11 d6
+[0104-09:12:59:717]  read 7722 -  1cf0: cb e5 15 3c ea 2d 92 7a b9 45 de 60 5b 98 7d 18
+[0104-09:12:59:717]  read 7722 -  1d00: 22 85 ee 4e 75 2a 57 51 c0 bc c8 2e cc 36 8e 93
+[0104-09:12:59:717]  read 7722 -  1d10: c2 69 cc e4 f5 0c 85 0c 44 10 0a fb 28 2c 73 f3
+[0104-09:12:59:717]  read 7722 -  1d20: 72 93 1b 1c 5e 16 f3 dd d8 3b c8 2b 60 89 f7 d8
+[0104-09:12:59:717]  read 7722 -  1d30: 57 1d 73 59 9f 83 c4 f2 c2 bb 30 a6 4c 47 89 89
+[0104-09:12:59:717]  read 7722 -  1d40: b5 ce 29 87 71 25 57 75 3a e4 0d 6e c4 f8 52 d1
+[0104-09:12:59:717]  read 7722 -  1d50: e2 b5 19 cf 21 28 5c 49 40 a8 ea 6a d9 f8 34 08
+[0104-09:12:59:717]  read 7722 -  1d60: 21 29 1c 69 e2 ed 8a 78 36 28 0f a1 99 6a 18 58
+[0104-09:12:59:717]  read 7722 -  1d70: 1c 16 ac ad 42 3f ea 01 e8 3d 7f 10 88 73 37 9d
+[0104-09:12:59:717]  read 7722 -  1d80: e5 20 9f 32 43 f2 ed 29 66 09 d9 01 59 69 cd 79
+[0104-09:12:59:717]  read 7722 -  1d90: 16 0c 6d 83 4c 1c 74 c9 31 37 6b 59 32 90 48 9a
+[0104-09:12:59:717]  read 7722 -  1da0: fe 9c 97 ae 02 e3 b6 74 87 a9 ea 65 f1 09 e7 fc
+[0104-09:12:59:717]  read 7722 -  1db0: 78 c7 80 3d 72 28 6a 7a bd 76 b5 14 f1 fc 11 c0
+[0104-09:12:59:717]  read 7722 -  1dc0: 95 8f 16 f5 83 c0 ef 65 df 1c b4 3e 7c 89 42 7b
+[0104-09:12:59:717]  read 7722 -  1dd0: 3f f2 5e a5 98 a4 ca 54 fd 17 da 86 2c 54 1e 78
+[0104-09:12:59:717]  read 7722 -  1de0: c7 b3 d5 2a c0 03 13 9a d0 9e ff 1c 3c ac da 8d
+[0104-09:12:59:717]  read 7722 -  1df0: ba 13 f5 74 99 05 4f 94 e9 4c ce 34 7b 8c bb 8d
+[0104-09:12:59:717]  read 7722 -  1e00: 16 64 73 3c 2b 14 51 f3 4a eb a2 92 1c a8 6c 00
+[0104-09:12:59:717]  read 7722 -  1e10: 9c 30 8f 0d 78 91 f5 89 4d 7c 26 12 ef 23 e3 82
+[0104-09:12:59:717]  read 7722 -  1e20: ee 21 5a df a6 e4 1b b3 36 bb
+
+[0104-09:12:59:718][debug][process_tls_data:05125] Goodix>>> enter
+[0104-09:12:59:718][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read
+[0104-09:12:59:718][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read record
+[0104-09:12:59:719][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0104-09:12:59:719][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0104-09:12:59:719][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0104-09:12:59:719][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 5, bytes left: 7722
+[0104-09:12:59:720][info][RecvTLSPackage:06650] Goodix>>> bytes read: 5, bytes left: 7717
+[0104-09:12:59:720][info][tls_callback_recv:00165] Goodix>>> recv ret:5.
+[0104-09:12:59:720][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0104-09:12:59:720][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 5 (-0xfffffffb)
+[0104-09:12:59:721][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0104-09:12:59:721][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0104-09:12:59:721][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 7722
+[0104-09:12:59:722][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0104-09:12:59:722][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 7717, bytes left: 7717
+[0104-09:12:59:722][info][RecvTLSPackage:06650] Goodix>>> bytes read: 7717, bytes left: 0
+[0104-09:12:59:722][info][tls_callback_recv:00165] Goodix>>> recv ret:7717.
+[0104-09:12:59:722][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 7722
+[0104-09:12:59:722][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 7717 (-0xffffe1db)
+[0104-09:12:59:723][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0104-09:12:59:723][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => decrypt buf
+[0104-09:12:59:723][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= decrypt buf
+[0104-09:12:59:723][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= read record
+[0104-09:12:59:724][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= read
+[0104-09:12:59:724][info][set_tls_state:00219] Goodix>>> enter
+[0104-09:12:59:724][debug][tlsapp_set_tls_state:00033] Goodix>>> TLS now IN handshake state:16.
+[0104-09:12:59:724][info][tlslib_read:00571] Goodix>>> <= tlslib_read exit with ret:7693 tls server state:16.
+[0104-09:12:59:724][debug][process_tls_data:05151] Goodix>>> ---- tls 7693 bytes recv
+[0104-09:12:59:724][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x20-7690
+[0104-09:12:59:725][debug][SpiSendDataToDeviceLock:00309] Goodix>>> timeout, d0exit start = 0
+[0104-09:12:59:725][debug][data_from_device:04981] Goodix>>> --- cmd: image
+[0104-09:12:59:725][info][chicagoHUget_rawdata:00737] Goodix>>> 7684 7684 10240
+[0104-09:12:59:725][debug][ChicagoHUDataRegroup:00519] Goodix>>> Regroup pixels:5120
+[0104-09:12:59:726][debug][data_from_device:04998] Goodix>>> receive non-POV image, length:7690
+[0104-09:12:59:726][debug][data_from_device:05004] Goodix>>> image crc check Ok
+[0104-09:12:59:726][debug][process_tls_data:05161] Goodix>>> exit
+[0104-09:12:59:726][debug][gf_get_oneframe:06843] Goodix>>> <= with ret(BOOL):1.
+[0104-09:12:59:726][debug][MilanEvtInterruptWorkItem:05985] Goodix>>> exit
+[0104-09:12:59:726][info][gf_update_all_base:06984] Goodix>>> gf_get_fdtbase 2
+[0104-09:12:59:727][debug][gf_get_fdtbase:06789] Goodix>>> enter
+[0104-09:12:59:727][info][ChicagoHUSetMode:00541] Goodix>>> enter, Mode 3, Type 3, base_type 1
+[0104-09:12:59:728][info][ChicagoHUSetMode:00599] Goodix>>> setmode: Fdt manual
+[0104-09:12:59:728][debug][ChicagoHUSetMode:00640] Goodix>>> switch to FDT mode 3
+[0104-09:12:59:728][debug][ChicagoHUSetMode:00641] Goodix>>> data sent::0x80b180c480a780b980a980b9
+[0104-09:12:59:728][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-3-0xe-1000-0
+[0104-09:12:59:729] write    4 -  0000: a0 12 00 b2
+
+[0104-09:12:59:740] write   18 -  0000: 36 0f 00 09 01 80 b1 80 c4 80 a7 80 b9 80 a9 80
+[0104-09:12:59:740] write   18 -  0010: b9 24
+
+[0104-09:12:59:741][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0104-09:12:59:741][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x36, cfg flag 0x1
+[0104-09:12:59:741]  read    4 -  0000: a0 06 00 a6
+
+[0104-09:12:59:741]  read    6 -  0000: b0 03 00 36 01 c0
+
+[0104-09:12:59:761]  read    4 -  0000: a0 14 00 b4
+
+[0104-09:12:59:762][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x36-17
+[0104-09:12:59:762][debug][data_from_device:05033] Goodix>>> --- cmd: fdt
+[0104-09:12:59:762][debug][chicagoHUget_fdtdata:00815] Goodix>>> IrqStatus:0x100 cmd1 3
+[0104-09:12:59:762][info][chicagoHUget_fdtdata:00874] Goodix>>> IRQ for fdt-manual, get fdt-up base, current mode is fdt-manual, touchflag 0x0
+[0104-09:12:59:762][debug][chicagoHUget_fdtdata:00877] Goodix>>> received fdt base::0x630189014f01740153017301
+[0104-09:12:59:762][info][chicagoHUget_fdtdata:00888] Goodix>>> get fdt-down base, current mode is fdt-manual
+[0104-09:12:59:762]  read   20 -  0000: 36 11 00 00 01 00 00 63 01 89 01 4f 01 74 01 53
+[0104-09:12:59:762]  read   20 -  0010: 01 73 01 e7
+[0104-09:12:59:763][debug][gfCheckFDTBase:00936] Goodix>>> fdt base:0x630189014f01740153017301
+[0104-09:12:59:763][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[0]:0xb180
+[0104-09:12:59:763][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[1]:0xc480
+[0104-09:12:59:763][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[2]:0xa780
+[0104-09:12:59:763][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[3]:0xba80
+[0104-09:12:59:763][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[4]:0xa980
+[0104-09:12:59:763][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[5]:0xb980
+[0104-09:12:59:764][debug][gf_get_fdtbase:06808] Goodix>>> exit
+[0104-09:12:59:764][info][gf_update_all_base:06993] Goodix>>> gf_get_fdtbase 2 finshed
+[0104-09:12:59:764][debug][gf_update_all_base:07037] Goodix>>> navret = 0x2
+[0104-09:12:59:765][debug][gf_update_all_base:07047] Goodix>>> void
+[0104-09:12:59:765][debug][gf_update_all_base:07065] Goodix>>> imageret 0x2
+[0104-09:12:59:765][debug][gf_update_all_base:07076] Goodix>>> void
+[0104-09:12:59:766][debug][gf_update_all_base:07088] Goodix>>> --- base exist, update imagebase
+[0104-09:12:59:766][info][gf_update_all_base:07092] Goodix>>> before calc, base_is_valid 0, 0x2 0x2
+[0104-09:12:59:766][debug][gf_savebaseTofile:07153] Goodix>>> nav buffer size:3200 buffer size:10240
+[0104-09:12:59:766][debug][gf_savebaseTofile:07159] Goodix>>> save imagebase
+[0104-09:12:59:767][error][gf_savebaseTofile:07165] Goodix>>> fail to create dir C:\ProgramData\Goodix, errno 17
+[0104-09:12:59:767][info][gf_savebaseTofile:07176] Goodix>>> write 13520-13520 bytes to C:\ProgramData\Goodix\goodix.dat
+[0104-09:12:59:768][debug][gf_savebaseTofile:07185] Goodix>>> exit size:13520(dec)
+[0104-09:12:59:768][info][gf_update_all_base:07134] Goodix>>> exit, base_is_valid 0, ren 1
+[0104-09:12:59:768][debug][device_check_imagebase_exist:06734] Goodix>>> update all base suc, Set FDT normal base
+[0104-09:12:59:768][info][InitThread:01682] Goodix>>> Init: update all base have done
+[0104-09:12:59:769][info][InitThread:01747] Goodix>>> !!Init: Initialization done successfully
+[0104-09:12:59:769][info][InitThread:01752] Goodix>>> --- Init: end
+[0104-09:13:10:853][info][MilanEvtDeviceD0Exit:04789] Goodix>>> target state: 4, power action: 0
+[0104-09:13:10:854][trace][ClearPOVImage:05587] Goodix>>> no pov data
+[0104-09:13:10:854][debug][clear_submit_delay:05854] Goodix>>> enter
+[0104-09:13:10:854][trace][SuspendAllThreads:00487] Goodix>>> suspend all
+[0104-09:13:10:854][info][MilanEvtDeviceD0Exit:04874] Goodix>>> enter S0 idle
