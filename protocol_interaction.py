@@ -80,6 +80,19 @@ async def interrupt_monitoring(gpio_line: periphery.CdevGPIO, ready_to_write_loc
             return False
 
 
+def validate_checksum(packet: list[int] | bytearray) -> bool:
+    checksum = packet[-1]
+    fact_sum = sum(packet[:-1])
+    fact_sum_first_byte = fact_sum.to_bytes(10, byteorder="little")[0]
+    return checksum == fact_sum_first_byte
+
+
+def extract_length(packet: list[int] | bytearray) -> int:
+    length_bytes = packet[1:3]
+    length_int = int.from_bytes(length_bytes, byteorder="little")
+    return length_int
+
+
 async def perform_tx(spi: SpiDev, interrupt_line: CdevGPIO, cmd: int, payload: bytes):
     ready_to_write_lock = asyncio.Lock()
     await ready_to_write_lock.acquire()
@@ -101,11 +114,14 @@ async def perform_tx(spi: SpiDev, interrupt_line: CdevGPIO, cmd: int, payload: b
     print("lock released, execution goes on")
 
     response_1 = spi.readbytes(4)
-    Log.white(f"received package: {format_to_hex_string(response_1)} | {format_to_utf_string(response_1)}")
-    # TODO проверка контрольных сумм
-    # TODO парсить длину ответа
-    response_2 = spi.readbytes(6)
+    is_valid = validate_checksum(response_1)
+    Log.white(f"received package: {format_to_hex_string(response_1)} | {format_to_utf_string(response_1)} | checksum valid {is_valid}")
+
+    length = extract_length(response_1)
+    response_2 = spi.readbytes(length)
     Log.white(f"received package: {format_to_hex_string(response_2)} | {format_to_utf_string(response_2)}")
+
+    validate_checksum(response_2)
 
 
 async def main():
