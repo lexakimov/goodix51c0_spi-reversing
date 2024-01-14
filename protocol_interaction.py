@@ -105,7 +105,7 @@ async def perform_tx(spi: SpiDev, interrupt_line: CdevGPIO, cmd: int, payload: b
 
     cmd_packet = make_cmd_packet(cmd, payload)
     spi.writebytes(cmd_packet)
-    Log.white(f"sent command: {format_to_hex_string(cmd_packet)} | {format_to_utf_string(cmd_packet)}")
+    Log.white(f"sent command: {format_to_hex_string(cmd_packet)}")
     spi.writebytes(payload)
     Log.white(f"sent payload : {format_to_hex_string(payload)} | {format_to_utf_string(payload)}")
 
@@ -115,7 +115,7 @@ async def perform_tx(spi: SpiDev, interrupt_line: CdevGPIO, cmd: int, payload: b
 
     response_1 = spi.readbytes(4)
     is_valid = validate_checksum(response_1)
-    Log.white(f"received package: {format_to_hex_string(response_1)} | {format_to_utf_string(response_1)} | checksum valid {is_valid}")
+    Log.white(f"received package: {format_to_hex_string(response_1)} | checksum valid {is_valid}")
 
     length = extract_length(response_1)
     response_2 = spi.readbytes(length)
