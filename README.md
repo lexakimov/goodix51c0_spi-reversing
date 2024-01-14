@@ -94,7 +94,11 @@ python-sudo protocol_interaction.py
 - в Intellij IDEA зайдите в меню `File -> Project Structure`, затем в `SDKs -> Add new SDK -> Add Python SDK`
 - на вкладке `Virtual environment -> Existing environment -> Interpreter ...` и выберите файл `[project path]/venv/bin/python-sudo`
 Все будет выглядеть примерно так:
-<img src="images/ide-interpreter-setup.png" alt="images/ide-interpreter-setup.png">
+
+<p align="center">
+<img src="images/ide-interpreter-setup.png" alt="images/ide-interpreter-setup.png" width="700">
+</p>
+
 - нажмите `Apply`
 - перейдите на вкладку `Project`
 - выберите в выпадающем списке SDK созданный интерпретатор
