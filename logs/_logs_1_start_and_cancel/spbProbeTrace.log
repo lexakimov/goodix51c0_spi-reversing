@@ -1,0 +1,104 @@
+
+[0103-19:46:11:352][info] Received write request 0000407CECE6B4C8 of length 4 for SPBTARGET 0000407CEE866D28 (WDFDEVICE 0000407CECE97968)
+[0103-19:46:11:352][info] Formatting SPB request 0000407CE191F828 for write
+[0103-19:46:11:352][info] Saving client request 0000407CECE6B4C8, and sending SPB request 0000407CE191F828
+[0103-19:46:11:364][info] Completion callback received for SPB request 0000407CE191F828 with STATUS_SUCCESS
+[0103-19:46:11:364][info] Marking SPB request 0000407CE191F828 for reuse, and completing client request 0000407CECE6B4C8 with STATUS_SUCCESS and bytes=4
+[0103-19:46:11:364][    ] device   3: ##00 write    4 -  0000: a0 08 00 a8
+
+[0103-19:46:11:377][info] Received write request 0000407CECE6B4C8 of length 8 for SPBTARGET 0000407CEE866D28 (WDFDEVICE 0000407CECE97968)
+[0103-19:46:11:377][info] Formatting SPB request 0000407CE191F828 for write
+[0103-19:46:11:377][info] Saving client request 0000407CECE6B4C8, and sending SPB request 0000407CE191F828
+[0103-19:46:11:378][info] Completion callback received for SPB request 0000407CE191F828 with STATUS_SUCCESS
+[0103-19:46:11:378][info] Marking SPB request 0000407CE191F828 for reuse, and completing client request 0000407CECE6B4C8 with STATUS_SUCCESS and bytes=8
+[0103-19:46:11:378][    ] device   3: ##00 write    8 -  0000: 01 05 00 00 00 00 00 88
+
+[0103-19:46:11:393][info] Received write request 0000407CECE6B4C8 of length 4 for SPBTARGET 0000407CEE866D28 (WDFDEVICE 0000407CECE97968)
+[0103-19:46:11:393][info] Formatting SPB request 0000407CE191F828 for write
+[0103-19:46:11:393][info] Saving client request 0000407CECE6B4C8, and sending SPB request 0000407CE191F828
+[0103-19:46:11:393][info] Completion callback received for SPB request 0000407CE191F828 with STATUS_SUCCESS
+[0103-19:46:11:393][info] Marking SPB request 0000407CE191F828 for reuse, and completing client request 0000407CECE6B4C8 with STATUS_SUCCESS and bytes=4
+[0103-19:46:11:393][    ] device   3: ##00 write    4 -  0000: a0 06 00 a6
+
+[0103-19:46:11:408][info] Received write request 0000407CECE6B4C8 of length 6 for SPBTARGET 0000407CEE866D28 (WDFDEVICE 0000407CECE97968)
+[0103-19:46:11:408][info] Formatting SPB request 0000407CE191F828 for write
+[0103-19:46:11:408][info] Saving client request 0000407CECE6B4C8, and sending SPB request 0000407CE191F828
+[0103-19:46:11:409][info] Completion callback received for SPB request 0000407CE191F828 with STATUS_SUCCESS
+[0103-19:46:11:409][info] Marking SPB request 0000407CE191F828 for reuse, and completing client request 0000407CECE6B4C8 with STATUS_SUCCESS and bytes=6
+[0103-19:46:11:409][    ] device   3: ##00 write    6 -  0000: d5 03 00 00 00 d3
+
+[0103-19:46:11:425][info] Received write request 0000407CECE6B4C8 of length 4 for SPBTARGET 0000407CEE866D28 (WDFDEVICE 0000407CECE97968)
+[0103-19:46:11:425][info] Formatting SPB request 0000407CE191F828 for write
+[0103-19:46:11:425][info] Saving client request 0000407CECE6B4C8, and sending SPB request 0000407CE191F828
+[0103-19:46:11:425][info] Completion callback received for SPB request 0000407CE191F828 with STATUS_SUCCESS
+[0103-19:46:11:425][info] Marking SPB request 0000407CE191F828 for reuse, and completing client request 0000407CECE6B4C8 with STATUS_SUCCESS and bytes=4
+[0103-19:46:11:425][    ] device   3: ##00 write    4 -  0000: a0 08 00 a8
+
+[0103-19:46:11:441][info] Received write request 0000407CECE6B4C8 of length 8 for SPBTARGET 0000407CEE866D28 (WDFDEVICE 0000407CECE97968)
+[0103-19:46:11:441][info] Formatting SPB request 0000407CE191F828 for write
+[0103-19:46:11:441][info] Saving client request 0000407CECE6B4C8, and sending SPB request 0000407CE191F828
+[0103-19:46:11:441][info] Completion callback received for SPB request 0000407CE191F828 with STATUS_SUCCESS
+[0103-19:46:11:441][info] Marking SPB request 0000407CE191F828 for reuse, and completing client request 0000407CECE6B4C8 with STATUS_SUCCESS and bytes=8
+[0103-19:46:11:441][    ] device   3: ##00 write    8 -  0000: 01 05 00 00 00 00 00 88
+
+[0103-19:46:11:458][info] Received write request 0000407CECE6B4C8 of length 4 for SPBTARGET 0000407CEE866D28 (WDFDEVICE 0000407CECE97968)
+[0103-19:46:11:458][info] Formatting SPB request 0000407CE191F828 for write
+[0103-19:46:11:458][info] Saving client request 0000407CECE6B4C8, and sending SPB request 0000407CE191F828
+[0103-19:46:11:458][info] Completion callback received for SPB request 0000407CE191F828 with STATUS_SUCCESS
+[0103-19:46:11:458][info] Marking SPB request 0000407CE191F828 for reuse, and completing client request 0000407CECE6B4C8 with STATUS_SUCCESS and bytes=4
+[0103-19:46:11:458][    ] device   3: ##00 write    4 -  0000: a0 09 00 a9
+
+[0103-19:46:11:472][info] Received write request 0000407CECE6B4C8 of length 9 for SPBTARGET 0000407CEE866D28 (WDFDEVICE 0000407CECE97968)
+[0103-19:46:11:472][info] Formatting SPB request 0000407CE191F828 for write
+[0103-19:46:11:472][info] Saving client request 0000407CECE6B4C8, and sending SPB request 0000407CE191F828
+[0103-19:46:11:472][info] Completion callback received for SPB request 0000407CE191F828 with STATUS_SUCCESS
+[0103-19:46:11:472][info] Marking SPB request 0000407CE191F828 for reuse, and completing client request 0000407CECE6B4C8 with STATUS_SUCCESS and bytes=9
+[0103-19:46:11:472][    ] device   3: ##00 write    9 -  0000: af 06 00 55 c0 2c 00 00 b5
+
+[0103-19:46:11:473][info] Received sequence request 0000407CECE6B4C8 with transfer count 1 for SPBTARGET 0000407CEE866D28 (WDFDEVICE 0000407CECE97968)
+[0103-19:46:11:473][info] Formatting SPB request 0000407CE191F828 for IOCTL_SPB_EXECUTE_SEQUENCE
+[0103-19:46:11:473][info] Built sequence transfer FFFFA48E9F5DEB40 with byte length=4
+[0103-19:46:11:473][info] Saving client request 0000407CECE6B4C8, and sending SPB request 0000407CE191F828
+[0103-19:46:11:473][info] Completion callback received for SPB request 0000407CE191F828 with STATUS_SUCCESS
+[0103-19:46:11:473][info] Marking SPB request 0000407CE191F828 for reuse, and completing client request 0000407CECE6B4C8 with STATUS_SUCCESS and bytes=4
+[0103-19:46:11:473][    ] device   3: ##00  read    4 -  0000: a0 1a 00 ba
+
+[0103-19:46:11:473][info] Received sequence request 0000407CECE6B4C8 with transfer count 1 for SPBTARGET 0000407CEE866D28 (WDFDEVICE 0000407CECE97968)
+[0103-19:46:11:473][info] Formatting SPB request 0000407CE191F828 for IOCTL_SPB_EXECUTE_SEQUENCE
+[0103-19:46:11:473][info] Built sequence transfer FFFFA48E9F5DEB40 with byte length=26
+[0103-19:46:11:473][info] Saving client request 0000407CECE6B4C8, and sending SPB request 0000407CE191F828
+[0103-19:46:11:473][info] Completion callback received for SPB request 0000407CE191F828 with STATUS_SUCCESS
+[0103-19:46:11:473][info] Marking SPB request 0000407CE191F828 for reuse, and completing client request 0000407CECE6B4C8 with STATUS_SUCCESS and bytes=26
+[0103-19:46:11:473][    ] device   3: ##00  read   26 -  0000: ae 17 00 04 06 30 00 00 00 00 00 20 00 01 00 00
+[0103-19:46:11:473][    ] device   3: ##00  read   26 -  0010: 01 80 01 04 25 02 00 01 00 dc
+
+[0103-19:46:15:606][info] Received write request 0000407CECE6B4C8 of length 4 for SPBTARGET 0000407CEE866D28 (WDFDEVICE 0000407CECE97968)
+[0103-19:46:15:606][info] Formatting SPB request 0000407CE191F828 for write
+[0103-19:46:15:606][info] Saving client request 0000407CECE6B4C8, and sending SPB request 0000407CE191F828
+[0103-19:46:15:618][info] Completion callback received for SPB request 0000407CE191F828 with STATUS_SUCCESS
+[0103-19:46:15:618][info] Marking SPB request 0000407CE191F828 for reuse, and completing client request 0000407CECE6B4C8 with STATUS_SUCCESS and bytes=4
+[0103-19:46:15:618][    ] device   3: ##00 write    4 -  0000: a0 14 00 b4
+
+[0103-19:46:15:631][info] Received write request 0000407CECE6B4C8 of length 20 for SPBTARGET 0000407CEE866D28 (WDFDEVICE 0000407CECE97968)
+[0103-19:46:15:631][info] Formatting SPB request 0000407CE191F828 for write
+[0103-19:46:15:631][info] Saving client request 0000407CECE6B4C8, and sending SPB request 0000407CE191F828
+[0103-19:46:15:631][info] Completion callback received for SPB request 0000407CE191F828 with STATUS_SUCCESS
+[0103-19:46:15:631][info] Marking SPB request 0000407CE191F828 for reuse, and completing client request 0000407CECE6B4C8 with STATUS_SUCCESS and bytes=20
+[0103-19:46:15:631][    ] device   3: ##00 write   20 -  0000: 32 11 00 08 01 b1 b1 c4 c4 a7 a7 b9 b9 a9 a9 b9
+[0103-19:46:15:631][    ] device   3: ##00 write   20 -  0010: b9 f4 3c c0
+
+[0103-19:46:15:632][info] Received sequence request 0000407CECE6B4C8 with transfer count 1 for SPBTARGET 0000407CEE866D28 (WDFDEVICE 0000407CECE97968)
+[0103-19:46:15:632][info] Formatting SPB request 0000407CE191F828 for IOCTL_SPB_EXECUTE_SEQUENCE
+[0103-19:46:15:632][info] Built sequence transfer FFFFA48E9F5DEB40 with byte length=4
+[0103-19:46:15:632][info] Saving client request 0000407CECE6B4C8, and sending SPB request 0000407CE191F828
+[0103-19:46:15:632][info] Completion callback received for SPB request 0000407CE191F828 with STATUS_SUCCESS
+[0103-19:46:15:632][info] Marking SPB request 0000407CE191F828 for reuse, and completing client request 0000407CECE6B4C8 with STATUS_SUCCESS and bytes=4
+[0103-19:46:15:632][    ] device   3: ##00  read    4 -  0000: a0 06 00 a6
+
+[0103-19:46:15:632][info] Received sequence request 0000407CECE6B4C8 with transfer count 1 for SPBTARGET 0000407CEE866D28 (WDFDEVICE 0000407CECE97968)
+[0103-19:46:15:632][info] Formatting SPB request 0000407CE191F828 for IOCTL_SPB_EXECUTE_SEQUENCE
+[0103-19:46:15:632][info] Built sequence transfer FFFFA48E9F5DEB40 with byte length=6
+[0103-19:46:15:632][info] Saving client request 0000407CECE6B4C8, and sending SPB request 0000407CE191F828
+[0103-19:46:15:632][info] Completion callback received for SPB request 0000407CE191F828 with STATUS_SUCCESS
+[0103-19:46:15:632][info] Marking SPB request 0000407CE191F828 for reuse, and completing client request 0000407CECE6B4C8 with STATUS_SUCCESS and bytes=6
+[0103-19:46:15:632][    ] device   3: ##00  read    6 -  0000: b0 03 00 32 01 c4

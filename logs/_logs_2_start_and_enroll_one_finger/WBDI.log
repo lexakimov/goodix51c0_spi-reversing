@@ -1,0 +1,273 @@
+[0103-19:52:08:405][info][MilanEvtDeviceD0Entry:04731] Goodix>>> entry, prev state: 4(4-D3,5-D3Final), power action: 0, driver version 1.1.142.8
+[0103-19:52:08:405][info][ResumeAllThreads:00496] Goodix>>> suspended 1
+[0103-19:52:08:405][info][MilanEvtDeviceD0Entry:04755] Goodix>>> resume from S0 idle
+[0103-19:52:08:409][debug][_StartInitCreaterThread:06477] Goodix>>> enter
+[0103-19:52:08:409][info][_StartInitCreaterThread:06488] Goodix>>> init creater completed
+[0103-19:52:08:409][info][_StartInitCreaterThread:06502] Goodix>>> to create init creater
+[0103-19:52:08:409][debug][_StartInitCreaterThread:06510] Goodix>>> exit
+[0103-19:52:08:409][info][init_creater:06468] Goodix>>> --- start
+[0103-19:52:08:409][info][MilanEvtDeviceD0Entry:04771] Goodix>>> exit
+[0103-19:52:08:410][debug][_StartInitThread:06425] Goodix>>> enter
+[0103-19:52:08:410][info][_StopInitThread:06401] Goodix>>> to wait for init thread to complete
+[0103-19:52:08:410][trace][OnActivate:03995] Goodix>>> entry
+[0103-19:52:08:410][info][_StopInitThread:06404] Goodix>>> init thread completed
+[0103-19:52:08:411][info][OnActivate:04029] Goodix>>> activate 1
+[0103-19:52:08:411][info][_StartInitThread:06452] Goodix>>> to create init thread
+[0103-19:52:08:411][info][OnActivate:04057] Goodix>>> last OnActivate done.
+[0103-19:52:08:412][debug][_StartInitThread:06462] Goodix>>> exit
+[0103-19:52:08:412][info][InitThread:01359] Goodix>>> --- Init: start
+[0103-19:52:08:412][debug][OnActivate:04082] Goodix>>> exit
+[0103-19:52:08:412][info][init_creater:06471] Goodix>>> --- exit
+[0103-19:52:08:412][info][InitThread:01398] Goodix>>> Init: pov 1, pba 0, tls-client-server-rebuild-session 1-1-1-0-0, have config 1, device inited 1, base inited 1
+[0103-19:52:08:413][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
+[0103-19:52:08:438][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0103-19:52:08:454][info][UnlockTlsForce:01327] Goodix>>> force unlock it
+[0103-19:52:08:454][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xd-2-0x2-0-0
+[0103-19:52:08:469][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0103-19:52:08:484][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
+[0103-19:52:08:500][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0103-19:52:08:516][warn][GetMcuState:04101] Goodix>>> mcu-state TIMESTAMP 0x2144
+[0103-19:52:08:516][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-7-0x5-0-0
+[0103-19:52:08:531][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0103-19:52:08:533][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xae-23
+[0103-19:52:08:533][debug][data_from_device:05100] Goodix>>> --- cmd: other
+[0103-19:52:08:535][info][GetMcuState:04178] Goodix>>> pov 1, pba 0, tls-client-server-lock 1-1-1-0, have config 1, pov valid 0
+[0103-19:52:08:535][debug][PrintMcuState:04046] Goodix>>> mcu state::0x04063000000000002000020000018001042502000100
+[0103-19:52:08:535][info][PrintMcuState:04074] Goodix>>> mcu state: version:4, isPOVImageValid:0, isTlsConnected:1, isTlsUsed:1, isLocked:0, availImgCnt:0, povImgCnt:3
+[0103-19:52:08:535][info][PrintMcuState:04076] Goodix>>> mcu state: sensor_data_int_timeout_count:0, image_crc_fail_count:0, povTouchAccidentCnt:0x0, readChipIDCnt:0, sensorExceptionFlag:0, sensorUnexpectedIntCnt:0, to_master_timeout_count:0
+[0103-19:52:08:536][info][PrintMcuState:04078] Goodix>>> mcu state: psk_len:32, psk_check_fail:0, psk_write_fail:0, ec_falling_count:0, system_up_stop_cnt:2, system_down_pov_stop_cnt:0, system_up_cleared_pov_count:0
+[0103-19:52:08:536][info][PrintMcuState:04080] Goodix>>> mcu state: pov_wake_by_fp:1, pov_wake_by_ec:0, pov_procedure:0x80, config_down_flag:1, sensor_chip_id:0x2504, sensor_type:2, pov_capture_count:0, normal_capture_count:1, otp_mcu_check_status:0x0
+[0103-19:52:08:536][info][InitThread:01427] Goodix>>> tls alive.
+[0103-19:52:08:536][info][InitThread:01457] Goodix>>> Init: pov 1, pba 0, tls-client-server-rebuild-session 1-1-1-0-1, have config 1, device inited 1, base inited 1, d0exit 0
+[0103-19:52:08:536][info][InitThread:01497] Goodix>>> Init Device Already Done Successfully
+[0103-19:52:08:536][info][InitThread:01558] Goodix>>> Init tls already done or not necessary
+[0103-19:52:08:537][info][InitThread:01572] Goodix>>> power not lost
+[0103-19:52:08:537][info][InitThread:01747] Goodix>>> !!Init: Initialization done successfully
+[0103-19:52:08:537][info][InitThread:01752] Goodix>>> --- Init: end
+[0103-19:52:12:738][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE955D4E2F68
+[0103-19:52:12:739][debug][OnCaptureData:03051] Goodix>>> Purpose=2, Type=1025, Owner=27, Flags=0x20
+[0103-19:52:12:739][info][_ForFRRFARTestSkipCaptureData:01263] Goodix>>> enter
+[0103-19:52:12:739][info][_ForFRRFARTestSkipCaptureData:01284] Goodix>>> exit
+[0103-19:52:12:739][debug][OnCaptureData:03124] Goodix>>> to wait init done
+[0103-19:52:12:739][debug][OnCaptureData:03132] Goodix>>> wait init done
+[0103-19:52:12:739][info][OnCaptureData:03145] Goodix>>> OnActivate done.
+[0103-19:52:12:739][info][OnCaptureData:03147] Goodix>>> activate 1, fdt_is_down 0
+[0103-19:52:12:740][info][OnCaptureData:03155] Goodix>>> Capture request: to down
+[0103-19:52:12:740][debug][device_action:04222] Goodix>>> to set state to DEVICE_ACTION
+[0103-19:52:12:740][debug][set_state:00872] Goodix>>> to set state from 1 to 3
+[0103-19:52:12:740][warn][device_action:04285] Goodix>>> temperature not occure, to FDT DOWN
+[0103-19:52:12:740][info][ChicagoHUSetMode:00541] Goodix>>> enter, Mode 3, Type 1, base_type 1
+[0103-19:52:12:740][info][ChicagoHUSetMode:00572] Goodix>>> setmode: Fdt down
+[0103-19:52:12:740][warn][ChicagoHUSetMode:00583] Goodix>>> fdt-down TIMESTAMP 0x31c4
+[0103-19:52:12:740][debug][ChicagoHUSetMode:00640] Goodix>>> switch to FDT mode 1
+[0103-19:52:12:740][debug][ChicagoHUSetMode:00641] Goodix>>> data sent::0xb1b1c4c4a7a7b9b9a9a9b9b9
+[0103-19:52:12:740][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-1-0x10-1000-0
+[0103-19:52:12:770][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0103-19:52:12:771][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x32, cfg flag 0x1
+[0103-19:52:12:800][debug][device_action:04408] Goodix>>> to set state to DEVICE_ENABLE
+[0103-19:52:12:800][debug][set_state:00872] Goodix>>> to set state from 3 to 1
+[0103-19:52:12:800][info][OnCaptureData:03174] Goodix>>> ******** to Register CaptureFramedone for capture a frame ********
+[0103-19:52:12:800][info][OnCaptureData:03191] Goodix>>> exit
+[0103-19:52:15:062][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x32-17
+[0103-19:52:15:064][debug][data_from_device:05033] Goodix>>> --- cmd: fdt
+[0103-19:52:15:065][debug][chicagoHUget_fdtdata:00815] Goodix>>> IrqStatus:0x2 cmd1 1
+[0103-19:52:15:065][info][chicagoHUget_fdtdata:00824] Goodix>>> IRQ for fdt-down, get fdt-up base, current mode is fdt-down, touchflag 0x1f
+[0103-19:52:15:066][debug][chicagoHUget_fdtdata:00826] Goodix>>> received fdt base::0xca00fd00da000401f1005401
+[0103-19:52:15:066][info][gfFDTUPbase:00988] Goodix>>> iSecondFlag 0, need_fdt_up_twice 0, diff_use 27, touchflag 0x1f
+[0103-19:52:15:067][debug][gfCheckFDTBase:00936] Goodix>>> fdt base:0xca00fd00da000401f1005401
+[0103-19:52:15:067][info][gfFDTUPbase:01057] Goodix>>> fdt_upbase[0]:0x8080, original 0xb1b1
+[0103-19:52:15:067][info][gfFDTUPbase:01057] Goodix>>> fdt_upbase[1]:0x9980, original 0xc4c4
+[0103-19:52:15:068][info][gfFDTUPbase:01057] Goodix>>> fdt_upbase[2]:0x8880, original 0xa7a7
+[0103-19:52:15:068][info][gfFDTUPbase:01057] Goodix>>> fdt_upbase[3]:0x9d80, original 0xb9b9
+[0103-19:52:15:068][info][gfFDTUPbase:01057] Goodix>>> fdt_upbase[4]:0x9380, original 0xa9a9
+[0103-19:52:15:068][info][gfFDTUPbase:01057] Goodix>>> fdt_upbase[5]:0x1980, original 0xb9b9
+[0103-19:52:15:069][info][device_fdtdata_analyze:07846] Goodix>>> receive fdt down......fdt_is_down:1
+[0103-19:52:15:069][info][device_fdtdata_analyze:07855] Goodix>>> submit delay 0, monitor state 1, sesssion state 8
+[0103-19:52:15:069][trace][gf_captureFingerdata:07505] Goodix>>> entry
+[0103-19:52:15:069][info][gf_get_oneframe:06818] Goodix>>> enter, tls-client-server 1-1-1
+[0103-19:52:15:070][debug][gf_get_oneframe:06829] Goodix>>> g_halcontext.sensor_ops.SetMode:0x00007FFDE5D5BB50.
+[0103-19:52:15:070][info][ChicagoHUSetMode:00541] Goodix>>> enter, Mode 2, Type 1, base_type 0
+[0103-19:52:15:070][info][ChicagoHUSetMode:00554] Goodix>>> setmode: Image
+[0103-19:52:15:071][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x2-1-0x2-1000-0
+[0103-19:52:15:076][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0103-19:52:15:076][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x22, cfg flag 0x1
+[0103-19:52:15:122][debug][MilanEvtInterruptWorkItem:05895] Goodix>>> enter
+[0103-19:52:15:123][debug][MilanEvtInterruptWorkItem:05951] Goodix>>>  ---- pack len: 7722
+[0103-19:52:15:124][debug][process_tls_data:05125] Goodix>>> enter
+[0103-19:52:15:124][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read
+[0103-19:52:15:125][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read record
+[0103-19:52:15:125][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0103-19:52:15:126][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0103-19:52:15:126][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0103-19:52:15:127][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 5, bytes left: 7722
+[0103-19:52:15:128][info][RecvTLSPackage:06650] Goodix>>> bytes read: 5, bytes left: 7717
+[0103-19:52:15:128][info][tls_callback_recv:00165] Goodix>>> recv ret:5.
+[0103-19:52:15:129][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0103-19:52:15:129][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 5 (-0xfffffffb)
+[0103-19:52:15:129][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0103-19:52:15:130][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0103-19:52:15:130][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 7722
+[0103-19:52:15:130][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0103-19:52:15:130][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 7717, bytes left: 7717
+[0103-19:52:15:131][info][RecvTLSPackage:06650] Goodix>>> bytes read: 7717, bytes left: 0
+[0103-19:52:15:131][info][tls_callback_recv:00165] Goodix>>> recv ret:7717.
+[0103-19:52:15:131][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 7722
+[0103-19:52:15:131][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 7717 (-0xffffe1db)
+[0103-19:52:15:131][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0103-19:52:15:132][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => decrypt buf
+[0103-19:52:15:132][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= decrypt buf
+[0103-19:52:15:132][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= read record
+[0103-19:52:15:132][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= read
+[0103-19:52:15:133][info][set_tls_state:00219] Goodix>>> enter
+[0103-19:52:15:133][debug][tlsapp_set_tls_state:00033] Goodix>>> TLS now IN handshake state:16.
+[0103-19:52:15:133][info][tlslib_read:00571] Goodix>>> <= tlslib_read exit with ret:7693 tls server state:16.
+[0103-19:52:15:133][debug][process_tls_data:05151] Goodix>>> ---- tls 7693 bytes recv
+[0103-19:52:15:134][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x22-7690
+[0103-19:52:15:134][debug][data_from_device:04981] Goodix>>> --- cmd: image
+[0103-19:52:15:134][info][chicagoHUget_rawdata:00737] Goodix>>> 7684 7684 10240
+[0103-19:52:15:134][debug][ChicagoHUDataRegroup:00519] Goodix>>> Regroup pixels:5120
+[0103-19:52:15:135][debug][data_from_device:04998] Goodix>>> receive non-POV image, length:7690
+[0103-19:52:15:136][debug][data_from_device:05004] Goodix>>> image crc check Ok
+[0103-19:52:15:136][debug][process_tls_data:05161] Goodix>>> exit
+[0103-19:52:15:136][debug][gf_get_oneframe:06843] Goodix>>> <= with ret(BOOL):1.
+[0103-19:52:15:136][debug][MilanEvtInterruptWorkItem:05985] Goodix>>> exit
+[0103-19:52:15:137][info][gf_captureFingerdata:07561] Goodix>>> imageret 0x1, dac valid 1
+[0103-19:52:15:137][debug][gf_captureFingerdata:07575] Goodix>>> finger down
+[0103-19:52:15:137][debug][gf_captureFingerdata:07607] Goodix>>> ***********to complete capture request, display is on***********
+[0103-19:52:15:138][debug][CaptureFramedone:03247] Goodix>>> Entry: need update 1, pov 0, MonitorOff:0, data size:10240, touchflag: 0x1f
+[0103-19:52:15:138][info][CaptureFramedone:03276] Goodix>>> Not support PBA.
+[0103-19:52:15:138][info][CaptureFramedone:03284] Goodix>>> ******** CompletePendingRequest ********
+[0103-19:52:15:138][debug][CompletePendingRequest:03321] Goodix>>> status:0x0
+[0103-19:52:15:138][info][gf_captureFingerdata:07738] Goodix>>> exit 1
+[0103-19:52:15:139][debug][OnGetDeviceInfo:03436] Goodix>>> Entry
+[0103-19:52:15:140][info][OnGetDeviceInfo:03480] Goodix>>> 212 == 212 ? 
+[0103-19:52:15:140][info][OnGetDeviceInfo:03487] Goodix>>> got device info, size 212 project_type:18, tcode 256, driver_version:1.1.142.8,  firmware_version: GF_HC460SEC_APP_14210
+[0103-19:52:15:235][debug][OnIdentifyFinished:03683] Goodix>>> enter switch 1, delay time 3, submit delay 0
+[0103-19:52:15:235][debug][OnIdentifyFinished:03713] Goodix>>> Exit
+[0103-19:52:15:289][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE955D4E2F68
+[0103-19:52:15:290][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
+[0103-19:52:15:290][debug][clear_submit_delay:05854] Goodix>>> enter
+[0103-19:52:15:290][info][_ForFRRFARTestSkipCaptureData:01263] Goodix>>> enter
+[0103-19:52:15:290][info][_ForFRRFARTestSkipCaptureData:01284] Goodix>>> exit
+[0103-19:52:15:290][debug][OnCaptureData:03124] Goodix>>> to wait init done
+[0103-19:52:15:290][debug][OnCaptureData:03132] Goodix>>> wait init done
+[0103-19:52:15:290][info][OnCaptureData:03145] Goodix>>> OnActivate done.
+[0103-19:52:15:290][info][OnCaptureData:03147] Goodix>>> activate 0, fdt_is_down 1
+[0103-19:52:15:290][info][OnCaptureData:03167] Goodix>>> Capture request: to up
+[0103-19:52:15:290][debug][device_action:04222] Goodix>>> to set state to DEVICE_ACTION
+[0103-19:52:15:290][debug][set_state:00872] Goodix>>> to set state from 1 to 3
+[0103-19:52:15:290][info][ChicagoHUSetMode:00541] Goodix>>> enter, Mode 3, Type 2, base_type 1
+[0103-19:52:15:291][info][ChicagoHUSetMode:00587] Goodix>>> setmode: Fdt up
+[0103-19:52:15:291][debug][ChicagoHUSetMode:00640] Goodix>>> switch to FDT mode 2
+[0103-19:52:15:291][debug][ChicagoHUSetMode:00641] Goodix>>> data sent::0x808080998088809d80938019
+[0103-19:52:15:291][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
+[0103-19:52:15:310][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0103-19:52:15:310][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x34, cfg flag 0x1
+[0103-19:52:15:340][debug][device_action:04408] Goodix>>> to set state to DEVICE_ENABLE
+[0103-19:52:15:340][debug][set_state:00872] Goodix>>> to set state from 3 to 1
+[0103-19:52:15:341][info][OnCaptureData:03174] Goodix>>> ******** to Register CaptureFramedone for capture a frame ********
+[0103-19:52:15:341][info][OnCaptureData:03191] Goodix>>> exit
+[0103-19:52:15:547][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x34-17
+[0103-19:52:15:548][debug][data_from_device:05033] Goodix>>> --- cmd: fdt
+[0103-19:52:15:549][debug][chicagoHUget_fdtdata:00815] Goodix>>> IrqStatus:0x200 cmd1 2
+[0103-19:52:15:551][info][chicagoHUget_fdtdata:00897] Goodix>>> IRQ for fdt-up, get fdt-down base, current mode is fdt-up, touchflag 0x0
+[0103-19:52:15:551][debug][chicagoHUget_fdtdata:00898] Goodix>>> received fdt base::0x600187014d01720151017101
+[0103-19:52:15:552][debug][gfCheckFDTBase:00936] Goodix>>> fdt base:0x600187014d01720151017101
+[0103-19:52:15:552][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[0]:0xb080
+[0103-19:52:15:553][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[1]:0xc380
+[0103-19:52:15:553][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[2]:0xa680
+[0103-19:52:15:553][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[3]:0xb980
+[0103-19:52:15:553][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[4]:0xa880
+[0103-19:52:15:554][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[5]:0xb880
+[0103-19:52:15:554][debug][device_fdtdata_analyze:07787] Goodix>>> receive fdt up or reset... 0x2, 2UP,9Reset, temp occure 0, base_is_valid 0
+[0103-19:52:15:554][info][gf_check_baseisvalid:07194] Goodix>>> enter
+[0103-19:52:15:554][info][gf_check_baseisvalid:07212] Goodix>>> base_is_valid 0
+[0103-19:52:15:555][info][gf_get_oneframe:06818] Goodix>>> enter, tls-client-server 1-1-1
+[0103-19:52:15:555][debug][gf_get_oneframe:06829] Goodix>>> g_halcontext.sensor_ops.SetMode:0x00007FFDE5D5BB50.
+[0103-19:52:15:555][info][ChicagoHUSetMode:00541] Goodix>>> enter, Mode 2, Type 0, base_type 0
+[0103-19:52:15:555][info][ChicagoHUSetMode:00554] Goodix>>> setmode: Image
+[0103-19:52:15:556][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x2-0-0x2-1000-0
+[0103-19:52:15:572][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0103-19:52:15:572][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x20, cfg flag 0x1
+[0103-19:52:15:646][debug][MilanEvtInterruptWorkItem:05895] Goodix>>> enter
+[0103-19:52:15:647][debug][MilanEvtInterruptWorkItem:05951] Goodix>>>  ---- pack len: 7722
+[0103-19:52:15:648][debug][process_tls_data:05125] Goodix>>> enter
+[0103-19:52:15:648][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read
+[0103-19:52:15:650][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read record
+[0103-19:52:15:650][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0103-19:52:15:651][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0103-19:52:15:651][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0103-19:52:15:652][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 5, bytes left: 7722
+[0103-19:52:15:652][info][RecvTLSPackage:06650] Goodix>>> bytes read: 5, bytes left: 7717
+[0103-19:52:15:652][info][tls_callback_recv:00165] Goodix>>> recv ret:5.
+[0103-19:52:15:653][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0103-19:52:15:653][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 5 (-0xfffffffb)
+[0103-19:52:15:653][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0103-19:52:15:653][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0103-19:52:15:653][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 7722
+[0103-19:52:15:654][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0103-19:52:15:654][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 7717, bytes left: 7717
+[0103-19:52:15:654][info][RecvTLSPackage:06650] Goodix>>> bytes read: 7717, bytes left: 0
+[0103-19:52:15:654][info][tls_callback_recv:00165] Goodix>>> recv ret:7717.
+[0103-19:52:15:654][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 7722
+[0103-19:52:15:655][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 7717 (-0xffffe1db)
+[0103-19:52:15:655][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0103-19:52:15:655][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => decrypt buf
+[0103-19:52:15:655][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= decrypt buf
+[0103-19:52:15:655][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= read record
+[0103-19:52:15:656][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= read
+[0103-19:52:15:656][info][set_tls_state:00219] Goodix>>> enter
+[0103-19:52:15:656][debug][tlsapp_set_tls_state:00033] Goodix>>> TLS now IN handshake state:16.
+[0103-19:52:15:656][info][tlslib_read:00571] Goodix>>> <= tlslib_read exit with ret:7693 tls server state:16.
+[0103-19:52:15:656][debug][process_tls_data:05151] Goodix>>> ---- tls 7693 bytes recv
+[0103-19:52:15:657][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x20-7690
+[0103-19:52:15:657][debug][data_from_device:04981] Goodix>>> --- cmd: image
+[0103-19:52:15:657][info][chicagoHUget_rawdata:00737] Goodix>>> 7684 7684 10240
+[0103-19:52:15:657][debug][ChicagoHUDataRegroup:00519] Goodix>>> Regroup pixels:5120
+[0103-19:52:15:658][debug][data_from_device:04998] Goodix>>> receive non-POV image, length:7690
+[0103-19:52:15:658][debug][data_from_device:05004] Goodix>>> image crc check Ok
+[0103-19:52:15:658][debug][gf_get_oneframe:06843] Goodix>>> <= with ret(BOOL):1.
+[0103-19:52:15:658][debug][process_tls_data:05161] Goodix>>> exit
+[0103-19:52:15:658][debug][gf_check_baseisvalid:07238] Goodix>>> imageret 0x2
+[0103-19:52:15:659][debug][gf_check_baseisvalid:07249] Goodix>>> :void
+[0103-19:52:15:658][debug][MilanEvtInterruptWorkItem:05985] Goodix>>> exit
+[0103-19:52:15:659][info][gf_check_baseisvalid:07265] Goodix>>> before calc, base_is_valid 0, 0x2 0x2
+[0103-19:52:15:659][info][ChicagoHUSetMode:00541] Goodix>>> enter, Mode 5, Type 0, base_type 0
+[0103-19:52:15:660][info][ChicagoHUSetMode:00692] Goodix>>> setmode: nav
+[0103-19:52:15:660][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x5-0-0x2-1000-0
+[0103-19:52:15:680][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0103-19:52:15:681][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x50, cfg flag 0x1
+[0103-19:52:15:700][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x50-2410
+[0103-19:52:15:702][debug][data_from_device:05080] Goodix>>> --- recv nav data......length:2410
+[0103-19:52:15:702][info][chicagoHUget_navdata:00778] Goodix>>> 2404 2404 3200
+[0103-19:52:15:703][debug][ChicagoHUDataRegroup:00519] Goodix>>> Regroup pixels:1600
+[0103-19:52:15:703][debug][data_from_device:05090] Goodix>>> nav crc check ok
+[0103-19:52:15:703][debug][gf_check_baseisvalid:07285] Goodix>>> after Nav_isTouchedByFinger navret = 0x2
+[0103-19:52:15:704][debug][gf_check_baseisvalid:07295] Goodix>>> :void
+[0103-19:52:15:705][info][gf_check_baseisvalid:07308] Goodix>>> update navbase
+[0103-19:52:15:705][debug][gf_savebaseTofile:07153] Goodix>>> nav buffer size:3200 buffer size:10240
+[0103-19:52:15:705][debug][gf_savebaseTofile:07159] Goodix>>> save imagebase 
+[0103-19:52:15:706][error][gf_savebaseTofile:07165] Goodix>>> fail to create dir C:\ProgramData\Goodix, errno 17
+[0103-19:52:15:708][info][gf_savebaseTofile:07176] Goodix>>> write 13520-13520 bytes to C:\ProgramData\Goodix\goodix.dat
+[0103-19:52:15:708][debug][gf_savebaseTofile:07185] Goodix>>> exit size:13520(dec)
+[0103-19:52:15:709][info][gf_check_baseisvalid:07332] Goodix>>> exit, base_is_valid 0
+[0103-19:52:15:709][info][device_fdtdata_analyze:07824] Goodix>>> request pending after check: to FDT DOWN
+[0103-19:52:15:709][info][ChicagoHUSetMode:00541] Goodix>>> enter, Mode 3, Type 1, base_type 1
+[0103-19:52:15:710][info][ChicagoHUSetMode:00572] Goodix>>> setmode: Fdt down
+[0103-19:52:15:710][warn][ChicagoHUSetMode:00583] Goodix>>> fdt-down TIMESTAMP 0x3d5d
+[0103-19:52:15:710][debug][ChicagoHUSetMode:00640] Goodix>>> switch to FDT mode 1
+[0103-19:52:15:711][debug][ChicagoHUSetMode:00641] Goodix>>> data sent::0x80b080c380a680b980a880b8
+[0103-19:52:15:711][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-1-0x10-1000-0
+[0103-19:52:15:729][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0103-19:52:15:730][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x32, cfg flag 0x1
+[0103-19:52:20:339][info][gfOnCancel:03201] Goodix>>> entry
+[0103-19:52:20:339][info][gfOnCancel:03241] Goodix>>> exit
+[0103-19:52:20:344][trace][OnActivate:03995] Goodix>>> entry
+[0103-19:52:20:344][info][OnActivate:04029] Goodix>>> activate 0
+[0103-19:52:20:344][info][OnActivate:04057] Goodix>>> last OnActivate done.
+[0103-19:52:20:345][debug][OnActivate:04082] Goodix>>> exit
+[0103-19:52:30:727][info][MilanEvtDeviceD0Exit:04789] Goodix>>> target state: 4, power action: 0
+[0103-19:52:30:730][trace][ClearPOVImage:05587] Goodix>>> no pov data
+[0103-19:52:30:730][debug][clear_submit_delay:05854] Goodix>>> enter
+[0103-19:52:30:731][trace][SuspendAllThreads:00487] Goodix>>> suspend all
+[0103-19:52:30:733][info][MilanEvtDeviceD0Exit:04874] Goodix>>> enter S0 idle
