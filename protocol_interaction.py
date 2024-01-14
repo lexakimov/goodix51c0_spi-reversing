@@ -169,15 +169,16 @@ async def main():
 
     # possible values '00' or  [0x00] or bytearray([0x00])
 
-    # await perform_write(spi, 0xa0, '01 05 00 00 00 00 00 88')
-    #
-    # await perform_write(spi, 0xa0, 'd5 03 00 00 00 d3')
-    #
-    # await perform_write(spi, 0xa0, '01 05 00 00 00 00 00 88')
+    # ----------------------------------------------------------------------------------------------------------------
+    # init ?
+
+    await perform_write(spi, 0xa0, '01 05 00 00 00 00 00 88')
+    await perform_write(spi, 0xa0, 'd5 03 00 00 00 d3')
 
     # ----------------------------------------------------------------------------------------------------------------
     # # get evk version: GF_HC460SEC_APP_14210
 
+    await perform_write(spi, 0xa0, '01 05 00 00 00 00 00 88')
     await perform_tx(spi, gpio_line, 0xa0, 'a8 03 00 00 00 ff')
     await perform_read(spi)
 
