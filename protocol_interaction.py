@@ -80,16 +80,19 @@ async def interrupt_monitoring(gpio_line: periphery.CdevGPIO, ready_to_write_loc
     log(Colors.CYAN, "interrupt_monitoring started")
     ready_to_write_lock.release()
     i = 1
-    while True:
-        await asyncio.sleep(0.001)
-        r = gpio_line.read()
-        if r:
-            log(Colors.CYAN, f"release read lock on iteration {i}")
-            return True
-        i += 1
-        if i > 2000:
-            log(Colors.RED + Colors.NEGATIVE, f"error: timeout {i}")
-            return False
+    try:
+        while True:
+            await asyncio.sleep(0.001)
+            r = gpio_line.read()
+            if r:
+            # event = gpio_line.read_event()
+            # if event.edge == 'rising':
+                log(Colors.CYAN, f"release read lock on iteration {i}")
+                return True
+            i += 1
+    except TimeoutError:
+        log(Colors.RED + Colors.NEGATIVE, f"error: timeout {i}")
+        return False
 
 
 def is_checksum_valid(packet: list[int] | bytearray) -> bool:
@@ -133,7 +136,7 @@ async def perform_read(spi: SpiDev) -> list[int]:
     return packet_2
 
 
-async def perform_tx(spi: SpiDev, interrupt_line: CdevGPIO, packet_type: int, payload: bytes | str | list) -> list[int]:
+async def perform_tx(spi: SpiDev, gpio_line: CdevGPIO, packet_type: int, payload: bytes | str | list) -> list[int]:
     if isinstance(payload, str):
         payload = bytes.fromhex(payload.replace(" ", ""))
     elif isinstance(payload, list):
@@ -144,13 +147,13 @@ async def perform_tx(spi: SpiDev, interrupt_line: CdevGPIO, packet_type: int, pa
     await ready_to_write_lock.acquire()
     print("latch created")
 
-    ir_monitoring = asyncio.create_task(interrupt_monitoring(interrupt_line, ready_to_write_lock))
+    ir_monitoring = asyncio.create_task(interrupt_monitoring(gpio_line, ready_to_write_lock))
     await ready_to_write_lock.acquire()
 
     await perform_write(spi, packet_type, payload)
 
     print("waiting for gpio interrupt...")
-    await ir_monitoring
+    await ir_monitoring  # asyncio.wait_for(ir_monitoring, timeout=2)
     print("lock released, execution goes on")
 
     result = await perform_read(spi)
@@ -220,6 +223,39 @@ async def main():
     #  pov_capture_count:0
     #  normal_capture_count:0
     #  otp_mcu_check_status:0x0
+
+    # 0x04063000000000002000000000010001042502000000
+    #  version:4
+    #  isPOVImageValid:0
+    #  isTlsConnected:1
+    #  isTlsUsed:1
+    #  isLocked:0
+    #  availImgCnt:0
+    #  povImgCnt:3
+    #  sensor_data_int_timeout_count:0
+    #  image_crc_fail_count:0
+    #  povTouchAccidentCnt:0x0
+    #  readChipIDCnt:0
+    #  sensorExceptionFlag:0
+    #  sensorUnexpectedIntCnt:0
+    #  to_master_timeout_count:0
+    #  psk_len:32
+    #  psk_check_fail:0
+    #  psk_write_fail:0
+    #  ec_falling_count:0
+    #  system_up_stop_cnt:0
+    #  system_down_pov_stop_cnt:0
+    #  system_up_cleared_pov_count:0
+    #  pov_wake_by_fp:1
+    #  pov_wake_by_ec:0
+    #  pov_procedure:0x0
+    #  config_down_flag:1
+    #  sensor_chip_id:0x2504
+    #  sensor_type:2
+    #  pov_capture_count:0
+    #  normal_capture_count:0
+    #  otp_mcu_check_status:0x0
+
     await perform_tx(spi, gpio_line, 0xa0, 'af 06 00 55 5c bf 00 00 86')
     # - received packet 1 🟢 : A0 1A 00 BA
     # - received packet 2 🔴 : AE 17 00 04 00 30 00 00 00 00 03 20 00 02 00 00 01 00 00 04 25 02 00 00 00 60
