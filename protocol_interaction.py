@@ -1,4 +1,5 @@
-import asyncio
+import threading
+from time import sleep
 
 import periphery
 from periphery import CdevGPIO
@@ -44,7 +45,7 @@ def extract_length(packet: list[int] | bytearray) -> int:
     return length_int
 
 
-async def perform_read(spi: SpiDev) -> list[int]:
+def perform_read(spi: SpiDev) -> list[int]:
     log(Colors.LIGHT_BLUE, "reading from device...")
     packet_1 = spi.readbytes(4)
     is_valid = is_checksum_valid(packet_1)
@@ -58,7 +59,7 @@ async def perform_read(spi: SpiDev) -> list[int]:
     return packet_2
 
 
-async def perform_write(spi: SpiDev, packet_type: int, payload: bytes | str | list[int]):
+def perform_write(spi: SpiDev, packet_type: int, payload: bytes | str | list[int]):
     if isinstance(payload, str):
         payload = bytes.fromhex(payload.replace(" ", ""))
     elif isinstance(payload, list):
@@ -72,73 +73,73 @@ async def perform_write(spi: SpiDev, packet_type: int, payload: bytes | str | li
     log(Colors.LIGHT_PURPLE, f"\t- payload packet sent: {to_hex_string(payload)} | {to_utf_string(payload)}")
 
 
-async def perform_tx(spi: SpiDev, gpio_line: CdevGPIO, packet_type: int, payload: bytes | str | list) -> list[int]:
+def perform_tx(spi: SpiDev, gpio_line: CdevGPIO, packet_type: int, payload: bytes | str | list) -> list[int]:
     if isinstance(payload, str):
         payload = bytes.fromhex(payload.replace(" ", ""))
     elif isinstance(payload, list):
         payload = bytearray(payload)
 
     print("--------- perform write-read")
-    ready_to_write_lock = asyncio.Lock()
-    await ready_to_write_lock.acquire()
+    ready_to_write_lock = threading.Lock()
+    ready_to_write_lock.acquire()
     print("latch created")
 
-    ir_monitoring = asyncio.create_task(interrupt_monitoring(gpio_line, ready_to_write_lock))
-    await ready_to_write_lock.acquire()
+    ir_thread = threading.Thread(target=interrupt_monitoring, args=(gpio_line, ready_to_write_lock))
+    # ir_thread.daemon = True
+    ir_thread.start()
+    ready_to_write_lock.acquire()
+    sleep(0.01)  # delay so that the interrupt thread has time to enter gpio_line.read_event()
 
-    await perform_write(spi, packet_type, payload)
+    perform_write(spi, packet_type, payload)
 
     print("waiting for gpio interrupt...")
-    await ir_monitoring  # asyncio.wait_for(ir_monitoring, timeout=2)
-    print("lock released, execution goes on")
+    ir_thread.join(timeout=3)
+    if ir_thread.is_alive():
+        exit(1)
 
-    result = await perform_read(spi)
+    print("interrupt caught, execution goes on")
+
+    result = perform_read(spi)
     print("--------- write-read done")
     return result
 
 
-async def interrupt_monitoring(gpio_line: periphery.CdevGPIO, ready_to_write_lock: asyncio.Lock):
+def interrupt_monitoring(gpio_line: periphery.CdevGPIO, ready_to_write_lock: threading.Lock):
     log(Colors.CYAN, "interrupt_monitoring started")
     ready_to_write_lock.release()
     i = 1
-    try:
-        while True:
-            await asyncio.sleep(0.001)
-            r = gpio_line.read()
-            if r:
-            # event = gpio_line.read_event()
-            # if event.edge == 'rising':
-                log(Colors.CYAN, f"release read lock on iteration {i}")
-                return True
-            i += 1
-    except TimeoutError:
-        log(Colors.RED + Colors.NEGATIVE, f"error: timeout {i}")
-        return False
+    while True:
+        event = gpio_line.read_event()
+        if event.edge == 'rising' and i >= 100:
+            log(Colors.CYAN, f"release read lock on iteration {i}")
+            return True
+        i += 1
+        # sleep(0.001)
 
 
-async def main():
+def main():
     gpio_line = CdevGPIO('/dev/gpiochip0', 321, 'in', edge='both', bias='default')
     spi = SpiDev(1, 0)
     spi.max_speed_hz = 0x00989680  # 10 000 000
     # spi.mode = 0b00
 
     # reset_spi()
-    # await asyncio.sleep(1)
+    sleep(0.1)
 
     # possible values '00' or  [0x00] or bytearray([0x00])
 
     # ----------------------------------------------------------------------------------------------------------------
     # init ?
 
-    await perform_write(spi, 0xa0, '01 05 00 00 00 00 00 88')
-    await perform_write(spi, 0xa0, 'd5 03 00 00 00 d3')
+    perform_write(spi, 0xa0, '01 05 00 00 00 00 00 88')
+    perform_write(spi, 0xa0, 'd5 03 00 00 00 d3')
 
     # ----------------------------------------------------------------------------------------------------------------
     # # get evk version: GF_HC460SEC_APP_14210
 
-    await perform_write(spi, 0xa0, '01 05 00 00 00 00 00 88')
-    await perform_tx(spi, gpio_line, 0xa0, 'a8 03 00 00 00 ff')
-    await perform_read(spi)
+    perform_write(spi, 0xa0, '01 05 00 00 00 00 00 88')
+    perform_tx(spi, gpio_line, 0xa0, 'a8 03 00 00 00 ff')
+    perform_read(spi)
 
     # ----------------------------------------------------------------------------------------------------------------
     # get mcu state
@@ -211,7 +212,7 @@ async def main():
     #  normal_capture_count:0
     #  otp_mcu_check_status:0x0
 
-    await perform_tx(spi, gpio_line, 0xa0, 'af 06 00 55 5c bf 00 00 86')
+    perform_tx(spi, gpio_line, 0xa0, 'af 06 00 55 5c bf 00 00 86')
     # - received packet 1 🟢 : A0 1A 00 BA
     # - received packet 2 🔴 : AE 17 00 04 00 30 00 00 00 00 03 20 00 02 00 00 01 00 00 04 25 02 00 00 00 60
     # ----------------------------------------------------------------------------------------------------------------
@@ -221,4 +222,4 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
