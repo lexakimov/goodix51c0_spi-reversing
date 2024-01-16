@@ -76,25 +76,6 @@ def reset_spi():
     gpio_reset.close()
 
 
-async def interrupt_monitoring(gpio_line: periphery.CdevGPIO, ready_to_write_lock: asyncio.Lock):
-    log(Colors.CYAN, "interrupt_monitoring started")
-    ready_to_write_lock.release()
-    i = 1
-    try:
-        while True:
-            await asyncio.sleep(0.001)
-            r = gpio_line.read()
-            if r:
-            # event = gpio_line.read_event()
-            # if event.edge == 'rising':
-                log(Colors.CYAN, f"release read lock on iteration {i}")
-                return True
-            i += 1
-    except TimeoutError:
-        log(Colors.RED + Colors.NEGATIVE, f"error: timeout {i}")
-        return False
-
-
 def is_checksum_valid(packet: list[int] | bytearray) -> bool:
     checksum = packet[-1]
     fact_sum = sum(packet[:-1])
@@ -106,20 +87,6 @@ def extract_length(packet: list[int] | bytearray) -> int:
     length_bytes = packet[1:3]
     length_int = int.from_bytes(length_bytes, byteorder="little")
     return length_int
-
-
-async def perform_write(spi: SpiDev, packet_type: int, payload: bytes | str | list[int]):
-    if isinstance(payload, str):
-        payload = bytes.fromhex(payload.replace(" ", ""))
-    elif isinstance(payload, list):
-        payload = bytearray(payload)
-
-    log(Colors.LIGHT_PURPLE, "writing to device...")
-    protocol_packet = make_protocol_packet(packet_type, len(payload))
-    spi.writebytes(protocol_packet)
-    log(Colors.LIGHT_PURPLE, f"\t- protocol packet sent: {to_hex_string(protocol_packet)}")
-    spi.writebytes(payload)
-    log(Colors.LIGHT_PURPLE, f"\t- payload packet sent: {to_hex_string(payload)} | {to_utf_string(payload)}")
 
 
 async def perform_read(spi: SpiDev) -> list[int]:
@@ -134,6 +101,20 @@ async def perform_read(spi: SpiDev) -> list[int]:
     log(Colors.LIGHT_BLUE,
         f"\t- received packet 2 {format_validity(is_valid) + Colors.BLUE} : {to_hex_string(packet_2)} | {to_utf_string(packet_2)}")
     return packet_2
+
+
+async def perform_write(spi: SpiDev, packet_type: int, payload: bytes | str | list[int]):
+    if isinstance(payload, str):
+        payload = bytes.fromhex(payload.replace(" ", ""))
+    elif isinstance(payload, list):
+        payload = bytearray(payload)
+
+    log(Colors.LIGHT_PURPLE, "writing to device...")
+    protocol_packet = make_protocol_packet(packet_type, len(payload))
+    spi.writebytes(protocol_packet)
+    log(Colors.LIGHT_PURPLE, f"\t- protocol packet sent: {to_hex_string(protocol_packet)}")
+    spi.writebytes(payload)
+    log(Colors.LIGHT_PURPLE, f"\t- payload packet sent: {to_hex_string(payload)} | {to_utf_string(payload)}")
 
 
 async def perform_tx(spi: SpiDev, gpio_line: CdevGPIO, packet_type: int, payload: bytes | str | list) -> list[int]:
@@ -159,6 +140,25 @@ async def perform_tx(spi: SpiDev, gpio_line: CdevGPIO, packet_type: int, payload
     result = await perform_read(spi)
     print("--------- write-read done")
     return result
+
+
+async def interrupt_monitoring(gpio_line: periphery.CdevGPIO, ready_to_write_lock: asyncio.Lock):
+    log(Colors.CYAN, "interrupt_monitoring started")
+    ready_to_write_lock.release()
+    i = 1
+    try:
+        while True:
+            await asyncio.sleep(0.001)
+            r = gpio_line.read()
+            if r:
+            # event = gpio_line.read_event()
+            # if event.edge == 'rising':
+                log(Colors.CYAN, f"release read lock on iteration {i}")
+                return True
+            i += 1
+    except TimeoutError:
+        log(Colors.RED + Colors.NEGATIVE, f"error: timeout {i}")
+        return False
 
 
 async def main():
@@ -224,7 +224,7 @@ async def main():
     #  normal_capture_count:0
     #  otp_mcu_check_status:0x0
 
-    # 0x04063000000000002000000000010001042502000000
+    #  0x04063000000000002000000000010001042502000000
     #  version:4
     #  isPOVImageValid:0
     #  isTlsConnected:1
