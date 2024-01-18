@@ -1,76 +1,193 @@
+ Goodix>>> WBDI Build Apr 22 2022 16:33:55, LogTarget 1, LogLevel 9, LogPath C:\ProgramData\Goodix\WBDI.log, driver version 1.1.142.8
+ Goodix>>> PowerCapability::0x01010100000001010101010000010000000001000100020100000000000001000000000000000000000000000000000000000000000000000000000000000000050000000000000000000000
+ Goodix>>> supports Modern Standby: Yes
+ Goodix>>> Driver Entry Morndern Standby, config: log  1 9, dump 1, firm_up 1, key_sim 0, hlk 0 s0idle 1, submit_delay 1, af 0 0, nav 0, choose 1 1, retry 1
+ Goodix>>> before WdfDriverCreate
+ Goodix>>> session thread enter
+ Goodix>>> exit WBVer 16
+ Goodix>>> display state 0x1(0x2-dim/0x1-on/0x0-off)
+ Goodix>>> Entry
+ Goodix>>> enter
+ Goodix>>> enter
+ Goodix>>> HardwareID: ACPI\VEN_GDIX&DEV_51C0
+ Goodix>>> HardwareID not match
+ Goodix>>> HardwareID: ACPI\GDIX51C0
+ Goodix>>> HardwareID match for product 18, ACPI\GDIX51C0
+ Goodix>>> to support disable and enable
+ Goodix>>> support S0Idle
+ Goodix>>> support DFx on MS system
+ Goodix>>> S0Idle: 10s, switch 0
+ Goodix>>> Interrupt created, to set interrupt priority
+ Goodix>>> PowerManaged:TRUE
+ Goodix>>> exit, status: 0x0
+ Goodix>>> Exit 0x0
+ Goodix>>> enter, driver version:1.1.142.8
+ Goodix>>> resource count: 3
+ Goodix>>> gpio.LowPart:6, gpio.HighPart:0
+ Goodix>>> gpio-io count: 1, spi count: 1, interrupt count: 1, spi.LowPart:4, spi.HighPart:0
+ Goodix>>> enter, LowPart:4, HighPart:0, DesiredAccess:0x12019f
+ Goodix>>> enter, LowPart:6, HighPart:0, DesiredAccess:0x120116
+
+ Goodix>>> Start to create the target
+ Goodix>>> Start to open IO target
+ Goodix>>> Open the target success
+ Goodix>>> enter inital headcount 0xbe6b
  SPI Connection Descriptor FFFFBF83209E8EF8 ConnectionSpeed:10000000
  Connected to SPBTARGET 0000407CEE866D28 at address 0x0 from WDFDEVICE 0000407CECE97968
  Opening handle to SPB target via \Device\RESOURCE_HUB\0000000000000003
-
+ Goodix>>> --- start
+ Goodix>>> Resume Thread device_fdtdata_analyze
+ Goodix>>> --- start
+ Goodix>>> Resume fdtdata analyze
+ Goodix>>> exit 1
+ Goodix>>> exit, status: 0x0, bret:1 
+ Goodix>>> entry, prev state: 5(4-D3,5-D3Final), power action: 0, driver version 1.1.142.8
+ Goodix>>> enter
+ Goodix>>> to create init creater
+ Goodix>>> exit
+ Goodix>>> --- start
+ Goodix>>> enter
+ Goodix>>> exit
+ Goodix>>> exit
+ Goodix>>> to create init thread
+ Goodix>>> exit
+ Goodix>>> --- exit
+ Goodix>>> --- Init: start
+ Goodix>>> Init: pov 1, pba 0, tls-client-server-rebuild-session 1-0-0-0-0, have config 0, device inited 0, base inited 0
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
  write    4 -  0000: a0 08 00 a8
-
+ Goodix>>> !!not to wait for ack
  write    8 -  0000: 01 05 00 00 00 00 00 88
-
+ Goodix>>> force unlock it
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0xd-2-0x2-0-0
  write    4 -  0000: a0 06 00 a6
-
+ Goodix>>> !!not to wait for ack
  write    6 -  0000: d5 03 00 00 00 d3
-
+ Goodix>>> Get Evk Version...retry count 3
+ Goodix>>> enter, project type 18
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
  write    4 -  0000: a0 08 00 a8
-
+ Goodix>>> !!not to wait for ack
  write    8 -  0000: 01 05 00 00 00 00 00 88
-
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-4-0x2-1000-0
  write    4 -  0000: a0 06 00 a6
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0xa8, cfg flag 0x7
+ Goodix>>> MCU has no config
  write    6 -  0000: a8 03 00 00 00 ff
-
+ Goodix>>> recvd data cmd-len: 0xa8-23
+ Goodix>>> --- cmd: other
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: b0 03 00 a8 07 48
-
   read    4 -  0000: a0 1a 00 ba
-
   read   26 -  0000: a8 17 00 47 46 5f 48 43 34 36 30 53 45 43 5f 41
   read   26 -  0010: 50 50 5f 31 34 32 31 30 00 68
-
+ Goodix>>> got evk version: GF_HC460SEC_APP_14210
+ Goodix>>> DriverState:Install
+ Goodix>>> driver type win spi
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
  write    4 -  0000: a0 08 00 a8
-
+ Goodix>>> !!not to wait for ack
  write    8 -  0000: 01 05 00 00 00 00 00 88
-
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x9-3-0x2-0-0
  write    4 -  0000: a0 06 00 a6
-
+ Goodix>>> !!not to wait for ack
  write    6 -  0000: 97 03 00 01 01 0f
-
+ Goodix>>> mcu-state TIMESTAMP 0xbf5c
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-7-0x5-0-0
  write    4 -  0000: a0 09 00 a9
-
+ Goodix>>> !!not to wait for ack
+ Goodix>>> recvd data cmd-len: 0xae-23
+ Goodix>>> --- cmd: other
+ Goodix>>> pov 1, pba 0, tls-client-server-lock 1-0-0-0, have config 0, pov valid 0
  write    9 -  0000: af 06 00 55 5c bf 00 00 86
-
+ Goodix>>> mcu state::0x04003000000000002000000000010000042502000000
+ Goodix>>> mcu state: version:4, isPOVImageValid:0, isTlsConnected:0, isTlsUsed:0, isLocked:0, availImgCnt:0, povImgCnt:3
+ Goodix>>> mcu state: sensor_data_int_timeout_count:0, image_crc_fail_count:0, povTouchAccidentCnt:0x0, readChipIDCnt:0, sensorExceptionFlag:0, sensorUnexpectedIntCnt:0, to_master_timeout_count:0
+ Goodix>>> mcu state: psk_len:32, psk_check_fail:0, psk_write_fail:0, ec_falling_count:0, system_up_stop_cnt:0, system_down_pov_stop_cnt:0, system_up_cleared_pov_count:0
+ Goodix>>> mcu state: pov_wake_by_fp:1, pov_wake_by_ec:0, pov_procedure:0x0, config_down_flag:0, sensor_chip_id:0x2504, sensor_type:2, pov_capture_count:0, normal_capture_count:0, otp_mcu_check_status:0x0
   read    4 -  0000: a0 1a 00 ba
-
   read   26 -  0000: ae 17 00 04 00 30 00 00 00 00 00 20 00 00 00 00
   read   26 -  0010: 01 00 00 04 25 02 00 00 00 65
-
+ Goodix>>> tls not alive
+ Goodix>>> ensure tls handshake will be done 0
+ Goodix>>> Init: pov 1, pba 0, tls-client-server-rebuild-session 1-0-0-0-0, have config 0, device inited 0, base inited 0, d0exit 0
+ Goodix>>> ---- enter
+ _DeviceInit
+ Goodix>>> to set state from 0 to 1
+ Goodix>>> Not support PBA.
+ Goodix>>> to set state to DEVICE_ACTION
+ Goodix>>> to set state from 1 to 3
+ Goodix>>> besdenable:0
+ Goodix>>> to set state to DEVICE_ENABLE
+ Goodix>>> to set state from 3 to 1
+ Goodix>>> enter, project 18, tls 1, firmware update 1, simulation 0, retry count 3
+ Goodix>>> Get Evk Version...retry count 3
+ Goodix>>> enter, project type 18
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
  write    4 -  0000: a0 08 00 a8
-
+ Goodix>>> !!not to wait for ack
  write    8 -  0000: 01 05 00 00 00 00 00 88
-
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-4-0x2-1000-0
  write    4 -  0000: a0 06 00 a6
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0xa8, cfg flag 0x7
  write    6 -  0000: a8 03 00 00 00 ff
-
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: b0 03 00 a8 07 48
-
+ Goodix>>> MCU has no config
+ Goodix>>> recvd data cmd-len: 0xa8-23
+ Goodix>>> --- cmd: other
   read    4 -  0000: a0 1a 00 ba
-
   read   26 -  0000: a8 17 00 47 46 5f 48 43 34 36 30 53 45 43 5f 41
   read   26 -  0010: 50 50 5f 31 34 32 31 30 00 68
+ Goodix>>> got evk version: GF_HC460SEC_APP_14210
+ Goodix>>> !!!REE SPI MCU:Update firmware
+ Goodix>>> !!!Update HDSC firmware
+ Goodix>>> => update switch 1
+ Goodix>>> current state is 1, to set state to DEVICE_UPDATE
+ Goodix>>> to set state from 1 to 4
+ Goodix>>> CONFIG DATA: retry_count_for_common_init 3
+ Goodix>>> Nowversion len21 :GF_HC460SEC_APP_14210, firmwareLen=109514, UpdateByDriver=1
+ Goodix>>> Current MCU Version: GF_HC460SEC_APP_14210
+ Goodix>>> Not Find :IAP
+ Goodix>>> MCU not runs IAP
+ Goodix>>> Driver auto update firmware
+ Goodix>>> Current MCU Version GF_HC460SEC_APP_14210, Version in Driver GF_HC460SEC_APP_14210
+ Goodix>>> the same version, no need to update firmware
+ Goodix>>> exit 0x1
+ Goodix>>> to restore, to set state to 1
+ Goodix>>> to set state from 4 to 1
+ Goodix>>> <= with 0x1.
+ Goodix>>> update firmware result 1
+ Goodix>>> Find :APP
+ Goodix>>> production process...
+ Goodix>>> Entry
+ Goodix>>> . check psk if valid (total times:2)
+ Goodix>>> check psk times: 1
+ Goodix>>> entry
+ Goodix>>> 1.get host hash
+ Goodix>>> entry
+ Goodix>>> .get seal data
 
+ Goodix>>> read 0 bytes
+ Goodix>>> Entry
+ Goodix>>> 0.read specific data_type 0xbb010002 
+ Goodix>>> 2.read data from mcu
+ Goodix>>> Entry
+ Goodix>>> 1.SpiSendDataToDeviceLock
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0xe-2-0x8-1000-0
  write    4 -  0000: a0 0c 00 ac
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
  write   12 -  0000: e4 09 00 02 00 01 bb 00 00 00 00 ff
-
+ Goodix>>> get ack for cmd 0xe4, cfg flag 0x7
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: b0 03 00 e4 07 0c
-
+ Goodix>>> MCU has no config
+ Goodix>>> recvd data cmd-len: 0xe4-342
+ Goodix>>> --- Received production response
+ Goodix>>> production response pure data length=341
   read    4 -  0000: a0 59 01 fa
-
   read  345 -  0000: e4 56 01 00 02 00 01 bb 4c 01 00 00 01 00 00 00
   read  345 -  0010: d0 8c 9d df 01 15 d1 11 8c 7a 00 c0 4f c2 97 eb
   read  345 -  0020: 01 00 00 00 ce 4b 48 a6 19 9f e1 4c a7 a3 2e 7a
@@ -93,95 +210,195 @@
   read  345 -  0130: 43 66 12 5b e1 11 73 2a a3 59 83 1e 83 66 50 88
   read  345 -  0140: f4 2c 6f c8 f7 5e 93 3d 07 c9 97 fc 05 f9 30 9c
   read  345 -  0150: b6 a0 6b f1 a4 18 8a cf 3b
+ Goodix>>> 2.parse return data
+ Goodix>>> return data, len_payload_mcu  341 bytes, passed 2048 bytes, result 0.
+ Goodix>>> read from mcu done, copy 340 bytes back 
+ Goodix>>> Exit ret:0x0.
+ Goodix>>> read data from mcu ret:0x0, length: 340
+ Goodix>>> Exit with 0x0
+ Goodix>>> get from mcu, return 0x0, len 332
 
+ Goodix>>> generate rootkey
+ Goodix>>> inbuf_len 324, entropy_len 48, len_out 32
+ Goodix>>> The decryption phase worked, 324, 32
+ Goodix>>> unseal return 0x0 length before 324, length after:32
+ Goodix>>> .wb data 
+ Goodix>>> wb return 0x0 length before 32, length after:102 
+ Goodix>>> .hash
+ Goodix>>> hash return 0x0 length before 102, length after:32
+ Goodix>>> exit with 0x0
+ Goodix>>> ret 0x0, psk len 32, hash len 32, seal len 332, data from file flag 0 
+ Goodix>>> 2.get mcu hash
+ Goodix>>> Entry
+ Goodix>>> 0.read specific data_type 0xbb020003 
+ Goodix>>> 2.read data from mcu
+ Goodix>>> Entry
+ Goodix>>> 1.SpiSendDataToDeviceLock
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0xe-2-0x8-1000-0
  write    4 -  0000: a0 0c 00 ac
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0xe4, cfg flag 0x7
  write   12 -  0000: e4 09 00 03 00 02 bb 00 00 00 00 fd
-
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: b0 03 00 e4 07 0c
-
+ Goodix>>> MCU has no config
+ Goodix>>> recvd data cmd-len: 0xe4-42
+ Goodix>>> --- Received production response
+ Goodix>>> production response pure data length=41
   read    4 -  0000: a0 2d 00 cd
-
   read   45 -  0000: e4 2a 00 00 03 00 02 bb 20 00 00 00 fb 67 d3 ed
   read   45 -  0010: e2 44 ff ee b2 76 3c b5 0e e3 81 a3 e6 18 d5 23
   read   45 -  0020: 8d 61 94 53 43 35 8d 08 0f d0 2d a7 ce
-
+ Goodix>>> 2.parse return data
+ Goodix>>> return data, len_payload_mcu  41 bytes, passed 2048 bytes, result 0.
+ Goodix>>> read from mcu done, copy 40 bytes back 
+ Goodix>>> Exit ret:0x0.
+ Goodix>>> read data from mcu ret:0x0, length: 40
+ Goodix>>> Exit with 0x0
+ Goodix>>> get mcu hash, ret 0x0, len 32
+ Goodix>>> 3.verify
+ Goodix>>> !!!hash equal !!! 
+ Goodix>>> written 332:332 bytes to file
+ Goodix>>> exit with 0x0
+ Goodix>>> check psk: psk is valid!
+ Goodix>>> Exit ret:0x0
+ Goodix>>> Production Process...Success!
+ Goodix>>> exit return 0x0, inited 1
+ Goodix>>> enter
+ Goodix>>> --- to get CHIP ID
+ Goodix>>> --- SetIdle
+ Goodix>>> reset sensor
+ Goodix>>> reset device, reset_flag 1
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-1-0x2-1000-0
  write    4 -  0000: a0 06 00 a6
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0xa2, cfg flag 0x7
+ Goodix>>> MCU has no config
  write    6 -  0000: a2 03 00 01 14 f0
-
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: b0 03 00 a2 07 4e
-
+ Goodix>>> recvd data cmd-len: 0xa2-4
+ Goodix>>> --- cmd: other
+ Goodix>>> CHIP_RESET::0x010008
   read    4 -  0000: a0 07 00 a7
-
   read    7 -  0000: a2 04 00 01 00 08 fb
-
+ Goodix>>> --- MILAN_CHIPID
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x8-1-0x5-1000-0
  write    4 -  0000: a0 09 00 a9
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x82, cfg flag 0x7
+ Goodix>>> MCU has no config
  write    9 -  0000: 82 06 00 00 00 00 04 00 1e
-
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: b0 03 00 82 07 6e
-
+ Goodix>>> recvd data cmd-len: 0x82-5
+ Goodix>>> --- cmd: regrw
   read    4 -  0000: a0 08 00 a8
-
   read    8 -  0000: 82 05 00 a2 04 25 00 58
-
+ Goodix>>> Get Chip ID: 0x2504
+ Goodix>>> enter
+ Goodix>>> to init device by chipid 0x2504
+ Goodix>>> !!!! to Open ChicagoHS, sensor type: 12
+ Goodix>>> sensor info ready, chipid:0x2504, sensorType:12, col:80, row:64
+ Goodix>>> Index 1 buffer address:0x0000016AA2B48B60
+ Goodix>>> Index 2 buffer address:0x0000016AA2B4B370
+ Goodix>>> Index 3 buffer address:0x0000016AA2B4DB80
+ Goodix>>> Index 4 buffer address:0x0000016AA2B50390
+ Goodix>>> exit 1
+ Goodix>>> Get Chip ID: 0x2504 in 0 try
+ Goodix>>> to set state to DEVICE_ACTION
+ Goodix>>> to set state from 1 to 3
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-3-0x2-1000-0
  write    4 -  0000: a0 06 00 a6
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0xa6, cfg flag 0x7
  write    6 -  0000: a6 03 00 00 00 01
-
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: b0 03 00 a6 07 4a
-
+ Goodix>>> MCU has no config
+ Goodix>>> recvd data cmd-len: 0xa6-65
+ Goodix>>> --- cmd: other
+ Goodix>>> to set state to DEVICE_ENABLE
+ Goodix>>> to set state from 3 to 1
+ Goodix>>> Got sensor OTP::0x5334303636362e000a7d82b372a0460a5107050e7d4b172741029a0cf1807f0c07813038e480ddfc0abebb4401bbb3b5b3b3b3b5b3b34133e41bdd220cf017db
+ Goodix>>> Success to get OTP data
+ Goodix>>> to set state to DEVICE_ACTION
+ Goodix>>> to set state from 1 to 3
   read    4 -  0000: a0 44 00 e4
-
   read   68 -  0000: a6 41 00 53 34 30 36 36 36 2e 00 0a 7d 82 b3 72
   read   68 -  0010: a0 46 0a 51 07 05 0e 7d 4b 17 27 41 02 9a 0c f1
   read   68 -  0020: 80 7f 0c 07 81 30 38 e4 80 dd fc 0a be bb 44 01
   read   68 -  0030: bb b3 b5 b3 b3 b3 b5 b3 b3 41 33 e4 1b dd 22 0c
   read   68 -  0040: f0 17 db 1c
-
+ Goodix>>> enter, OTP size 64, internal tcode adjust 0, default tcode 128, default fdt delta 21
+ Goodix>>> read 0 bytes from C:\ProgramData\Goodix\goodix.dat
+ Goodix>>> got file OTP::0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+ Goodix>>> NOT the same OTP in file(not in file) and from FP, use data from FP
+ Goodix>>> entry
+ Goodix>>> cp check CRC=12, chip cp CRC=12
+ Goodix>>> ft check CRC=240, chip ft CRC=240
+ Goodix>>> mt check CRC=219, chip mt CRC=219
+ Goodix>>> entry
+ Goodix>>> ft dac crc check CRC=23, otp CRC=23
+ Goodix>>> from otp dac 0xb38, dac1 0xb5, dac2 0xb3, dac3 0xb3
+ Goodix>>> reg 0x0220, before update: 0x0808, after update:0x0b38 (0x0b38: 0xb|0x38)
+ Goodix>>> reg 0x0236, before update: 0x0080, after update:0x00b5 (0x00b5: 0x0|0xb5)
+ Goodix>>> reg 0x0238, before update: 0x0080, after update:0x00b3 (0x00b3: 0x0|0xb3)
+ Goodix>>> reg 0x023a, before update: 0x0080, after update:0x00b3 (0x00b3: 0x0|0xb3)
+ Goodix>>> USED OTP::0x5334303636362e000a7d82b372a0460a5107050e7d4b172741029a0cf1807f0c07813038e480ddfc0abebb4401bbb3b5b3b3b3b5b3b34133e41bdd220cf017db
+ Goodix>>> reg 0x005c, before update: 0x0180, after update:0x0100 (0x0100: 0x1|0x0)
+ Goodix>>> reg 0x0082, before update: 0x1580, after update:0x1b80 (0x1b00: 0x1b|0x0)
+ Goodix>>> OTP tcode 256, fdt delta 27
+ Goodix>>> fdtOffset:0x0
+ Goodix>>> to set state to DEVICE_ENABLE
+ Goodix>>> to set state from 3 to 1
+ Goodix>>> FDT_Init, sensortype: 12, fdt_delta:27, tcode:256
+ Goodix>>> to set state to DEVICE_ACTION
+ Goodix>>> to set state from 1 to 3
+ Goodix>>> enter
+ Goodix>>> reset sensor
+ Goodix>>> reset device, reset_flag 1
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-1-0x2-1000-0
  write    4 -  0000: a0 06 00 a6
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0xa2, cfg flag 0x7
  write    6 -  0000: a2 03 00 01 14 f0
-
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: b0 03 00 a2 07 4e
-
+ Goodix>>> MCU has no config
+ Goodix>>> recvd data cmd-len: 0xa2-4
+ Goodix>>> --- cmd: other
+ Goodix>>> CHIP_RESET::0x010008
+ Goodix>>> enter, Mode 7, Type 0, base_type 0
+ Goodix>>> setmode: idle
   read    4 -  0000: a0 07 00 a7
-
   read    7 -  0000: a2 04 00 01 00 08 fb
-
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x7-0-0x2-1000-0
  write    4 -  0000: a0 06 00 a6
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x70, cfg flag 0x7
+ Goodix>>> MCU has no config
  write    6 -  0000: 70 03 00 14 00 23
-
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: b0 03 00 70 07 80
-
+ Goodix>>> Dac sent::0x380bb500b300b300
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x9-4-0x8-1000-0
  write    4 -  0000: a0 0c 00 ac
-
  write   12 -  0000: 98 09 00 38 0b b5 00 b3 00 b3 00 ab
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x98, cfg flag 0x7
+ Goodix>>> MCU has no config
+ Goodix>>> recvd data cmd-len: 0x98-3
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: b0 03 00 98 07 58
-
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: 98 03 00 01 00 0e
-
+ Goodix>>> wrote down dac 0xb38, dac1 0xb5,dac2 0xb3, dac3 0xb3
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x9-0-0xe0-1000-0
  write    4 -  0000: a0 e4 00 84
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x90, cfg flag 0x7
+ Goodix>>> MCU has no config
  write  228 -  0000: 90 e1 00 70 11 74 85 00 85 2c b1 18 c9 14 dd 00
  write  228 -  0010: dd 00 dd 00 ba 00 01 80 ca 00 04 00 84 00 15 b3
  write  228 -  0020: 86 00 00 c4 88 00 00 ba 8a 00 00 b2 8c 00 00 aa
@@ -197,105 +414,494 @@
  write  228 -  00c0: 64 00 19 00 66 00 03 00 7c 00 00 58 2a 01 08 00
  write  228 -  00d0: 52 00 08 00 54 00 00 01 66 00 03 00 7c 00 00 58
  write  228 -  00e0: 00 53 66 8f
-
+ Goodix>>> recvd data cmd-len: 0x90-3
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: b0 03 00 90 07 60
-
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: 90 03 00 01 00 16
-
+ Goodix>>> exit, ret 1
+ Goodix>>> to set state to DEVICE_ENABLE
+ Goodix>>> to set state from 3 to 1
+ Goodix>>> OTP data valid, download config 1
+ Goodix>>> otp_valid 1, have config 1
+ Goodix>>> exit return 1, inited 1
+ Goodix>>> to set state to DEVICE_ACTION
+ Goodix>>> to set state from 1 to 3
+ Goodix>>> besdenable:1
+ Goodix>>> to set state to DEVICE_ENABLE
+ Goodix>>> to set state from 3 to 1
+ Goodix>>> Init Device Done Successfully
+ Goodix>>> Init Device Success
+ Goodix>>> tls handshake flag is marked to false
+ Goodix>>> ---- enter
+ Goodix>>> CONFIG DATA: time_wait_for_tls 1100, time_wait_for_pov 2000
+ Goodix>>> enter
+ Goodix>>> tls init...
+ Goodix>>> enter 32
+ Goodix>>> => tlslib_server_init
+ Goodix>>> => tlslib_server_exit.
+ Goodix>>> <= tlslib_server_exit.
+ ret:0
+ Goodix>>> exit with ret:0
+ Goodix>>> TLS Init Success, Set tls inited to TRUE
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0xd-0-0x2-0-0
  write    4 -  0000: a0 06 00 a6
-
+ Goodix>>> !!not to wait for ack
  write    6 -  0000: d1 03 00 00 00 d7
-
+ Goodix>>> enter
   read    4 -  0000: b0 34 00 e4
-
+ Goodix>>>  ---- pack len: 52
+ Goodix>>> enter
+ Goodix>>> tls handshake package, state: 0
+ Goodix>>> TLS LOG: => read
+ Goodix>>> TLS LOG: => handshake
+ Goodix>>> TLS LOG: server state: 0
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: server state: 1
+ Goodix>>> TLS LOG: => flush output
   read   52 -  0000: 16 03 03 00 2f 01 00 00 2b 03 03 2d f4 51 58 cf
   read   52 -  0010: 8c b1 40 46 f6 b5 4b 29 31 03 47 04 5b 70 30 b4
   read   52 -  0020: 5d fd 20 78 7f 8b 1a d8 59 29 50 00 00 04 00 a8
   read   52 -  0030: 00 ff 01 00
-
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: => parse client hello
+ Goodix>>> TLS LOG: => fetch input
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> enter, tls inited 1
+ Goodix>>> bytes to read: 5, bytes left: 52
+ Goodix>>> bytes read: 5, bytes left: 47
+ Goodix>>> recv ret:5.
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 5 (-0xfffffffb)
+ Goodix>>> TLS LOG: <= fetch input
+ Goodix>>> TLS LOG: => fetch input
+ Goodix>>> TLS LOG: in_left: 5, nb_want: 52
+ Goodix>>> enter, tls inited 1
+ Goodix>>> bytes to read: 47, bytes left: 47
+ Goodix>>> bytes read: 47, bytes left: 0
+ Goodix>>> recv ret:47.
+ Goodix>>> TLS LOG: in_left: 5, nb_want: 52
+ Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 47 (-0xffffffd1)
+ Goodix>>> TLS LOG: <= fetch input
+ Goodix>>> TLS LOG: selected ciphersuite: TLS-PSK-WITH-AES-128-GCM-SHA256
+ Goodix>>> TLS LOG: <= parse client hello
+ Goodix>>> TLS LOG: server state: 2
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: => write server hello
+ Goodix>>> TLS LOG: => write handshake message
+ Goodix>>> TLS LOG: => write record
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: message length: 86, out_left: 86
+ Goodix>>> enter, tls inited 1
+ Goodix>>> SENT DATA LEN: 86, 90
  write    4 -  0000: b0 56 00 06
-
+ Goodix>>> tls init...done within 31ms, system slow index 2, time for checking tls-hand-shake 1100ms, time_tls_handshake:2200
  write   86 -  0000: 16 03 03 00 51 02 00 00 4d 03 03 4d 0c e6 59 6e
  write   86 -  0010: a4 73 8a c9 72 e5 d7 8d 88 00 80 11 a8 02 a7 2c
  write   86 -  0020: 05 d8 f5 65 59 cd 6b f7 d1 e5 7e 20 d8 1d 9a 51
  write   86 -  0030: 97 27 f1 d8 d4 1f f3 5d 63 1b 78 16 7b 05 19 bd
  write   86 -  0040: 89 a9 c8 36 62 b2 93 1d c5 7f 36 00 00 a8 00 00
  write   86 -  0050: 05 ff 01 00 01 00
-
+ Goodix>>> exit len 86
+ Goodix>>> sent ret:86.
+ Goodix>>> TLS LOG: ssl->f_send() returned 86 (-0xffffffaa)
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: <= write record
+ Goodix>>> TLS LOG: <= write handshake message
+ Goodix>>> TLS LOG: <= write server hello
+ Goodix>>> TLS LOG: server state: 3
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: => write certificate
+ Goodix>>> TLS LOG: <= skip write certificate
+ Goodix>>> TLS LOG: server state: 4
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: => write server key exchange
+ Goodix>>> TLS LOG: <= skip write server key exchange
+ Goodix>>> TLS LOG: server state: 5
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: => write certificate request
+ Goodix>>> TLS LOG: <= skip write certificate request
+ Goodix>>> TLS LOG: server state: 6
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: => write server hello done
+ Goodix>>> TLS LOG: => write handshake message
+ Goodix>>> TLS LOG: => write record
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: message length: 9, out_left: 9
+ Goodix>>> enter, tls inited 1
+ Goodix>>> SENT DATA LEN: 9, 13
  write    4 -  0000: b0 09 00 b9
-
+ Goodix>>> enter
  write    9 -  0000: 16 03 03 00 04 0e 00 00 00
-
   read    4 -  0000: b0 1a 00 ca
-
   read   26 -  0000: 16 03 03 00 15 10 00 00 11 00 0f 43 6c 69 65 6e
   read   26 -  0010: 74 5f 69 64 65 6e 74 69 74 79
-
+ Goodix>>> enter
   read    4 -  0000: b0 06 00 b6
-
   read    6 -  0000: 14 03 03 00 01 01
-
+ Goodix>>> exit len 9
+ Goodix>>> sent ret:9.
+ Goodix>>> TLS LOG: ssl->f_send() returned 9 (-0xfffffff7)
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: <= write record
+ Goodix>>> TLS LOG: <= write handshake message
+ Goodix>>> TLS LOG: <= write server hello done
+ Goodix>>> enter
+ Goodix>>> TLS LOG: server state: 7
   read    4 -  0000: b0 2d 00 dd
-
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: => parse certificate
+ Goodix>>> TLS LOG: <= skip parse certificate
+ Goodix>>> TLS LOG: server state: 8
   read   45 -  0000: 16 03 03 00 28 00 00 00 00 00 00 00 00 b7 f2 4c
   read   45 -  0010: 73 94 8d 2b 4f 92 4a 6c 8c c8 3c 47 da 32 ad cc
   read   45 -  0020: 25 62 f7 cc 66 87 09 ce 24 17 4f ef 51
-
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: => parse client key exchange
+ Goodix>>> TLS LOG: => read record
+ Goodix>>> TLS LOG: => fetch input
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> enter, tls inited 1
+ Goodix>>> bytes to read: 5, bytes left: 0
+ Goodix>>> data not enough
+ Goodix>>> bytes read: 0, bytes left: 0
+ Goodix>>> recv ret:0.
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 0 (-0x0000)
+ Goodix>>> TLS LOG: mbedtls_ssl_fetch_input() returned -29312 (-0x7280)
+ Goodix>>> TLS LOG: ssl_get_next_record() returned -29312 (-0x7280)
+ Goodix>>> TLS LOG: mbedtls_ssl_read_record() returned -29312 (-0x7280)
+ Goodix>>> TLS LOG: <= handshake
+ Goodix>>> TLS LOG: mbedtls_ssl_handshake() returned -29312 (-0x7280)
+ Goodix>>> tlslib_read error ret(abs): 0x7280, meaning:SSL - The connection indicated an EOF.
+ Goodix>>> enter
+ Goodix>>> TLS now IN handshake state:8.
+ Goodix>>> <= tlslib_read exit with ret:-29312 tls server state:8.
+ Goodix>>> exit
+ Goodix>>>  ---- pack len: 26
+ Goodix>>> enter
+ Goodix>>> tls handshake package, state: 8
+ Goodix>>> TLS LOG: => read
+ Goodix>>> TLS LOG: => handshake
+ Goodix>>> TLS LOG: server state: 8
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: => parse client key exchange
+ Goodix>>> TLS LOG: => read record
+ Goodix>>> TLS LOG: => fetch input
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> enter, tls inited 1
+ Goodix>>> bytes to read: 5, bytes left: 26
+ Goodix>>> bytes read: 5, bytes left: 21
+ Goodix>>> recv ret:5.
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 5 (-0xfffffffb)
+ Goodix>>> TLS LOG: <= fetch input
+ Goodix>>> TLS LOG: => fetch input
+ Goodix>>> TLS LOG: in_left: 5, nb_want: 26
+ Goodix>>> enter, tls inited 1
+ Goodix>>> bytes to read: 21, bytes left: 21
+ Goodix>>> bytes read: 21, bytes left: 0
+ Goodix>>> recv ret:21.
+ Goodix>>> TLS LOG: in_left: 5, nb_want: 26
+ Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 21 (-0xffffffeb)
+ Goodix>>> TLS LOG: <= fetch input
+ Goodix>>> TLS LOG: <= read record
+ Goodix>>> TLS LOG: => derive keys
+ Goodix>>> TLS LOG: <= derive keys
+ Goodix>>> TLS LOG: <= parse client key exchange
+ Goodix>>> TLS LOG: server state: 9
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: => parse certificate verify
+ Goodix>>> TLS LOG: <= skip parse certificate verify
+ Goodix>>> TLS LOG: server state: 10
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: => parse change cipher spec
+ Goodix>>> TLS LOG: => read record
+ Goodix>>> TLS LOG: => fetch input
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> enter, tls inited 1
+ Goodix>>> bytes to read: 5, bytes left: 0
+ Goodix>>> data not enough
+ Goodix>>> bytes read: 0, bytes left: 0
+ Goodix>>> recv ret:0.
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 0 (-0x0000)
+ Goodix>>> TLS LOG: mbedtls_ssl_fetch_input() returned -29312 (-0x7280)
+ Goodix>>> TLS LOG: ssl_get_next_record() returned -29312 (-0x7280)
+ Goodix>>> TLS LOG: mbedtls_ssl_read_record() returned -29312 (-0x7280)
+ Goodix>>> TLS LOG: <= handshake
+ Goodix>>> TLS LOG: mbedtls_ssl_handshake() returned -29312 (-0x7280)
+ Goodix>>> tlslib_read error ret(abs): 0x7280, meaning:SSL - The connection indicated an EOF.
+ Goodix>>> enter
+ Goodix>>> TLS now IN handshake state:10.
+ Goodix>>> <= tlslib_read exit with ret:-29312 tls server state:10.
+ Goodix>>> exit
+ Goodix>>>  ---- pack len: 6
+ Goodix>>> enter
+ Goodix>>> tls handshake package, state: 10
+ Goodix>>> TLS LOG: => read
+ Goodix>>> TLS LOG: => handshake
+ Goodix>>> TLS LOG: server state: 10
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: => parse change cipher spec
+ Goodix>>> TLS LOG: => read record
+ Goodix>>> TLS LOG: => fetch input
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> enter, tls inited 1
+ Goodix>>> bytes to read: 5, bytes left: 6
+ Goodix>>> bytes read: 5, bytes left: 1
+ Goodix>>> recv ret:5.
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 5 (-0xfffffffb)
+ Goodix>>> TLS LOG: <= fetch input
+ Goodix>>> TLS LOG: => fetch input
+ Goodix>>> TLS LOG: in_left: 5, nb_want: 6
+ Goodix>>> enter, tls inited 1
+ Goodix>>> bytes to read: 1, bytes left: 1
+ Goodix>>> bytes read: 1, bytes left: 0
+ Goodix>>> recv ret:1.
+ Goodix>>> TLS LOG: in_left: 5, nb_want: 6
+ Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 1 (-0xffffffff)
+ Goodix>>> TLS LOG: <= fetch input
+ Goodix>>> TLS LOG: <= read record
+ Goodix>>> TLS LOG: <= parse change cipher spec
+ Goodix>>> TLS LOG: server state: 11
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: => parse finished
+ Goodix>>> TLS LOG: => calc  finished tls sha256
+ Goodix>>> TLS LOG: <= calc  finished
+ Goodix>>> TLS LOG: => read record
+ Goodix>>> TLS LOG: => fetch input
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> enter, tls inited 1
+ Goodix>>> tls handshake already started
+ Goodix>>> bytes to read: 5, bytes left: 0
+ Goodix>>> TLS Handshake Started, waif for TLS handshake done(2200-0)...
+ Goodix>>> data not enough
+ Goodix>>> bytes read: 0, bytes left: 0
+ Goodix>>> recv ret:0.
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 0 (-0x0000)
+ Goodix>>> TLS LOG: mbedtls_ssl_fetch_input() returned -29312 (-0x7280)
+ Goodix>>> TLS LOG: ssl_get_next_record() returned -29312 (-0x7280)
+ Goodix>>> TLS LOG: mbedtls_ssl_read_record() returned -29312 (-0x7280)
+ Goodix>>> TLS LOG: <= handshake
+ Goodix>>> TLS LOG: mbedtls_ssl_handshake() returned -29312 (-0x7280)
+ Goodix>>> tlslib_read error ret(abs): 0x7280, meaning:SSL - The connection indicated an EOF.
+ Goodix>>> enter
+ Goodix>>> TLS now IN handshake state:11.
+ Goodix>>> <= tlslib_read exit with ret:-29312 tls server state:11.
+ Goodix>>> exit
+ Goodix>>>  ---- pack len: 45
+ Goodix>>> enter
+ Goodix>>> tls handshake package, state: 11
+ Goodix>>> TLS LOG: => read
+ Goodix>>> TLS LOG: => handshake
+ Goodix>>> TLS LOG: server state: 11
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: => parse finished
+ Goodix>>> TLS LOG: => calc  finished tls sha256
+ Goodix>>> TLS LOG: <= calc  finished
+ Goodix>>> TLS LOG: => read record
+ Goodix>>> TLS LOG: => fetch input
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> enter, tls inited 1
+ Goodix>>> bytes to read: 5, bytes left: 45
+ Goodix>>> bytes read: 5, bytes left: 40
+ Goodix>>> recv ret:5.
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 5 (-0xfffffffb)
+ Goodix>>> TLS LOG: <= fetch input
+ Goodix>>> TLS LOG: => fetch input
+ Goodix>>> TLS LOG: in_left: 5, nb_want: 45
+ Goodix>>> enter, tls inited 1
+ Goodix>>> bytes to read: 40, bytes left: 40
+ Goodix>>> bytes read: 40, bytes left: 0
+ Goodix>>> recv ret:40.
+ Goodix>>> TLS LOG: in_left: 5, nb_want: 45
+ Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 40 (-0xffffffd8)
+ Goodix>>> TLS LOG: <= fetch input
+ Goodix>>> TLS LOG: => decrypt buf
+ Goodix>>> TLS LOG: <= decrypt buf
+ Goodix>>> TLS LOG: <= read record
+ Goodix>>> TLS LOG: <= parse finished
+ Goodix>>> TLS LOG: server state: 12
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: => write change cipher spec
+ Goodix>>> TLS LOG: => write handshake message
+ Goodix>>> TLS LOG: => write record
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: message length: 6, out_left: 6
+ Goodix>>> enter, tls inited 1
+ Goodix>>> SENT DATA LEN: 6, 10
  write    4 -  0000: b0 06 00 b6
-
  write    6 -  0000: 14 03 03 00 01 01
-
+ Goodix>>> exit len 6
+ Goodix>>> sent ret:6.
+ Goodix>>> TLS LOG: ssl->f_send() returned 6 (-0xfffffffa)
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: <= write record
+ Goodix>>> TLS LOG: <= write handshake message
+ Goodix>>> TLS LOG: <= write change cipher spec
+ Goodix>>> TLS LOG: server state: 13
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: => write finished
+ Goodix>>> TLS LOG: => calc  finished tls sha256
+ Goodix>>> TLS LOG: <= calc  finished
+ Goodix>>> TLS LOG: => write handshake message
+ Goodix>>> TLS LOG: => write record
+ Goodix>>> TLS LOG: => encrypt buf
+ Goodix>>> TLS LOG: <= encrypt buf
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: message length: 45, out_left: 45
+ Goodix>>> enter, tls inited 1
+ Goodix>>> SENT DATA LEN: 45, 49
  write    4 -  0000: b0 2d 00 dd
-
  write   45 -  0000: 16 03 03 00 28 00 00 00 00 00 00 00 00 3a 83 4d
  write   45 -  0010: 56 f8 35 06 ab 29 b4 2a 1a 6b b0 db ee 96 66 93
  write   45 -  0020: da 70 04 33 d7 9a be 66 c9 79 27 6f e0
-
+ Goodix>>> exit len 45
+ Goodix>>> sent ret:45.
+ Goodix>>> TLS LOG: ssl->f_send() returned 45 (-0xffffffd3)
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: <= write record
+ Goodix>>> TLS LOG: <= write handshake message
+ Goodix>>> TLS LOG: <= write finished
+ Goodix>>> TLS LOG: server state: 14
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: handshake: done
+ Goodix>>> TLS LOG: server state: 15
+ Goodix>>> TLS LOG: => flush output
+ Goodix>>> TLS LOG: <= flush output
+ Goodix>>> TLS LOG: <= handshake
+ Goodix>>> TLS LOG: => read record
+ Goodix>>> TLS LOG: => fetch input
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> enter, tls inited 1
+ Goodix>>> bytes to read: 5, bytes left: 0
+ Goodix>>> data not enough
+ Goodix>>> bytes read: 0, bytes left: 0
+ Goodix>>> recv ret:0.
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 0 (-0x0000)
+ Goodix>>> TLS LOG: mbedtls_ssl_fetch_input() returned -29312 (-0x7280)
+ Goodix>>> TLS LOG: ssl_get_next_record() returned -29312 (-0x7280)
+ Goodix>>> enter
+ Goodix>>> TLS now IN handshake state:16.
+ Goodix>>> TLS handshake over successfully.
+ Goodix>>> TLS Connection Ready
+ Goodix>>> <= tlslib_read exit with ret:0 tls server state:16.
+ Goodix>>> exit
+ Goodix>>> exit
+ Goodix>>> exit
+ Goodix>>> exit
+ Goodix>>> exit
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0xd-2-0x2-1000-0
  write    4 -  0000: a0 06 00 a6
-
  write    6 -  0000: d4 03 00 00 00 d3
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0xd4, cfg flag 0x1
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: b0 03 00 d4 01 22
-
+ Goodix>>> Client TLS connection setup 
+ Goodix>>> entry
+ Goodix>>> outputBufferSize:0x62c, struct size:0x62c
+ Goodix>>> exit
+ Goodix>>> tls handshake done (server side), 375ms(since start of tls init)
+ Goodix>>> mcu-state TIMESTAMP 0xc314
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-7-0x5-0-0
  write    4 -  0000: a0 09 00 a9
-
+ Goodix>>> !!not to wait for ack
  write    9 -  0000: af 06 00 55 14 c3 00 00 ca
-
+ Goodix>>> recvd data cmd-len: 0xae-23
+ Goodix>>> --- cmd: other
+ Goodix>>> pov 1, pba 0, tls-client-server-lock 1-1-0-0, have config 1, pov valid 0
   read    4 -  0000: a0 1a 00 ba
-
   read   26 -  0000: ae 17 00 04 06 30 00 00 00 00 00 20 00 00 00 00
   read   26 -  0010: 01 00 01 04 25 02 00 00 00 5e
-
+ Goodix>>> mcu state::0x04063000000000002000000000010001042502000000
+ Goodix>>> mcu state: version:4, isPOVImageValid:0, isTlsConnected:1, isTlsUsed:1, isLocked:0, availImgCnt:0, povImgCnt:3
+ Goodix>>> mcu state: sensor_data_int_timeout_count:0, image_crc_fail_count:0, povTouchAccidentCnt:0x0, readChipIDCnt:0, sensorExceptionFlag:0, sensorUnexpectedIntCnt:0, to_master_timeout_count:0
+ Goodix>>> mcu state: psk_len:32, psk_check_fail:0, psk_write_fail:0, ec_falling_count:0, system_up_stop_cnt:0, system_down_pov_stop_cnt:0, system_up_cleared_pov_count:0
+ Goodix>>> mcu state: pov_wake_by_fp:1, pov_wake_by_ec:0, pov_procedure:0x0, config_down_flag:1, sensor_chip_id:0x2504, sensor_type:2, pov_capture_count:0, normal_capture_count:0, otp_mcu_check_status:0x0
+ Goodix>>> tls connected success confirmed
+ Goodix>>> tls handshake done (client/mcu side)
+ Goodix>>> exit, ret 1, bResetMCU 0, tls inited 1
+ Goodix>>> TLS Handshake Success
+ Goodix>>> power not lost
+ Goodix>>> Init: update all base...
+ Goodix>>> read data from file 13520 bytes
+ Goodix>>> read 0-13520 bytes from C:\ProgramData\Goodix\goodix.dat
+ Goodix>>> check crc :Crchost:0x82fdcaa1----crcchip:0x0
+ Goodix>>> imagebase exist: 0
+ Goodix>>> enter
+ Goodix>>> gf_get_fdtbase 0
+ Goodix>>> enter
+ Goodix>>> enter, Mode 3, Type 3, base_type 1
+ Goodix>>> setmode: Fdt manual
+ Goodix>>> switch to FDT mode 3
+ Goodix>>> data sent::0x000000000000000000000000
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-3-0xe-1000-0
  write    4 -  0000: a0 12 00 b2
-
  write   18 -  0000: 36 0f 00 09 01 00 00 00 00 00 00 00 00 00 00 00
  write   18 -  0010: 00 5b
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x36, cfg flag 0x1
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: b0 03 00 36 01 c0
-
+ Goodix>>> recvd data cmd-len: 0x36-17
+ Goodix>>> --- cmd: fdt
+ Goodix>>> IrqStatus:0x100 cmd1 3
   read    4 -  0000: a0 14 00 b4
-
   read   20 -  0000: 36 11 00 00 01 00 00 63 01 8a 01 4d 01 72 01 51
   read   20 -  0010: 01 70 01 ef
-
+ Goodix>>> IRQ for fdt-manual, get fdt-up base, current mode is fdt-manual, touchflag 0x0
+ Goodix>>> received fdt base::0x63018a014d01720151017001
+ Goodix>>> get fdt-down base, current mode is fdt-manual
+ Goodix>>> fdt base:0x63018a014d01720151017001
+:0xb180
+:0xc580
+:0xa680
+ Goodix>>> Entry
+:0xb980
+ Goodix>>> Exit
+:0xa880
+:0xb880
+ Goodix>>> exit
+ Goodix>>> gf_get_navbase
+ Goodix>>> enter, Mode 5, Type 0, base_type 0
+ Goodix>>> Entry
+ Goodix>>> setmode: nav
+ Goodix>>> FP Info ready
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x5-0-0x2-1000-0
+ Goodix>>> FP Info ready now, chipid:0x2504, sensorType:12, col:80, row:64
  write    4 -  0000: a0 06 00 a6
-
  write    6 -  0000: 50 03 00 01 00 56
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x50, cfg flag 0x1
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: b0 03 00 50 01 a6
-
   read    4 -  0000: a0 6d 09 16
-
+ Goodix>>> recvd data cmd-len: 0x50-2410
+ Goodix>>> --- recv nav data......length:2410
+ Goodix>>> 2404 2404 3200
   read 2413 -  0000: 50 6a 09 00 00 00 00 00 07 fc bf 80 93 48 c9 bf
   read 2413 -  0010: 1f a0 a4 8a fa 23 33 ab a9 ca ca e8 1f a9 b0 8b
   read 2413 -  0020: 8b 03 4f b3 b9 fb 4b 80 b7 b3 bb 4b bb 6c e0 be
@@ -447,43 +1053,65 @@
   read 2413 -  0940: b4 ba be 4b 0b 70 e7 b3 bc 8b 3b 7c eb b8 ba 7b
   read 2413 -  0950: cb 80 eb bc bb fb fb b8 a8 b7 ba bb bb 98 8f ba
   read 2413 -  0960: b3 fb 8b 34 43 a8 94 39 ba 01 55 35 88
-
+ Goodix>>> Regroup pixels:1600
+ Goodix>>> nav crc check ok
+ Goodix>>> gf_get_fdtbase 1
+ Goodix>>> enter
+ Goodix>>> enter, Mode 3, Type 3, base_type 1
+ Goodix>>> setmode: Fdt manual
+ Goodix>>> switch to FDT mode 3
+ Goodix>>> data sent::0x80b180c580a680b980a880b8
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-3-0xe-1000-0
  write    4 -  0000: a0 12 00 b2
-
  write   18 -  0000: 36 0f 00 09 01 80 b1 80 c5 80 a6 80 b9 80 a8 80
  write   18 -  0010: b8 26
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x36, cfg flag 0x1
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: b0 03 00 36 01 c0
-
+ Goodix>>> recvd data cmd-len: 0x36-17
   read    4 -  0000: a0 14 00 b4
-
+ Goodix>>> --- cmd: fdt
+ Goodix>>> IrqStatus:0x100 cmd1 3
+ Goodix>>> IRQ for fdt-manual, get fdt-up base, current mode is fdt-manual, touchflag 0x0
+ Goodix>>> received fdt base::0x620188014e01730152017201
+ Goodix>>> get fdt-down base, current mode is fdt-manual
   read   20 -  0000: 36 11 00 00 01 00 00 62 01 88 01 4e 01 73 01 52
   read   20 -  0010: 01 72 01 ed
-
+ Goodix>>> fdt base:0x620188014e01730152017201
+:0xb180
+:0xc480
+:0xa780
+:0xb980
+:0xa980
+:0xb980
+ Goodix>>> exit
+ Goodix>>> fdt_base1::0x620188014e017301520172010000000000000000000000000000000000000000
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x8-1-0x5-1000-0
  write    4 -  0000: a0 09 00 a9
-
  write    9 -  0000: 82 06 00 00 82 00 02 00 9e
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x82, cfg flag 0x1
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: b0 03 00 82 01 74
-
+ Goodix>>> recvd data cmd-len: 0x82-3
+ Goodix>>> --- cmd: regrw
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: 82 03 00 80 1b 8a
-
+ Goodix>>> fdt_delta 0x1b
+ Goodix>>> enter, tls-client-server 1-1-1
+ Goodix>>> g_halcontext.sensor_ops.SetMode:0x00007FFDE5D5BB50.
+ Goodix>>> enter, Mode 2, Type 0, base_type 0
+ Goodix>>> setmode: Image
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x2-0-0x2-1000-0
  write    4 -  0000: a0 06 00 a6
-
  write    6 -  0000: 20 03 00 01 00 86
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x20, cfg flag 0x1
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: b0 03 00 20 01 d6
-
   read    4 -  0000: b0 2a 1e f8
-
+ Goodix>>> enter
   read 7722 -  0000: 17 03 03 1e 25 00 00 00 00 00 00 00 01 9b 88 e8
   read 7722 -  0010: 29 d0 d8 7b 63 bf 0d 0c b6 88 e2 e3 b6 4b 2d 81
   read 7722 -  0020: 42 45 91 b6 da 4b e8 8c 01 2c 05 84 8d 8f cc ee
@@ -651,6 +1279,8 @@
   read 7722 -  0a40: 87 5b 8b 40 e5 c4 3d 11 84 9d 7e db 5e 8a 68 d0
   read 7722 -  0a50: 8c 15 02 dd e4 71 06 7e 1c 10 29 a4 2c 45 03 5d
   read 7722 -  0a60: 39 05 ef ef e6 d9 86 9d 8a c4 c8 f4 43 61 1e a9
+ Goodix>>>  ---- pack len: 7722
+ Goodix>>> enter
   read 7722 -  0a70: d0 b6 37 e9 0e b9 79 12 63 4b 93 98 ca 94 12 17
   read 7722 -  0a80: 1f d5 72 2d 43 6e b2 22 cb 54 cb ba c5 66 7d 0f
   read 7722 -  0a90: 93 1b 67 dd ef 9a ac ae be 13 e5 5b e6 7f ae 12
@@ -967,17 +1597,89 @@
   read 7722 -  1e00: 0d 30 d0 61 7f ac 1c 4e df 13 94 7a 99 8f e6 63
   read 7722 -  1e10: 1d 36 5e 57 63 fc bf 71 b9 23 8b 6d 4e ac 91 40
   read 7722 -  1e20: cb dc fd b9 c8 22 b4 10 20 a3
-
+ Goodix>>> TLS LOG: => read
+ Goodix>>> TLS LOG: => read record
+ Goodix>>> TLS LOG: => fetch input
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> enter, tls inited 1
+ Goodix>>> bytes to read: 5, bytes left: 7722
+ Goodix>>> bytes read: 5, bytes left: 7717
+ Goodix>>> recv ret:5.
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 5 (-0xfffffffb)
+ Goodix>>> TLS LOG: <= fetch input
+ Goodix>>> TLS LOG: => fetch input
+ Goodix>>> TLS LOG: in_left: 5, nb_want: 7722
+ Goodix>>> enter, tls inited 1
+ Goodix>>> bytes to read: 7717, bytes left: 7717
+ Goodix>>> bytes read: 7717, bytes left: 0
+ Goodix>>> recv ret:7717.
+ Goodix>>> TLS LOG: in_left: 5, nb_want: 7722
+ Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 7717 (-0xffffe1db)
+ Goodix>>> timeout, d0exit start = 0
+ Goodix>>> TLS LOG: <= fetch input
+ Goodix>>> TLS LOG: => decrypt buf
+ Goodix>>> TLS LOG: <= decrypt buf
+ Goodix>>> TLS LOG: <= read record
+ Goodix>>> TLS LOG: <= read
+ Goodix>>> enter
+ Goodix>>> TLS now IN handshake state:16.
+ Goodix>>> <= tlslib_read exit with ret:7693 tls server state:16.
+ Goodix>>> ---- tls 7693 bytes recv
+ Goodix>>> recvd data cmd-len: 0x20-7690
+ Goodix>>> --- cmd: image
+ Goodix>>> 7684 7684 10240
+ Goodix>>> Regroup pixels:5120
+ Goodix>>> receive non-POV image, length:7690
+ Goodix>>> image crc check Ok
+ Goodix>>> exit
+ Goodix>>> exit
+ Goodix>>> <= with ret(BOOL):1.
+ Goodix>>> gf_get_fdtbase 2
+ Goodix>>> enter
+ Goodix>>> enter, Mode 3, Type 3, base_type 1
+ Goodix>>> setmode: Fdt manual
+ Goodix>>> switch to FDT mode 3
+ Goodix>>> data sent::0x80b180c480a780b980a980b9
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-3-0xe-1000-0
  write    4 -  0000: a0 12 00 b2
-
  write   18 -  0000: 36 0f 00 09 01 80 b1 80 c4 80 a7 80 b9 80 a9 80
  write   18 -  0010: b9 24
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x36, cfg flag 0x1
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: b0 03 00 36 01 c0
-
+ Goodix>>> recvd data cmd-len: 0x36-17
   read    4 -  0000: a0 14 00 b4
-
+ Goodix>>> --- cmd: fdt
+ Goodix>>> IrqStatus:0x100 cmd1 3
+ Goodix>>> IRQ for fdt-manual, get fdt-up base, current mode is fdt-manual, touchflag 0x0
+ Goodix>>> received fdt base::0x620188014e01720152017301
+ Goodix>>> get fdt-down base, current mode is fdt-manual
   read   20 -  0000: 36 11 00 00 01 00 00 62 01 88 01 4e 01 72 01 52
   read   20 -  0010: 01 73 01 ed
+ Goodix>>> fdt base:0x620188014e01720152017301
+:0xb180
+:0xc480
+:0xa780
+:0xb980
+:0xa980
+:0xb980
+ Goodix>>> exit
+ Goodix>>> gf_get_fdtbase 2 finshed
+ Goodix>>> --- base not exist, update imagebase
+ Goodix>>> nav buffer size:3200 buffer size:10240
+ Goodix>>> save imagebase 
+ Goodix>>> fail to create dir C:\ProgramData\Goodix, errno 17
+ Goodix>>> write 13520-13520 bytes to C:\ProgramData\Goodix\goodix.dat
+ Goodix>>> exit size:13520(dec)
+ Goodix>>> exit, base_is_valid 0, ren 1
+ Goodix>>> update all base suc, Set FDT normal base
+ Goodix>>> Init: update all base have done
+ Goodix>>> !!Init: Initialization done successfully
+ Goodix>>> --- Init: end
+ Goodix>>> target state: 4, power action: 0
+ Goodix>>> no pov data
+ Goodix>>> enter
+ Goodix>>> suspend all
+ Goodix>>> enter S0 idle
