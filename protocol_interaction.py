@@ -8,7 +8,7 @@ from spidev import SpiDev
 from util_fmt import Colors, log, to_hex_string, to_utf_string, format_validity
 
 
-def make_protocol_packet(packet_type: int, payload_length: int | list) -> bytearray:
+def make_protocol_packet(packet_type: int, payload_length: int) -> bytearray:
     """
     packet_type
         0xA0
@@ -46,15 +46,15 @@ def extract_length(packet: list[int] | bytearray) -> int:
 
 
 def perform_read(spi: SpiDev) -> list[int]:
-    log(Colors.LIGHT_BLUE, "reading from device...")
+    log(Colors.LIGHT_BLUE, log_prefix + "reading from device...")
     packet_1 = spi.readbytes(4)
     is_valid = is_checksum_valid(packet_1)
-    log(Colors.LIGHT_BLUE,
+    log(Colors.LIGHT_BLUE, log_prefix +
         f"\t- received packet 1 {format_validity(is_valid) + Colors.BLUE} : {to_hex_string(packet_1)}")
     length = extract_length(packet_1)
     packet_2 = spi.readbytes(length)
     is_valid = is_checksum_valid(packet_2)
-    log(Colors.LIGHT_BLUE,
+    log(Colors.LIGHT_BLUE, log_prefix +
         f"\t- received packet 2 {format_validity(is_valid) + Colors.BLUE} : {to_hex_string(packet_2)} | {to_utf_string(packet_2)}")
     return packet_2
 
@@ -65,12 +65,13 @@ def perform_write(spi: SpiDev, packet_type: int, payload: bytes | str | list[int
     elif isinstance(payload, list):
         payload = bytearray(payload)
 
-    log(Colors.LIGHT_PURPLE, "writing to device...")
+    log(Colors.LIGHT_PURPLE, log_prefix + "writing to device...")
     protocol_packet = make_protocol_packet(packet_type, len(payload))
     spi.writebytes(protocol_packet)
-    log(Colors.LIGHT_PURPLE, f"\t- protocol packet sent: {to_hex_string(protocol_packet)}")
+    log(Colors.LIGHT_PURPLE, log_prefix + f"\t- protocol packet sent: {to_hex_string(protocol_packet)}")
     spi.writebytes(payload)
-    log(Colors.LIGHT_PURPLE, f"\t- payload packet sent: {to_hex_string(payload)} | {to_utf_string(payload)}")
+    log(Colors.LIGHT_PURPLE, log_prefix +
+        f"\t-  payload packet sent: {to_hex_string(payload)} | {to_utf_string(payload)}")
 
 
 def perform_tx(spi: SpiDev, gpio_line: CdevGPIO, packet_type: int, payload: bytes | str | list) -> list[int]:
@@ -79,10 +80,14 @@ def perform_tx(spi: SpiDev, gpio_line: CdevGPIO, packet_type: int, payload: byte
     elif isinstance(payload, list):
         payload = bytearray(payload)
 
-    print("--------- perform write-read")
+    global log_prefix
+    log_prefix = "┃ "
+
+    print("┏━━━ read-write ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     ready_to_write_lock = threading.Lock()
     ready_to_write_lock.acquire()
     print("latch created")
+    print("┃ locks acquired")
 
     ir_thread = threading.Thread(target=interrupt_monitoring, args=(gpio_line, ready_to_write_lock))
     # ir_thread.daemon = True
@@ -92,15 +97,16 @@ def perform_tx(spi: SpiDev, gpio_line: CdevGPIO, packet_type: int, payload: byte
 
     perform_write(spi, packet_type, payload)
 
-    print("waiting for gpio interrupt...")
+    print("┃ waiting for gpio interrupt...")
     ir_thread.join(timeout=3)
     if ir_thread.is_alive():
         exit(1)
 
-    print("interrupt caught, execution goes on")
+    print("┃ interrupt caught, execution goes on")
 
     result = perform_read(spi)
-    print("--------- write-read done")
+    print("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+    log_prefix = ""
     return result
 
 
@@ -220,6 +226,8 @@ def main():
     spi.close()
     gpio_line.close()
 
+
+log_prefix = ''
 
 if __name__ == "__main__":
     main()
