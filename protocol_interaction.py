@@ -112,6 +112,7 @@ def perform_tx(spi: SpiDev, gpio_line: CdevGPIO, packet_type: int, payload: byte
 
 def interrupt_monitoring(gpio_line: periphery.CdevGPIO, ready_to_write_lock: threading.Lock):
     log(Colors.CYAN, "interrupt_monitoring started")
+    log(Colors.CYAN, "┃ interrupt_monitoring started")
     ready_to_write_lock.release()
     i = 1
     while True:
