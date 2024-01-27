@@ -158,11 +158,24 @@ def main():
     now_milliseconds = now.second * 1000 + now.microsecond // 1000
     millis = to_hex_string(now_milliseconds.to_bytes(2, 'little'))
 
-    #  write    9 -  0000: af 06 00 55 5c bf 00 00 86
-    #   read    4 -  0000: a0 1a 00 ba
-    #   read   26 -  0000: ae 17 00  [ 04 00 30 00 00 00 00 00(3) 20 00 00(2) 00 00 01 00 00 04 25 02 00 00 00 ] 65
-    #                                  \/ \/ \/ \/          \/    \/                \/    \/ \___/ \/
-    #                                   1  2                14    15                23    25   26  27
+    perform_tx(spi, gpio_line, 0xa0, 'af 06 00 55 5c bf 00 00 86')  # 5c bf = 0xbf5c - это секунды + миллисекунды
+    # - received packet 1 🟢 : A0 1A 00 BA
+    # - received packet 2 🔴 : AE 17 00 04 00 30 00 00 00 00 03 20 00 02 00 00 01 00 00 04 25 02 00 00 00 60
+    #                          AE 17 00 04 00 30 00 00 00 00 00 20 00 00 00 00 01 00 00 04 25 02 00 00 00 65
+
+    # w  9 - af 06 00 55 5c bf 00 00 86
+    # r  4 - a0 1a 00 ba
+    # r 26 - ae 17 00 [ 04 00 30 00 00 00 00 00 20 00 00 00 00 01 00 00 04 25 02 00 00 00 ] 65
+    #                   \/ \/ \/ \/          \/ \/    \/       \/ \/ \/ \___/ \/ \/ \/ \/
+    #                    1  2  3             14 15    17       23 24 25   26  27 28 29 30
+    # эталонный
+    # AE 17 00 [ 04 00 30 00 00 00 00 00 20 00 00 00 00 01 00 00 04 25 02 00 00 00 ] 65
+    # linux
+    # AE 17 00 [ 04 00 30 00 00 00 00 03 20 00 02 00 00 01 00 00 04 25 02 00 00 00 ] 60
+    # AE 17 00 [ 04 00 30 00 00 00 00 03 20 00 14 00 00 01 00 00 04 25 02 00 00 00 ] 4E
+    # AE 17 00 [ 04 00 30 00 00 00 00 03 20 00 15 00 00 01 00 00 04 25 02 00 00 00 ] 4D
+    # AE 17 00 [ 04 00 30 00 00 00 00 03 20 00 17 00 00 01 00 00 04 25 02 00 00 00 ] 4B
+    # AE 17 00   04 00 30 00 00 00 00 03 20 00 00 00 00 01 00 00 04 25 02 00 00 00   62
 
     #  1  version:4
 
@@ -171,8 +184,9 @@ def main():
     #  2  isTlsUsed:0           bit
     #  2  isLocked:0            bit
 
-    #     availImgCnt:0
-    #     povImgCnt:3
+    #  3  availImgCnt:0
+    #  3  povImgCnt:3
+
     #     sensor_data_int_timeout_count:0
     #     image_crc_fail_count:0
     #     povTouchAccidentCnt:0x0
@@ -185,31 +199,19 @@ def main():
     #     psk_check_fail:0
     #     psk_write_fail:0
     #     ec_falling_count:0
-    #     system_up_stop_cnt:0
+    #  17 system_up_stop_cnt:0
     #     system_down_pov_stop_cnt:0
     #     system_up_cleared_pov_count:0
     #  23 pov_wake_by_fp:1
     #     pov_wake_by_ec:0
-    #     pov_procedure:0x0
+    #  24 pov_procedure:0x0
     #  25 config_down_flag:0
     #  26 sensor_chip_id:0x2504
     #  27 sensor_type:2
-    #     pov_capture_count:0
-    #     normal_capture_count:0
-    #     otp_mcu_check_status:0x0
+    #  28 pov_capture_count:0
+    #  29 normal_capture_count:0
+    #  30 otp_mcu_check_status:0x0
 
-    # эталонный
-    # AE 17 00 [ 04 00 30 00 00 00 00 00 20 00 00 00 00 01 00 00 04 25 02 00 00 00 ] 65
-    # linux
-    # AE 17 00 [ 04 00 30 00 00 00 00 03 20 00 02 00 00 01 00 00 04 25 02 00 00 00 ] 60
-
-    now = datetime.now()
-    now_milliseconds = now.second * 1000 + now.microsecond // 1000
-    millis = to_hex_string(now_milliseconds.to_bytes(2, 'little'))
-
-    perform_tx(spi, gpio_line, 0xa0, 'af 06 00 55 5c bf 00 00 86')  # 5c bf = 0xbf5c - это секунды + миллисекунды
-    # - received packet 1 🟢 : A0 1A 00 BA
-    # - received packet 2 🔴 : AE 17 00 04 00 30 00 00 00 00 03 20 00 02 00 00 01 00 00 04 25 02 00 00 00 60
     # ----------------------------------------------------------------------------------------------------------------
     log(Colors.LIGHT_GREEN, "PSK INIT - get")
 
