@@ -152,73 +152,54 @@ def main():
 
     #  write    9 -  0000: af 06 00 55 5c bf 00 00 86
     #   read    4 -  0000: a0 1a 00 ba
-    #   read   26 -  0000: ae 17 00  [ 04 00 30 00 00 00 00 00 20 00 00 00 00 01 00 00 04 25 02 00 00 00 ] 65
+    #   read   26 -  0000: ae 17 00  [ 04 00 30 00 00 00 00 00(3) 20 00 00(2) 00 00 01 00 00 04 25 02 00 00 00 ] 65
+    #                                  \/ \/ \/ \/          \/    \/                \/    \/ \___/ \/
+    #                                   1  2                14    15                23    25   26  27
 
-    #  0x04003000000000002000000000010000042502000000
-    #  version:4
-    #  isPOVImageValid:0
-    #  isTlsConnected:0
-    #  isTlsUsed:0
-    #  isLocked:0
-    #  availImgCnt:0
-    #  povImgCnt:3
-    #  sensor_data_int_timeout_count:0
-    #  image_crc_fail_count:0
-    #  povTouchAccidentCnt:0x0
-    #  readChipIDCnt:0
-    #  sensorExceptionFlag:0
-    #  sensorUnexpectedIntCnt:0
-    #  to_master_timeout_count:0
-    #  psk_len:32
-    #  psk_check_fail:0
-    #  psk_write_fail:0
-    #  ec_falling_count:0
-    #  system_up_stop_cnt:0
-    #  system_down_pov_stop_cnt:0
-    #  system_up_cleared_pov_count:0
-    #  pov_wake_by_fp:1
-    #  pov_wake_by_ec:0
-    #  pov_procedure:0x0
-    #  config_down_flag:0
-    #  sensor_chip_id:0x2504
-    #  sensor_type:2
-    #  pov_capture_count:0
-    #  normal_capture_count:0
-    #  otp_mcu_check_status:0x0
+    #  1  version:4
 
-    #  0x04063000000000002000000000010001042502000000
-    #  version:4
-    #  isPOVImageValid:0
-    #  isTlsConnected:1
-    #  isTlsUsed:1
-    #  isLocked:0
-    #  availImgCnt:0
-    #  povImgCnt:3
-    #  sensor_data_int_timeout_count:0
-    #  image_crc_fail_count:0
-    #  povTouchAccidentCnt:0x0
-    #  readChipIDCnt:0
-    #  sensorExceptionFlag:0
-    #  sensorUnexpectedIntCnt:0
-    #  to_master_timeout_count:0
-    #  psk_len:32
-    #  psk_check_fail:0
-    #  psk_write_fail:0
-    #  ec_falling_count:0
-    #  system_up_stop_cnt:0
-    #  system_down_pov_stop_cnt:0
-    #  system_up_cleared_pov_count:0
-    #  pov_wake_by_fp:1
-    #  pov_wake_by_ec:0
-    #  pov_procedure:0x0
-    #  config_down_flag:1
-    #  sensor_chip_id:0x2504
-    #  sensor_type:2
-    #  pov_capture_count:0
-    #  normal_capture_count:0
-    #  otp_mcu_check_status:0x0
+    #  2  isPOVImageValid:0     bit
+    #  2  isTlsConnected:0      bit
+    #  2  isTlsUsed:0           bit
+    #  2  isLocked:0            bit
 
-    perform_tx(spi, gpio_line, 0xa0, 'af 06 00 55 5c bf 00 00 86')
+    #     availImgCnt:0
+    #     povImgCnt:3
+    #     sensor_data_int_timeout_count:0
+    #     image_crc_fail_count:0
+    #     povTouchAccidentCnt:0x0
+    #     readChipIDCnt:0
+
+    #     sensorExceptionFlag:0
+    #     sensorUnexpectedIntCnt:0
+    #     to_master_timeout_count:0
+    #  15 psk_len:32
+    #     psk_check_fail:0
+    #     psk_write_fail:0
+    #     ec_falling_count:0
+    #     system_up_stop_cnt:0
+    #     system_down_pov_stop_cnt:0
+    #     system_up_cleared_pov_count:0
+    #  23 pov_wake_by_fp:1
+    #     pov_wake_by_ec:0
+    #     pov_procedure:0x0
+    #  25 config_down_flag:0
+    #  26 sensor_chip_id:0x2504
+    #  27 sensor_type:2
+    #     pov_capture_count:0
+    #     normal_capture_count:0
+    #     otp_mcu_check_status:0x0
+
+    # эталонный
+    # AE 17 00 [ 04 00 30 00 00 00 00 00 20 00 00 00 00 01 00 00 04 25 02 00 00 00 ] 65
+    # linux
+    # AE 17 00 [ 04 00 30 00 00 00 00 03 20 00 02 00 00 01 00 00 04 25 02 00 00 00 ] 60
+
+    now = datetime.now()
+    now_milliseconds = now.second * 1000 + now.microsecond // 1000
+    millis = to_hex_string(now_milliseconds.to_bytes(2, 'little'))
+
+    perform_tx(spi, gpio_line, 0xa0, 'af 06 00 55 5c bf 00 00 86')  # 5c bf = 0xbf5c - это секунды + миллисекунды
     # - received packet 1 🟢 : A0 1A 00 BA
     # - received packet 2 🔴 : AE 17 00 04 00 30 00 00 00 00 03 20 00 02 00 00 01 00 00 04 25 02 00 00 00 60
     # ----------------------------------------------------------------------------------------------------------------
