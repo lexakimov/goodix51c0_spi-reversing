@@ -1,4 +1,5 @@
-import threading
+from datetime import datetime
+from threading import Lock, Thread
 from time import sleep
 
 import periphery
@@ -84,23 +85,22 @@ def perform_tx(spi: SpiDev, gpio_line: CdevGPIO, packet_type: int, payload: byte
     log_prefix = "┃ "
 
     print("┏━━━ read-write ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    ready_to_write_lock = threading.Lock()
-    ready_to_write_lock.acquire()
-    print("latch created")
+    ready_to_read_lock = Lock()
+    ready_to_read_lock.acquire()
     print("┃ locks acquired")
 
-    ir_thread = threading.Thread(target=interrupt_monitoring, args=(gpio_line, ready_to_write_lock))
-    # ir_thread.daemon = True
+    ir_thread = Thread(target=interrupt_monitoring, args=(gpio_line, ready_to_read_lock))
+    ir_thread.daemon = True
     ir_thread.start()
-    ready_to_write_lock.acquire()
-    sleep(0.01)  # delay so that the interrupt thread has time to enter gpio_line.read_event()
+    sleep(0.05)  # delay so that the interrupt thread has time to enter gpio_line.read_event()
 
     perform_write(spi, packet_type, payload)
 
     print("┃ waiting for gpio interrupt...")
-    ir_thread.join(timeout=3)
-    if ir_thread.is_alive():
-        exit(1)
+    ready_to_read_lock.acquire(timeout=3)
+    # ir_thread.join(timeout=3)
+    # if ir_thread.is_alive():
+    #     exit(1)
 
     print("┃ interrupt caught, execution goes on")
 
@@ -110,18 +110,17 @@ def perform_tx(spi: SpiDev, gpio_line: CdevGPIO, packet_type: int, payload: byte
     return result
 
 
-def interrupt_monitoring(gpio_line: periphery.CdevGPIO, ready_to_write_lock: threading.Lock):
-    log(Colors.CYAN, "interrupt_monitoring started")
+def interrupt_monitoring(gpio_line: periphery.CdevGPIO, ready_to_read_lock: Lock):
     log(Colors.CYAN, "┃ interrupt_monitoring started")
-    ready_to_write_lock.release()
-    i = 1
+    i = 0
     while True:
-        event = gpio_line.read_event()
-        if event.edge == 'rising' and i >= 100:
-            log(Colors.CYAN, f"release read lock on iteration {i}")
-            return True
         i += 1
-        # sleep(0.001)
+        event = gpio_line.read_event()
+        if event.edge == 'rising':
+            log(Colors.CYAN, f"┃ gpio interrupt received (iteration {i})")
+            ready_to_read_lock.release()
+            return True
+        sleep(0.01)
 
 
 def main():
@@ -204,6 +203,13 @@ def main():
     # - received packet 1 🟢 : A0 1A 00 BA
     # - received packet 2 🔴 : AE 17 00 04 00 30 00 00 00 00 03 20 00 02 00 00 01 00 00 04 25 02 00 00 00 60
     # ----------------------------------------------------------------------------------------------------------------
+
+    # PSK INIT - get
+
+    # perform_write(spi, 0xa0, 'e4 09 00 02 00 01 bb 00 00 00 00 ff')
+    # perform_read(spi)
+    #
+    # perform_read(spi)
 
     spi.close()
     gpio_line.close()
