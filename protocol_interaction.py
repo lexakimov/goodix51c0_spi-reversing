@@ -30,7 +30,9 @@ def reset_spi():
     gpio_reset = CdevGPIO('/dev/gpiochip0', 140, 'out', label='fp-reset')
     for i in (1, 0):
         gpio_reset.write(bool(i))
+        sleep(0.01)
     gpio_reset.close()
+    sleep(0.5)
 
 
 def is_checksum_valid(packet: list[int] | bytearray) -> bool:
@@ -61,6 +63,11 @@ def perform_read(spi: SpiDev) -> list[int]:
 
 
 def perform_write(spi: SpiDev, packet_type: int, payload: bytes | str | list[int]):
+    """
+    :param spi: SPI device
+    :param packet_type:
+    :param payload:      possible values '00' or  [0x00] or bytearray([0x00])
+    """
     if isinstance(payload, str):
         payload = bytes.fromhex(payload.replace(" ", ""))
     elif isinstance(payload, list):
@@ -119,7 +126,7 @@ def interrupt_monitoring(gpio_line: periphery.CdevGPIO, ready_to_read_lock: Lock
         if event.edge == 'rising':
             log(Colors.CYAN, f"┃ gpio interrupt received (iteration {i})")
             ready_to_read_lock.release()
-            return True
+            break
         sleep(0.01)
 
 
@@ -130,25 +137,26 @@ def main():
     # spi.mode = 0b00
 
     # reset_spi()
-    sleep(0.1)
-
-    # possible values '00' or  [0x00] or bytearray([0x00])
 
     # ----------------------------------------------------------------------------------------------------------------
-    # init ?
+    log(Colors.LIGHT_GREEN, "init")
 
     perform_write(spi, 0xa0, '01 05 00 00 00 00 00 88')
     perform_write(spi, 0xa0, 'd5 03 00 00 00 d3')
 
     # ----------------------------------------------------------------------------------------------------------------
-    # # get evk version: GF_HC460SEC_APP_14210
+    log(Colors.LIGHT_GREEN, "get evk version")
 
     perform_write(spi, 0xa0, '01 05 00 00 00 00 00 88')
     perform_tx(spi, gpio_line, 0xa0, 'a8 03 00 00 00 ff')
     perform_read(spi)
 
     # ----------------------------------------------------------------------------------------------------------------
-    # get mcu state
+    log(Colors.LIGHT_GREEN, "get mcu state")
+
+    now = datetime.now()
+    now_milliseconds = now.second * 1000 + now.microsecond // 1000
+    millis = to_hex_string(now_milliseconds.to_bytes(2, 'little'))
 
     #  write    9 -  0000: af 06 00 55 5c bf 00 00 86
     #   read    4 -  0000: a0 1a 00 ba
@@ -203,12 +211,9 @@ def main():
     # - received packet 1 🟢 : A0 1A 00 BA
     # - received packet 2 🔴 : AE 17 00 04 00 30 00 00 00 00 03 20 00 02 00 00 01 00 00 04 25 02 00 00 00 60
     # ----------------------------------------------------------------------------------------------------------------
+    log(Colors.LIGHT_GREEN, "PSK INIT - get")
 
-    # PSK INIT - get
-
-    # perform_write(spi, 0xa0, 'e4 09 00 02 00 01 bb 00 00 00 00 ff')
-    # perform_read(spi)
-    #
+    # perform_tx(spi, gpio_line, 0xa0, 'e4 09 00 02 00 01 bb 00 00 00 00 ff')
     # perform_read(spi)
 
     spi.close()
