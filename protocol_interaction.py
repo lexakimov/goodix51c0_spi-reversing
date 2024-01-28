@@ -35,11 +35,18 @@ def reset_spi():
     sleep(0.5)
 
 
-def is_checksum_valid(packet: list[int] | bytearray) -> bool:
+def is_protocol_packet_checksum_valid(packet: list[int] | bytearray) -> bool:
     checksum = packet[-1]
-    fact_sum = sum(packet[:-1])
-    fact_sum_first_byte = fact_sum.to_bytes(10, byteorder="little")[0]
-    return checksum == fact_sum_first_byte
+    fact_sum = sum(packet[:-1]) & 0xff
+    return checksum == fact_sum
+
+
+def is_payload_packet_checksum_valid(packet: list[int] | bytearray) -> bool:
+    checksum = packet[-1]
+    if checksum == 0x88:
+        return True
+    fact_sum = 0xaa - sum(packet[:-1]) & 0xff
+    return checksum == fact_sum
 
 
 def extract_length(packet: list[int] | bytearray) -> int:
@@ -51,12 +58,12 @@ def extract_length(packet: list[int] | bytearray) -> int:
 def perform_read(spi: SpiDev) -> list[int]:
     log(Colors.LIGHT_BLUE, log_prefix + "reading from device...")
     packet_1 = spi.readbytes(4)
-    is_valid = is_checksum_valid(packet_1)
+    is_valid = is_protocol_packet_checksum_valid(packet_1)
     log(Colors.LIGHT_BLUE, log_prefix +
         f"\t- received packet 1 {format_validity(is_valid) + Colors.BLUE} : {to_hex_string(packet_1)}")
     length = extract_length(packet_1)
     packet_2 = spi.readbytes(length)
-    is_valid = is_checksum_valid(packet_2)
+    is_valid = is_payload_packet_checksum_valid(packet_2)
     log(Colors.LIGHT_BLUE, log_prefix +
         f"\t- received packet 2 {format_validity(is_valid) + Colors.BLUE} : {to_hex_string(packet_2)} | {to_utf_string(packet_2)}")
     return packet_2
@@ -75,11 +82,14 @@ def perform_write(spi: SpiDev, packet_type: int, payload: bytes | str | list[int
 
     log(Colors.LIGHT_PURPLE, log_prefix + "writing to device...")
     protocol_packet = make_protocol_packet(packet_type, len(payload))
+    is_1_valid = is_protocol_packet_checksum_valid(protocol_packet)
+    is_2_valid = is_payload_packet_checksum_valid(payload)
     spi.writebytes(protocol_packet)
-    log(Colors.LIGHT_PURPLE, log_prefix + f"\t- protocol packet sent: {to_hex_string(protocol_packet)}")
+    log(Colors.LIGHT_PURPLE, log_prefix +
+        f"\t- protocol packet sent {format_validity(is_1_valid) + Colors.LIGHT_PURPLE} : {to_hex_string(protocol_packet)}")
     spi.writebytes(payload)
     log(Colors.LIGHT_PURPLE, log_prefix +
-        f"\t-  payload packet sent: {to_hex_string(payload)} | {to_utf_string(payload)}")
+        f"\t-  payload packet sent {format_validity(is_2_valid) + Colors.LIGHT_PURPLE} : {to_hex_string(payload)} | {to_utf_string(payload)}")
 
 
 def perform_tx(spi: SpiDev, gpio_line: CdevGPIO, packet_type: int, payload: bytes | str | list) -> list[int]:
