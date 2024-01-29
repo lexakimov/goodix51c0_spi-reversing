@@ -403,4 +403,9 @@ def main():
 log_prefix = ''
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        log(Colors.RED, "interrupted")
+        sys.exit(130)
+
