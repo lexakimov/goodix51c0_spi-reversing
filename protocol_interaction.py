@@ -1,12 +1,33 @@
+import sys
+import time
 from datetime import datetime
 from threading import Lock, Thread
 from time import sleep
 
-import periphery
 from periphery import CdevGPIO
+from periphery.gpio import GPIOError
 from spidev import SpiDev
 
 from util_fmt import Colors, log, to_hex_string, to_utf_string, format_validity
+
+
+def log_locks(read_is_ready: Lock, read_is_done: Lock):
+    status_1 = '🔒' if read_is_ready.locked() else '🆓'
+    status_2 = '🔒' if read_is_done.locked() else '🆓'
+    log(Colors.BLUE, f"read_is_ready: {status_1}  read_is_done : {status_2}")
+
+
+def manual_sleep(duration):
+    log(Colors.YELLOW, f"manual sleep for {duration}s")
+    sleep(duration)
+    log(Colors.YELLOW, "go on...")
+
+
+def acquire_then_release(lock, label):
+    log('\033[48;5;0m', f"acquire {label}...")
+    lock.acquire()
+    log('\033[48;5;0m', f"release {label}...")
+    lock.release()
 
 
 def make_protocol_packet(packet_type: int, payload_length: int) -> bytearray:
@@ -23,16 +44,6 @@ def make_protocol_packet(packet_type: int, payload_length: int) -> bytearray:
     protocol_packet += checksum
 
     return protocol_packet
-
-
-def reset_spi():
-    log(Colors.RED, "reset device...")
-    gpio_reset = CdevGPIO('/dev/gpiochip0', 140, 'out', label='fp-reset')
-    for i in (1, 0):
-        gpio_reset.write(bool(i))
-        sleep(0.01)
-    gpio_reset.close()
-    sleep(0.5)
 
 
 def is_protocol_packet_checksum_valid(packet: list[int] | bytearray) -> bool:
@@ -53,6 +64,16 @@ def extract_length(packet: list[int] | bytearray) -> int:
     length_bytes = packet[1:3]
     length_int = int.from_bytes(length_bytes, byteorder="little")
     return length_int
+
+
+def reset_spi():
+    log(Colors.RED, "reset device...")
+    gpio_reset = CdevGPIO('/dev/gpiochip0', 140, 'out', label='goodix-fp-reset')
+    for i in (1, 0):
+        gpio_reset.write(bool(i))
+        sleep(0.01)
+    gpio_reset.close()
+    log(Colors.RED, "reset done")
 
 
 def perform_read(spi: SpiDev) -> list[int]:
@@ -104,51 +125,81 @@ def perform_write(spi: SpiDev, packet_type: int, payload: bytes | str | list[int
     utf_string = to_utf_string(payload)
     log(Colors.HI_PURPLE, f"{log_prefix}\t-  payload packet sent {validity} : {hex_string} | {utf_string}")
 
-def perform_tx(spi: SpiDev, gpio_line: CdevGPIO, packet_type: int, payload: bytes | str | list) -> list[int]:
-    if isinstance(payload, str):
-        payload = bytes.fromhex(payload.replace(" ", ""))
-    elif isinstance(payload, list):
-        payload = bytearray(payload)
 
-    global log_prefix
-    log_prefix = "┃ "
-
-    print("┏━━━ read-write ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    ready_to_read_lock = Lock()
-    ready_to_read_lock.acquire()
-    print("┃ locks acquired")
-
-    ir_thread = Thread(target=interrupt_monitoring, args=(gpio_line, ready_to_read_lock))
-    ir_thread.daemon = True
-    ir_thread.start()
-    sleep(0.3)  # delay so that the interrupt thread has time to enter gpio_line.read_event()
-
-    perform_write(spi, packet_type, payload)
-
-    print("┃ waiting for gpio interrupt...")
-    ready_to_read_lock.acquire(timeout=3)
-    # ir_thread.join(timeout=3)
-    # if ir_thread.is_alive():
-    #     exit(1)
-
-    print("┃ interrupt caught, execution goes on")
-
-    result = perform_read(spi)
-    print("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    log_prefix = ""
-    return result
-
-
-def interrupt_monitoring(gpio_line: periphery.CdevGPIO, ready_to_read_lock: Lock):
-    log(Colors.CYAN, "┃ interrupt_monitoring started")
+def interrupt_monitoring_loop(gpio_line: CdevGPIO, read_is_ready: Lock, read_is_done: Lock):
+    is_high = False
     i = 0
+    last_ts = time.time_ns()
+    log(Colors.CYAN, "interrupt_monitoring started")
     while True:
         i += 1
-        event = gpio_line.read_event()
-        if event.edge == 'rising':
-            log(Colors.CYAN, f"┃ gpio interrupt received (iteration {i})")
-            ready_to_read_lock.release()
+        try:
+            current_state = gpio_line.read()
+        except GPIOError:
+            log(Colors.CYAN, "gpio is closed")
             break
+
+        event_time = time.time_ns()
+
+        if current_state and not is_high:
+            passed_ms = int((event_time - last_ts) / 1000000)
+            log(Colors.CYAN, f"gpio interrupt: rising  [iteration {i}] {passed_ms}ms) - data ready to read")
+            if read_is_ready.locked():
+                read_is_ready.release()
+            else:
+                log(Colors.RED, "trying to release unlocked read_is_ready")
+            is_high = True
+            last_ts = event_time
+            i = 0
+
+        if not current_state and is_high:
+            passed_ms = int((event_time - last_ts) / 1000000)
+            log(Colors.CYAN, f"gpio interrupt: falling [iteration {i}] {passed_ms}ms) - reading completed")
+            if read_is_done.locked():
+                read_is_done.release()
+            else:
+                log(Colors.RED, "trying to release unlocked read_is_done")
+            is_high = False
+            i = 0
+        sleep(0.01)
+
+
+def interrupt_monitoring_poll(gpio_line: CdevGPIO, read_is_ready: Lock, read_is_done: Lock):
+    is_high = False
+    i = 0
+    last_ts = time.time_ns()
+    log(Colors.CYAN, "interrupt_monitoring started")
+    while True:
+        i += 1
+        try:
+            event = gpio_line.read_event()
+        except GPIOError:
+            log(Colors.CYAN, "gpio is closed")
+            break
+
+        event_edge = event.edge
+        event_time = event.timestamp
+
+        if event_edge == 'rising' and not is_high:
+            passed_ms = int((event_time - last_ts) / 1000000)
+            log(Colors.CYAN, f"gpio interrupt: rising  [iteration {i}] {passed_ms}ms) - data ready to read")
+            if read_is_ready.locked():
+                read_is_ready.release()
+            else:
+                log(Colors.RED, "trying to release unlocked read_is_ready")
+            is_high = True
+            last_ts = event_time
+            i = 0
+
+        if event_edge == 'falling' and is_high:
+            passed_ms = int((event_time - last_ts) / 1000000)
+            log(Colors.CYAN, f"gpio interrupt: falling [iteration {i}] {passed_ms}ms) - reading completed")
+            if read_is_done.locked():
+                read_is_done.release()
+            else:
+                log(Colors.RED, "trying to release unlocked read_is_done")
+            is_high = False
+            i = 0
         sleep(0.01)
 
 
@@ -158,31 +209,59 @@ def main():
     spi.max_speed_hz = 0x00989680  # 10 000 000
     # spi.mode = 0b00
 
-    # reset_spi()
+    read_is_ready = Lock()
+    read_is_done = Lock()
+
+    isr_thread = Thread(daemon=True, target=interrupt_monitoring_loop, args=(gpio_line, read_is_ready, read_is_done))
+    isr_thread.start()
+    sleep(0.05)  # delay so that the interrupt thread has time to enter gpio_line.read_event()
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
+    reset_spi()
+    read_is_done.acquire()
+    read_is_done.release()
+    read_is_ready.acquire()
+    read_is_ready.release()
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "----------------------------------------------------------------------\ninit")
+    log(Colors.HI_GREEN, "━━━ init ".ljust(120, '━'))
 
     perform_write(spi, 0xa0, '01 05 00 00 00 00 00 88')
     perform_write(spi, 0xa0, 'd5 03 00 00 00 d3')
+    manual_sleep(0.1)  # если после записи нет прерывания надо подождать
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.LIGHT_GREEN, "get evk version")
+    log(Colors.HI_GREEN, "━━━ get evk version ".ljust(120, '━'))
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
 
     perform_write(spi, 0xa0, '01 05 00 00 00 00 00 88')
-    perform_tx(spi, gpio_line, 0xa0, 'a8 03 00 00 00 ff')
+    manual_sleep(0.05)
+    perform_write(spi, 0xa0, 'a8 03 00 00 00 ff')
+    acquire_then_release(read_is_ready, 'read_is_ready')
     perform_read(spi)
+    manual_sleep(0.05)
+    perform_read(spi)
+    acquire_then_release(read_is_done, 'read_is_done')
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "----------------------------------------------------------------------\nget mcu state")
+    log(Colors.HI_GREEN, "━━━ get mcu state ".ljust(120, '━'))
 
     now = datetime.now()
     now_milliseconds = now.second * 1000 + now.microsecond // 1000
     millis = to_hex_string(now_milliseconds.to_bytes(2, 'little'))
-    perform_tx(spi, gpio_line, 0xa0, 'af 06 00 55 5c bf 00 00 86')  # 5c bf = 0xbf5c - это секунды + миллисекунды
 
-    # - received packet 1 🟢 : A0 1A 00 BA
-    # - received packet 2 🔴 : AE 17 00 04 00 30 00 00 00 00 00 20 00 00 00 00 01 00 00 04 25 02 00 00 00 65
+    read_is_ready.acquire()
+    read_is_done.acquire()
+    perform_write(spi, 0xa0, 'af 06 00 55 5c bf 00 00 86')
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read(spi)
+    acquire_then_release(read_is_done, 'read_is_done')
+
+    # A0 1A 00 BA
+    # AE 17 00 04 00 30 00 00 00 00 00 20 00 00 00 00 01 00 00 04 25 02 00 00 00 65
 
     # AE 17 00 [ 04 00 30 00 00 00 00 00 20 00 00 00 00 01 00 00 04 25 02 00 00 00 ] 65
     # AE 17 00 [ 04 00 30 00 00 00 00 03 20 00 02 00 00 01 00 00 04 25 02 00 00 00 ] 60
@@ -231,11 +310,16 @@ def main():
     #  30 otp_mcu_check_status:0x0
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "----------------------------------------------------------------------\nPSK INIT - get host_psk_data")
+    log(Colors.HI_GREEN, "━━━ PSK INIT - get host_psk_data ".ljust(120, '━'))
 
-    perform_tx(spi, gpio_line, 0xa0, 'e4 09 00 02 00 01 bb 00 00 00 00 ff')  # read specific data_type 0xbb010002
-    sleep(0.05)
-    perform_read(spi)  # содержит Goodix_Cache.bin
+    read_is_ready.acquire()
+    read_is_done.acquire()
+    perform_write(spi, 0xa0, 'e4 09 00 02 00 01 bb 00 00 00 00 ff')     # read specific data_type 0xbb010002
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read(spi)
+    manual_sleep(0.05)
+    perform_read(spi)                                               # содержит Goodix_Cache.bin
+    acquire_then_release(read_is_done, 'read_is_done')
 
     # # полный пакет [длина 345]
     # e4
@@ -274,11 +358,18 @@ def main():
     # 3b
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "----------------------------------------------------------------------\nPSK INIT - get psk")
+    log(Colors.HI_GREEN, "━━━ PSK INIT - get psk ".ljust(120, '━'))
 
-    perform_tx(spi, gpio_line, 0xa0, 'e4 09 00 03 00 02 bb 00 00 00 00 fd')  # read specific data_type 0xbb020003
-    sleep(0.05)
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    perform_write(spi, 0xa0, 'e4 09 00 03 00 02 bb 00 00 00 00 fd')     # read specific data_type 0xbb020003
+    acquire_then_release(read_is_ready, 'read_is_ready')
     perform_read(spi)
+    manual_sleep(0.05)
+    perform_read(spi)
+    acquire_then_release(read_is_done, 'read_is_done')
+
     # A0 2D 00 CD
 
     # # полный пакет [длина 45]
@@ -297,11 +388,20 @@ def main():
     # CE
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "----------------------------------------------------------------------\nreset sensor; reset device, reset_flag 1")
+    log(Colors.HI_GREEN, "━━━ reset sensor; reset device, reset_flag 1 ".ljust(120, '━'))
 
-    perform_tx(spi, gpio_line, 0xa0, 'a2 03 00 01 14 f0')
-    sleep(0.05)
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    perform_write(spi, 0xa0, 'a2 03 00 01 14 f0')
+    acquire_then_release(read_is_ready, 'read_is_ready')
     perform_read(spi)
+    acquire_then_release(read_is_done, 'read_is_done')
+    read_is_ready.acquire()
+    read_is_done.acquire()
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read(spi)
+    acquire_then_release(read_is_done, 'read_is_done')
 
     #  Goodix>>> reset sensor
     #  Goodix>>> reset device, reset_flag 1
@@ -320,11 +420,17 @@ def main():
     #  Goodix>>> CHIP_RESET::0x010008
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "----------------------------------------------------------------------\nMILAN_CHIPID (cmd: regrw)")
+    log(Colors.HI_GREEN, "━━━ MILAN_CHIPID (cmd: regrw) ".ljust(120, '━'))
 
-    perform_tx(spi, gpio_line, 0xa0, '82 06 00 00 00 00 04 00 1e')
-    sleep(0.05)
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    perform_write(spi, 0xa0, '82 06 00 00 00 00 04 00 1e')
+    acquire_then_release(read_is_ready, 'read_is_ready')
     perform_read(spi)
+    manual_sleep(0.05)
+    perform_read(spi)
+    acquire_then_release(read_is_done, 'read_is_done')
 
     #  Goodix>>> --- MILAN_CHIPID
     #  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x8-1-0x5-1000-0
@@ -341,25 +447,20 @@ def main():
     #  Goodix>>> --- cmd: regrw
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "----------------------------------------------------------------------\nto set state to DEVICE_ACTION, to set state from 1 to 3")
+    log(Colors.HI_GREEN, "━━━ to set state to DEVICE_ACTION, to set state from 1 to 3 ".ljust(120, '━'))
 
-    perform_tx(spi, gpio_line, 0xa0, 'a6 03 00 00 00 01')
-    sleep(0.05)
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    perform_write(spi, 0xa0, 'a6 03 00 00 00 01')
+    acquire_then_release(read_is_ready, 'read_is_ready')
     perform_read(spi)
-
-    #  Goodix>>> --- MILAN_CHIPID
-    #  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x8-1-0x5-1000-0
-    #  write    4 -  0000: a0 09 00 a9
-    #  write    9 -  0000: 82 06 00 00 00 00 04 00 1e
-    #   read    4 -  0000: a0 06 00 a6
-    #   read    6 -  0000: b0 03 00 82 07 6e
-    #  Goodix>>> recvd data cmd-len: 0xb0-3
-    #  Goodix>>> get ack for cmd 0x82, cfg flag 0x7
-    #  Goodix>>> MCU has no config
-    #   read    4 -  0000: a0 08 00 a8
-    #   read    8 -  0000: 82 05 00 a2 04 25 00 58
-    #  Goodix>>> recvd data cmd-len: 0x82-5
-    #  Goodix>>> --- cmd: regrw
+    acquire_then_release(read_is_done, 'read_is_done')
+    read_is_ready.acquire()
+    read_is_done.acquire()
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read(spi)
+    acquire_then_release(read_is_done, 'read_is_done')
 
     # A6
     # длина (65)
@@ -370,11 +471,20 @@ def main():
     # 1C
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "----------------------------------------------------------------------\nreset sensor; reset device, reset_flag 1")
+    log(Colors.HI_GREEN, "━━━ reset sensor; reset device, reset_flag 1 ".ljust(120, '━'))
 
-    perform_tx(spi, gpio_line, 0xa0, 'a2 03 00 01 14 f0')
-    sleep(0.05)
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    perform_write(spi, 0xa0, 'a2 03 00 01 14 f0')
+    acquire_then_release(read_is_ready, 'read_is_ready')
     perform_read(spi)
+    acquire_then_release(read_is_done, 'read_is_done')
+    read_is_ready.acquire()
+    read_is_done.acquire()
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read(spi)
+    acquire_then_release(read_is_done, 'read_is_done')
 
     #  Goodix>>> reset sensor
     #  Goodix>>> reset device, reset_flag 1
@@ -393,23 +503,52 @@ def main():
     #  Goodix>>> CHIP_RESET::0x010008
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "----------------------------------------------------------------------\nenter, Mode 7, Type 0, base_type 0; setmode: idle")
+    log(Colors.HI_GREEN, "━━━ enter, Mode 7, Type 0, base_type 0; setmode: idle ".ljust(120, '━'))
 
-    perform_tx(spi, gpio_line, 0xa0, '70 03 00 14 00 23')
+    read_is_ready.acquire()
+    read_is_done.acquire()
 
-    perform_tx(spi, gpio_line, 0xa0, '98 09 00 38 0b b5 00 b3 00 b3 00 ab')
-    sleep(0.05)
+    perform_write(spi, 0xa0, '70 03 00 14 00 23')
+    acquire_then_release(read_is_ready, 'read_is_ready')
     perform_read(spi)
+    acquire_then_release(read_is_done, 'read_is_done')
 
     # ----------------------------------------------------------------------------------------------------------------
-    perform_tx(spi, gpio_line, 0xa0, '20 03 00 01 00 86')
-    sleep(0.05)
+    log(Colors.HI_GREEN, "━━━ send Dac 0x380bb500b300b300 ".ljust(120, '━'))
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    perform_write(spi, 0xa0, '98 09 00 38 0b b5 00 b3 00 b3 00 ab')
+    acquire_then_release(read_is_ready, 'read_is_ready')
     perform_read(spi)
+    manual_sleep(0.05)
+    perform_read(spi)
+    acquire_then_release(read_is_done, 'read_is_done')
 
     # ----------------------------------------------------------------------------------------------------------------
+    log(Colors.HI_GREEN, "━━━ get image ".ljust(120, '━'))
 
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    perform_write(spi, 0xa0, '20 03 00 01 00 86')
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read(spi)
+    acquire_then_release(read_is_done, 'read_is_done')
+    read_is_ready.acquire()
+    read_is_done.acquire()
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read(spi)
+    acquire_then_release(read_is_done, 'read_is_done')
+
+    # ----------------------------------------------------------------------------------------------------------------
+    # manual_sleep(3)
+    log(Colors.NEGATIVE, "closing")
     spi.close()
     gpio_line.close()
+    exit(0)
+    # ----------------------------------------------------------------------------------------------------------------
 
 
 log_prefix = ''
