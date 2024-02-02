@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 class Colors:
     END = "\033[0m"
 
@@ -29,7 +32,8 @@ class Colors:
 
 
 def log(color, message):
-    print(color, message, Colors.END, sep='')
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
+    print(color, '[', timestamp, '] ', message, Colors.END, sep='')
 
 
 def to_hex_string(byte_array: bytearray | bytes):
@@ -38,7 +42,7 @@ def to_hex_string(byte_array: bytearray | bytes):
 
 def to_utf_string(byte_array: bytearray | bytes):
     length = _extract_length(byte_array)
-    return f'[length: {length}] ' + bytearray(byte_array[3:]).decode('utf-8', errors='ignore')
+    return f'[length: {length}] ' + bytearray(byte_array[3:-1]).decode('utf-8', errors='ignore')
 
 
 def format_validity(is_valid: bool) -> str:
