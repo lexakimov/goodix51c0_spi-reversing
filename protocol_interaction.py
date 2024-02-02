@@ -40,7 +40,10 @@ def make_protocol_packet(packet_type: int, payload_length: int) -> bytearray:
         length of payload packet
     """
     protocol_packet = bytearray([packet_type]) + payload_length.to_bytes(2, 'little')
-    checksum: bytes = sum(protocol_packet).to_bytes()
+    sum_int = 0x00
+    for b in protocol_packet:
+        sum_int = (sum_int + b) & 0xFF
+    checksum: bytes = sum_int.to_bytes()
     protocol_packet += checksum
 
     return protocol_packet
