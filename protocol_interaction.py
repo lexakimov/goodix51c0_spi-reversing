@@ -10,6 +10,8 @@ from spidev import SpiDev
 
 from util_fmt import Colors, log, to_hex_string, to_utf_string, format_validity
 
+log_acquires_and_releases = True
+
 
 def log_locks(read_is_ready: Lock, read_is_done: Lock):
     status_1 = '🔒' if read_is_ready.locked() else '🆓'
@@ -18,15 +20,17 @@ def log_locks(read_is_ready: Lock, read_is_done: Lock):
 
 
 def manual_sleep(duration):
-    log(Colors.YELLOW, f"manual sleep for {duration}s")
+    log(Colors.HI_YELLOW, f"manual sleep for {duration}s")
     sleep(duration)
-    log(Colors.YELLOW, "go on...")
+    log(Colors.HI_YELLOW, "go on...")
 
 
 def acquire_then_release(lock, label):
-    log('\033[48;5;0m', f"acquire {label}...")
+    if log_acquires_and_releases:
+        log('\033[48;5;0m', f"acquire {label}...")
     lock.acquire()
-    log('\033[48;5;0m', f"release {label}...")
+    if log_acquires_and_releases:
+        log('\033[48;5;0m', f"release {label}...")
     lock.release()
 
 
@@ -187,7 +191,7 @@ def main():
     # dbg_thread.start()
     isr_thread = Thread(daemon=True, target=interrupt_monitoring, args=(gpio_line, read_is_ready, read_is_done))
     isr_thread.start()
-    sleep(0.05)  # delay so that the interrupt thread has time to enter gpio_line.read_event()
+    manual_sleep(0.05)  # delay so that the interrupt thread has time to enter gpio_line.read_event()
 
     log(Colors.RED, "reset device...")
     read_is_ready.acquire()
