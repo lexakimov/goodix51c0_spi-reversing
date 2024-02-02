@@ -56,12 +56,12 @@ def extract_length(packet: list[int] | bytearray) -> int:
 
 
 def perform_read(spi: SpiDev) -> list[int]:
-    log(Colors.LIGHT_BLUE, log_prefix + "reading from device...")
+    log(Colors.HI_BLUE, log_prefix + "reading from device...")
     packet_1 = spi.readbytes(4)
     is_valid = is_protocol_packet_checksum_valid(packet_1)
     validity = format_validity(is_valid)
     hex_string = to_hex_string(packet_1)
-    log(Colors.LIGHT_BLUE, f"{log_prefix}\t   - received packet 1 {validity} : {hex_string}")
+    log(Colors.HI_BLUE, f"{log_prefix}\t   - received packet 1 {validity} : {hex_string}")
 
     if packet_1 == [0, 0, 0, 0]:
         raise RuntimeError('read error: 00 00 00 00 bytes are received')
@@ -75,7 +75,7 @@ def perform_read(spi: SpiDev) -> list[int]:
     validity = format_validity(is_valid)
     hex_string = to_hex_string(packet_2)
     utf_string = to_utf_string(packet_2)
-    log(Colors.LIGHT_BLUE, f"{log_prefix}\t   - received packet 2 {validity} : {hex_string} | {utf_string}")
+    log(Colors.HI_BLUE, f"{log_prefix}\t   - received packet 2 {validity} : {hex_string} | {utf_string}")
     return packet_2
 
 
@@ -90,19 +90,19 @@ def perform_write(spi: SpiDev, packet_type: int, payload: bytes | str | list[int
     elif isinstance(payload, list):
         payload = bytearray(payload)
 
-    log(Colors.LIGHT_PURPLE, log_prefix + "writing to device...")
+    log(Colors.HI_PURPLE, log_prefix + "writing to device...")
     protocol_packet = make_protocol_packet(packet_type, len(payload))
     is_1_valid = is_protocol_packet_checksum_valid(protocol_packet)
     is_2_valid = is_payload_packet_checksum_valid(payload)
     spi.writebytes(protocol_packet)
     validity = format_validity(is_1_valid)
     hex_string = to_hex_string(protocol_packet)
-    log(Colors.LIGHT_PURPLE, f"{log_prefix}\t- protocol packet sent {validity} : {hex_string}")
+    log(Colors.HI_PURPLE, f"{log_prefix}\t- protocol packet sent {validity} : {hex_string}")
     spi.writebytes(payload)
     validity = format_validity(is_2_valid)
     hex_string = to_hex_string(payload)
     utf_string = to_utf_string(payload)
-    log(Colors.LIGHT_PURPLE, f"{log_prefix}\t-  payload packet sent {validity} : {hex_string} | {utf_string}")
+    log(Colors.HI_PURPLE, f"{log_prefix}\t-  payload packet sent {validity} : {hex_string} | {utf_string}")
 
 def perform_tx(spi: SpiDev, gpio_line: CdevGPIO, packet_type: int, payload: bytes | str | list) -> list[int]:
     if isinstance(payload, str):
@@ -161,7 +161,7 @@ def main():
     # reset_spi()
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.LIGHT_GREEN, "init")
+    log(Colors.HI_GREEN, "----------------------------------------------------------------------\ninit")
 
     perform_write(spi, 0xa0, '01 05 00 00 00 00 00 88')
     perform_write(spi, 0xa0, 'd5 03 00 00 00 d3')
@@ -174,7 +174,7 @@ def main():
     perform_read(spi)
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.LIGHT_GREEN, "get mcu state")
+    log(Colors.HI_GREEN, "----------------------------------------------------------------------\nget mcu state")
 
     now = datetime.now()
     now_milliseconds = now.second * 1000 + now.microsecond // 1000
@@ -231,7 +231,7 @@ def main():
     #  30 otp_mcu_check_status:0x0
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.LIGHT_GREEN, "PSK INIT - get host_psk_data")
+    log(Colors.HI_GREEN, "----------------------------------------------------------------------\nPSK INIT - get host_psk_data")
 
     perform_tx(spi, gpio_line, 0xa0, 'e4 09 00 02 00 01 bb 00 00 00 00 ff')  # read specific data_type 0xbb010002
     sleep(0.05)
@@ -274,7 +274,7 @@ def main():
     # 3b
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.LIGHT_GREEN, "PSK INIT - get psk")
+    log(Colors.HI_GREEN, "----------------------------------------------------------------------\nPSK INIT - get psk")
 
     perform_tx(spi, gpio_line, 0xa0, 'e4 09 00 03 00 02 bb 00 00 00 00 fd')  # read specific data_type 0xbb020003
     sleep(0.05)
@@ -297,7 +297,7 @@ def main():
     # CE
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.LIGHT_GREEN, "reset sensor; reset device, reset_flag 1")
+    log(Colors.HI_GREEN, "----------------------------------------------------------------------\nreset sensor; reset device, reset_flag 1")
 
     perform_tx(spi, gpio_line, 0xa0, 'a2 03 00 01 14 f0')
     sleep(0.05)
@@ -320,7 +320,7 @@ def main():
     #  Goodix>>> CHIP_RESET::0x010008
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.LIGHT_GREEN, "MILAN_CHIPID (cmd: regrw)")
+    log(Colors.HI_GREEN, "----------------------------------------------------------------------\nMILAN_CHIPID (cmd: regrw)")
 
     perform_tx(spi, gpio_line, 0xa0, '82 06 00 00 00 00 04 00 1e')
     sleep(0.05)
@@ -341,7 +341,7 @@ def main():
     #  Goodix>>> --- cmd: regrw
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.LIGHT_GREEN, "to set state to DEVICE_ACTION, to set state from 1 to 3")
+    log(Colors.HI_GREEN, "----------------------------------------------------------------------\nto set state to DEVICE_ACTION, to set state from 1 to 3")
 
     perform_tx(spi, gpio_line, 0xa0, 'a6 03 00 00 00 01')
     sleep(0.05)
@@ -370,7 +370,7 @@ def main():
     # 1C
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.LIGHT_GREEN, "reset sensor; reset device, reset_flag 1")
+    log(Colors.HI_GREEN, "----------------------------------------------------------------------\nreset sensor; reset device, reset_flag 1")
 
     perform_tx(spi, gpio_line, 0xa0, 'a2 03 00 01 14 f0')
     sleep(0.05)
@@ -393,7 +393,7 @@ def main():
     #  Goodix>>> CHIP_RESET::0x010008
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.LIGHT_GREEN, "enter, Mode 7, Type 0, base_type 0; setmode: idle")
+    log(Colors.HI_GREEN, "----------------------------------------------------------------------\nenter, Mode 7, Type 0, base_type 0; setmode: idle")
 
     perform_tx(spi, gpio_line, 0xa0, '70 03 00 14 00 23')
 
@@ -418,9 +418,9 @@ if __name__ == "__main__":
     try:
         main()
     except RuntimeError as err:
-        log(Colors.RED, err)
+        log(Colors.HI_RED, err)
         sys.exit(1)
     except KeyboardInterrupt:
-        log(Colors.RED, "interrupted")
+        log(Colors.HI_RED, "interrupted")
         sys.exit(130)
 
