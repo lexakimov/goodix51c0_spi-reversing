@@ -66,6 +66,12 @@ def extract_length(packet: list[int] | bytearray) -> int:
     return length_int
 
 
+def locks_debugging(read_is_ready: Lock, read_is_done: Lock):
+    while True:
+        log_locks(read_is_ready, read_is_done)
+        sleep(0.2)
+
+
 def reset_spi():
     log(Colors.RED, "reset device...")
     gpio_reset = CdevGPIO('/dev/gpiochip0', 140, 'out', label='goodix-fp-reset')
@@ -126,7 +132,7 @@ def perform_write(spi: SpiDev, packet_type: int, payload: bytes | str | list[int
     log(Colors.HI_PURPLE, f"{log_prefix}\t-  payload packet sent {validity} : {hex_string} | {utf_string}")
 
 
-def interrupt_monitoring_loop(gpio_line: CdevGPIO, read_is_ready: Lock, read_is_done: Lock):
+def interrupt_monitoring(gpio_line: CdevGPIO, read_is_ready: Lock, read_is_done: Lock):
     is_high = False
     i = 0
     last_ts = time.time_ns()
@@ -134,13 +140,16 @@ def interrupt_monitoring_loop(gpio_line: CdevGPIO, read_is_ready: Lock, read_is_
     while True:
         i += 1
         try:
+            # event = gpio_line.read_event()
             current_state = gpio_line.read()
         except GPIOError:
             log(Colors.CYAN, "gpio is closed")
             break
 
+        # event_edge = event.edge
+        # event_time = event.timestamp
+        # if event_edge == 'rising' and not is_high:
         event_time = time.time_ns()
-
         if current_state and not is_high:
             passed_ms = int((event_time - last_ts) / 1000000)
             log(Colors.CYAN, f"gpio interrupt: rising  [iteration {i}] {passed_ms}ms) - data ready to read")
@@ -152,46 +161,8 @@ def interrupt_monitoring_loop(gpio_line: CdevGPIO, read_is_ready: Lock, read_is_
             last_ts = event_time
             i = 0
 
+        # if event_edge == 'falling' and is_high:
         if not current_state and is_high:
-            passed_ms = int((event_time - last_ts) / 1000000)
-            log(Colors.CYAN, f"gpio interrupt: falling [iteration {i}] {passed_ms}ms) - reading completed")
-            if read_is_done.locked():
-                read_is_done.release()
-            else:
-                log(Colors.RED, "trying to release unlocked read_is_done")
-            is_high = False
-            i = 0
-        sleep(0.01)
-
-
-def interrupt_monitoring_poll(gpio_line: CdevGPIO, read_is_ready: Lock, read_is_done: Lock):
-    is_high = False
-    i = 0
-    last_ts = time.time_ns()
-    log(Colors.CYAN, "interrupt_monitoring started")
-    while True:
-        i += 1
-        try:
-            event = gpio_line.read_event()
-        except GPIOError:
-            log(Colors.CYAN, "gpio is closed")
-            break
-
-        event_edge = event.edge
-        event_time = event.timestamp
-
-        if event_edge == 'rising' and not is_high:
-            passed_ms = int((event_time - last_ts) / 1000000)
-            log(Colors.CYAN, f"gpio interrupt: rising  [iteration {i}] {passed_ms}ms) - data ready to read")
-            if read_is_ready.locked():
-                read_is_ready.release()
-            else:
-                log(Colors.RED, "trying to release unlocked read_is_ready")
-            is_high = True
-            last_ts = event_time
-            i = 0
-
-        if event_edge == 'falling' and is_high:
             passed_ms = int((event_time - last_ts) / 1000000)
             log(Colors.CYAN, f"gpio interrupt: falling [iteration {i}] {passed_ms}ms) - reading completed")
             if read_is_done.locked():
@@ -211,8 +182,9 @@ def main():
 
     read_is_ready = Lock()
     read_is_done = Lock()
-
-    isr_thread = Thread(daemon=True, target=interrupt_monitoring_loop, args=(gpio_line, read_is_ready, read_is_done))
+    # dbg_thread = Thread(daemon=True, target=locks_debugging, args=(read_is_ready, read_is_done))
+    # dbg_thread.start()
+    isr_thread = Thread(daemon=True, target=interrupt_monitoring, args=(gpio_line, read_is_ready, read_is_done))
     isr_thread.start()
     sleep(0.05)  # delay so that the interrupt thread has time to enter gpio_line.read_event()
 
