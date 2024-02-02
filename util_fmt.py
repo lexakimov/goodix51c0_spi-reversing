@@ -48,7 +48,7 @@ def to_hex_string(byte_array: bytearray | bytes):
 def to_utf_string(byte_array: bytearray | bytes):
     length = _extract_length(byte_array)
     data = bytearray(byte_array[3:-1]).decode('utf-8', errors='ignore')
-    return f'[length: {length}] ' + (data[:72] + '...') if trim_long_strings and len(data) > 75 else data
+    return f'[length: {length}] ' + ((data[:72] + '...') if trim_long_strings and len(data) > 75 else data)
 
 
 def format_validity(is_valid: bool) -> str:
