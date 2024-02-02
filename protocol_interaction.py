@@ -59,13 +59,23 @@ def perform_read(spi: SpiDev) -> list[int]:
     log(Colors.LIGHT_BLUE, log_prefix + "reading from device...")
     packet_1 = spi.readbytes(4)
     is_valid = is_protocol_packet_checksum_valid(packet_1)
-    log(Colors.LIGHT_BLUE, log_prefix +
-        f"\t- received packet 1 {format_validity(is_valid) + Colors.BLUE} : {to_hex_string(packet_1)}")
+    validity = format_validity(is_valid)
+    hex_string = to_hex_string(packet_1)
+    log(Colors.LIGHT_BLUE, f"{log_prefix}\t   - received packet 1 {validity} : {hex_string}")
+
+    if packet_1 == [0, 0, 0, 0]:
+        raise RuntimeError('read error: 00 00 00 00 bytes are received')
+
     length = extract_length(packet_1)
+    if length == 0xFFFF:
+        raise RuntimeError('read error: FF bytes are received')
+
     packet_2 = spi.readbytes(length)
     is_valid = is_payload_packet_checksum_valid(packet_2)
-    log(Colors.LIGHT_BLUE, log_prefix +
-        f"\t- received packet 2 {format_validity(is_valid) + Colors.BLUE} : {to_hex_string(packet_2)} | {to_utf_string(packet_2)}")
+    validity = format_validity(is_valid)
+    hex_string = to_hex_string(packet_2)
+    utf_string = to_utf_string(packet_2)
+    log(Colors.LIGHT_BLUE, f"{log_prefix}\t   - received packet 2 {validity} : {hex_string} | {utf_string}")
     return packet_2
 
 
@@ -85,12 +95,14 @@ def perform_write(spi: SpiDev, packet_type: int, payload: bytes | str | list[int
     is_1_valid = is_protocol_packet_checksum_valid(protocol_packet)
     is_2_valid = is_payload_packet_checksum_valid(payload)
     spi.writebytes(protocol_packet)
-    log(Colors.LIGHT_PURPLE, log_prefix +
-        f"\t- protocol packet sent {format_validity(is_1_valid) + Colors.LIGHT_PURPLE} : {to_hex_string(protocol_packet)}")
+    validity = format_validity(is_1_valid)
+    hex_string = to_hex_string(protocol_packet)
+    log(Colors.LIGHT_PURPLE, f"{log_prefix}\t- protocol packet sent {validity} : {hex_string}")
     spi.writebytes(payload)
-    log(Colors.LIGHT_PURPLE, log_prefix +
-        f"\t-  payload packet sent {format_validity(is_2_valid) + Colors.LIGHT_PURPLE} : {to_hex_string(payload)} | {to_utf_string(payload)}")
-
+    validity = format_validity(is_2_valid)
+    hex_string = to_hex_string(payload)
+    utf_string = to_utf_string(payload)
+    log(Colors.LIGHT_PURPLE, f"{log_prefix}\t-  payload packet sent {validity} : {hex_string} | {utf_string}")
 
 def perform_tx(spi: SpiDev, gpio_line: CdevGPIO, packet_type: int, payload: bytes | str | list) -> list[int]:
     if isinstance(payload, str):
@@ -405,6 +417,9 @@ log_prefix = ''
 if __name__ == "__main__":
     try:
         main()
+    except RuntimeError as err:
+        log(Colors.RED, err)
+        sys.exit(1)
     except KeyboardInterrupt:
         log(Colors.RED, "interrupted")
         sys.exit(130)
