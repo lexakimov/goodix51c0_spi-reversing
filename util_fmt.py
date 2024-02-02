@@ -1,6 +1,9 @@
 from datetime import datetime
 
 
+trim_long_strings = True
+
+
 class Colors:
     END = "\033[0m"
 
@@ -37,12 +40,14 @@ def log(color, message):
 
 
 def to_hex_string(byte_array: bytearray | bytes):
-    return ' '.join('{:02X}'.format(num) for num in byte_array)
+    data = ' '.join('{:02X}'.format(num) for num in byte_array)
+    return (data[:72] + '...') if trim_long_strings and len(data) > 75 else data
 
 
 def to_utf_string(byte_array: bytearray | bytes):
     length = _extract_length(byte_array)
-    return f'[length: {length}] ' + bytearray(byte_array[3:-1]).decode('utf-8', errors='ignore')
+    data = bytearray(byte_array[3:-1]).decode('utf-8', errors='ignore')
+    return f'[length: {length}] ' + (data[:72] + '...') if trim_long_strings and len(data) > 75 else data
 
 
 def format_validity(is_valid: bool) -> str:
