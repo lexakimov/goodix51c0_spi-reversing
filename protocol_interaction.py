@@ -73,13 +73,11 @@ def locks_debugging(read_is_ready: Lock, read_is_done: Lock):
 
 
 def reset_spi():
-    log(Colors.RED, "reset device...")
     gpio_reset = CdevGPIO('/dev/gpiochip0', 140, 'out', label='goodix-fp-reset')
     for i in (1, 0):
         gpio_reset.write(bool(i))
         sleep(0.01)
     gpio_reset.close()
-    log(Colors.RED, "reset done")
 
 
 def perform_read(spi: SpiDev) -> list[int]:
@@ -188,6 +186,7 @@ def main():
     isr_thread.start()
     sleep(0.05)  # delay so that the interrupt thread has time to enter gpio_line.read_event()
 
+    log(Colors.RED, "reset device...")
     read_is_ready.acquire()
     read_is_done.acquire()
     reset_spi()
@@ -195,6 +194,7 @@ def main():
     read_is_done.release()
     read_is_ready.acquire()
     read_is_ready.release()
+    log(Colors.RED, "reset done")
 
     # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ init ".ljust(120, '━'))
