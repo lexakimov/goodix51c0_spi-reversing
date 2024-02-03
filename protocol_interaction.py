@@ -102,7 +102,13 @@ def perform_read(spi: SpiDev) -> list[int]:
     if length == 0xFFFF:
         raise RuntimeError('read error: FF bytes are received')
 
-    packet_2 = spi.readbytes(length)
+    packet_2 = list()
+    bytes_left = length
+    while bytes_left > 0:
+        chunk = spi.readbytes(bytes_left)
+        packet_2 += chunk
+        bytes_left -= len(chunk)
+
     is_valid = is_payload_packet_checksum_valid(packet_2)
     validity = format_validity(is_valid)
     hex_string = to_hex_string(packet_2)
