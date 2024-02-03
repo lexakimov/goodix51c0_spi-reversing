@@ -193,9 +193,11 @@ def main():
     isr_thread.start()
     manual_sleep(0.05)  # delay so that the interrupt thread has time to enter gpio_line.read_event()
 
+    # ----------------------------------------------------------------------------------------------------------------
     log(Colors.RED, "reset device...")
     read_is_ready.acquire()
     read_is_done.acquire()
+
     reset_spi()
     read_is_done.acquire()
     read_is_done.release()
@@ -207,20 +209,27 @@ def main():
     log(Colors.HI_GREEN, "━━━ init ".ljust(120, '━'))
 
     perform_write(spi, 0xa0, '01 05 00 00 00 00 00 88')
+    # not to wait for ack
+
+    # ----------------------------------------------------------------------------------------------------------------
+    log(Colors.HI_GREEN, "━━━ force unlock TLS ".ljust(120, '━'))
     perform_write(spi, 0xa0, 'd5 03 00 00 00 d3')
+    # not to wait for ack
     manual_sleep(0.1)  # если после записи нет прерывания надо подождать
 
     # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ get evk version ".ljust(120, '━'))
 
+    perform_write(spi, 0xa0, '01 05 00 00 00 00 00 88')
+    # not to wait for ack
+    manual_sleep(0.05)
+
     read_is_ready.acquire()
     read_is_done.acquire()
 
-    perform_write(spi, 0xa0, '01 05 00 00 00 00 00 88')
-    manual_sleep(0.05)
     perform_write(spi, 0xa0, 'a8 03 00 00 00 ff')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)
+    perform_read(spi)  # get ack for cmd 0xa8, cfg flag 0x7
     manual_sleep(0.05)
     perform_read(spi)
     acquire_then_release(read_is_done, 'read_is_done')
@@ -228,12 +237,18 @@ def main():
     # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ get mcu state ".ljust(120, '━'))
 
+    # perform_write(spi, 0xa0, '01 05 00 00 00 00 00 88')
+    # # not to wait for ack
+    # perform_write(spi, 0xa0, '97 03 00 01 01 0f')
+    # # not to wait for ack
+
     now = datetime.now()
     now_milliseconds = now.second * 1000 + now.microsecond // 1000
     millis = to_hex_string(now_milliseconds.to_bytes(2, 'little'))
 
     read_is_ready.acquire()
     read_is_done.acquire()
+
     perform_write(spi, 0xa0, 'af 06 00 55 5c bf 00 00 86')
     acquire_then_release(read_is_ready, 'read_is_ready')
     perform_read(spi)
@@ -288,16 +303,18 @@ def main():
     #  29 normal_capture_count:0
     #  30 otp_mcu_check_status:0x0
 
+    print()
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "━━━ PSK INIT - get host_psk_data ".ljust(120, '━'))
+    log(Colors.HI_GREEN, "━━━ get psk hash ".ljust(120, '━'))
 
     read_is_ready.acquire()
     read_is_done.acquire()
-    perform_write(spi, 0xa0, 'e4 09 00 02 00 01 bb 00 00 00 00 ff')     # read specific data_type 0xbb010002
+
+    perform_write(spi, 0xa0, 'e4 09 00 02 00 01 bb 00 00 00 00 ff')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)
+    perform_read(spi)  # get ack for cmd 0xe4, cfg flag 0x7
     manual_sleep(0.05)
-    perform_read(spi)                                               # содержит Goodix_Cache.bin
+    perform_read(spi)
     acquire_then_release(read_is_done, 'read_is_done')
 
     # # полный пакет [длина 345]
@@ -336,20 +353,19 @@ def main():
     # .. контрольная сумма
     # 3b
 
+    print()
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "━━━ PSK INIT - get psk ".ljust(120, '━'))
+    log(Colors.HI_GREEN, "━━━ get psk ".ljust(120, '━'))
 
     read_is_ready.acquire()
     read_is_done.acquire()
 
-    perform_write(spi, 0xa0, 'e4 09 00 03 00 02 bb 00 00 00 00 fd')     # read specific data_type 0xbb020003
+    perform_write(spi, 0xa0, 'e4 09 00 03 00 02 bb 00 00 00 00 fd')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)
+    perform_read(spi)  # get ack for cmd 0xe4, cfg flag 0x7
     manual_sleep(0.05)
     perform_read(spi)
     acquire_then_release(read_is_done, 'read_is_done')
-
-    # A0 2D 00 CD
 
     # # полный пакет [длина 45]
     # E4
@@ -366,16 +382,18 @@ def main():
     # # контрольная сумма
     # CE
 
+    print()
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "━━━ reset sensor; reset device, reset_flag 1 ".ljust(120, '━'))
+    log(Colors.HI_GREEN, "━━━ reset sensor ".ljust(120, '━'))
 
     read_is_ready.acquire()
     read_is_done.acquire()
 
     perform_write(spi, 0xa0, 'a2 03 00 01 14 f0')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)
+    perform_read(spi)  # get ack for cmd 0xa2, cfg flag 0x7
     acquire_then_release(read_is_done, 'read_is_done')
+
     read_is_ready.acquire()
     read_is_done.acquire()
     acquire_then_release(read_is_ready, 'read_is_ready')
@@ -398,15 +416,16 @@ def main():
     #  Goodix>>> --- cmd: other
     #  Goodix>>> CHIP_RESET::0x010008
 
+    print()
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "━━━ MILAN_CHIPID (cmd: regrw) ".ljust(120, '━'))
+    log(Colors.HI_GREEN, "━━━ get MILAN_CHIPID ".ljust(120, '━'))
 
     read_is_ready.acquire()
     read_is_done.acquire()
 
     perform_write(spi, 0xa0, '82 06 00 00 00 00 04 00 1e')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)
+    perform_read(spi)  # get ack for cmd 0x82, cfg flag 0x7
     manual_sleep(0.05)
     perform_read(spi)
     acquire_then_release(read_is_done, 'read_is_done')
@@ -420,21 +439,23 @@ def main():
     #  Goodix>>> recvd data cmd-len: 0xb0-3
     #  Goodix>>> get ack for cmd 0x82, cfg flag 0x7
     #  Goodix>>> MCU has no config
+    #  Goodix>>> --- cmd: regrw
     #   read    4 -  0000: a0 08 00 a8
     #   read    8 -  0000: 82 05 00 a2 04 25 00 58
     #  Goodix>>> recvd data cmd-len: 0x82-5
-    #  Goodix>>> --- cmd: regrw
 
+    print()
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "━━━ to set state to DEVICE_ACTION, to set state from 1 to 3 ".ljust(120, '━'))
+    log(Colors.HI_GREEN, "━━━ get OTP ".ljust(120, '━'))
 
     read_is_ready.acquire()
     read_is_done.acquire()
 
     perform_write(spi, 0xa0, 'a6 03 00 00 00 01')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)
+    perform_read(spi)  # get ack for cmd 0xa6, cfg flag 0x7
     acquire_then_release(read_is_done, 'read_is_done')
+
     read_is_ready.acquire()
     read_is_done.acquire()
     acquire_then_release(read_is_ready, 'read_is_ready')
@@ -449,61 +470,84 @@ def main():
     # контроль
     # 1C
 
+    print()
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "━━━ reset sensor; reset device, reset_flag 1 ".ljust(120, '━'))
+    log(Colors.HI_GREEN, "━━━ reset sensor ".ljust(120, '━'))
 
     read_is_ready.acquire()
     read_is_done.acquire()
 
     perform_write(spi, 0xa0, 'a2 03 00 01 14 f0')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)
+    perform_read(spi)  # get ack for cmd 0xa2, cfg flag 0x7
     acquire_then_release(read_is_done, 'read_is_done')
+
     read_is_ready.acquire()
     read_is_done.acquire()
     acquire_then_release(read_is_ready, 'read_is_ready')
     perform_read(spi)
     acquire_then_release(read_is_done, 'read_is_done')
 
-    #  Goodix>>> reset sensor
-    #  Goodix>>> reset device, reset_flag 1
-    #  Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-1-0x2-1000-0
-    #  write    4 -  0000: a0 06 00 a6
-    #  write    6 -  0000: a2 03 00 01 14 f0
-    #   read    4 -  0000: a0 06 00 a6
-    #   read    6 -  0000: b0 03 00 a2 07 4e
-    #  Goodix>>> recvd data cmd-len: 0xb0-3
-    #  Goodix>>> get ack for cmd 0xa2, cfg flag 0x7
-    #  Goodix>>> MCU has no config
-    #   read    4 -  0000: a0 07 00 a7
-    #   read    7 -  0000: a2 04 00 01 00 08 fb
-    #  Goodix>>> recvd data cmd-len: 0xa2-4
-    #  Goodix>>> --- cmd: other
-    #  Goodix>>> CHIP_RESET::0x010008
-
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "━━━ enter, Mode 7, Type 0, base_type 0; setmode: idle ".ljust(120, '━'))
+    log(Colors.HI_GREEN, "━━━ setmode: idle ".ljust(120, '━'))
 
     read_is_ready.acquire()
     read_is_done.acquire()
 
     perform_write(spi, 0xa0, '70 03 00 14 00 23')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)
+    perform_read(spi)  # get ack for cmd 0x70, cfg flag 0x7
     acquire_then_release(read_is_done, 'read_is_done')
 
     # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ send Dac 0x380bb500b300b300 ".ljust(120, '━'))
+    # after that we can get image from sensor
 
     read_is_ready.acquire()
     read_is_done.acquire()
 
     perform_write(spi, 0xa0, '98 09 00 38 0b b5 00 b3 00 b3 00 ab')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)
+    perform_read(spi)  # get ack for cmd 0x98, cfg flag 0x7
     manual_sleep(0.05)
     perform_read(spi)
     acquire_then_release(read_is_done, 'read_is_done')
+
+    # ----------------------------------------------------------------------------------------------------------------
+    log(Colors.HI_GREEN, "━━━ ?unknown? ".ljust(120, '━'))
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    perform_write(spi, 0xa0, '90 E1 00 70 11 74 85 00 85 2C B1 18 C9 14 DD 00 DD 00 DD 00 BA 00 01 80 CA 00 04 00 84 '
+                             '00 15 B3 86 00 00 C4 88 00 00 BA 8A 00 00 B2 8C 00 00 AA 8E 00 00 C1 90 00 BB BB 92 00 '
+                             'B1 B1 94 00 00 A8 96 00 00 B6 98 00 00 00 9A 00 00 00 D2 00 00 00 D4 00 00 00 D6 00 00 '
+                             '00 D8 00 00 00 50 00 01 05 D0 00 00 00 70 00 00 00 72 00 78 56 74 00 34 12 20 00 10 40 '
+                             '5C 00 00 01 20 02 38 0B 36 02 B5 00 38 02 B3 00 3A 02 B3 00 2A 01 82 03 22 00 01 20 24 '
+                             '00 14 00 80 00 01 00 5C 00 00 01 56 00 04 20 58 00 03 02 32 00 0C 02 66 00 03 00 7C 00 '
+                             '00 58 82 00 80 1B 2A 01 08 00 54 00 10 01 62 00 04 03 64 00 19 00 66 00 03 00 7C 00 00 '
+                             '58 2A 01 08 00 52 00 08 00 54 00 00 01 66 00 03 00 7C 00 00 58 00 53 66 8F')
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read(spi)  # get ack for cmd 0x90, cfg flag 0x7
+    manual_sleep(0.05)
+    perform_read(spi)
+    acquire_then_release(read_is_done, 'read_is_done')
+
+    # ----------------------------------------------------------------------------------------------------------------
+    log(Colors.HI_GREEN, "━━━ get tls handshake package ".ljust(120, '━'))
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    perform_write(spi, 0xa0, 'd1 03 00 00 00 d7')
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read(spi)  # not to wait for ack
+    acquire_then_release(read_is_done, 'read_is_done')
+
+    # ----------------------------------------------------------------------------------------------------------------
+
+    # отправляем пакет в ssl сервер (TLS-PSK-WITH-AES-128-GCM-SHA256)
+    # поучаем ответ от ssl сервера, отправляем сканеру
 
     # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ get image ".ljust(120, '━'))
@@ -512,6 +556,7 @@ def main():
     read_is_done.acquire()
 
     perform_write(spi, 0xa0, '20 03 00 01 00 86')
+    manual_sleep(0.5)
     acquire_then_release(read_is_ready, 'read_is_ready')
     perform_read(spi)
     acquire_then_release(read_is_done, 'read_is_done')
