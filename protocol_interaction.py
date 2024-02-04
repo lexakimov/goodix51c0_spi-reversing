@@ -540,15 +540,15 @@ def main():
     acquire_then_release(read_is_done, 'read_is_done')
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "━━━ get tls handshake package ".ljust(120, '━'))
-
-    read_is_ready.acquire()
-    read_is_done.acquire()
-
-    perform_write(spi, 0xa0, 'd1 03 00 00 00 d7')
-    acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)  # not to wait for ack
-    acquire_then_release(read_is_done, 'read_is_done')
+    # log(Colors.HI_GREEN, "━━━ get tls handshake package ".ljust(120, '━'))
+    #
+    # read_is_ready.acquire()
+    # read_is_done.acquire()
+    #
+    # perform_write(spi, 0xa0, 'd1 03 00 00 00 d7')
+    # acquire_then_release(read_is_ready, 'read_is_ready')
+    # perform_read(spi)  # not to wait for ack
+    # acquire_then_release(read_is_done, 'read_is_done')
 
     # ----------------------------------------------------------------------------------------------------------------
 
@@ -562,15 +562,18 @@ def main():
     read_is_done.acquire()
 
     perform_write(spi, 0xa0, '20 03 00 01 00 86')
-    manual_sleep(0.5)
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)
+    perform_read(spi)  # get ack for cmd 0x20, cfg flag 0x1
     acquire_then_release(read_is_done, 'read_is_done')
+
     read_is_ready.acquire()
     read_is_done.acquire()
+
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)
+    image_packet = perform_read(spi)
     acquire_then_release(read_is_done, 'read_is_done')
+
+    log(Colors.ITALIC, "image packet bytes:\n" + ' '.join('{:02X}'.format(num) for num in image_packet))
 
     # ----------------------------------------------------------------------------------------------------------------
     # manual_sleep(3)
