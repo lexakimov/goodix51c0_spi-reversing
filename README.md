@@ -1,6 +1,18 @@
-# Реверс-инжиниринг драйвера сканера отпечатка пальцев Goodix 51C0 (SPI)
+# Реверс-инжиниринг протокола сканера отпечатка пальцев Goodix 51C0 (SPI)
 
-## Настройка драйвера `spidev`
+<p align="center">
+<img src="images/enrolled-fingerprint.png" alt="images/enrolled-fingerprint.png" width="200">
+</p>
+
+> TL;DR
+
+| Скрипт                                             | Описание                                                                                     |
+|----------------------------------------------------|----------------------------------------------------------------------------------------------|
+| [protocol_interaction.py](protocol_interaction.py) | основной файл с PoC протокола рабы с драйвером. Запускать из под root                        |
+| [image_decode.py](image_decode.py)                 | пример декодирования изображения, из пакета полученного в предыдущем скрипте                 |
+| [tls_test.py](tls_test.py)                         | пример TLS рукопожатия между драйвером и сканером, а также получение и расшифровка сообщений |
+
+## Настройка драйвера spidev
 
 Сначала проверьте что устройство действительно отображается в sysfs:
 ```shell
@@ -17,7 +29,7 @@ lsmod | grep spidev
 # > spidev                 28672  0
 
 # подсоединение устройства spi-GDIX51C0:00 к драйверу spidev
-# взято отсюда https://docs.kernel.org/spi/spidev.html
+# (взято отсюда https://docs.kernel.org/spi/spidev.html)
 echo spidev > /sys/bus/spi/devices/spi-GDIX51C0:00/driver_override
 echo spi-GDIX51C0:00 > /sys/bus/spi/drivers/spidev/bind
 
@@ -27,27 +39,35 @@ ls /dev/spidev*
 ```
 
 ## Настройка виртуального окружения
-Прежде чем выполнять шаги, необходимо чтобы у вас был установлен Python 3 с установленным `virtualenv`.
+_Прежде чем выполнять шаги, необходимо чтобы у вас был установлен Python 3 с установленным `virtualenv`._
 
-В корневой папке проекта создайте виртуальное окружение:
+- в корневой папке проекта создайте виртуальное окружение:
 ```shell
 virtualenv venv
 ```
 
-Активируйте его
+- активируйте его:
 ```shell
 source ./venv/bin/activate
 ```
 
-Установите зависимости
+- установите зависимости:
 ```shell
 pip install -r requirements.txt
 ```
 
-Для того чтобы у python был доступ к SPI и GPIO устройствам, его нужно запускать из под root-пользователя.
+## Запуск скрипта
+Т.к. для доступа к SPI и GPIO-устройствам нужны права root-пользователя, его нужно запускать из под root-пользователя:
+```shell
+sudo python protocol_interaction.py
+```
 
-Чтобы не запрашивать пароль каждый раз или при запуске из IDE, создайте в виртуальном окружении скрипт для запуска
-интерпретатора python из под root-пользователя:
+## Отладка в IDE
+Для отладки можно запускать скрипт в среде разработки (например PyCharm или Intellij IDEA с установленным плагином [Python](https://www.jetbrains.com/help/idea/plugin-overview.html))
+
+Но для этого надо отключить запрос пароля для root-пользователя. Для этого:
+
+- создайте в виртуальном окружении скрипт для запуска интерпретатора python из под root-пользователя:
 ```shell
 cat << EOF > ./venv/bin/python-sudo
 #!/bin/bash
@@ -56,7 +76,7 @@ EOF
 chmod +x ./venv/bin/python-sudo
 ```
 
-Чтобы не было запроса пароля, создайте файл `/etc/sudoers.d/venv-python` со следующим содержанием:
+- создайте файл `/etc/sudoers.d/venv-python` со следующим содержанием:
 ```
 user_name machine_name = (root) NOPASSWD: /path/to/project/venv/bin/python
 ```
@@ -65,10 +85,7 @@ user_name machine_name = (root) NOPASSWD: /path/to/project/venv/bin/python
 akimov huawei-rlefxx = (root) NOPASSWD: /home/akimov/desktop/gdix51c0-spi-reversing/venv/bin/python
 ```
 
-Теперь в виртуальном окружении можно запускать python из под root пользователя без запроса пароля: 
-вместо `python` используйте команду `python-sudo`.
-
-Проверка, что все было настроено правильно:
+- проверка, что все было выполнено корректно:
 ```
 (venv) [akimov@huawei-rlefxx gdix51c0-spi-reversing]$ python-sudo 
 Python 3.11.6 (main, Nov 14 2023, 09:36:21) [GCC 13.2.1 20230801] on linux
@@ -79,19 +96,12 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> exit()
 ```
 
-## Запуск скрипта
+Теперь в виртуальном окружении можно запускать python из под root пользователя без запроса пароля.
 
-```shell
-sudo python protocol_interaction.py
-# or
-python-sudo protocol_interaction.py
-```
+вместо `python` используйте команду `python-sudo`.
 
-## Отладка в IDE
-Для отладки можно запускать скрипт в среде разработки (например PyCharm или Intellij IDEA с установленным плагинов Python)
-
-### Настройка
-- в Intellij IDEA зайдите в меню `File -> Project Structure`, затем в `SDKs -> Add new SDK -> Add Python SDK`
+### Настройка интерпретатора с root-правами в IDE
+- в Intellij IDEA зайдите в `File -> Project Structure -> SDKs -> Add new SDK -> Add Python SDK`
 - на вкладке `Virtual environment -> Existing environment -> Interpreter ...` и выберите файл `[project path]/venv/bin/python-sudo`
 Все будет выглядеть примерно так:
 
