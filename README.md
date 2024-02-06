@@ -4,13 +4,11 @@
 <img src="images/enrolled-fingerprint.png" alt="images/enrolled-fingerprint.png" width="200">
 </p>
 
-> TL;DR
-
 | Скрипт                                             | Описание                                                                                     |
 |----------------------------------------------------|----------------------------------------------------------------------------------------------|
-| [protocol_interaction.py](protocol_interaction.py) | основной файл с PoC протокола рабы с драйвером. Запускать из под root                        |
-| [image_decode.py](image_decode.py)                 | пример декодирования изображения, из пакета полученного в предыдущем скрипте                 |
-| [tls_test.py](tls_test.py)                         | пример TLS рукопожатия между драйвером и сканером, а также получение и расшифровка сообщений |
+| [protocol_interaction.py](protocol_interaction.py) | prove-of-concept работы со сканером. Запускать из под root.                                  |
+| [image_decode.py](image_decode.py)                 | пример декодирования изображения из пакета данных, полученных в предыдущем скрипте           |
+| [tls_test.py](tls_test.py)                         | пример TLS-рукопожатия между драйвером и сканером, а также получение и расшифровка сообщений |
 
 ## Настройка драйвера spidev
 
@@ -28,7 +26,7 @@ modprobe spidev
 lsmod | grep spidev
 # > spidev                 28672  0
 
-# подсоединение устройства spi-GDIX51C0:00 к драйверу spidev
+# подсоединить устройство spi-GDIX51C0:00 к драйверу spidev
 # (взято отсюда https://docs.kernel.org/spi/spidev.html)
 echo spidev > /sys/bus/spi/devices/spi-GDIX51C0:00/driver_override
 echo spi-GDIX51C0:00 > /sys/bus/spi/drivers/spidev/bind
@@ -39,7 +37,7 @@ ls /dev/spidev*
 ```
 
 ## Настройка виртуального окружения
-_Прежде чем выполнять шаги, необходимо чтобы у вас был установлен Python 3 с установленным `virtualenv`._
+_Необходимо наличие Python 3 с установленным `virtualenv`._
 
 - в корневой папке проекта создайте виртуальное окружение:
 ```shell
@@ -57,15 +55,14 @@ pip install -r requirements.txt
 ```
 
 ## Запуск скрипта
-Т.к. для доступа к SPI и GPIO-устройствам нужны права root-пользователя, его нужно запускать из под root-пользователя:
+Т.к. для доступа к SPI и GPIO-устройствам нужны права суперпользователя, его нужно запускать из под root:
 ```shell
 sudo python protocol_interaction.py
 ```
 
 ## Отладка в IDE
-Для отладки можно запускать скрипт в среде разработки (например PyCharm или Intellij IDEA с установленным плагином [Python](https://www.jetbrains.com/help/idea/plugin-overview.html))
-
-Но для этого надо отключить запрос пароля для root-пользователя. Для этого:
+Для отладки можно запускать скрипт в среде разработки (например PyCharm или Intellij IDEA с установленным плагином 
+[Python](https://www.jetbrains.com/help/idea/plugin-overview.html)), предварительно отключив запрос пароля для root-пользователя. Для этого:
 
 - создайте в виртуальном окружении скрипт для запуска интерпретатора python из под root-пользователя:
 ```shell
