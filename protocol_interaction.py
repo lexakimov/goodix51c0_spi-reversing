@@ -8,9 +8,8 @@ from periphery import CdevGPIO
 from periphery.gpio import GPIOError
 from spidev import SpiDev
 
-from util_fmt import Colors, log, to_hex_string, to_utf_string, format_validity
-
-log_acquires_and_releases = True
+from util_fmt import Colors, log, to_hex_string, format_validity, log_synchronization_events, log_isr_events, \
+    log_manual_sleeps
 
 
 def log_locks(read_is_ready: Lock, read_is_done: Lock):
@@ -20,17 +19,19 @@ def log_locks(read_is_ready: Lock, read_is_done: Lock):
 
 
 def manual_sleep(duration):
-    log(Colors.HI_YELLOW, f"manual sleep for {duration}s")
+    if log_manual_sleeps:
+        log(Colors.HI_YELLOW, f"sleep for {duration} second(s)...")
     sleep(duration)
-    log(Colors.HI_YELLOW, "go on...")
+    if log_manual_sleeps:
+        log(Colors.HI_YELLOW, "resume")
 
 
 def acquire_then_release(lock, label):
-    if log_acquires_and_releases:
-        log('\033[48;5;0m', f"acquire {label}...")
+    if log_synchronization_events:
+        log('\033[48;5;0m', f"wait for {label}")
     lock.acquire()
-    if log_acquires_and_releases:
-        log('\033[48;5;0m', f"release {label}...")
+    if log_synchronization_events:
+        log('\033[48;5;0m', f"{label} received. resume")
     lock.release()
 
 
@@ -88,12 +89,13 @@ def reset_spi():
 
 
 def perform_read(spi: SpiDev) -> list[int]:
-    log(Colors.HI_BLUE, log_prefix + "reading from device...")
+    log(Colors.HI_BLUE, "reading from device...")
     packet_1 = spi.readbytes(4)
+    length = extract_length(packet_1)
     is_valid = is_protocol_packet_checksum_valid(packet_1)
     validity = format_validity(is_valid)
     hex_string = to_hex_string(packet_1)
-    log(Colors.HI_BLUE, f"{log_prefix}\t   - received packet 1 {validity} : {hex_string}")
+    log(Colors.HI_BLUE, f"\t- packet received [length:{length:>4}] {validity} : {hex_string}")
 
     if packet_1 == [0, 0, 0, 0]:
         raise RuntimeError('read error: 00 00 00 00 bytes are received')
@@ -111,9 +113,9 @@ def perform_read(spi: SpiDev) -> list[int]:
 
     is_valid = is_payload_packet_checksum_valid(packet_2)
     validity = format_validity(is_valid)
+    length = extract_length(packet_2)
     hex_string = to_hex_string(packet_2)
-    utf_string = to_utf_string(packet_2)
-    log(Colors.HI_BLUE, f"{log_prefix}\t   - received packet 2 {validity} : {hex_string} | {utf_string}")
+    log(Colors.HI_BLUE, f"\t- packet received [length:{length:>4}] {validity} : {hex_string}")
     return packet_2
 
 
@@ -128,26 +130,29 @@ def perform_write(spi: SpiDev, packet_type: int, payload: bytes | str | list[int
     elif isinstance(payload, list):
         payload = bytearray(payload)
 
-    log(Colors.HI_PURPLE, log_prefix + "writing to device...")
-    protocol_packet = make_protocol_packet(packet_type, len(payload))
-    is_1_valid = is_protocol_packet_checksum_valid(protocol_packet)
+    log(Colors.HI_PURPLE, "writing to device...")
+    header_packet = make_protocol_packet(packet_type, len(payload))
+    is_1_valid = is_protocol_packet_checksum_valid(header_packet)
     is_2_valid = is_payload_packet_checksum_valid(payload)
-    spi.writebytes(protocol_packet)
+    spi.writebytes(header_packet)
+    length = extract_length(header_packet)
     validity = format_validity(is_1_valid)
-    hex_string = to_hex_string(protocol_packet)
-    log(Colors.HI_PURPLE, f"{log_prefix}\t- protocol packet sent {validity} : {hex_string}")
+    hex_string = to_hex_string(header_packet)
+    log(Colors.HI_PURPLE, f"\t-     packet sent [length:{length:>4}] {validity} : {hex_string}")
+
     spi.writebytes(payload)
+    length = extract_length(payload)
     validity = format_validity(is_2_valid)
     hex_string = to_hex_string(payload)
-    utf_string = to_utf_string(payload)
-    log(Colors.HI_PURPLE, f"{log_prefix}\t-  payload packet sent {validity} : {hex_string} | {utf_string}")
+    log(Colors.HI_PURPLE, f"\t-     packet sent [length:{length:>4}] {validity} : {hex_string}")
 
 
 def interrupt_monitoring(gpio_line: CdevGPIO, read_is_ready: Lock, read_is_done: Lock):
     is_high = False
     i = 0
     last_ts = time.time_ns()
-    log(Colors.CYAN, "interrupt_monitoring started")
+    if log_isr_events:
+        log(Colors.CYAN, "interrupt_monitoring started")
     while True:
         i += 1
         try:
@@ -163,11 +168,13 @@ def interrupt_monitoring(gpio_line: CdevGPIO, read_is_ready: Lock, read_is_done:
         event_time = time.time_ns()
         if current_state and not is_high:
             passed_ms = int((event_time - last_ts) / 1000000)
-            log(Colors.CYAN, f"gpio interrupt: rising  [iteration {i}] {passed_ms}ms) - data ready to read")
+            if log_isr_events:
+                log(Colors.CYAN, f"gpio interrupt: rising  [iteration {i}] {passed_ms}ms) - data ready to read")
             if read_is_ready.locked():
                 read_is_ready.release()
             else:
-                log(Colors.RED, "trying to release unlocked read_is_ready")
+                if log_isr_events:
+                    log(Colors.RED, "trying to release unlocked read_is_ready")
             is_high = True
             last_ts = event_time
             i = 0
@@ -175,11 +182,13 @@ def interrupt_monitoring(gpio_line: CdevGPIO, read_is_ready: Lock, read_is_done:
         # if event_edge == 'falling' and is_high:
         if not current_state and is_high:
             passed_ms = int((event_time - last_ts) / 1000000)
-            log(Colors.CYAN, f"gpio interrupt: falling [iteration {i}] {passed_ms}ms) - reading completed")
+            if log_isr_events:
+                log(Colors.CYAN, f"gpio interrupt: falling [iteration {i}] {passed_ms}ms) - reading completed")
             if read_is_done.locked():
                 read_is_done.release()
             else:
-                log(Colors.RED, "trying to release unlocked read_is_done")
+                if log_isr_events:
+                    log(Colors.RED, "trying to release unlocked read_is_done")
             is_high = False
             i = 0
         sleep(0.01)
@@ -217,12 +226,14 @@ def main():
     perform_write(spi, 0xa0, '01 05 00 00 00 00 00 88')
     # not to wait for ack
 
+    print()
     # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ force unlock TLS ".ljust(120, '━'))
     perform_write(spi, 0xa0, 'd5 03 00 00 00 d3')
     # not to wait for ack
     manual_sleep(0.1)  # если после записи нет прерывания надо подождать
 
+    print()
     # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ get evk version ".ljust(120, '━'))
 
@@ -240,6 +251,7 @@ def main():
     perform_read(spi)
     acquire_then_release(read_is_done, 'read_is_done')
 
+    print()
     # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ get mcu state ".ljust(120, '━'))
 
@@ -494,6 +506,7 @@ def main():
     perform_read(spi)
     acquire_then_release(read_is_done, 'read_is_done')
 
+    print()
     # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ setmode: idle ".ljust(120, '━'))
 
@@ -505,6 +518,7 @@ def main():
     perform_read(spi)  # get ack for cmd 0x70, cfg flag 0x7
     acquire_then_release(read_is_done, 'read_is_done')
 
+    print()
     # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ send Dac 0x380bb500b300b300 ".ljust(120, '━'))
     # after that we can get image from sensor
@@ -519,6 +533,7 @@ def main():
     perform_read(spi)
     acquire_then_release(read_is_done, 'read_is_done')
 
+    print()
     # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ ?unknown? ".ljust(120, '━'))
 
@@ -539,6 +554,7 @@ def main():
     perform_read(spi)
     acquire_then_release(read_is_done, 'read_is_done')
 
+    print()
     # ----------------------------------------------------------------------------------------------------------------
     # log(Colors.HI_GREEN, "━━━ get tls handshake package ".ljust(120, '━'))
     #
@@ -550,6 +566,7 @@ def main():
     # perform_read(spi)  # not to wait for ack
     # acquire_then_release(read_is_done, 'read_is_done')
 
+#    print()
     # ----------------------------------------------------------------------------------------------------------------
 
     # отправляем пакет в ssl сервер (TLS-PSK-WITH-AES-128-GCM-SHA256)
@@ -573,8 +590,9 @@ def main():
     image_packet = perform_read(spi)
     acquire_then_release(read_is_done, 'read_is_done')
 
-    log(Colors.ITALIC, "image packet bytes:\n" + ' '.join('{:02X}'.format(num) for num in image_packet))
+    # log(Colors.ITALIC, "image packet bytes:\n" + ' '.join('{:02X}'.format(num) for num in image_packet))
 
+    print()
     # ----------------------------------------------------------------------------------------------------------------
     # manual_sleep(3)
     log(Colors.NEGATIVE, "closing")
@@ -583,8 +601,6 @@ def main():
     exit(0)
     # ----------------------------------------------------------------------------------------------------------------
 
-
-log_prefix = ''
 
 if __name__ == "__main__":
     try:
