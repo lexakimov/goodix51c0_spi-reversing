@@ -1,7 +1,11 @@
 from datetime import datetime
 
+log_isr_events = False
+log_synchronization_events = False
+log_manual_sleeps = False
 
-trim_long_strings = True
+hex_string_length_limit = 80
+utf_string_length_limit = 80
 
 
 class Colors:
@@ -42,20 +46,13 @@ def log(color, message):
 
 def to_hex_string(byte_array: bytearray | bytes | list[int]):
     data = ' '.join('{:02X}'.format(num) for num in byte_array)
-    return (data[:72] + '...') if trim_long_strings and len(data) > 75 else data
+    return (data[:hex_string_length_limit - 3] + '...') if len(data) > hex_string_length_limit else data
 
 
 def to_utf_string(byte_array: bytearray | bytes | list[int]):
-    length = _extract_length(byte_array)
     data = bytearray(byte_array[3:-1]).decode('utf-8', errors='ignore')
-    return f'[length: {length}] ' + ((data[:72] + '...') if trim_long_strings and len(data) > 75 else data)
+    return (data[:utf_string_length_limit - 3] + '...') if len(data) > utf_string_length_limit else data
 
 
 def format_validity(is_valid: bool) -> str:
     return '🟢' if is_valid else '🔴'
-
-
-def _extract_length(packet: list[int] | bytearray) -> int:
-    length_bytes = packet[1:3]
-    length_int = int.from_bytes(length_bytes, byteorder="little")
-    return length_int
