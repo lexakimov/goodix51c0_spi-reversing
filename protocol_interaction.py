@@ -47,6 +47,10 @@ def make_header_packet(packet_type: int, payload_length: int) -> bytearray:
     return header_packet
 
 
+def calculate_checksum_for_mcu_timestamp(packet: list[int] | bytes) -> int:
+    return (0xaa - sum(packet) & 0xff) + 1
+
+
 def is_header_packet_checksum_valid(packet: list[int] | bytearray) -> bool:
     checksum = packet[-1]
     fact_sum = sum(packet[:-1]) & 0xff
@@ -251,14 +255,16 @@ def main():
     # perform_write(spi, 0xa0, '97 03 00 01 01 0f')
     # # not to wait for ack
 
-    now = datetime.now()
-    now_milliseconds = now.second * 1000 + now.microsecond // 1000
-    millis = to_hex_string(now_milliseconds.to_bytes(2, 'little'))
-
     read_is_ready.acquire()
     read_is_done.acquire()
 
-    perform_write(spi, 0xa0, 'af 06 00 55 5c bf 00 00 86')
+    now = datetime.now()
+    now_milliseconds = now.second * 1000 + now.microsecond // 1000
+    millis = to_hex_string(now_milliseconds.to_bytes(2, 'little'))
+    get_mcu_state_payload = bytes.fromhex(f'af 06 00 55 {millis} 00 00'.replace(' ', ''))
+    get_mcu_state_payload += calculate_checksum_for_mcu_timestamp(get_mcu_state_payload).to_bytes()
+    perform_write(spi, 0xa0, get_mcu_state_payload)
+    # perform_write(spi, 0xa0, 'af 06 00 55 5c bf 00 00 86')
     acquire_then_release(read_is_ready, 'read_is_ready')
     perform_read(spi)
     acquire_then_release(read_is_done, 'read_is_done')
