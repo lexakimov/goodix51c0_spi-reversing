@@ -29,7 +29,8 @@ def manual_sleep(duration):
 def acquire_then_release(lock, label):
     if log_synchronization_events:
         log('\033[48;5;0m', f"wait for {label}")
-    lock.acquire()
+    if not lock.acquire(timeout=3):
+        raise TimeoutError()
     if log_synchronization_events:
         log('\033[48;5;0m', f"{label} received. resume")
     lock.release()
@@ -556,15 +557,15 @@ def main():
 
     print()
     # ----------------------------------------------------------------------------------------------------------------
-    # log(Colors.HI_GREEN, "━━━ get tls handshake package ".ljust(120, '━'))
-    #
-    # read_is_ready.acquire()
-    # read_is_done.acquire()
-    #
-    # perform_write(spi, 0xa0, 'd1 03 00 00 00 d7')
-    # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read(spi)  # not to wait for ack
-    # acquire_then_release(read_is_done, 'read_is_done')
+    log(Colors.HI_GREEN, "━━━ get tls handshake package ".ljust(120, '━'))
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    perform_write(spi, 0xa0, 'd1 03 00 00 00 d7')
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read(spi)  # not to wait for ack
+    acquire_then_release(read_is_done, 'read_is_done')
 
 #    print()
     # ----------------------------------------------------------------------------------------------------------------
@@ -607,6 +608,9 @@ if __name__ == "__main__":
         main()
     except RuntimeError as err:
         log(Colors.HI_RED, err)
+        sys.exit(1)
+    except TimeoutError as err:
+        log(Colors.HI_RED, "timeout")
         sys.exit(1)
     except KeyboardInterrupt:
         log(Colors.HI_RED, "interrupted")
