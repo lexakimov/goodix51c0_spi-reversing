@@ -8,12 +8,14 @@ from periphery import CdevGPIO
 from periphery.gpio import GPIOError
 from spidev import SpiDev
 
-from util_fmt import Colors, log, to_hex_string, format_validity, log_synchronization_events, log_isr_events, \
-    log_manual_sleeps
+from packet_parsing import types_by_code
+from util_fmt import Colors, log, to_hex_string, format_validity, print_frame, crop
 
+log_isr_events = False
+log_synchronization_events = False
+log_manual_sleeps = False
 
-
-
+hex_string_length_limit = 80
 
 
 def manual_sleep(duration):
@@ -34,26 +36,18 @@ def acquire_then_release(lock, label):
     lock.release()
 
 
-def make_protocol_packet(packet_type: int, payload_length: int) -> bytearray:
-    """
-    packet_type
-        0xA0
-        0xB0
-
-    payload_length
-        length of payload packet
-    """
-    protocol_packet = bytearray([packet_type]) + payload_length.to_bytes(2, 'little')
+def make_header_packet(packet_type: int, payload_length: int) -> bytearray:
+    header_packet = bytearray([packet_type]) + payload_length.to_bytes(2, 'little')
     sum_int = 0x00
-    for b in protocol_packet:
+    for b in header_packet:
         sum_int = (sum_int + b) & 0xFF
     checksum: bytes = sum_int.to_bytes()
-    protocol_packet += checksum
+    header_packet += checksum
 
-    return protocol_packet
+    return header_packet
 
 
-def is_protocol_packet_checksum_valid(packet: list[int] | bytearray) -> bool:
+def is_header_packet_checksum_valid(packet: list[int] | bytearray) -> bool:
     checksum = packet[-1]
     fact_sum = sum(packet[:-1]) & 0xff
     return checksum == fact_sum
@@ -85,9 +79,9 @@ def perform_read(spi: SpiDev) -> list[int]:
     log(Colors.HI_BLUE, "reading from device...")
     packet_1 = spi.readbytes(4)
     length = extract_length(packet_1)
-    is_valid = is_protocol_packet_checksum_valid(packet_1)
+    is_valid = is_header_packet_checksum_valid(packet_1)
     validity = format_validity(is_valid)
-    hex_string = to_hex_string(packet_1)
+    hex_string = crop(to_hex_string(packet_1), hex_string_length_limit)
     log(Colors.HI_BLUE, f"\t- packet received [length:{length:>4}] {validity} : {hex_string}")
 
     if packet_1 == [0, 0, 0, 0]:
@@ -107,8 +101,13 @@ def perform_read(spi: SpiDev) -> list[int]:
     is_valid = is_payload_packet_checksum_valid(packet_2)
     validity = format_validity(is_valid)
     length = extract_length(packet_2)
-    hex_string = to_hex_string(packet_2)
+    hex_string = crop(to_hex_string(packet_2), hex_string_length_limit)
     log(Colors.HI_BLUE, f"\t- packet received [length:{length:>4}] {validity} : {hex_string}")
+
+    packet_type = types_by_code.get(packet_2[0], "UNKNOWN")
+    type_hex = to_hex_string([packet_2[0], ])
+    print_frame(Colors.HI_BLUE, '', 120, [f'command: (0x{type_hex}) {packet_type}', ])
+
     return packet_2
 
 
@@ -124,20 +123,24 @@ def perform_write(spi: SpiDev, packet_type: int, payload: bytes | str | list[int
         payload = bytearray(payload)
 
     log(Colors.HI_PURPLE, "writing to device...")
-    header_packet = make_protocol_packet(packet_type, len(payload))
-    is_1_valid = is_protocol_packet_checksum_valid(header_packet)
+    header_packet = make_header_packet(packet_type, len(payload))
+    is_1_valid = is_header_packet_checksum_valid(header_packet)
     is_2_valid = is_payload_packet_checksum_valid(payload)
     spi.writebytes(header_packet)
     length = extract_length(header_packet)
     validity = format_validity(is_1_valid)
-    hex_string = to_hex_string(header_packet)
+    hex_string = crop(to_hex_string(header_packet), hex_string_length_limit)
     log(Colors.HI_PURPLE, f"\t-     packet sent [length:{length:>4}] {validity} : {hex_string}")
 
     spi.writebytes(payload)
     length = extract_length(payload)
     validity = format_validity(is_2_valid)
-    hex_string = to_hex_string(payload)
+    hex_string = crop(to_hex_string(payload), hex_string_length_limit)
     log(Colors.HI_PURPLE, f"\t-     packet sent [length:{length:>4}] {validity} : {hex_string}")
+
+    packet_type = types_by_code.get(payload[0], "UNKNOWN")
+    type_hex = to_hex_string([payload[0], ])
+    print_frame(Colors.HI_PURPLE, '', 120, [f'command: (0x{type_hex}) {packet_type}', ])
 
 
 def interrupt_monitoring(gpio_line: CdevGPIO, read_is_ready: Lock, read_is_done: Lock):
@@ -557,7 +560,7 @@ def main():
     perform_read(spi)  # not to wait for ack
     acquire_then_release(read_is_done, 'read_is_done')
 
-#    print()
+    #    print()
     # ----------------------------------------------------------------------------------------------------------------
 
     # отправляем пакет в ssl сервер (TLS-PSK-WITH-AES-128-GCM-SHA256)
@@ -605,4 +608,3 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         log(Colors.HI_RED, "interrupted")
         sys.exit(130)
-
