@@ -1,12 +1,5 @@
 from datetime import datetime
 
-log_isr_events = False
-log_synchronization_events = False
-log_manual_sleeps = False
-
-hex_string_length_limit = 80
-utf_string_length_limit = 80
-
 
 class Colors:
     END = "\033[0m"
@@ -44,15 +37,31 @@ def log(color, message):
     print(color, '[', timestamp, '] ', message, Colors.END, sep='')
 
 
+def crop(s, length):
+    return (s[:length - 3] + '...') if len(s) > length else s
+
+
 def to_hex_string(byte_array: bytearray | bytes | list[int]):
-    data = ' '.join('{:02X}'.format(num) for num in byte_array)
-    return (data[:hex_string_length_limit - 3] + '...') if len(data) > hex_string_length_limit else data
+    return ' '.join('{:02X}'.format(num) for num in byte_array)
 
 
 def to_utf_string(byte_array: bytearray | bytes | list[int]):
-    data = bytearray(byte_array[3:-1]).decode('utf-8', errors='ignore')
-    return (data[:utf_string_length_limit - 3] + '...') if len(data) > utf_string_length_limit else data
+    return bytearray(byte_array[3:-1]).decode('utf-8', errors='ignore')
 
 
 def format_validity(is_valid: bool) -> str:
     return '🟢' if is_valid else '🔴'
+
+
+def print_frame(color: Colors, prefix: str, width: int, rows: list[str]):
+    indent = ' '
+    max_len = width - len(indent) * 2 - 2
+    log(color, f'{prefix}╔'.ljust(width - 1, '═') + '╗')
+    for i, row_1 in enumerate(rows):
+        for row_2 in row_1.split('\n'):
+            rows_2 = [row_2[y - max_len:y] for y in range(max_len, len(row_2) + max_len, max_len)]
+            for row_3 in rows_2:
+                log(color, f'{prefix}║{indent}{row_3}'.ljust(width - 1, ' ') + '║')
+        if i < len(rows) - 1:
+            log(color, f'{prefix}╠'.ljust(width - 1, '═') + '╣')
+    log(color, f'{prefix}╚'.ljust(width - 1, '═') + "╝")
