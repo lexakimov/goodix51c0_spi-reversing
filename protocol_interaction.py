@@ -77,38 +77,36 @@ def reset_spi():
 
 def perform_read(spi: SpiDev) -> list[int]:
     log(Colors.HI_BLUE, "reading from device...")
-    packet_1 = spi.readbytes(4)
-    length = extract_length(packet_1)
-    is_valid = is_header_packet_checksum_valid(packet_1)
+    header_packet = spi.readbytes(4)
+    is_valid = is_header_packet_checksum_valid(header_packet)
     validity = format_validity(is_valid)
-    hex_string = crop(to_hex_string(packet_1), hex_string_length_limit)
-    log(Colors.HI_BLUE, f"\t- packet received [length:{length:>4}] {validity} : {hex_string}")
+    hex_cropped = crop(to_hex_string(header_packet), hex_string_length_limit)
+    log(Colors.HI_BLUE, f"\t- packet received {validity} : {hex_cropped}")
+    payload_length = extract_length(header_packet)
 
-    if packet_1 == [0, 0, 0, 0]:
+    if header_packet == [0, 0, 0, 0]:
         raise RuntimeError('read error: 00 00 00 00 bytes are received')
-
-    length = extract_length(packet_1)
-    if length == 0xFFFF:
+    if payload_length == 0xFFFF:
         raise RuntimeError('read error: FF bytes are received')
 
-    packet_2 = list()
-    bytes_left = length
+    payload_packet = list()
+    bytes_left = payload_length
     while bytes_left > 0:
         chunk = spi.readbytes(bytes_left)
-        packet_2 += chunk
+        payload_packet += chunk
         bytes_left -= len(chunk)
 
-    is_valid = is_payload_packet_checksum_valid(packet_2)
+    is_valid = is_payload_packet_checksum_valid(payload_packet)
     validity = format_validity(is_valid)
-    length = extract_length(packet_2)
-    hex_string = crop(to_hex_string(packet_2), hex_string_length_limit)
-    log(Colors.HI_BLUE, f"\t- packet received [length:{length:>4}] {validity} : {hex_string}")
+    hex_string = to_hex_string(payload_packet)
+    hex_cropped = crop(hex_string, hex_string_length_limit)
+    log(Colors.HI_BLUE, f"\t- packet received {validity} : {hex_cropped}")
 
-    packet_type = types_by_code.get(packet_2[0], "UNKNOWN")
-    type_hex = to_hex_string([packet_2[0], ])
-    print_frame(Colors.HI_BLUE, '', 120, [f'command: (0x{type_hex}) {packet_type}', ])
+    packet_type = types_by_code.get(payload_packet[0], "UNKNOWN")
+    type_hex = to_hex_string([payload_packet[0], ])
+    print_frame(Colors.HI_BLUE, '', 120, [f'[length:{payload_length:>4}] command: (0x{type_hex}) {packet_type}', hex_string])
 
-    return packet_2
+    return payload_packet
 
 
 def perform_write(spi: SpiDev, packet_type: int, payload: bytes | str | list[int]):
@@ -124,23 +122,22 @@ def perform_write(spi: SpiDev, packet_type: int, payload: bytes | str | list[int
 
     log(Colors.HI_PURPLE, "writing to device...")
     header_packet = make_header_packet(packet_type, len(payload))
-    is_1_valid = is_header_packet_checksum_valid(header_packet)
-    is_2_valid = is_payload_packet_checksum_valid(payload)
     spi.writebytes(header_packet)
-    length = extract_length(header_packet)
+    is_1_valid = is_header_packet_checksum_valid(header_packet)
     validity = format_validity(is_1_valid)
     hex_string = crop(to_hex_string(header_packet), hex_string_length_limit)
-    log(Colors.HI_PURPLE, f"\t-     packet sent [length:{length:>4}] {validity} : {hex_string}")
+    log(Colors.HI_PURPLE, f"\t-     packet sent {validity} : {hex_string}")
 
     spi.writebytes(payload)
-    length = extract_length(payload)
+    is_2_valid = is_payload_packet_checksum_valid(payload)
     validity = format_validity(is_2_valid)
     hex_string = crop(to_hex_string(payload), hex_string_length_limit)
-    log(Colors.HI_PURPLE, f"\t-     packet sent [length:{length:>4}] {validity} : {hex_string}")
+    log(Colors.HI_PURPLE, f"\t-     packet sent {validity} : {hex_string}")
 
-    packet_type = types_by_code.get(payload[0], "UNKNOWN")
+    payload_length = extract_length(header_packet)
     type_hex = to_hex_string([payload[0], ])
-    print_frame(Colors.HI_PURPLE, '', 120, [f'command: (0x{type_hex}) {packet_type}', ])
+    packet_type = types_by_code.get(payload[0], "UNKNOWN")
+    print_frame(Colors.HI_PURPLE, '', 120, [f'[length:{payload_length:>4}] command: (0x{type_hex}) {packet_type}', ])
 
 
 def interrupt_monitoring(gpio_line: CdevGPIO, read_is_ready: Lock, read_is_done: Lock):
