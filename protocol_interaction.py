@@ -12,10 +12,8 @@ from util_fmt import Colors, log, to_hex_string, format_validity, log_synchroniz
     log_manual_sleeps
 
 
-def log_locks(read_is_ready: Lock, read_is_done: Lock):
-    status_1 = '🔒' if read_is_ready.locked() else '🆓'
-    status_2 = '🔒' if read_is_done.locked() else '🆓'
-    log(Colors.BLUE, f"read_is_ready: {status_1}  read_is_done : {status_2}")
+
+
 
 
 def manual_sleep(duration):
@@ -73,12 +71,6 @@ def extract_length(packet: list[int] | bytearray) -> int:
     length_bytes = packet[1:3]
     length_int = int.from_bytes(length_bytes, byteorder="little")
     return length_int
-
-
-def locks_debugging(read_is_ready: Lock, read_is_done: Lock):
-    while True:
-        log_locks(read_is_ready, read_is_done)
-        sleep(0.2)
 
 
 def reset_spi():
@@ -203,8 +195,6 @@ def main():
 
     read_is_ready = Lock()
     read_is_done = Lock()
-    # dbg_thread = Thread(daemon=True, target=locks_debugging, args=(read_is_ready, read_is_done))
-    # dbg_thread.start()
     isr_thread = Thread(daemon=True, target=interrupt_monitoring, args=(gpio_line, read_is_ready, read_is_done))
     isr_thread.start()
     manual_sleep(0.05)  # delay so that the interrupt thread has time to enter gpio_line.read_event()
