@@ -59,8 +59,12 @@ def print_frame(color: Colors, prefix: str, width: int, rows: list[str]):
     log(color, f'{prefix}╔'.ljust(width - 1, '═') + '╗')
     for i, row_1 in enumerate(rows):
         for row_2 in row_1.split('\n'):
-            rows_2 = [row_2[y - max_len:y] for y in range(max_len, len(row_2) + max_len, max_len)]
+            rows_2 = []
+            while len(row_2) > 0:
+                rows_2.append(row_2[0:max_len].strip(' '))
+                row_2 = row_2[max_len:].strip(' ')
             for row_3 in rows_2:
+                row_3 = row_3.strip(' ')
                 log(color, f'{prefix}║{indent}{row_3}'.ljust(width - 1, ' ') + '║')
         if i < len(rows) - 1:
             log(color, f'{prefix}╠'.ljust(width - 1, '═') + '╣')
