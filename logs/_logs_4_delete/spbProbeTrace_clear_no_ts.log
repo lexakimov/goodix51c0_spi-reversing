@@ -1,21 +1,21 @@
 
-[    ] device   3: ##00 write    4 -  0000: a0 08 00 a8
+ device   3: ##00 write    4 -  0000: a0 08 00 a8
 
-[    ] device   3: ##00 write    8 -  0000: 01 05 00 00 00 00 00 88
+ device   3: ##00 write    8 -  0000: 01 05 00 00 00 00 00 88
 
-[    ] device   3: ##00 write    4 -  0000: a0 06 00 a6
+ device   3: ##00 write    4 -  0000: a0 06 00 a6
 
-[    ] device   3: ##00 write    6 -  0000: d5 03 00 00 00 d3
+ device   3: ##00 write    6 -  0000: d5 03 00 00 00 d3
 
-[    ] device   3: ##00 write    4 -  0000: a0 08 00 a8
+ device   3: ##00 write    4 -  0000: a0 08 00 a8
 
-[    ] device   3: ##00 write    8 -  0000: 01 05 00 00 00 00 00 88
+ device   3: ##00 write    8 -  0000: 01 05 00 00 00 00 00 88
 
-[    ] device   3: ##00 write    4 -  0000: a0 09 00 a9
+ device   3: ##00 write    4 -  0000: a0 09 00 a9
 
-[    ] device   3: ##00 write    9 -  0000: af 06 00 55 ef 21 00 00 91
+ device   3: ##00 write    9 -  0000: af 06 00 55 ef 21 00 00 91
 
-[    ] device   3: ##00  read    4 -  0000: a0 1a 00 ba
+ device   3: ##00  read    4 -  0000: a0 1a 00 ba
 
-[    ] device   3: ##00  read   26 -  0000: ae 17 00 04 06 30 00 00 00 00 00 20 00 06 00 00
-[    ] device   3: ##00  read   26 -  0010: 01 80 01 04 25 02 00 56 00 82
+ device   3: ##00  read   26 -  0000: ae 17 00 04 06 30 00 00 00 00 00 20 00 06 00 00
+ device   3: ##00  read   26 -  0010: 01 80 01 04 25 02 00 56 00 82

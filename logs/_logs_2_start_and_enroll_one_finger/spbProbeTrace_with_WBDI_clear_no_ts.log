@@ -1,49 +1,120 @@
-
+ Goodix>>> entry, prev state: 4(4-D3,5-D3Final), power action: 0, driver version 1.1.142.8
+ Goodix>>> suspended 1
+ Goodix>>> resume from S0 idle
+ Goodix>>> enter
+ Goodix>>> init creater completed
+ Goodix>>> to create init creater
+ Goodix>>> exit
+ Goodix>>> --- start
+ Goodix>>> exit
+ Goodix>>> enter
+ Goodix>>> to wait for init thread to complete
+ Goodix>>> entry
+ Goodix>>> init thread completed
+ Goodix>>> activate 1
+ Goodix>>> to create init thread
+ Goodix>>> last OnActivate done.
+ Goodix>>> exit
+ Goodix>>> --- Init: start
+ Goodix>>> exit
+ Goodix>>> --- exit
+ Goodix>>> Init: pov 1, pba 0, tls-client-server-rebuild-session 1-1-1-0-0, have config 1, device inited 1, base inited 1
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
  device   3: ##00 write    4 -  0000: a0 08 00 a8
-
+ Goodix>>> !!not to wait for ack
  device   3: ##00 write    8 -  0000: 01 05 00 00 00 00 00 88
-
  device   3: ##00 write    4 -  0000: a0 06 00 a6
-
+ Goodix>>> force unlock it
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0xd-2-0x2-0-0
+ Goodix>>> !!not to wait for ack
  device   3: ##00 write    6 -  0000: d5 03 00 00 00 d3
-
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
  device   3: ##00 write    4 -  0000: a0 08 00 a8
-
+ Goodix>>> !!not to wait for ack
  device   3: ##00 write    8 -  0000: 01 05 00 00 00 00 00 88
-
+ Goodix>>> mcu-state TIMESTAMP 0x2144
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-7-0x5-0-0
  device   3: ##00 write    4 -  0000: a0 09 00 a9
-
+ Goodix>>> !!not to wait for ack
  device   3: ##00 write    9 -  0000: af 06 00 55 44 21 00 00 3c
-
+ Goodix>>> recvd data cmd-len: 0xae-23
+ Goodix>>> --- cmd: other
  device   3: ##00  read    4 -  0000: a0 1a 00 ba
-
  device   3: ##00  read   26 -  0000: ae 17 00 04 06 30 00 00 00 00 00 20 00 02 00 00
  device   3: ##00  read   26 -  0010: 01 80 01 04 25 02 00 01 00 db
-
+ Goodix>>> pov 1, pba 0, tls-client-server-lock 1-1-1-0, have config 1, pov valid 0
+ Goodix>>> mcu state::0x04063000000000002000020000018001042502000100
+ Goodix>>> mcu state: version:4, isPOVImageValid:0, isTlsConnected:1, isTlsUsed:1, isLocked:0, availImgCnt:0, povImgCnt:3
+ Goodix>>> mcu state: sensor_data_int_timeout_count:0, image_crc_fail_count:0, povTouchAccidentCnt:0x0, readChipIDCnt:0, sensorExceptionFlag:0, sensorUnexpectedIntCnt:0, to_master_timeout_count:0
+ Goodix>>> mcu state: psk_len:32, psk_check_fail:0, psk_write_fail:0, ec_falling_count:0, system_up_stop_cnt:2, system_down_pov_stop_cnt:0, system_up_cleared_pov_count:0
+ Goodix>>> mcu state: pov_wake_by_fp:1, pov_wake_by_ec:0, pov_procedure:0x80, config_down_flag:1, sensor_chip_id:0x2504, sensor_type:2, pov_capture_count:0, normal_capture_count:1, otp_mcu_check_status:0x0
+ Goodix>>> tls alive.
+ Goodix>>> Init: pov 1, pba 0, tls-client-server-rebuild-session 1-1-1-0-1, have config 1, device inited 1, base inited 1, d0exit 0
+ Goodix>>> Init Device Already Done Successfully
+ Goodix>>> Init tls already done or not necessary
+ Goodix>>> power not lost
+ Goodix>>> !!Init: Initialization done successfully
+ Goodix>>> --- Init: end
+ Goodix>>> entry, request:FFFFFE955D4E2F68
+ Goodix>>> Purpose=2, Type=1025, Owner=27, Flags=0x20
+ Goodix>>> enter
+ Goodix>>> exit
+ Goodix>>> to wait init done
+ Goodix>>> wait init done
+ Goodix>>> OnActivate done.
+ Goodix>>> activate 1, fdt_is_down 0
+ Goodix>>> Capture request: to down
+ Goodix>>> to set state to DEVICE_ACTION
+ Goodix>>> to set state from 1 to 3
+ Goodix>>> temperature not occure, to FDT DOWN
+ Goodix>>> enter, Mode 3, Type 1, base_type 1
+ Goodix>>> setmode: Fdt down
+ Goodix>>> fdt-down TIMESTAMP 0x31c4
+ Goodix>>> switch to FDT mode 1
+ Goodix>>> data sent::0xb1b1c4c4a7a7b9b9a9a9b9b9
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-1-0x10-1000-0
  device   3: ##00 write    4 -  0000: a0 14 00 b4
-
  device   3: ##00 write   20 -  0000: 32 11 00 08 01 b1 b1 c4 c4 a7 a7 b9 b9 a9 a9 b9
  device   3: ##00 write   20 -  0010: b9 c4 31 fb
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x32, cfg flag 0x1
  device   3: ##00  read    4 -  0000: a0 06 00 a6
-
  device   3: ##00  read    6 -  0000: b0 03 00 32 01 c4
-
+ Goodix>>> to set state to DEVICE_ENABLE
+ Goodix>>> to set state from 3 to 1
+ Goodix>>> ******** to Register CaptureFramedone for capture a frame ********
+ Goodix>>> exit
  device   3: ##00  read    4 -  0000: a0 14 00 b4
-
+ Goodix>>> recvd data cmd-len: 0x32-17
  device   3: ##00  read   20 -  0000: 32 11 00 02 00 1f 00 ca 00 fd 00 da 00 04 01 f1
  device   3: ##00  read   20 -  0010: 00 54 01 5a
-
+ Goodix>>> --- cmd: fdt
+ Goodix>>> IrqStatus:0x2 cmd1 1
+ Goodix>>> IRQ for fdt-down, get fdt-up base, current mode is fdt-down, touchflag 0x1f
+ Goodix>>> received fdt base::0xca00fd00da000401f1005401
+ Goodix>>> iSecondFlag 0, need_fdt_up_twice 0, diff_use 27, touchflag 0x1f
+ Goodix>>> fdt base:0xca00fd00da000401f1005401
+:0x8080, original 0xb1b1
+:0x9980, original 0xc4c4
+:0x8880, original 0xa7a7
+:0x9d80, original 0xb9b9
+:0x9380, original 0xa9a9
+:0x1980, original 0xb9b9
+ Goodix>>> receive fdt down......fdt_is_down:1
+ Goodix>>> submit delay 0, monitor state 1, sesssion state 8
+ Goodix>>> entry
+ Goodix>>> enter, tls-client-server 1-1-1
+ Goodix>>> g_halcontext.sensor_ops.SetMode:0x00007FFDE5D5BB50.
+ Goodix>>> enter, Mode 2, Type 1, base_type 0
+ Goodix>>> setmode: Image
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x2-1-0x2-1000-0
  device   3: ##00 write    4 -  0000: a0 06 00 a6
-
  device   3: ##00 write    6 -  0000: 22 03 00 01 00 84
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x22, cfg flag 0x1
  device   3: ##00  read    4 -  0000: a0 06 00 a6
-
  device   3: ##00  read    6 -  0000: b0 03 00 22 01 d4
-
  device   3: ##00  read    4 -  0000: b0 2a 1e f8
-
  device   3: ##00  read 7722 -  0000: 17 03 03 1e 25 00 00 00 00 00 00 00 02 e1 e2 0b
  device   3: ##00  read 7722 -  0010: 41 e6 91 fe 73 14 3e 0c 00 eb 43 63 61 57 83 52
  device   3: ##00  read 7722 -  0020: 6d a7 a3 8b 8f 1f b5 61 82 8d 9c 3b 55 9a 43 c3
@@ -418,6 +489,7 @@
  device   3: ##00  read 7722 -  1730: 94 62 b6 76 cc f7 0b 87 b7 3f 3d d3 bd 4f 16 8a
  device   3: ##00  read 7722 -  1740: a9 3d 74 17 e1 7b 6e 21 6b 9c 86 3d cd fd 91 c2
  device   3: ##00  read 7722 -  1750: d5 33 9b 73 fa 49 e3 b9 ee ba 5d 1a d4 17 e4 9a
+ Goodix>>> enter
  device   3: ##00  read 7722 -  1760: e8 ae 9f 2e 81 6b 94 74 63 7e 65 bf b4 30 6e 10
  device   3: ##00  read 7722 -  1770: 5c 88 1c fd fc 64 1a 08 b7 9b 5a 78 bb c4 ab 97
  device   3: ##00  read 7722 -  1780: fb 7c 04 e4 bd 8e a2 40 5d 2b 7c 6c 0b 45 da 7e
@@ -527,31 +599,116 @@
  device   3: ##00  read 7722 -  1e00: 7e 76 22 20 72 71 01 15 9c f5 a4 66 10 99 6b e3
  device   3: ##00  read 7722 -  1e10: cd 8c cf 9c 5e 5d 9d 3d 95 46 d5 7f 56 83 a0 01
  device   3: ##00  read 7722 -  1e20: af 4b 1c cf 96 e3 f4 54 0a ee
-
+ Goodix>>>  ---- pack len: 7722
+ Goodix>>> enter
+ Goodix>>> TLS LOG: => read
+ Goodix>>> TLS LOG: => read record
+ Goodix>>> TLS LOG: => fetch input
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> enter, tls inited 1
+ Goodix>>> bytes to read: 5, bytes left: 7722
+ Goodix>>> bytes read: 5, bytes left: 7717
+ Goodix>>> recv ret:5.
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 5 (-0xfffffffb)
+ Goodix>>> TLS LOG: <= fetch input
+ Goodix>>> TLS LOG: => fetch input
+ Goodix>>> TLS LOG: in_left: 5, nb_want: 7722
+ Goodix>>> enter, tls inited 1
+ Goodix>>> bytes to read: 7717, bytes left: 7717
+ Goodix>>> bytes read: 7717, bytes left: 0
+ Goodix>>> recv ret:7717.
+ Goodix>>> TLS LOG: in_left: 5, nb_want: 7722
+ Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 7717 (-0xffffe1db)
+ Goodix>>> TLS LOG: <= fetch input
+ Goodix>>> TLS LOG: => decrypt buf
+ Goodix>>> TLS LOG: <= decrypt buf
+ Goodix>>> TLS LOG: <= read record
+ Goodix>>> TLS LOG: <= read
+ Goodix>>> enter
+ Goodix>>> TLS now IN handshake state:16.
+ Goodix>>> <= tlslib_read exit with ret:7693 tls server state:16.
+ Goodix>>> ---- tls 7693 bytes recv
+ Goodix>>> recvd data cmd-len: 0x22-7690
+ Goodix>>> --- cmd: image
+ Goodix>>> 7684 7684 10240
+ Goodix>>> Regroup pixels:5120
+ Goodix>>> receive non-POV image, length:7690
+ Goodix>>> image crc check Ok
+ Goodix>>> exit
+ Goodix>>> <= with ret(BOOL):1.
+ Goodix>>> exit
+ Goodix>>> imageret 0x1, dac valid 1
+ Goodix>>> finger down
+ Goodix>>> ***********to complete capture request, display is on***********
+ Goodix>>> Entry: need update 1, pov 0, MonitorOff:0, data size:10240, touchflag: 0x1f
+ Goodix>>> Not support PBA.
+ Goodix>>> ******** CompletePendingRequest ********
+ Goodix>>> status:0x0
+ Goodix>>> exit 1
+ Goodix>>> Entry
+ Goodix>>> 212 == 212 ? 
+ Goodix>>> got device info, size 212 project_type:18, tcode 256, driver_version:1.1.142.8,  firmware_version: GF_HC460SEC_APP_14210
+ Goodix>>> enter switch 1, delay time 3, submit delay 0
+ Goodix>>> Exit
+ Goodix>>> entry, request:FFFFFE955D4E2F68
+ Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
+ Goodix>>> enter
+ Goodix>>> enter
+ Goodix>>> exit
+ Goodix>>> to wait init done
+ Goodix>>> wait init done
+ Goodix>>> OnActivate done.
+ Goodix>>> activate 0, fdt_is_down 1
+ Goodix>>> Capture request: to up
+ Goodix>>> to set state to DEVICE_ACTION
+ Goodix>>> to set state from 1 to 3
+ Goodix>>> enter, Mode 3, Type 2, base_type 1
+ Goodix>>> setmode: Fdt up
+ Goodix>>> switch to FDT mode 2
+ Goodix>>> data sent::0x808080998088809d80938019
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
  device   3: ##00 write    4 -  0000: a0 12 00 b2
-
  device   3: ##00 write   18 -  0000: 34 0f 00 0a 01 80 80 80 99 80 88 80 9d 80 93 80
  device   3: ##00 write   18 -  0010: 19 72
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x34, cfg flag 0x1
  device   3: ##00  read    4 -  0000: a0 06 00 a6
-
  device   3: ##00  read    6 -  0000: b0 03 00 34 01 c2
-
+ Goodix>>> to set state to DEVICE_ENABLE
+ Goodix>>> to set state from 3 to 1
+ Goodix>>> ******** to Register CaptureFramedone for capture a frame ********
+ Goodix>>> exit
+ Goodix>>> recvd data cmd-len: 0x34-17
  device   3: ##00  read    4 -  0000: a0 14 00 b4
-
  device   3: ##00  read   20 -  0000: 34 11 00 00 02 00 00 60 01 87 01 4d 01 72 01 51
  device   3: ##00  read   20 -  0010: 01 71 01 f5
-
+ Goodix>>> --- cmd: fdt
+ Goodix>>> IrqStatus:0x200 cmd1 2
+ Goodix>>> IRQ for fdt-up, get fdt-down base, current mode is fdt-up, touchflag 0x0
+ Goodix>>> received fdt base::0x600187014d01720151017101
+ Goodix>>> fdt base:0x600187014d01720151017101
+:0xb080
+:0xc380
+:0xa680
+:0xb980
+:0xa880
+:0xb880
+ Goodix>>> receive fdt up or reset... 0x2, 2UP,9Reset, temp occure 0, base_is_valid 0
+ Goodix>>> enter
+ Goodix>>> base_is_valid 0
+ Goodix>>> enter, tls-client-server 1-1-1
+ Goodix>>> g_halcontext.sensor_ops.SetMode:0x00007FFDE5D5BB50.
+ Goodix>>> enter, Mode 2, Type 0, base_type 0
+ Goodix>>> setmode: Image
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x2-0-0x2-1000-0
  device   3: ##00 write    4 -  0000: a0 06 00 a6
-
  device   3: ##00 write    6 -  0000: 20 03 00 01 00 86
-
  device   3: ##00  read    4 -  0000: a0 06 00 a6
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x20, cfg flag 0x1
  device   3: ##00  read    6 -  0000: b0 03 00 20 01 d6
-
  device   3: ##00  read    4 -  0000: b0 2a 1e f8
-
  device   3: ##00  read 7722 -  0000: 17 03 03 1e 25 00 00 00 00 00 00 00 03 3e 42 fa
  device   3: ##00  read 7722 -  0010: 8b 0b 85 44 30 5c 82 1d 3a e2 70 8f 11 52 5c d3
  device   3: ##00  read 7722 -  0020: 8c 55 17 53 4c 20 a8 e6 3e 05 7d 7e fc b5 b4 0c
@@ -914,6 +1071,7 @@
  device   3: ##00  read 7722 -  1670: c6 e7 23 ac c0 0a e0 f4 e2 da a6 35 75 a1 7a 12
  device   3: ##00  read 7722 -  1680: 3e 1d fe 1b 99 da c6 7d 71 50 cd 20 58 f1 ad 36
  device   3: ##00  read 7722 -  1690: ec 8a 40 c7 95 a7 d6 10 56 e8 be 4a ef 6b 5f ef
+ Goodix>>> enter
  device   3: ##00  read 7722 -  16a0: 79 15 e0 e2 77 cd a9 39 6e 86 78 ac b4 6b d2 7d
  device   3: ##00  read 7722 -  16b0: 1e 72 58 a6 3b 6f d3 a3 09 ef 3b 38 d3 22 f7 be
  device   3: ##00  read 7722 -  16c0: 65 05 5a dd a2 c4 6d be b6 7c aa ec df ce e8 52
@@ -1035,17 +1193,59 @@
  device   3: ##00  read 7722 -  1e00: 68 9d 7c 96 08 7b b2 84 c2 90 be 6a 73 14 c9 d1
  device   3: ##00  read 7722 -  1e10: 7b c2 6b 0e d2 aa 0e 60 a8 a5 25 8d dd 25 9f f6
  device   3: ##00  read 7722 -  1e20: 99 e8 42 08 02 f4 95 1e 05 18
-
+ Goodix>>>  ---- pack len: 7722
+ Goodix>>> enter
+ Goodix>>> TLS LOG: => read
+ Goodix>>> TLS LOG: => read record
+ Goodix>>> TLS LOG: => fetch input
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> enter, tls inited 1
+ Goodix>>> bytes to read: 5, bytes left: 7722
+ Goodix>>> bytes read: 5, bytes left: 7717
+ Goodix>>> recv ret:5.
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 5 (-0xfffffffb)
+ Goodix>>> TLS LOG: <= fetch input
+ Goodix>>> TLS LOG: => fetch input
+ Goodix>>> TLS LOG: in_left: 5, nb_want: 7722
+ Goodix>>> enter, tls inited 1
+ Goodix>>> bytes to read: 7717, bytes left: 7717
+ Goodix>>> bytes read: 7717, bytes left: 0
+ Goodix>>> recv ret:7717.
+ Goodix>>> TLS LOG: in_left: 5, nb_want: 7722
+ Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 7717 (-0xffffe1db)
+ Goodix>>> TLS LOG: <= fetch input
+ Goodix>>> TLS LOG: => decrypt buf
+ Goodix>>> TLS LOG: <= decrypt buf
+ Goodix>>> TLS LOG: <= read record
+ Goodix>>> TLS LOG: <= read
+ Goodix>>> enter
+ Goodix>>> TLS now IN handshake state:16.
+ Goodix>>> <= tlslib_read exit with ret:7693 tls server state:16.
+ Goodix>>> ---- tls 7693 bytes recv
+ Goodix>>> recvd data cmd-len: 0x20-7690
+ Goodix>>> --- cmd: image
+ Goodix>>> 7684 7684 10240
+ Goodix>>> Regroup pixels:5120
+ Goodix>>> receive non-POV image, length:7690
+ Goodix>>> image crc check Ok
+ Goodix>>> <= with ret(BOOL):1.
+ Goodix>>> exit
+ Goodix>>> imageret 0x2
+ Goodix>>> :void
+ Goodix>>> exit
+ Goodix>>> before calc, base_is_valid 0, 0x2 0x2
+ Goodix>>> enter, Mode 5, Type 0, base_type 0
+ Goodix>>> setmode: nav
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x5-0-0x2-1000-0
  device   3: ##00 write    4 -  0000: a0 06 00 a6
-
  device   3: ##00 write    6 -  0000: 50 03 00 01 00 56
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
  device   3: ##00  read    4 -  0000: a0 06 00 a6
-
+ Goodix>>> get ack for cmd 0x50, cfg flag 0x1
  device   3: ##00  read    6 -  0000: b0 03 00 50 01 a6
-
  device   3: ##00  read    4 -  0000: a0 6d 09 16
-
+ Goodix>>> recvd data cmd-len: 0x50-2410
  device   3: ##00  read 2413 -  0000: 50 6a 09 1e 25 00 00 00 47 f4 ab 7f 91 f8 39 b8
  device   3: ##00  read 2413 -  0010: 17 a0 a3 4a fa 13 20 aa a8 ca 7a db 13 a8 b0 3b
  device   3: ##00  read 2413 -  0020: 0a f8 3b b3 b8 8b 8b 70 a7 b2 ba 3b bb 54 d3 bd
@@ -1197,12 +1397,41 @@
  device   3: ##00  read 2413 -  0940: b0 ba bd cb bb 6f e0 b2 bb fb 0b 73 e0 b8 b9 bb
  device   3: ##00  read 2413 -  0950: 8b 7b df bc bb 7b bb b0 a3 b7 ba 8b 4b 8c 84 ba
  device   3: ##00  read 2413 -  0960: b2 fb bb 27 38 a7 93 b9 4f e7 6f 02 88
-
+ Goodix>>> --- recv nav data......length:2410
+ Goodix>>> 2404 2404 3200
+ Goodix>>> Regroup pixels:1600
+ Goodix>>> nav crc check ok
+ Goodix>>> after Nav_isTouchedByFinger navret = 0x2
+ Goodix>>> :void
+ Goodix>>> update navbase
+ Goodix>>> nav buffer size:3200 buffer size:10240
+ Goodix>>> save imagebase 
+ Goodix>>> fail to create dir C:\ProgramData\Goodix, errno 17
+ Goodix>>> write 13520-13520 bytes to C:\ProgramData\Goodix\goodix.dat
+ Goodix>>> exit size:13520(dec)
+ Goodix>>> exit, base_is_valid 0
+ Goodix>>> request pending after check: to FDT DOWN
+ Goodix>>> enter, Mode 3, Type 1, base_type 1
+ Goodix>>> setmode: Fdt down
+ Goodix>>> fdt-down TIMESTAMP 0x3d5d
+ Goodix>>> switch to FDT mode 1
+ Goodix>>> data sent::0x80b080c380a680b980a880b8
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-1-0x10-1000-0
  device   3: ##00 write    4 -  0000: a0 14 00 b4
-
  device   3: ##00 write   20 -  0000: 32 11 00 08 01 80 b0 80 c3 80 a6 80 b9 80 a8 80
  device   3: ##00 write   20 -  0010: b8 5d 3d 92
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
  device   3: ##00  read    4 -  0000: a0 06 00 a6
-
  device   3: ##00  read    6 -  0000: b0 03 00 32 01 c4
+ Goodix>>> get ack for cmd 0x32, cfg flag 0x1
+ Goodix>>> entry
+ Goodix>>> exit
+ Goodix>>> entry
+ Goodix>>> activate 0
+ Goodix>>> last OnActivate done.
+ Goodix>>> exit
+ Goodix>>> target state: 4, power action: 0
+ Goodix>>> no pov data
+ Goodix>>> enter
+ Goodix>>> suspend all
+ Goodix>>> enter S0 idle
