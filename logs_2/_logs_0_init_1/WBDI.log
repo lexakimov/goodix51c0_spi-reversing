@@ -1,0 +1,840 @@
+[0211-10:00:57:247][info][InitLogOutput:00300] Goodix>>> WBDI Build Apr 22 2022 16:33:55, LogTarget 1, LogLevel 9, LogPath C:\ProgramData\Goodix\WBDI.log, driver version 1.1.142.8
+[0211-10:00:57:248][debug][GetPowerInformation:00422] Goodix>>> PowerCapability::0x01010100000001010101010000010000000001000100020100000000000001000000000000000000000000000000000000000000000000000000000000000000050000000000000000000000
+[0211-10:00:57:248][debug][GetPowerInformation:00424] Goodix>>> supports Modern Standby: Yes
+[0211-10:00:57:248][info][DriverEntry:00116] Goodix>>> Driver Entry Morndern Standby, config: log  1 9, dump 1, firm_up 1, key_sim 0, hlk 0 s0idle 1, submit_delay 1, af 0 0, nav 0, choose 1 1, retry 1
+[0211-10:00:57:248][debug][DriverEntry:00136] Goodix>>> before WdfDriverCreate
+[0211-10:00:57:249][debug][StartSessionDetection:00200] Goodix>>> session thread enter
+[0211-10:00:57:249][info][DriverEntry:00153] Goodix>>> exit WBVer 16
+[0211-10:00:57:249][info][PowerNotificationCallback:00454] Goodix>>> display state 0x1(0x2-dim/0x1-on/0x0-off)
+[0211-10:00:57:250][debug][milanFusbEvtDeviceAdd:00185] Goodix>>> Entry
+[0211-10:00:57:251][info][milanFusbCreateDevice:02064] Goodix>>> enter
+[0211-10:00:57:251][info][GetCurrentFingerprintHardwareID:01855] Goodix>>> enter
+[0211-10:00:57:251][info][GetCurrentFingerprintHardwareID:01877] Goodix>>> HardwareID: ACPI\VEN_GDIX&DEV_51C0
+[0211-10:00:57:251][warn][GetCurrentFingerprintHardwareID:01986] Goodix>>> HardwareID not match
+[0211-10:00:57:251][info][GetCurrentFingerprintHardwareID:01877] Goodix>>> HardwareID: ACPI\GDIX51C0
+[0211-10:00:57:251][info][GetCurrentFingerprintHardwareID:02001] Goodix>>> HardwareID match for product 18, ACPI\GDIX51C0
+[0211-10:00:57:251][debug][milanFusbCreateDevice:02116] Goodix>>> to support disable and enable
+[0211-10:00:57:251][debug][milanFusbCreateDevice:02126] Goodix>>> support S0Idle
+[0211-10:00:57:251][info][milanFusbCreateDevice:02165] Goodix>>> support DFx on MS system
+[0211-10:00:57:252][debug][milanFusbCreateDevice:02169] Goodix>>> S0Idle: 10s, switch 0
+[0211-10:00:57:252][info][milanFusbCreateDevice:02249] Goodix>>> Interrupt created, to set interrupt priority
+[0211-10:00:57:253][info][milanFusbQueueInitialize:00092] Goodix>>> PowerManaged:TRUE
+[0211-10:00:57:253][info][milanFusbCreateDevice:02416] Goodix>>> exit, status: 0x0
+[0211-10:00:57:253][debug][milanFusbEvtDeviceAdd:00187] Goodix>>> Exit 0x0
+[0211-10:00:57:255][info][MilanEvtDevicePrepareHardware:05187] Goodix>>> enter, driver version:1.1.142.8
+[0211-10:00:57:255][debug][MilanEvtDevicePrepareHardware:05204] Goodix>>> resource count: 3
+[0211-10:00:57:255][info][MilanEvtDevicePrepareHardware:05228] Goodix>>> gpio.LowPart:6, gpio.HighPart:0
+[0211-10:00:57:255][info][MilanEvtDevicePrepareHardware:05327] Goodix>>> gpio-io count: 1, spi count: 1, interrupt count: 1, spi.LowPart:4, spi.HighPart:0
+[0211-10:00:57:255][info][SpbPeripheralOpen:00867] Goodix>>> enter, LowPart:4, HighPart:0, DesiredAccess:0x12019f
+[0211-10:00:57:256][info][SpbPeripheralOpen:00867] Goodix>>> enter, LowPart:6, HighPart:0, DesiredAccess:0x120116
+[0211-10:00:57:256][info][MilanEvtDevicePrepareHardware:05442] Goodix>>> Start to create the target
+[0211-10:00:57:256][info][MilanEvtDevicePrepareHardware:05455] Goodix>>> Start to open IO target
+[0211-10:00:57:256][info][MilanEvtDevicePrepareHardware:05469] Goodix>>> Open the target success
+[0211-10:00:57:257][info][_init_global_hal_context:00554] Goodix>>> enter inital headcount 0xdfa9
+[0211-10:00:57:257][info][device_data_analyze:03078] Goodix>>> --- start
+[0211-10:00:57:272][info][startDataAnalyzeMonitoring:03354] Goodix>>> Resume Thread device_fdtdata_analyze
+[0211-10:00:57:272][info][device_fdtdata_analyze:07746] Goodix>>> --- start
+[0211-10:00:57:288][info][startfdtDataAnalyzeMonitoring:08065] Goodix>>> Resume fdtdata analyze
+[0211-10:00:57:289][info][_init_global_hal_context:00639] Goodix>>> exit 1
+[0211-10:00:57:289][debug][MilanEvtDevicePrepareHardware:05491] Goodix>>> exit, status: 0x0, bret:1 
+[0211-10:00:57:289][info][MilanEvtDeviceD0Entry:04731] Goodix>>> entry, prev state: 5(4-D3,5-D3Final), power action: 0, driver version 1.1.142.8
+[0211-10:00:57:289][debug][_StartInitCreaterThread:06477] Goodix>>> enter
+[0211-10:00:57:289][info][_StartInitCreaterThread:06502] Goodix>>> to create init creater
+[0211-10:00:57:289][debug][_StartInitCreaterThread:06510] Goodix>>> exit
+[0211-10:00:57:289][info][MilanEvtDeviceD0Entry:04771] Goodix>>> exit
+[0211-10:00:57:289][info][init_creater:06468] Goodix>>> --- start
+[0211-10:00:57:289][debug][_StartInitThread:06425] Goodix>>> enter
+[0211-10:00:57:290][debug][_StopInitThread:06416] Goodix>>> exit
+[0211-10:00:57:290][info][_StartInitThread:06452] Goodix>>> to create init thread
+[0211-10:00:57:290][debug][_StartInitThread:06462] Goodix>>> exit
+[0211-10:00:57:290][info][init_creater:06471] Goodix>>> --- exit
+[0211-10:00:57:290][info][InitThread:01359] Goodix>>> --- Init: start
+[0211-10:00:57:290][info][InitThread:01398] Goodix>>> Init: pov 1, pba 0, tls-client-server-rebuild-session 1-0-0-0-0, have config 0, device inited 0, base inited 0
+[0211-10:00:57:290][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
+[0211-10:00:57:320][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0211-10:00:57:335][info][UnlockTlsForce:01327] Goodix>>> force unlock it
+[0211-10:00:57:335][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xd-2-0x2-0-0
+[0211-10:00:57:351][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0211-10:00:57:367][info][GetEvkVersionWithRetry:01514] Goodix>>> Get Evk Version...retry count 3
+[0211-10:00:57:367][debug][GetEvkVersion:05982] Goodix>>> enter, project type 18
+[0211-10:00:57:367][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
+[0211-10:00:57:383][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0211-10:00:57:398][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-4-0x2-1000-0
+[0211-10:00:57:416][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0211-10:00:57:416][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0xa8, cfg flag 0x7
+[0211-10:00:57:416][warn][get_msg_data:06277] Goodix>>> MCU has no config
+[0211-10:00:57:418][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xa8-23
+[0211-10:00:57:418][debug][data_from_device:05100] Goodix>>> --- cmd: other
+[0211-10:00:57:430][info][GetEvkVersion:06001] Goodix>>> got evk version: GF_HC460SEC_APP_14210
+[0211-10:00:57:430][debug][_QucikCheckMCU:00876] Goodix>>> DriverState:Install
+[0211-10:00:57:430][debug][SetDriverState:00220] Goodix>>> driver type win spi
+[0211-10:00:57:430][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
+[0211-10:00:57:446][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0211-10:00:57:462][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x9-3-0x2-0-0
+[0211-10:00:57:478][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0211-10:00:57:493][warn][GetMcuState:04101] Goodix>>> mcu-state TIMESTAMP 0xe095
+[0211-10:00:57:493][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-7-0x5-0-0
+[0211-10:00:57:510][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0211-10:00:57:510][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xae-23
+[0211-10:00:57:510][debug][data_from_device:05100] Goodix>>> --- cmd: other
+[0211-10:00:57:510][info][GetMcuState:04178] Goodix>>> pov 1, pba 0, tls-client-server-lock 1-0-0-0, have config 0, pov valid 0
+[0211-10:00:57:511][debug][PrintMcuState:04046] Goodix>>> mcu state::0x04003000000000002000000000010000042502000000
+[0211-10:00:57:511][info][PrintMcuState:04074] Goodix>>> mcu state: version:4, isPOVImageValid:0, isTlsConnected:0, isTlsUsed:0, isLocked:0, availImgCnt:0, povImgCnt:3
+[0211-10:00:57:511][info][PrintMcuState:04076] Goodix>>> mcu state: sensor_data_int_timeout_count:0, image_crc_fail_count:0, povTouchAccidentCnt:0x0, readChipIDCnt:0, sensorExceptionFlag:0, sensorUnexpectedIntCnt:0, to_master_timeout_count:0
+[0211-10:00:57:511][info][PrintMcuState:04078] Goodix>>> mcu state: psk_len:32, psk_check_fail:0, psk_write_fail:0, ec_falling_count:0, system_up_stop_cnt:0, system_down_pov_stop_cnt:0, system_up_cleared_pov_count:0
+[0211-10:00:57:511][info][PrintMcuState:04080] Goodix>>> mcu state: pov_wake_by_fp:1, pov_wake_by_ec:0, pov_procedure:0x0, config_down_flag:0, sensor_chip_id:0x2504, sensor_type:2, pov_capture_count:0, normal_capture_count:0, otp_mcu_check_status:0x0
+[0211-10:00:57:511][info][InitThread:01422] Goodix>>> tls not alive
+[0211-10:00:57:511][warn][InitThread:01432] Goodix>>> ensure tls handshake will be done 0
+[0211-10:00:57:511][info][InitThread:01457] Goodix>>> Init: pov 1, pba 0, tls-client-server-rebuild-session 1-0-0-0-0, have config 0, device inited 0, base inited 0, d0exit 0
+[0211-10:00:57:511][info][_DeviceInit:00900] Goodix>>> ---- enter
+[0211-10:00:57:511][info][_DeviceInit:00911] Goodix>>> [BEGIN] _DeviceInit
+[0211-10:00:57:512][debug][set_state:00872] Goodix>>> to set state from 0 to 1
+[0211-10:00:57:512][info][ReadBiosTmlTableFromFile:03378] Goodix>>> Not support PBA.
+[0211-10:00:57:512][debug][device_action:04222] Goodix>>> to set state to DEVICE_ACTION
+[0211-10:00:57:512][debug][set_state:00872] Goodix>>> to set state from 1 to 3
+[0211-10:00:57:512][debug][device_action:04377] Goodix>>> besdenable:0
+[0211-10:00:57:512][debug][device_action:04408] Goodix>>> to set state to DEVICE_ENABLE
+[0211-10:00:57:512][debug][set_state:00872] Goodix>>> to set state from 3 to 1
+[0211-10:00:57:512][info][init_MCU:01570] Goodix>>> enter, project 18, tls 1, firmware update 1, simulation 0, retry count 3
+[0211-10:00:57:512][info][GetEvkVersionWithRetry:01514] Goodix>>> Get Evk Version...retry count 3
+[0211-10:00:57:512][debug][GetEvkVersion:05982] Goodix>>> enter, project type 18
+[0211-10:00:57:512][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
+[0211-10:00:57:525][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0211-10:00:57:541][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-4-0x2-1000-0
+[0211-10:00:57:558][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0211-10:00:57:558][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0xa8, cfg flag 0x7
+[0211-10:00:57:559][warn][get_msg_data:06277] Goodix>>> MCU has no config
+[0211-10:00:57:560][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xa8-23
+[0211-10:00:57:560][debug][data_from_device:05100] Goodix>>> --- cmd: other
+[0211-10:00:57:573][info][GetEvkVersion:06001] Goodix>>> got evk version: GF_HC460SEC_APP_14210
+[0211-10:00:57:573][info][init_MCU:01740] Goodix>>> !!!REE SPI MCU:Update firmware
+[0211-10:00:57:574][error][init_MCU:01743] Goodix>>> !!!Update HDSC firmware
+[0211-10:00:57:574][info][gdx_UpdateFirmware_LockState:01928] Goodix>>> => update switch 1
+[0211-10:00:57:574][debug][gdx_UpdateFirmware_LockState:01936] Goodix>>> current state is 1, to set state to DEVICE_UPDATE
+[0211-10:00:57:574][debug][set_state:00872] Goodix>>> to set state from 1 to 4
+[0211-10:00:57:574][debug][gfUpdatefirmware:01971] Goodix>>> CONFIG DATA: retry_count_for_common_init 3
+[0211-10:00:57:575][info][gfUpdatefirmware:01991] Goodix>>> Nowversion len21 :GF_HC460SEC_APP_14210, firmwareLen=109514, UpdateByDriver=1
+[0211-10:00:57:575][info][gfUpdatefirmware:01992] Goodix>>> Current MCU Version: GF_HC460SEC_APP_14210
+[0211-10:00:57:575][info][gf_findAPPOrIAP:08142] Goodix>>> Not Find :IAP
+[0211-10:00:57:575][info][gfUpdatefirmware:01999] Goodix>>> MCU not runs IAP
+[0211-10:00:57:575][info][gfUpdatefirmware:02002] Goodix>>> Driver auto update firmware
+[0211-10:00:57:576][info][gf_compareVersionNum:08164] Goodix>>> Current MCU Version GF_HC460SEC_APP_14210, Version in Driver GF_HC460SEC_APP_14210
+[0211-10:00:57:576][info][gfUpdatefirmware:02005] Goodix>>> the same version, no need to update firmware
+[0211-10:00:57:576][debug][gfUpdatefirmware:02097] Goodix>>> exit 0x1
+[0211-10:00:57:576][debug][gdx_UpdateFirmware_LockState:01948] Goodix>>> to restore, to set state to 1
+[0211-10:00:57:576][debug][set_state:00872] Goodix>>> to set state from 4 to 1
+[0211-10:00:57:577][info][gdx_UpdateFirmware_LockState:01954] Goodix>>> <= with 0x1.
+[0211-10:00:57:577][info][init_MCU:01758] Goodix>>> update firmware result 1
+[0211-10:00:57:577][info][gf_findAPPOrIAP:08138] Goodix>>> Find :APP
+[0211-10:00:57:577][debug][init_MCU:01792] Goodix>>> production process...
+[0211-10:00:57:577][debug][production_psk_process:01927] Goodix>>> Entry
+[0211-10:00:57:577][debug][production_psk_process:01936] Goodix>>> . check psk if valid (total times:2)
+[0211-10:00:57:577][debug][production_psk_process:01939] Goodix>>> check psk times: 1
+[0211-10:00:57:578][debug][production_check_psk_is_valid:02862] Goodix>>> entry
+[0211-10:00:57:578][debug][production_check_psk_is_valid:02887] Goodix>>> 1.get host hash
+[0211-10:00:57:578][debug][production_get_host_psk_data:02703] Goodix>>> entry
+[0211-10:00:57:578][debug][production_get_host_psk_data:02733] Goodix>>> .get seal data
+[0211-10:00:57:578][debug][production_get_host_psk_data:02738] Goodix>>> read 0 bytes
+[0211-10:00:57:578][debug][production_read_specific_data:02942] Goodix>>> Entry
+[0211-10:00:57:578][debug][production_read_specific_data:02956] Goodix>>> 0.read specific data_type 0xbb010002 
+[0211-10:00:57:578][debug][production_read_specific_data:02961] Goodix>>> 2.read data from mcu
+[0211-10:00:57:578][debug][production_read_mcu:02349] Goodix>>> Entry
+[0211-10:00:57:578][debug][production_read_mcu:02360] Goodix>>> 1.SpiSendDataToDeviceLock
+[0211-10:00:57:579][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xe-2-0x8-1000-0
+[0211-10:00:57:590][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0211-10:00:57:590][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0xe4, cfg flag 0x7
+[0211-10:00:57:590][warn][get_msg_data:06277] Goodix>>> MCU has no config
+[0211-10:00:57:592][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xe4-342
+[0211-10:00:57:593][debug][data_from_device:05201] Goodix>>> --- Received production response
+[0211-10:00:57:593][debug][data_from_device:05205] Goodix>>> production response pure data length=341
+[0211-10:00:57:605][debug][production_read_mcu:02375] Goodix>>> 2.parse return data
+[0211-10:00:57:605][info][production_read_mcu:02380] Goodix>>> return data, len_payload_mcu  341 bytes, passed 2048 bytes, result 0.
+[0211-10:00:57:605][debug][production_read_mcu:02402] Goodix>>> read from mcu done, copy 340 bytes back 
+[0211-10:00:57:605][debug][production_read_mcu:02418] Goodix>>> Exit ret:0x0.
+[0211-10:00:57:605][debug][production_read_specific_data:02964] Goodix>>> read data from mcu ret:0x0, length: 340
+[0211-10:00:57:605][debug][production_read_specific_data:02980] Goodix>>> Exit with 0x0
+[0211-10:00:57:605][debug][production_get_host_psk_data:02782] Goodix>>> get from mcu, return 0x0, len 332
+[0211-10:00:57:605][info][generate_entropy2:02094] Goodix>>> generate rootkey
+[0211-10:00:57:606][info][gf_unseal_data:00102] Goodix>>> inbuf_len 324, entropy_len 48, len_out 32
+[0211-10:00:57:611][debug][gf_unseal_data:00129] Goodix>>> The decryption phase worked, 324, 32
+[0211-10:00:57:611][debug][production_get_host_psk_data:02814] Goodix>>> unseal return 0x0 length before 324, length after:32
+[0211-10:00:57:611][debug][production_get_host_psk_data:02827] Goodix>>> .wb data 
+[0211-10:00:57:611][debug][production_get_host_psk_data:02829] Goodix>>> wb return 0x0 length before 32, length after:102 
+[0211-10:00:57:611][debug][production_get_host_psk_data:02838] Goodix>>> .hash
+[0211-10:00:57:612][debug][production_get_host_psk_data:02845] Goodix>>> hash return 0x0 length before 102, length after:32
+[0211-10:00:57:612][debug][production_get_host_psk_data:02854] Goodix>>> exit with 0x0
+[0211-10:00:57:612][debug][production_check_psk_is_valid:02889] Goodix>>> ret 0x0, psk len 32, hash len 32, seal len 332, data from file flag 0 
+[0211-10:00:57:612][debug][production_check_psk_is_valid:02897] Goodix>>> 2.get mcu hash
+[0211-10:00:57:612][debug][production_read_specific_data:02942] Goodix>>> Entry
+[0211-10:00:57:612][debug][production_read_specific_data:02956] Goodix>>> 0.read specific data_type 0xbb020003 
+[0211-10:00:57:612][debug][production_read_specific_data:02961] Goodix>>> 2.read data from mcu
+[0211-10:00:57:612][debug][production_read_mcu:02349] Goodix>>> Entry
+[0211-10:00:57:612][debug][production_read_mcu:02360] Goodix>>> 1.SpiSendDataToDeviceLock
+[0211-10:00:57:612][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xe-2-0x8-1000-0
+[0211-10:00:57:622][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0211-10:00:57:622][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0xe4, cfg flag 0x7
+[0211-10:00:57:622][warn][get_msg_data:06277] Goodix>>> MCU has no config
+[0211-10:00:57:624][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xe4-42
+[0211-10:00:57:624][debug][data_from_device:05201] Goodix>>> --- Received production response
+[0211-10:00:57:624][debug][data_from_device:05205] Goodix>>> production response pure data length=41
+[0211-10:00:57:637][debug][production_read_mcu:02375] Goodix>>> 2.parse return data
+[0211-10:00:57:637][info][production_read_mcu:02380] Goodix>>> return data, len_payload_mcu  41 bytes, passed 2048 bytes, result 0.
+[0211-10:00:57:637][debug][production_read_mcu:02402] Goodix>>> read from mcu done, copy 40 bytes back 
+[0211-10:00:57:637][debug][production_read_mcu:02418] Goodix>>> Exit ret:0x0.
+[0211-10:00:57:637][debug][production_read_specific_data:02964] Goodix>>> read data from mcu ret:0x0, length: 40
+[0211-10:00:57:637][debug][production_read_specific_data:02980] Goodix>>> Exit with 0x0
+[0211-10:00:57:637][debug][production_check_psk_is_valid:02900] Goodix>>> get mcu hash, ret 0x0, len 32
+[0211-10:00:57:637][debug][production_check_psk_is_valid:02909] Goodix>>> 3.verify
+[0211-10:00:57:637][info][production_check_psk_is_valid:02921] Goodix>>> !!!hash equal !!! 
+[0211-10:00:57:638][debug][production_check_psk_is_valid:02930] Goodix>>> written 332:332 bytes to file
+[0211-10:00:57:638][debug][production_check_psk_is_valid:02935] Goodix>>> exit with 0x0
+[0211-10:00:57:638][debug][production_psk_process:01947] Goodix>>> check psk: psk is valid!
+[0211-10:00:57:638][debug][production_psk_process:01981] Goodix>>> Exit ret:0x0
+[0211-10:00:57:638][info][init_MCU:01803] Goodix>>> Production Process...Success!
+[0211-10:00:57:638][info][init_MCU:01810] Goodix>>> exit return 0x0, inited 1
+[0211-10:00:57:638][info][init_FPSensor:01170] Goodix>>> enter
+[0211-10:00:57:638][info][init_FPSensor:01190] Goodix>>> --- to get CHIP ID
+[0211-10:00:57:639][debug][init_FPSensor:01191] Goodix>>> --- SetIdle
+[0211-10:00:57:639][debug][gfresetMCUAndfingerprint:06383] Goodix>>> reset sensor
+[0211-10:00:57:639][debug][gfresetMCUAndfingerprint:06393] Goodix>>> reset device, reset_flag 1
+[0211-10:00:57:639][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-1-0x2-1000-0
+[0211-10:00:57:654][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0211-10:00:57:654][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0xa2, cfg flag 0x7
+[0211-10:00:57:654][warn][get_msg_data:06277] Goodix>>> MCU has no config
+[0211-10:00:57:697][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xa2-4
+[0211-10:00:57:697][debug][data_from_device:05100] Goodix>>> --- cmd: other
+[0211-10:00:57:698][debug][get_other_data:06094] Goodix>>> CHIP_RESET::0x010008
+[0211-10:00:57:701][debug][init_FPSensor:01198] Goodix>>> --- MILAN_CHIPID
+[0211-10:00:57:701][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x8-1-0x5-1000-0
+[0211-10:00:57:718][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0211-10:00:57:718][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x82, cfg flag 0x7
+[0211-10:00:57:719][warn][get_msg_data:06277] Goodix>>> MCU has no config
+[0211-10:00:57:720][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x82-5
+[0211-10:00:57:720][debug][data_from_device:05037] Goodix>>> --- cmd: regrw
+[0211-10:00:57:733][info][init_FPSensor:01216] Goodix>>> Get Chip ID: 0x2504
+[0211-10:00:57:733][info][device_enable_init_by_chip:02739] Goodix>>> enter
+[0211-10:00:57:733][info][device_enable_init_by_chip:02756] Goodix>>> to init device by chipid 0x2504
+[0211-10:00:57:733][info][device_enable_init_by_chip:02776] Goodix>>> !!!! to Open ChicagoHS, sensor type: 12
+[0211-10:00:57:734][info][device_enable_init_by_chip:02814] Goodix>>> sensor info ready, chipid:0x2504, sensorType:12, col:80, row:64
+[0211-10:00:57:734][debug][InitOneKeyImgBuffer:00123] Goodix>>> Index 1 buffer address:0x000001B04A0CA2F0
+[0211-10:00:57:734][debug][InitOneKeyImgBuffer:00123] Goodix>>> Index 2 buffer address:0x000001B04A0CCB00
+[0211-10:00:57:734][debug][InitOneKeyImgBuffer:00123] Goodix>>> Index 3 buffer address:0x000001B04A0CF310
+[0211-10:00:57:734][debug][InitOneKeyImgBuffer:00123] Goodix>>> Index 4 buffer address:0x000001B04A0D1B20
+[0211-10:00:57:735][info][device_enable_init_by_chip:02889] Goodix>>> exit 1
+[0211-10:00:57:735][info][init_FPSensor:01234] Goodix>>> Get Chip ID: 0x2504 in 0 try
+[0211-10:00:57:735][debug][device_action:04222] Goodix>>> to set state to DEVICE_ACTION
+[0211-10:00:57:735][debug][set_state:00872] Goodix>>> to set state from 1 to 3
+[0211-10:00:57:736][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-3-0x2-1000-0
+[0211-10:00:57:750][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0211-10:00:57:751][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0xa6, cfg flag 0x7
+[0211-10:00:57:751][warn][get_msg_data:06277] Goodix>>> MCU has no config
+[0211-10:00:57:773][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xa6-65
+[0211-10:00:57:773][debug][data_from_device:05100] Goodix>>> --- cmd: other
+[0211-10:00:57:773][debug][device_action:04408] Goodix>>> to set state to DEVICE_ENABLE
+[0211-10:00:57:774][debug][set_state:00872] Goodix>>> to set state from 3 to 1
+[0211-10:00:57:774][debug][init_FPSensor:01266] Goodix>>> Got sensor OTP::0x5334303636362e000a7d82b372a0460a5107050e7d4b172741029a0cf1807f0c07813038e480ddfc0abebb4401bbb3b5b3b3b3b5b3b34133e41bdd220cf017db
+[0211-10:00:57:774][info][init_FPSensor:01274] Goodix>>> Success to get OTP data
+[0211-10:00:57:774][debug][device_action:04222] Goodix>>> to set state to DEVICE_ACTION
+[0211-10:00:57:774][debug][set_state:00872] Goodix>>> to set state from 1 to 3
+[0211-10:00:57:774][debug][ChicagoHU_check_and_parse_otp:01338] Goodix>>> enter, OTP size 64, internal tcode adjust 0, default tcode 128, default fdt delta 21
+[0211-10:00:57:775][info][ChicagoHU_check_and_parse_otp:01341] Goodix>>> read 0 bytes from C:\ProgramData\Goodix\goodix.dat
+[0211-10:00:57:776][debug][ChicagoHU_check_and_parse_otp:01342] Goodix>>> got file OTP::0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[0211-10:00:57:776][warn][ChicagoHU_check_and_parse_otp:01352] Goodix>>> NOT the same OTP in file(not in file) and from FP, use data from FP
+[0211-10:00:57:776][debug][ChicagoHU_OTP_CRC_Check:01110] Goodix>>> entry
+[0211-10:00:57:776][debug][ChicagoHU_OTP_CRC_Check:01132] Goodix>>> cp check CRC=12, chip cp CRC=12
+[0211-10:00:57:777][debug][ChicagoHU_OTP_CRC_Check:01158] Goodix>>> ft check CRC=240, chip ft CRC=240
+[0211-10:00:57:777][debug][ChicagoHU_OTP_CRC_Check:01182] Goodix>>> mt check CRC=219, chip mt CRC=219
+[0211-10:00:57:777][debug][ChicagoHU_OTP_DAC_Check:01204] Goodix>>> entry
+[0211-10:00:57:777][debug][ChicagoHU_OTP_DAC_Check:01227] Goodix>>> ft dac crc check CRC=23, otp CRC=23
+[0211-10:00:57:777][debug][ChicagoHU_check_otp:00160] Goodix>>> from otp dac 0xb38, dac1 0xb5, dac2 0xb3, dac3 0xb3
+[0211-10:00:57:777][info][modify_sensor_config:00424] Goodix>>> reg 0x0220, before update: 0x0808, after update:0x0b38 (0x0b38: 0xb|0x38)
+[0211-10:00:57:777][info][modify_sensor_config:00424] Goodix>>> reg 0x0236, before update: 0x0080, after update:0x00b5 (0x00b5: 0x0|0xb5)
+[0211-10:00:57:777][info][modify_sensor_config:00424] Goodix>>> reg 0x0238, before update: 0x0080, after update:0x00b3 (0x00b3: 0x0|0xb3)
+[0211-10:00:57:778][info][modify_sensor_config:00424] Goodix>>> reg 0x023a, before update: 0x0080, after update:0x00b3 (0x00b3: 0x0|0xb3)
+[0211-10:00:57:778][debug][ChicagoHU_check_and_parse_otp:01366] Goodix>>> USED OTP::0x5334303636362e000a7d82b372a0460a5107050e7d4b172741029a0cf1807f0c07813038e480ddfc0abebb4401bbb3b5b3b3b3b5b3b34133e41bdd220cf017db
+[0211-10:00:57:778][info][modify_sensor_config:00424] Goodix>>> reg 0x005c, before update: 0x0180, after update:0x0100 (0x0100: 0x1|0x0)
+[0211-10:00:57:778][info][modify_sensor_config:00424] Goodix>>> reg 0x0082, before update: 0x1580, after update:0x1b80 (0x1b00: 0x1b|0x0)
+[0211-10:00:57:778][info][ChicagoHU_check_and_parse_otp:01426] Goodix>>> OTP tcode 256, fdt delta 27
+[0211-10:00:57:778][debug][ChicagoHU_check_and_parse_otp:01458] Goodix>>> fdtOffset:0x0
+[0211-10:00:57:779][debug][device_action:04408] Goodix>>> to set state to DEVICE_ENABLE
+[0211-10:00:57:779][debug][set_state:00872] Goodix>>> to set state from 3 to 1
+[0211-10:00:57:779][info][init_FPSensor:01279] Goodix>>> FDT_Init, sensortype: 12, fdt_delta:27, tcode:256
+[0211-10:00:57:779][debug][device_action:04222] Goodix>>> to set state to DEVICE_ACTION
+[0211-10:00:57:779][debug][set_state:00872] Goodix>>> to set state from 1 to 3
+[0211-10:00:57:779][debug][gf_download_config:06474] Goodix>>> enter
+[0211-10:00:57:780][debug][gfresetMCUAndfingerprint:06383] Goodix>>> reset sensor
+[0211-10:00:57:780][debug][gfresetMCUAndfingerprint:06393] Goodix>>> reset device, reset_flag 1
+[0211-10:00:57:780][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-1-0x2-1000-0
+[0211-10:00:57:798][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0211-10:00:57:799][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0xa2, cfg flag 0x7
+[0211-10:00:57:799][warn][get_msg_data:06277] Goodix>>> MCU has no config
+[0211-10:00:57:842][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xa2-4
+[0211-10:00:57:842][debug][data_from_device:05100] Goodix>>> --- cmd: other
+[0211-10:00:57:842][debug][get_other_data:06094] Goodix>>> CHIP_RESET::0x010008
+[0211-10:00:57:842][info][ChicagoHUSetMode:00541] Goodix>>> enter, Mode 7, Type 0, base_type 0
+[0211-10:00:57:842][info][ChicagoHUSetMode:00652] Goodix>>> setmode: idle
+[0211-10:00:57:842][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x7-0-0x2-1000-0
+[0211-10:00:57:862][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0211-10:00:57:862][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x70, cfg flag 0x7
+[0211-10:00:57:862][warn][get_msg_data:06277] Goodix>>> MCU has no config
+[0211-10:00:57:891][debug][ChicagoHUsetDac:00419] Goodix>>> Dac sent::0x380bb500b300b300
+[0211-10:00:57:891][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x9-4-0x8-1000-0
+[0211-10:00:57:908][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0211-10:00:57:908][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x98, cfg flag 0x7
+[0211-10:00:57:908][warn][get_msg_data:06277] Goodix>>> MCU has no config
+[0211-10:00:57:909][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x98-3
+[0211-10:00:57:923][debug][ChicagoHUsetDac:00451] Goodix>>> wrote down dac 0xb38, dac1 0xb5,dac2 0xb3, dac3 0xb3
+[0211-10:00:57:939][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x9-0-0xe0-1000-0
+[0211-10:00:57:956][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0211-10:00:57:957][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x90, cfg flag 0x7
+[0211-10:00:57:957][warn][get_msg_data:06277] Goodix>>> MCU has no config
+[0211-10:00:57:958][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x90-3
+[0211-10:00:57:986][debug][gf_download_config:06492] Goodix>>> exit, ret 1
+[0211-10:00:57:986][debug][device_action:04408] Goodix>>> to set state to DEVICE_ENABLE
+[0211-10:00:57:986][debug][set_state:00872] Goodix>>> to set state from 3 to 1
+[0211-10:00:57:986][info][init_FPSensor:01282] Goodix>>> OTP data valid, download config 1
+[0211-10:00:57:986][info][init_FPSensor:01291] Goodix>>> otp_valid 1, have config 1
+[0211-10:00:57:986][info][init_FPSensor:01393] Goodix>>> exit return 1, inited 1
+[0211-10:00:57:986][debug][device_action:04222] Goodix>>> to set state to DEVICE_ACTION
+[0211-10:00:57:986][debug][set_state:00872] Goodix>>> to set state from 1 to 3
+[0211-10:00:57:986][debug][device_action:04377] Goodix>>> besdenable:1
+[0211-10:00:57:987][debug][device_action:04408] Goodix>>> to set state to DEVICE_ENABLE
+[0211-10:00:57:987][debug][set_state:00872] Goodix>>> to set state from 3 to 1
+[0211-10:00:57:987][info][_DeviceInit:00949] Goodix>>> Init Device Done Successfully
+[0211-10:00:57:987][info][InitThread:01483] Goodix>>> Init Device Success
+[0211-10:00:57:987][info][InitThread:01511] Goodix>>> tls handshake flag is marked to false
+[0211-10:00:57:987][info][_TlsInitAndHandShake:00974] Goodix>>> ---- enter
+[0211-10:00:57:987][debug][_TlsInitAndHandShake:00991] Goodix>>> CONFIG DATA: time_wait_for_tls 1100, time_wait_for_pov 2000
+[0211-10:00:57:987][info][tlsapp_init_tls_state:00127] Goodix>>> enter
+[0211-10:00:57:988][info][_TlsInitAndHandShake:01015] Goodix>>> tls init...
+[0211-10:00:57:988][info][tlsapp_tls_server_init:00269] Goodix>>> enter 32
+[0211-10:00:57:988][info][tlslib_server_init:00384] Goodix>>> => tlslib_server_init
+[0211-10:00:57:988][info][tlslib_server_exit:00509] Goodix>>> => tlslib_server_exit.
+[0211-10:00:57:988][info][tlslib_server_exit:00524] Goodix>>> <= tlslib_server_exit.
+[0211-10:00:57:989][info][tlslib_server_init:00479] Goodix>>>  <= tlslib_server_init [Successfully] ret:0
+[0211-10:00:57:989][info][tlsapp_tls_server_init:00294] Goodix>>> exit with ret:0
+[0211-10:00:57:990][info][TLSServerInit:00785] Goodix>>> TLS Init Success, Set tls inited to TRUE
+[0211-10:00:57:990][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xd-0-0x2-0-0
+[0211-10:00:58:002][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0211-10:00:58:003][debug][MilanEvtInterruptWorkItem:05895] Goodix>>> enter
+[0211-10:00:58:003][debug][MilanEvtInterruptWorkItem:05951] Goodix>>>  ---- pack len: 52
+[0211-10:00:58:004][debug][process_tls_data:05125] Goodix>>> enter
+[0211-10:00:58:004][debug][process_tls_data:05131] Goodix>>> tls handshake package, state: 0
+[0211-10:00:58:004][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read
+[0211-10:00:58:004][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => handshake
+[0211-10:00:58:004][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 0
+[0211-10:00:58:004][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:004][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:004][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 1
+[0211-10:00:58:004][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:004][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:004][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => parse client hello
+[0211-10:00:58:004][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0211-10:00:58:005][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0211-10:00:58:005][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0211-10:00:58:005][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 5, bytes left: 52
+[0211-10:00:58:005][info][RecvTLSPackage:06650] Goodix>>> bytes read: 5, bytes left: 47
+[0211-10:00:58:005][info][tls_callback_recv:00165] Goodix>>> recv ret:5.
+[0211-10:00:58:005][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0211-10:00:58:005][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 5 (-0xfffffffb)
+[0211-10:00:58:005][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0211-10:00:58:005][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0211-10:00:58:005][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 52
+[0211-10:00:58:006][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0211-10:00:58:006][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 47, bytes left: 47
+[0211-10:00:58:006][info][RecvTLSPackage:06650] Goodix>>> bytes read: 47, bytes left: 0
+[0211-10:00:58:006][info][tls_callback_recv:00165] Goodix>>> recv ret:47.
+[0211-10:00:58:006][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 52
+[0211-10:00:58:006][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 47 (-0xffffffd1)
+[0211-10:00:58:006][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0211-10:00:58:006][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: selected ciphersuite: TLS-PSK-WITH-AES-128-GCM-SHA256
+[0211-10:00:58:006][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= parse client hello
+[0211-10:00:58:007][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 2
+[0211-10:00:58:007][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:007][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:007][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write server hello
+[0211-10:00:58:007][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write handshake message
+[0211-10:00:58:007][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write record
+[0211-10:00:58:007][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:007][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: message length: 86, out_left: 86
+[0211-10:00:58:007][info][tls_callback_send:00186] Goodix>>> enter, tls inited 1
+[0211-10:00:58:007][info][SendTLSPackage:06572] Goodix>>> SENT DATA LEN: 86, 90
+[0211-10:00:58:018][info][_TlsInitAndHandShake:01065] Goodix>>> tls init...done within 31ms, system slow index 2, time for checking tls-hand-shake 1100ms, time_tls_handshake:2200
+[0211-10:00:58:034][debug][SendTLSPackage:06624] Goodix>>> exit len 86
+[0211-10:00:58:034][fatal][tls_callback_send:00193] Goodix>>> sent ret:86.
+[0211-10:00:58:034][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_send() returned 86 (-0xffffffaa)
+[0211-10:00:58:034][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:034][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write record
+[0211-10:00:58:034][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write handshake message
+[0211-10:00:58:034][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write server hello
+[0211-10:00:58:034][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 3
+[0211-10:00:58:035][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:035][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:035][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write certificate
+[0211-10:00:58:035][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= skip write certificate
+[0211-10:00:58:035][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 4
+[0211-10:00:58:035][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:035][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:035][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write server key exchange
+[0211-10:00:58:035][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= skip write server key exchange
+[0211-10:00:58:035][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 5
+[0211-10:00:58:035][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:036][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:036][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write certificate request
+[0211-10:00:58:036][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= skip write certificate request
+[0211-10:00:58:036][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 6
+[0211-10:00:58:036][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:036][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:036][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write server hello done
+[0211-10:00:58:036][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write handshake message
+[0211-10:00:58:036][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write record
+[0211-10:00:58:036][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:036][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: message length: 9, out_left: 9
+[0211-10:00:58:037][info][tls_callback_send:00186] Goodix>>> enter, tls inited 1
+[0211-10:00:58:037][info][SendTLSPackage:06572] Goodix>>> SENT DATA LEN: 9, 13
+[0211-10:00:58:051][debug][MilanEvtInterruptWorkItem:05895] Goodix>>> enter
+[0211-10:00:58:065][debug][MilanEvtInterruptWorkItem:05895] Goodix>>> enter
+[0211-10:00:58:066][debug][SendTLSPackage:06624] Goodix>>> exit len 9
+[0211-10:00:58:066][fatal][tls_callback_send:00193] Goodix>>> sent ret:9.
+[0211-10:00:58:066][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_send() returned 9 (-0xfffffff7)
+[0211-10:00:58:066][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:066][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write record
+[0211-10:00:58:066][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write handshake message
+[0211-10:00:58:066][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write server hello done
+[0211-10:00:58:066][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 7
+[0211-10:00:58:066][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:067][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:067][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => parse certificate
+[0211-10:00:58:067][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= skip parse certificate
+[0211-10:00:58:067][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 8
+[0211-10:00:58:067][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:067][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:067][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => parse client key exchange
+[0211-10:00:58:067][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read record
+[0211-10:00:58:067][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0211-10:00:58:067][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0211-10:00:58:067][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0211-10:00:58:068][debug][MilanEvtInterruptWorkItem:05895] Goodix>>> enter
+[0211-10:00:58:068][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 5, bytes left: 0
+[0211-10:00:58:068][warn][RecvTLSPackage:06644] Goodix>>> data not enough
+[0211-10:00:58:068][info][RecvTLSPackage:06650] Goodix>>> bytes read: 0, bytes left: 0
+[0211-10:00:58:068][info][tls_callback_recv:00165] Goodix>>> recv ret:0.
+[0211-10:00:58:068][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0211-10:00:58:068][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 0 (-0x0000)
+[0211-10:00:58:068][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: mbedtls_ssl_fetch_input() returned -29312 (-0x7280)
+[0211-10:00:58:068][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: ssl_get_next_record() returned -29312 (-0x7280)
+[0211-10:00:58:068][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: mbedtls_ssl_read_record() returned -29312 (-0x7280)
+[0211-10:00:58:069][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= handshake
+[0211-10:00:58:069][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: mbedtls_ssl_handshake() returned -29312 (-0x7280)
+[0211-10:00:58:069][error][tlslib_read:00578] Goodix>>> tlslib_read error ret(abs): 0x7280, meaning:SSL - The connection indicated an EOF.
+[0211-10:00:58:069][info][set_tls_state:00219] Goodix>>> enter
+[0211-10:00:58:069][debug][tlsapp_set_tls_state:00033] Goodix>>> TLS now IN handshake state:8.
+[0211-10:00:58:069][info][tlslib_read:00571] Goodix>>> <= tlslib_read exit with ret:-29312 tls server state:8.
+[0211-10:00:58:069][debug][process_tls_data:05161] Goodix>>> exit
+[0211-10:00:58:069][debug][MilanEvtInterruptWorkItem:05951] Goodix>>>  ---- pack len: 26
+[0211-10:00:58:069][debug][process_tls_data:05125] Goodix>>> enter
+[0211-10:00:58:069][debug][process_tls_data:05131] Goodix>>> tls handshake package, state: 8
+[0211-10:00:58:069][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read
+[0211-10:00:58:070][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => handshake
+[0211-10:00:58:070][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 8
+[0211-10:00:58:070][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:070][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:070][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => parse client key exchange
+[0211-10:00:58:070][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read record
+[0211-10:00:58:070][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0211-10:00:58:070][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0211-10:00:58:070][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0211-10:00:58:070][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 5, bytes left: 26
+[0211-10:00:58:070][info][RecvTLSPackage:06650] Goodix>>> bytes read: 5, bytes left: 21
+[0211-10:00:58:070][info][tls_callback_recv:00165] Goodix>>> recv ret:5.
+[0211-10:00:58:071][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0211-10:00:58:071][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 5 (-0xfffffffb)
+[0211-10:00:58:071][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0211-10:00:58:071][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0211-10:00:58:071][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 26
+[0211-10:00:58:071][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0211-10:00:58:071][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 21, bytes left: 21
+[0211-10:00:58:071][info][RecvTLSPackage:06650] Goodix>>> bytes read: 21, bytes left: 0
+[0211-10:00:58:071][info][tls_callback_recv:00165] Goodix>>> recv ret:21.
+[0211-10:00:58:071][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 26
+[0211-10:00:58:071][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 21 (-0xffffffeb)
+[0211-10:00:58:071][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0211-10:00:58:071][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= read record
+[0211-10:00:58:072][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => derive keys
+[0211-10:00:58:072][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= derive keys
+[0211-10:00:58:072][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= parse client key exchange
+[0211-10:00:58:072][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 9
+[0211-10:00:58:072][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:072][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:072][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => parse certificate verify
+[0211-10:00:58:072][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= skip parse certificate verify
+[0211-10:00:58:072][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 10
+[0211-10:00:58:072][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:072][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:073][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => parse change cipher spec
+[0211-10:00:58:073][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read record
+[0211-10:00:58:073][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0211-10:00:58:073][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0211-10:00:58:073][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0211-10:00:58:073][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 5, bytes left: 0
+[0211-10:00:58:073][warn][RecvTLSPackage:06644] Goodix>>> data not enough
+[0211-10:00:58:073][info][RecvTLSPackage:06650] Goodix>>> bytes read: 0, bytes left: 0
+[0211-10:00:58:073][info][tls_callback_recv:00165] Goodix>>> recv ret:0.
+[0211-10:00:58:073][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0211-10:00:58:073][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 0 (-0x0000)
+[0211-10:00:58:073][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: mbedtls_ssl_fetch_input() returned -29312 (-0x7280)
+[0211-10:00:58:074][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: ssl_get_next_record() returned -29312 (-0x7280)
+[0211-10:00:58:074][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: mbedtls_ssl_read_record() returned -29312 (-0x7280)
+[0211-10:00:58:074][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= handshake
+[0211-10:00:58:074][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: mbedtls_ssl_handshake() returned -29312 (-0x7280)
+[0211-10:00:58:074][error][tlslib_read:00578] Goodix>>> tlslib_read error ret(abs): 0x7280, meaning:SSL - The connection indicated an EOF.
+[0211-10:00:58:074][info][set_tls_state:00219] Goodix>>> enter
+[0211-10:00:58:074][debug][tlsapp_set_tls_state:00033] Goodix>>> TLS now IN handshake state:10.
+[0211-10:00:58:074][info][tlslib_read:00571] Goodix>>> <= tlslib_read exit with ret:-29312 tls server state:10.
+[0211-10:00:58:074][debug][process_tls_data:05161] Goodix>>> exit
+[0211-10:00:58:074][debug][MilanEvtInterruptWorkItem:05951] Goodix>>>  ---- pack len: 6
+[0211-10:00:58:074][debug][process_tls_data:05125] Goodix>>> enter
+[0211-10:00:58:074][debug][process_tls_data:05131] Goodix>>> tls handshake package, state: 10
+[0211-10:00:58:075][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read
+[0211-10:00:58:075][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => handshake
+[0211-10:00:58:075][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 10
+[0211-10:00:58:075][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:075][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:075][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => parse change cipher spec
+[0211-10:00:58:075][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read record
+[0211-10:00:58:075][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0211-10:00:58:075][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0211-10:00:58:075][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0211-10:00:58:075][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 5, bytes left: 6
+[0211-10:00:58:075][info][RecvTLSPackage:06650] Goodix>>> bytes read: 5, bytes left: 1
+[0211-10:00:58:075][info][tls_callback_recv:00165] Goodix>>> recv ret:5.
+[0211-10:00:58:076][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0211-10:00:58:076][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 5 (-0xfffffffb)
+[0211-10:00:58:076][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0211-10:00:58:076][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0211-10:00:58:076][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 6
+[0211-10:00:58:076][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0211-10:00:58:076][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 1, bytes left: 1
+[0211-10:00:58:076][info][RecvTLSPackage:06650] Goodix>>> bytes read: 1, bytes left: 0
+[0211-10:00:58:076][info][tls_callback_recv:00165] Goodix>>> recv ret:1.
+[0211-10:00:58:076][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 6
+[0211-10:00:58:076][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 1 (-0xffffffff)
+[0211-10:00:58:077][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0211-10:00:58:077][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= read record
+[0211-10:00:58:077][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= parse change cipher spec
+[0211-10:00:58:077][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 11
+[0211-10:00:58:077][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:077][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:077][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => parse finished
+[0211-10:00:58:077][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => calc  finished tls sha256
+[0211-10:00:58:077][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= calc  finished
+[0211-10:00:58:077][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read record
+[0211-10:00:58:077][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0211-10:00:58:078][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0211-10:00:58:078][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0211-10:00:58:078][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 5, bytes left: 0
+[0211-10:00:58:078][warn][RecvTLSPackage:06644] Goodix>>> data not enough
+[0211-10:00:58:078][info][RecvTLSPackage:06650] Goodix>>> bytes read: 0, bytes left: 0
+[0211-10:00:58:078][info][tls_callback_recv:00165] Goodix>>> recv ret:0.
+[0211-10:00:58:078][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0211-10:00:58:078][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 0 (-0x0000)
+[0211-10:00:58:078][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: mbedtls_ssl_fetch_input() returned -29312 (-0x7280)
+[0211-10:00:58:078][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: ssl_get_next_record() returned -29312 (-0x7280)
+[0211-10:00:58:078][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: mbedtls_ssl_read_record() returned -29312 (-0x7280)
+[0211-10:00:58:078][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= handshake
+[0211-10:00:58:078][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: mbedtls_ssl_handshake() returned -29312 (-0x7280)
+[0211-10:00:58:079][error][tlslib_read:00578] Goodix>>> tlslib_read error ret(abs): 0x7280, meaning:SSL - The connection indicated an EOF.
+[0211-10:00:58:079][info][set_tls_state:00219] Goodix>>> enter
+[0211-10:00:58:079][debug][tlsapp_set_tls_state:00033] Goodix>>> TLS now IN handshake state:11.
+[0211-10:00:58:079][info][tlslib_read:00571] Goodix>>> <= tlslib_read exit with ret:-29312 tls server state:11.
+[0211-10:00:58:079][debug][process_tls_data:05161] Goodix>>> exit
+[0211-10:00:58:079][debug][MilanEvtInterruptWorkItem:05951] Goodix>>>  ---- pack len: 45
+[0211-10:00:58:079][debug][process_tls_data:05125] Goodix>>> enter
+[0211-10:00:58:079][debug][process_tls_data:05131] Goodix>>> tls handshake package, state: 11
+[0211-10:00:58:079][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read
+[0211-10:00:58:079][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => handshake
+[0211-10:00:58:079][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 11
+[0211-10:00:58:079][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:080][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:080][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => parse finished
+[0211-10:00:58:080][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => calc  finished tls sha256
+[0211-10:00:58:080][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= calc  finished
+[0211-10:00:58:080][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read record
+[0211-10:00:58:080][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0211-10:00:58:080][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0211-10:00:58:080][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0211-10:00:58:080][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 5, bytes left: 45
+[0211-10:00:58:080][info][RecvTLSPackage:06650] Goodix>>> bytes read: 5, bytes left: 40
+[0211-10:00:58:080][info][tls_callback_recv:00165] Goodix>>> recv ret:5.
+[0211-10:00:58:081][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0211-10:00:58:081][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 5 (-0xfffffffb)
+[0211-10:00:58:081][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0211-10:00:58:081][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0211-10:00:58:081][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 45
+[0211-10:00:58:081][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0211-10:00:58:081][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 40, bytes left: 40
+[0211-10:00:58:081][info][RecvTLSPackage:06650] Goodix>>> bytes read: 40, bytes left: 0
+[0211-10:00:58:081][info][tls_callback_recv:00165] Goodix>>> recv ret:40.
+[0211-10:00:58:081][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 45
+[0211-10:00:58:081][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 40 (-0xffffffd8)
+[0211-10:00:58:082][debug][_TlsInitAndHandShake:01074] Goodix>>> tls handshake already started
+[0211-10:00:58:082][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0211-10:00:58:082][info][_TlsInitAndHandShake:01093] Goodix>>> TLS Handshake Started, waif for TLS handshake done(2200-0)...
+[0211-10:00:58:082][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => decrypt buf
+[0211-10:00:58:082][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= decrypt buf
+[0211-10:00:58:082][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= read record
+[0211-10:00:58:082][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= parse finished
+[0211-10:00:58:082][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 12
+[0211-10:00:58:082][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:082][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:083][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write change cipher spec
+[0211-10:00:58:083][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write handshake message
+[0211-10:00:58:083][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write record
+[0211-10:00:58:083][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:083][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: message length: 6, out_left: 6
+[0211-10:00:58:083][info][tls_callback_send:00186] Goodix>>> enter, tls inited 1
+[0211-10:00:58:083][info][SendTLSPackage:06572] Goodix>>> SENT DATA LEN: 6, 10
+[0211-10:00:58:271][debug][SendTLSPackage:06624] Goodix>>> exit len 6
+[0211-10:00:58:271][fatal][tls_callback_send:00193] Goodix>>> sent ret:6.
+[0211-10:00:58:271][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_send() returned 6 (-0xfffffffa)
+[0211-10:00:58:271][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:271][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write record
+[0211-10:00:58:271][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write handshake message
+[0211-10:00:58:272][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write change cipher spec
+[0211-10:00:58:272][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 13
+[0211-10:00:58:272][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:272][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:272][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write finished
+[0211-10:00:58:272][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => calc  finished tls sha256
+[0211-10:00:58:272][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= calc  finished
+[0211-10:00:58:272][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write handshake message
+[0211-10:00:58:273][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => write record
+[0211-10:00:58:273][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => encrypt buf
+[0211-10:00:58:273][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= encrypt buf
+[0211-10:00:58:273][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:274][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: message length: 45, out_left: 45
+[0211-10:00:58:274][info][tls_callback_send:00186] Goodix>>> enter, tls inited 1
+[0211-10:00:58:274][info][SendTLSPackage:06572] Goodix>>> SENT DATA LEN: 45, 49
+[0211-10:00:58:303][debug][SendTLSPackage:06624] Goodix>>> exit len 45
+[0211-10:00:58:303][fatal][tls_callback_send:00193] Goodix>>> sent ret:45.
+[0211-10:00:58:303][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_send() returned 45 (-0xffffffd3)
+[0211-10:00:58:303][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:303][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write record
+[0211-10:00:58:303][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write handshake message
+[0211-10:00:58:303][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= write finished
+[0211-10:00:58:303][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 14
+[0211-10:00:58:303][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:304][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:304][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: handshake: done
+[0211-10:00:58:304][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: server state: 15
+[0211-10:00:58:304][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => flush output
+[0211-10:00:58:304][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= flush output
+[0211-10:00:58:304][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= handshake
+[0211-10:00:58:304][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read record
+[0211-10:00:58:304][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0211-10:00:58:304][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0211-10:00:58:305][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0211-10:00:58:305][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 5, bytes left: 0
+[0211-10:00:58:305][warn][RecvTLSPackage:06644] Goodix>>> data not enough
+[0211-10:00:58:305][info][RecvTLSPackage:06650] Goodix>>> bytes read: 0, bytes left: 0
+[0211-10:00:58:305][info][tls_callback_recv:00165] Goodix>>> recv ret:0.
+[0211-10:00:58:305][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0211-10:00:58:305][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 0 (-0x0000)
+[0211-10:00:58:305][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: mbedtls_ssl_fetch_input() returned -29312 (-0x7280)
+[0211-10:00:58:305][notice][tlslib_mbedtls_debug_print:00173] Goodix>>> TLS LOG: ssl_get_next_record() returned -29312 (-0x7280)
+[0211-10:00:58:305][info][set_tls_state:00219] Goodix>>> enter
+[0211-10:00:58:306][debug][tlsapp_set_tls_state:00033] Goodix>>> TLS now IN handshake state:16.
+[0211-10:00:58:306][info][tlslib_read:00565] Goodix>>> TLS handshake over successfully.
+[0211-10:00:58:306][info][tlsapp_trig_tlsconnected:00072] Goodix>>> TLS Connection Ready
+[0211-10:00:58:306][info][tlslib_read:00571] Goodix>>> <= tlslib_read exit with ret:0 tls server state:16.
+[0211-10:00:58:306][debug][process_tls_data:05161] Goodix>>> exit
+[0211-10:00:58:306][debug][MilanEvtInterruptWorkItem:05985] Goodix>>> exit
+[0211-10:00:58:306][debug][MilanEvtInterruptWorkItem:05985] Goodix>>> exit
+[0211-10:00:58:306][debug][MilanEvtInterruptWorkItem:05985] Goodix>>> exit
+[0211-10:00:58:306][debug][MilanEvtInterruptWorkItem:05985] Goodix>>> exit
+[0211-10:00:58:334][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xd-2-0x2-1000-0
+[0211-10:00:58:351][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0211-10:00:58:351][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0xd4, cfg flag 0x1
+[0211-10:00:58:351][warn][get_msg_data:06289] Goodix>>> Client TLS connection setup 
+[0211-10:00:58:366][info][_TlsInitAndHandShake:01118] Goodix>>> tls handshake done (server side), 313ms(since start of tls init)
+[0211-10:00:58:398][warn][GetMcuState:04101] Goodix>>> mcu-state TIMESTAMP 0xe41e
+[0211-10:00:58:398][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-7-0x5-0-0
+[0211-10:00:58:399][debug][OnGetAttributes:02450] Goodix>>> entry
+[0211-10:00:58:399][debug][OnGetAttributes:02496] Goodix>>> outputBufferSize:0x62c, struct size:0x62c
+[0211-10:00:58:399][debug][OnGetAttributes:02533] Goodix>>> exit
+[0211-10:00:58:414][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0211-10:00:58:415][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xae-23
+[0211-10:00:58:415][debug][data_from_device:05100] Goodix>>> --- cmd: other
+[0211-10:00:58:415][info][GetMcuState:04178] Goodix>>> pov 1, pba 0, tls-client-server-lock 1-1-0-0, have config 1, pov valid 0
+[0211-10:00:58:416][debug][PrintMcuState:04046] Goodix>>> mcu state::0x04063000000000002000000000010001042502000000
+[0211-10:00:58:416][info][PrintMcuState:04074] Goodix>>> mcu state: version:4, isPOVImageValid:0, isTlsConnected:1, isTlsUsed:1, isLocked:0, availImgCnt:0, povImgCnt:3
+[0211-10:00:58:416][info][PrintMcuState:04076] Goodix>>> mcu state: sensor_data_int_timeout_count:0, image_crc_fail_count:0, povTouchAccidentCnt:0x0, readChipIDCnt:0, sensorExceptionFlag:0, sensorUnexpectedIntCnt:0, to_master_timeout_count:0
+[0211-10:00:58:417][info][PrintMcuState:04078] Goodix>>> mcu state: psk_len:32, psk_check_fail:0, psk_write_fail:0, ec_falling_count:0, system_up_stop_cnt:0, system_down_pov_stop_cnt:0, system_up_cleared_pov_count:0
+[0211-10:00:58:417][info][PrintMcuState:04080] Goodix>>> mcu state: pov_wake_by_fp:1, pov_wake_by_ec:0, pov_procedure:0x0, config_down_flag:1, sensor_chip_id:0x2504, sensor_type:2, pov_capture_count:0, normal_capture_count:0, otp_mcu_check_status:0x0
+[0211-10:00:58:417][notice][_TlsInitAndHandShake:01150] Goodix>>> tls connected success confirmed
+[0211-10:00:58:418][info][_TlsInitAndHandShake:01177] Goodix>>> tls handshake done (client/mcu side)
+[0211-10:00:58:418][info][_TlsInitAndHandShake:01193] Goodix>>> exit, ret 1, bResetMCU 0, tls inited 1
+[0211-10:00:58:418][info][InitThread:01547] Goodix>>> TLS Handshake Success
+[0211-10:00:58:418][info][InitThread:01572] Goodix>>> power not lost
+[0211-10:00:58:418][info][InitThread:01679] Goodix>>> Init: update all base...
+[0211-10:00:58:418][info][device_check_imagebase_exist:06679] Goodix>>> read data from file 13520 bytes
+[0211-10:00:58:419][info][device_check_imagebase_exist:06681] Goodix>>> read 0-13520 bytes from C:\ProgramData\Goodix\goodix.dat
+[0211-10:00:58:419][info][device_check_imagebase_exist:06690] Goodix>>> check crc :Crchost:0x82fdcaa1----crcchip:0x0
+[0211-10:00:58:419][info][device_check_imagebase_exist:06721] Goodix>>> imagebase exist: 0
+[0211-10:00:58:419][info][gf_update_all_base:06867] Goodix>>> enter
+[0211-10:00:58:419][info][gf_update_all_base:06891] Goodix>>> gf_get_fdtbase 0
+[0211-10:00:58:420][debug][gf_get_fdtbase:06789] Goodix>>> enter
+[0211-10:00:58:420][info][ChicagoHUSetMode:00541] Goodix>>> enter, Mode 3, Type 3, base_type 1
+[0211-10:00:58:420][info][ChicagoHUSetMode:00599] Goodix>>> setmode: Fdt manual
+[0211-10:00:58:420][debug][ChicagoHUSetMode:00640] Goodix>>> switch to FDT mode 3
+[0211-10:00:58:420][debug][ChicagoHUSetMode:00641] Goodix>>> data sent::0x000000000000000000000000
+[0211-10:00:58:420][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-3-0xe-1000-0
+[0211-10:00:58:430][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0211-10:00:58:430][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x36, cfg flag 0x1
+[0211-10:00:58:450][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x36-17
+[0211-10:00:58:450][debug][data_from_device:05033] Goodix>>> --- cmd: fdt
+[0211-10:00:58:451][debug][chicagoHUget_fdtdata:00815] Goodix>>> IrqStatus:0x100 cmd1 3
+[0211-10:00:58:451][info][chicagoHUget_fdtdata:00874] Goodix>>> IRQ for fdt-manual, get fdt-up base, current mode is fdt-manual, touchflag 0x0
+[0211-10:00:58:451][debug][chicagoHUget_fdtdata:00877] Goodix>>> received fdt base::0x610187014a016f014e016f01
+[0211-10:00:58:451][info][chicagoHUget_fdtdata:00888] Goodix>>> get fdt-down base, current mode is fdt-manual
+[0211-10:00:58:451][debug][gfCheckFDTBase:00936] Goodix>>> fdt base:0x610187014a016f014e016f01
+[0211-10:00:58:452][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[0]:0xb080
+[0211-10:00:58:452][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[1]:0xc380
+[0211-10:00:58:452][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[2]:0xa580
+[0211-10:00:58:452][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[3]:0xb780
+[0211-10:00:58:453][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[4]:0xa780
+[0211-10:00:58:453][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[5]:0xb780
+[0211-10:00:58:453][debug][gf_get_fdtbase:06808] Goodix>>> exit
+[0211-10:00:58:453][info][gf_update_all_base:06901] Goodix>>> gf_get_navbase
+[0211-10:00:58:453][info][ChicagoHUSetMode:00541] Goodix>>> enter, Mode 5, Type 0, base_type 0
+[0211-10:00:58:454][info][ChicagoHUSetMode:00692] Goodix>>> setmode: nav
+[0211-10:00:58:454][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x5-0-0x2-1000-0
+[0211-10:00:58:459][debug][OnGetPBAInfo:03504] Goodix>>> Entry
+[0211-10:00:58:459][debug][OnGetPBAInfo:03550] Goodix>>> Exit
+[0211-10:00:58:460][debug][OnGetSensorInfo:03355] Goodix>>> Entry
+[0211-10:00:58:460][info][OnGetSensorInfo:03412] Goodix>>> FP Info ready
+[0211-10:00:58:460][info][OnGetSensorInfo:03422] Goodix>>> FP Info ready now, chipid:0x2504, sensorType:12, col:80, row:64
+[0211-10:00:58:462][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0211-10:00:58:462][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x50, cfg flag 0x1
+[0211-10:00:58:482][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x50-2410
+[0211-10:00:58:482][debug][data_from_device:05080] Goodix>>> --- recv nav data......length:2410
+[0211-10:00:58:482][info][chicagoHUget_navdata:00778] Goodix>>> 2404 2404 3200
+[0211-10:00:58:482][debug][ChicagoHUDataRegroup:00519] Goodix>>> Regroup pixels:1600
+[0211-10:00:58:482][debug][data_from_device:05090] Goodix>>> nav crc check ok
+[0211-10:00:58:482][info][gf_update_all_base:06911] Goodix>>> gf_get_fdtbase 1
+[0211-10:00:58:483][debug][gf_get_fdtbase:06789] Goodix>>> enter
+[0211-10:00:58:483][info][ChicagoHUSetMode:00541] Goodix>>> enter, Mode 3, Type 3, base_type 1
+[0211-10:00:58:483][info][ChicagoHUSetMode:00599] Goodix>>> setmode: Fdt manual
+[0211-10:00:58:483][debug][ChicagoHUSetMode:00640] Goodix>>> switch to FDT mode 3
+[0211-10:00:58:483][debug][ChicagoHUSetMode:00641] Goodix>>> data sent::0x80b080c380a580b780a780b7
+[0211-10:00:58:483][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-3-0xe-1000-0
+[0211-10:00:58:494][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0211-10:00:58:494][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x36, cfg flag 0x1
+[0211-10:00:58:514][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x36-17
+[0211-10:00:58:514][debug][data_from_device:05033] Goodix>>> --- cmd: fdt
+[0211-10:00:58:515][debug][chicagoHUget_fdtdata:00815] Goodix>>> IrqStatus:0x100 cmd1 3
+[0211-10:00:58:515][info][chicagoHUget_fdtdata:00874] Goodix>>> IRQ for fdt-manual, get fdt-up base, current mode is fdt-manual, touchflag 0x0
+[0211-10:00:58:515][debug][chicagoHUget_fdtdata:00877] Goodix>>> received fdt base::0x600186014c01700150017001
+[0211-10:00:58:515][info][chicagoHUget_fdtdata:00888] Goodix>>> get fdt-down base, current mode is fdt-manual
+[0211-10:00:58:515][debug][gfCheckFDTBase:00936] Goodix>>> fdt base:0x600186014c01700150017001
+[0211-10:00:58:515][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[0]:0xb080
+[0211-10:00:58:515][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[1]:0xc380
+[0211-10:00:58:515][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[2]:0xa680
+[0211-10:00:58:515][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[3]:0xb880
+[0211-10:00:58:516][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[4]:0xa880
+[0211-10:00:58:516][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[5]:0xb880
+[0211-10:00:58:516][debug][gf_get_fdtbase:06808] Goodix>>> exit
+[0211-10:00:58:516][debug][gf_update_all_base:06920] Goodix>>> fdt_base1::0x600186014c017001500170010000000000000000000000000000000000000000
+[0211-10:00:58:516][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x8-1-0x5-1000-0
+[0211-10:00:58:526][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0211-10:00:58:526][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x82, cfg flag 0x1
+[0211-10:00:58:527][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x82-3
+[0211-10:00:58:528][debug][data_from_device:05037] Goodix>>> --- cmd: regrw
+[0211-10:00:58:540][info][gf_update_all_base:06935] Goodix>>> fdt_delta 0x1b
+[0211-10:00:58:540][info][gf_get_oneframe:06818] Goodix>>> enter, tls-client-server 1-1-1
+[0211-10:00:58:540][debug][gf_get_oneframe:06829] Goodix>>> g_halcontext.sensor_ops.SetMode:0x00007FFE0A83BB50.
+[0211-10:00:58:540][info][ChicagoHUSetMode:00541] Goodix>>> enter, Mode 2, Type 0, base_type 0
+[0211-10:00:58:540][info][ChicagoHUSetMode:00554] Goodix>>> setmode: Image
+[0211-10:00:58:540][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x2-0-0x2-1000-0
+[0211-10:00:58:557][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0211-10:00:58:558][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x20, cfg flag 0x1
+[0211-10:00:58:629][debug][MilanEvtInterruptWorkItem:05895] Goodix>>> enter
+[0211-10:00:58:629][debug][MilanEvtInterruptWorkItem:05951] Goodix>>>  ---- pack len: 7722
+[0211-10:00:58:629][debug][process_tls_data:05125] Goodix>>> enter
+[0211-10:00:58:629][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read
+[0211-10:00:58:630][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => read record
+[0211-10:00:58:630][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0211-10:00:58:630][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0211-10:00:58:630][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0211-10:00:58:631][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 5, bytes left: 7722
+[0211-10:00:58:631][info][RecvTLSPackage:06650] Goodix>>> bytes read: 5, bytes left: 7717
+[0211-10:00:58:631][info][tls_callback_recv:00165] Goodix>>> recv ret:5.
+[0211-10:00:58:631][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+[0211-10:00:58:631][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 5 (-0xfffffffb)
+[0211-10:00:58:631][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0211-10:00:58:631][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => fetch input
+[0211-10:00:58:631][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 7722
+[0211-10:00:58:631][info][tls_callback_recv:00158] Goodix>>> enter, tls inited 1
+[0211-10:00:58:632][info][RecvTLSPackage:06635] Goodix>>> bytes to read: 7717, bytes left: 7717
+[0211-10:00:58:632][info][RecvTLSPackage:06650] Goodix>>> bytes read: 7717, bytes left: 0
+[0211-10:00:58:632][info][tls_callback_recv:00165] Goodix>>> recv ret:7717.
+[0211-10:00:58:632][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: in_left: 5, nb_want: 7722
+[0211-10:00:58:632][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 7717 (-0xffffe1db)
+[0211-10:00:58:632][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= fetch input
+[0211-10:00:58:632][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: => decrypt buf
+[0211-10:00:58:633][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= decrypt buf
+[0211-10:00:58:633][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= read record
+[0211-10:00:58:633][info][tlslib_mbedtls_debug_print:00168] Goodix>>> TLS LOG: <= read
+[0211-10:00:58:633][info][set_tls_state:00219] Goodix>>> enter
+[0211-10:00:58:633][debug][tlsapp_set_tls_state:00033] Goodix>>> TLS now IN handshake state:16.
+[0211-10:00:58:633][info][tlslib_read:00571] Goodix>>> <= tlslib_read exit with ret:7693 tls server state:16.
+[0211-10:00:58:634][debug][process_tls_data:05151] Goodix>>> ---- tls 7693 bytes recv
+[0211-10:00:58:634][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x20-7690
+[0211-10:00:58:634][debug][data_from_device:04981] Goodix>>> --- cmd: image
+[0211-10:00:58:635][info][chicagoHUget_rawdata:00737] Goodix>>> 7684 7684 10240
+[0211-10:00:58:635][debug][ChicagoHUDataRegroup:00519] Goodix>>> Regroup pixels:5120
+[0211-10:00:58:635][debug][data_from_device:04998] Goodix>>> receive non-POV image, length:7690
+[0211-10:00:58:635][debug][data_from_device:05004] Goodix>>> image crc check Ok
+[0211-10:00:58:635][debug][process_tls_data:05161] Goodix>>> exit
+[0211-10:00:58:635][debug][MilanEvtInterruptWorkItem:05985] Goodix>>> exit
+[0211-10:00:58:635][debug][gf_get_oneframe:06843] Goodix>>> <= with ret(BOOL):1.
+[0211-10:00:58:636][info][gf_update_all_base:06984] Goodix>>> gf_get_fdtbase 2
+[0211-10:00:58:636][debug][gf_get_fdtbase:06789] Goodix>>> enter
+[0211-10:00:58:636][info][ChicagoHUSetMode:00541] Goodix>>> enter, Mode 3, Type 3, base_type 1
+[0211-10:00:58:636][info][ChicagoHUSetMode:00599] Goodix>>> setmode: Fdt manual
+[0211-10:00:58:636][debug][ChicagoHUSetMode:00640] Goodix>>> switch to FDT mode 3
+[0211-10:00:58:636][debug][ChicagoHUSetMode:00641] Goodix>>> data sent::0x80b080c380a680b880a880b8
+[0211-10:00:58:636][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-3-0xe-1000-0
+[0211-10:00:58:653][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
+[0211-10:00:58:653][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x36, cfg flag 0x1
+[0211-10:00:58:673][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x36-17
+[0211-10:00:58:673][debug][data_from_device:05033] Goodix>>> --- cmd: fdt
+[0211-10:00:58:673][debug][chicagoHUget_fdtdata:00815] Goodix>>> IrqStatus:0x100 cmd1 3
+[0211-10:00:58:674][info][chicagoHUget_fdtdata:00874] Goodix>>> IRQ for fdt-manual, get fdt-up base, current mode is fdt-manual, touchflag 0x0
+[0211-10:00:58:674][debug][chicagoHUget_fdtdata:00877] Goodix>>> received fdt base::0x600187014c01710151017101
+[0211-10:00:58:674][info][chicagoHUget_fdtdata:00888] Goodix>>> get fdt-down base, current mode is fdt-manual
+[0211-10:00:58:674][debug][gfCheckFDTBase:00936] Goodix>>> fdt base:0x600187014c01710151017101
+[0211-10:00:58:674][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[0]:0xb080
+[0211-10:00:58:674][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[1]:0xc380
+[0211-10:00:58:674][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[2]:0xa680
+[0211-10:00:58:674][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[3]:0xb880
+[0211-10:00:58:674][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[4]:0xa880
+[0211-10:00:58:674][debug][gfFDTDownbase:00968] Goodix>>> fdt_downbase[5]:0xb880
+[0211-10:00:58:683][debug][gf_get_fdtbase:06808] Goodix>>> exit
+[0211-10:00:58:683][info][gf_update_all_base:06993] Goodix>>> gf_get_fdtbase 2 finshed
+[0211-10:00:58:683][debug][gf_update_all_base:07104] Goodix>>> --- base not exist, update imagebase
+[0211-10:00:58:683][debug][gf_savebaseTofile:07153] Goodix>>> nav buffer size:3200 buffer size:10240
+[0211-10:00:58:683][debug][gf_savebaseTofile:07159] Goodix>>> save imagebase 
+[0211-10:00:58:683][error][gf_savebaseTofile:07165] Goodix>>> fail to create dir C:\ProgramData\Goodix, errno 17
+[0211-10:00:58:684][info][gf_savebaseTofile:07176] Goodix>>> write 13520-13520 bytes to C:\ProgramData\Goodix\goodix.dat
+[0211-10:00:58:684][debug][gf_savebaseTofile:07185] Goodix>>> exit size:13520(dec)
+[0211-10:00:58:684][info][gf_update_all_base:07134] Goodix>>> exit, base_is_valid 0, ren 1
+[0211-10:00:58:684][debug][device_check_imagebase_exist:06734] Goodix>>> update all base suc, Set FDT normal base
+[0211-10:00:58:684][info][InitThread:01682] Goodix>>> Init: update all base have done
+[0211-10:00:58:684][info][InitThread:01747] Goodix>>> !!Init: Initialization done successfully
+[0211-10:00:58:684][info][InitThread:01752] Goodix>>> --- Init: end
+[0211-10:01:09:722][info][MilanEvtDeviceD0Exit:04789] Goodix>>> target state: 4, power action: 0
+[0211-10:01:09:723][trace][ClearPOVImage:05587] Goodix>>> no pov data
+[0211-10:01:09:723][debug][clear_submit_delay:05854] Goodix>>> enter
+[0211-10:01:09:723][trace][SuspendAllThreads:00487] Goodix>>> suspend all
+[0211-10:01:09:723][info][MilanEvtDeviceD0Exit:04874] Goodix>>> enter S0 idle
