@@ -9,7 +9,7 @@ from periphery.gpio import GPIOError
 from spidev import SpiDev
 
 from packet_parsing import types_by_code
-from util_fmt import Colors, log, to_hex_string, format_validity, print_frame, crop
+from util_fmt import Colors, log, to_hex_string, format_validity, print_frame, crop, to_utf_string
 
 log_isr_events = False
 log_synchronization_events = False
@@ -106,9 +106,13 @@ def perform_read(spi: SpiDev) -> list[int]:
     hex_cropped = crop(hex_string, hex_string_length_limit)
     log(Colors.HI_BLUE, f"\t- packet received {validity} : {hex_cropped}")
 
-    packet_type = types_by_code.get(payload_packet[0], "UNKNOWN")
-    type_hex = to_hex_string([payload_packet[0], ])
-    print_frame(Colors.HI_BLUE, '', 120, [f'[length:{payload_length:>4}] command: (0x{type_hex}) {packet_type}', hex_string])
+    packet_type_code = payload_packet[0]
+    packet_type = types_by_code.get(packet_type_code, "UNKNOWN")
+    type_hex = to_hex_string([packet_type_code, ])
+    frame_rows = [f'[length:{payload_length:>4}] command: (0x{type_hex}) {packet_type}', hex_string]
+    if packet_type_code == 0xA8:
+        frame_rows.append(to_utf_string(payload_packet[3:-2]))
+    print_frame(Colors.HI_BLUE, '', 120, frame_rows)
 
     return payload_packet
 
@@ -532,7 +536,7 @@ def main():
 
     print()
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "━━━ ?unknown? ".ljust(120, '━'))
+    log(Colors.HI_GREEN, "━━━ upload mcu config ".ljust(120, '━'))
 
     read_is_ready.acquire()
     read_is_done.acquire()
