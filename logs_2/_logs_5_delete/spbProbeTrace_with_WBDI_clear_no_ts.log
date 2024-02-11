@@ -1,0 +1,77 @@
+
+ Goodix>>> entry, prev state: 4(4-D3,5-D3Final), power action: 0, driver version 1.1.142.8
+ Goodix>>> suspended 1
+ Goodix>>> resume from S0 idle
+ Goodix>>> enter
+ Goodix>>> init creater completed
+ Goodix>>> to create init creater
+ Goodix>>> exit
+ Goodix>>> exit
+ Goodix>>> --- start
+ Goodix>>> entry
+ Goodix>>> activate 1
+ Goodix>>> enter
+ Goodix>>> last OnActivate done.
+ Goodix>>> to wait for init thread to complete
+ Goodix>>> exit
+ Goodix>>> init thread completed
+ Goodix>>> to create init thread
+ Goodix>>> exit
+ Goodix>>> --- Init: start
+ Goodix>>> --- exit
+ Goodix>>> Init: pov 1, pba 0, tls-client-server-rebuild-session 1-1-1-0-0, have config 1, device inited 1, base inited 1
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
+ Goodix>>> entry
+ Goodix>>> activate 0
+ Goodix>>> last OnActivate done.
+ Goodix>>> Init thread not done.
+ Goodix>>> exit
+ write    4 -  0000: a0 08 00 a8
+
+ Goodix>>> !!not to wait for ack
+ write    8 -  0000: 01 05 00 00 00 00 00 88
+
+ Goodix>>> force unlock it
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0xd-2-0x2-0-0
+ write    4 -  0000: a0 06 00 a6
+
+ Goodix>>> !!not to wait for ack
+ write    6 -  0000: d5 03 00 00 00 d3
+
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
+ write    4 -  0000: a0 08 00 a8
+
+ Goodix>>> !!not to wait for ack
+ write    8 -  0000: 01 05 00 00 00 00 00 88
+
+ Goodix>>> mcu-state TIMESTAMP 0xba1b
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-7-0x5-0-0
+ write    4 -  0000: a0 09 00 a9
+
+ Goodix>>> !!not to wait for ack
+ Goodix>>> recvd data cmd-len: 0xae-23
+ Goodix>>> --- cmd: other
+ Goodix>>> pov 1, pba 0, tls-client-server-lock 1-1-1-0, have config 1, pov valid 0
+ Goodix>>> mcu state::0x04063000000000002000050000018001042502002d00
+ Goodix>>> mcu state: version:4, isPOVImageValid:0, isTlsConnected:1, isTlsUsed:1, isLocked:0, availImgCnt:0, povImgCnt:3
+ Goodix>>> mcu state: sensor_data_int_timeout_count:0, image_crc_fail_count:0, povTouchAccidentCnt:0x0, readChipIDCnt:0, sensorExceptionFlag:0, sensorUnexpectedIntCnt:0, to_master_timeout_count:0
+ Goodix>>> mcu state: psk_len:32, psk_check_fail:0, psk_write_fail:0, ec_falling_count:0, system_up_stop_cnt:5, system_down_pov_stop_cnt:0, system_up_cleared_pov_count:0
+ Goodix>>> mcu state: pov_wake_by_fp:1, pov_wake_by_ec:0, pov_procedure:0x80, config_down_flag:1, sensor_chip_id:0x2504, sensor_type:2, pov_capture_count:0, normal_capture_count:45, otp_mcu_check_status:0x0
+ Goodix>>> tls alive.
+ Goodix>>> Init: pov 1, pba 0, tls-client-server-rebuild-session 1-1-1-0-1, have config 1, device inited 1, base inited 1, d0exit 0
+ Goodix>>> Init Device Already Done Successfully
+ Goodix>>> Init tls already done or not necessary
+ Goodix>>> power not lost
+ Goodix>>> !!Init: Initialization done successfully
+ Goodix>>> --- Init: end
+ write    9 -  0000: af 06 00 55 1b ba 00 00 cc
+
+  read    4 -  0000: a0 1a 00 ba
+
+  read   26 -  0000: ae 17 00 04 06 30 00 00 00 00 00 20 00 05 00 00
+  read   26 -  0010: 01 80 01 04 25 02 00 2d 00 ac
+ Goodix>>> target state: 4, power action: 0
+ Goodix>>> no pov data
+ Goodix>>> enter
+ Goodix>>> suspend all
+ Goodix>>> enter S0 idle

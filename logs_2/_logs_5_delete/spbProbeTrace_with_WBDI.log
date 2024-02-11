@@ -1,0 +1,77 @@
+
+[0211-10:15:47:501][info][MilanEvtDeviceD0Entry:04731] Goodix>>> entry, prev state: 4(4-D3,5-D3Final), power action: 0, driver version 1.1.142.8
+[0211-10:15:47:501][info][ResumeAllThreads:00496] Goodix>>> suspended 1
+[0211-10:15:47:501][info][MilanEvtDeviceD0Entry:04755] Goodix>>> resume from S0 idle
+[0211-10:15:47:517][debug][_StartInitCreaterThread:06477] Goodix>>> enter
+[0211-10:15:47:517][info][_StartInitCreaterThread:06488] Goodix>>> init creater completed
+[0211-10:15:47:517][info][_StartInitCreaterThread:06502] Goodix>>> to create init creater
+[0211-10:15:47:517][debug][_StartInitCreaterThread:06510] Goodix>>> exit
+[0211-10:15:47:517][info][MilanEvtDeviceD0Entry:04771] Goodix>>> exit
+[0211-10:15:47:517][info][init_creater:06468] Goodix>>> --- start
+[0211-10:15:47:517][trace][OnActivate:03995] Goodix>>> entry
+[0211-10:15:47:517][info][OnActivate:04029] Goodix>>> activate 1
+[0211-10:15:47:517][debug][_StartInitThread:06425] Goodix>>> enter
+[0211-10:15:47:517][info][OnActivate:04057] Goodix>>> last OnActivate done.
+[0211-10:15:47:517][info][_StopInitThread:06401] Goodix>>> to wait for init thread to complete
+[0211-10:15:47:517][debug][OnActivate:04082] Goodix>>> exit
+[0211-10:15:47:517][info][_StopInitThread:06404] Goodix>>> init thread completed
+[0211-10:15:47:517][info][_StartInitThread:06452] Goodix>>> to create init thread
+[0211-10:15:47:517][debug][_StartInitThread:06462] Goodix>>> exit
+[0211-10:15:47:517][info][InitThread:01359] Goodix>>> --- Init: start
+[0211-10:15:47:517][info][init_creater:06471] Goodix>>> --- exit
+[0211-10:15:47:517][info][InitThread:01398] Goodix>>> Init: pov 1, pba 0, tls-client-server-rebuild-session 1-1-1-0-0, have config 1, device inited 1, base inited 1
+[0211-10:15:47:517][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
+[0211-10:15:47:517][trace][OnActivate:03995] Goodix>>> entry
+[0211-10:15:47:517][info][OnActivate:04029] Goodix>>> activate 0
+[0211-10:15:47:517][info][OnActivate:04057] Goodix>>> last OnActivate done.
+[0211-10:15:47:532][info][OnActivate:04063] Goodix>>> Init thread not done.
+[0211-10:15:47:532][debug][OnActivate:04082] Goodix>>> exit
+[0211-10:15:47:538] write    4 -  0000: a0 08 00 a8
+
+[0211-10:15:47:554][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0211-10:15:47:554] write    8 -  0000: 01 05 00 00 00 00 00 88
+
+[0211-10:15:47:580][info][UnlockTlsForce:01327] Goodix>>> force unlock it
+[0211-10:15:47:580][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xd-2-0x2-0-0
+[0211-10:15:47:582] write    4 -  0000: a0 06 00 a6
+
+[0211-10:15:47:596][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0211-10:15:47:596] write    6 -  0000: d5 03 00 00 00 d3
+
+[0211-10:15:47:611][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
+[0211-10:15:47:613] write    4 -  0000: a0 08 00 a8
+
+[0211-10:15:47:627][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0211-10:15:47:628] write    8 -  0000: 01 05 00 00 00 00 00 88
+
+[0211-10:15:47:643][warn][GetMcuState:04101] Goodix>>> mcu-state TIMESTAMP 0xba1b
+[0211-10:15:47:643][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-7-0x5-0-0
+[0211-10:15:47:644] write    4 -  0000: a0 09 00 a9
+
+[0211-10:15:47:658][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
+[0211-10:15:47:658][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xae-23
+[0211-10:15:47:658][debug][data_from_device:05100] Goodix>>> --- cmd: other
+[0211-10:15:47:658][info][GetMcuState:04178] Goodix>>> pov 1, pba 0, tls-client-server-lock 1-1-1-0, have config 1, pov valid 0
+[0211-10:15:47:658][debug][PrintMcuState:04046] Goodix>>> mcu state::0x04063000000000002000050000018001042502002d00
+[0211-10:15:47:658][info][PrintMcuState:04074] Goodix>>> mcu state: version:4, isPOVImageValid:0, isTlsConnected:1, isTlsUsed:1, isLocked:0, availImgCnt:0, povImgCnt:3
+[0211-10:15:47:658][info][PrintMcuState:04076] Goodix>>> mcu state: sensor_data_int_timeout_count:0, image_crc_fail_count:0, povTouchAccidentCnt:0x0, readChipIDCnt:0, sensorExceptionFlag:0, sensorUnexpectedIntCnt:0, to_master_timeout_count:0
+[0211-10:15:47:658][info][PrintMcuState:04078] Goodix>>> mcu state: psk_len:32, psk_check_fail:0, psk_write_fail:0, ec_falling_count:0, system_up_stop_cnt:5, system_down_pov_stop_cnt:0, system_up_cleared_pov_count:0
+[0211-10:15:47:658][info][PrintMcuState:04080] Goodix>>> mcu state: pov_wake_by_fp:1, pov_wake_by_ec:0, pov_procedure:0x80, config_down_flag:1, sensor_chip_id:0x2504, sensor_type:2, pov_capture_count:0, normal_capture_count:45, otp_mcu_check_status:0x0
+[0211-10:15:47:658][info][InitThread:01427] Goodix>>> tls alive.
+[0211-10:15:47:658][info][InitThread:01457] Goodix>>> Init: pov 1, pba 0, tls-client-server-rebuild-session 1-1-1-0-1, have config 1, device inited 1, base inited 1, d0exit 0
+[0211-10:15:47:658][info][InitThread:01497] Goodix>>> Init Device Already Done Successfully
+[0211-10:15:47:658][info][InitThread:01558] Goodix>>> Init tls already done or not necessary
+[0211-10:15:47:658][info][InitThread:01572] Goodix>>> power not lost
+[0211-10:15:47:658][info][InitThread:01747] Goodix>>> !!Init: Initialization done successfully
+[0211-10:15:47:658][info][InitThread:01752] Goodix>>> --- Init: end
+[0211-10:15:47:659] write    9 -  0000: af 06 00 55 1b ba 00 00 cc
+
+[0211-10:15:47:660]  read    4 -  0000: a0 1a 00 ba
+
+[0211-10:15:47:661]  read   26 -  0000: ae 17 00 04 06 30 00 00 00 00 00 20 00 05 00 00
+[0211-10:15:47:661]  read   26 -  0010: 01 80 01 04 25 02 00 2d 00 ac
+[0211-10:15:57:903][info][MilanEvtDeviceD0Exit:04789] Goodix>>> target state: 4, power action: 0
+[0211-10:15:57:903][trace][ClearPOVImage:05587] Goodix>>> no pov data
+[0211-10:15:57:903][debug][clear_submit_delay:05854] Goodix>>> enter
+[0211-10:15:57:903][trace][SuspendAllThreads:00487] Goodix>>> suspend all
+[0211-10:15:57:903][info][MilanEvtDeviceD0Exit:04874] Goodix>>> enter S0 idle

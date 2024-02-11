@@ -1,0 +1,116 @@
+
+ Goodix>>> target state: 4, power action: 0
+ Goodix>>> no pov data
+ Goodix>>> enter
+ Goodix>>> suspend all
+ Goodix>>> enter S0 idle
+ Goodix>>> entry, prev state: 4(4-D3,5-D3Final), power action: 0, driver version 1.1.142.8
+ Goodix>>> suspended 1
+ Goodix>>> resume from S0 idle
+ Goodix>>> enter
+ Goodix>>> init creater completed
+ Goodix>>> to create init creater
+ Goodix>>> exit
+ Goodix>>> --- start
+ Goodix>>> exit
+ Goodix>>> enter
+ Goodix>>> to wait for init thread to complete
+ Goodix>>> entry
+ Goodix>>> init thread completed
+ Goodix>>> activate 1
+ Goodix>>> to create init thread
+ Goodix>>> last OnActivate done.
+ Goodix>>> exit
+ Goodix>>> --- Init: start
+ Goodix>>> exit
+ Goodix>>> --- exit
+ Goodix>>> Init: pov 1, pba 0, tls-client-server-rebuild-session 1-1-1-0-0, have config 1, device inited 1, base inited 1
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
+ write    4 -  0000: a0 08 00 a8
+
+ Goodix>>> !!not to wait for ack
+ write    8 -  0000: 01 05 00 00 00 00 00 88
+
+ Goodix>>> force unlock it
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0xd-2-0x2-0-0
+ write    4 -  0000: a0 06 00 a6
+
+ Goodix>>> !!not to wait for ack
+ write    6 -  0000: d5 03 00 00 00 d3
+
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
+ write    4 -  0000: a0 08 00 a8
+
+ Goodix>>> !!not to wait for ack
+ write    8 -  0000: 01 05 00 00 00 00 00 88
+
+ Goodix>>> mcu-state TIMESTAMP 0xd0ce
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-7-0x5-0-0
+ write    4 -  0000: a0 09 00 a9
+
+ Goodix>>> !!not to wait for ack
+ Goodix>>> recvd data cmd-len: 0xae-23
+ Goodix>>> --- cmd: other
+ Goodix>>> pov 1, pba 0, tls-client-server-lock 1-1-1-0, have config 1, pov valid 0
+ Goodix>>> mcu state::0x04063000000000002000010000010001042502000100
+ Goodix>>> mcu state: version:4, isPOVImageValid:0, isTlsConnected:1, isTlsUsed:1, isLocked:0, availImgCnt:0, povImgCnt:3
+ Goodix>>> mcu state: sensor_data_int_timeout_count:0, image_crc_fail_count:0, povTouchAccidentCnt:0x0, readChipIDCnt:0, sensorExceptionFlag:0, sensorUnexpectedIntCnt:0, to_master_timeout_count:0
+ Goodix>>> mcu state: psk_len:32, psk_check_fail:0, psk_write_fail:0, ec_falling_count:0, system_up_stop_cnt:1, system_down_pov_stop_cnt:0, system_up_cleared_pov_count:0
+ Goodix>>> mcu state: pov_wake_by_fp:1, pov_wake_by_ec:0, pov_procedure:0x0, config_down_flag:1, sensor_chip_id:0x2504, sensor_type:2, pov_capture_count:0, normal_capture_count:1, otp_mcu_check_status:0x0
+ Goodix>>> tls alive.
+ Goodix>>> Init: pov 1, pba 0, tls-client-server-rebuild-session 1-1-1-0-1, have config 1, device inited 1, base inited 1, d0exit 0
+ Goodix>>> Init Device Already Done Successfully
+ Goodix>>> Init tls already done or not necessary
+ Goodix>>> power not lost
+ Goodix>>> !!Init: Initialization done successfully
+ Goodix>>> --- Init: end
+ write    9 -  0000: af 06 00 55 ce d0 00 00 03
+
+  read    4 -  0000: a0 1a 00 ba
+
+  read   26 -  0000: ae 17 00 04 06 30 00 00 00 00 00 20 00 01 00 00
+  read   26 -  0010: 01 00 01 04 25 02 00 01 00 5c
+
+ Goodix>>> entry, request:FFFFFE11E1E7A638
+ Goodix>>> Purpose=2, Type=1025, Owner=27, Flags=0x20
+ Goodix>>> enter
+ Goodix>>> exit
+ Goodix>>> to wait init done
+ Goodix>>> wait init done
+ Goodix>>> OnActivate done.
+ Goodix>>> activate 1, fdt_is_down 0
+ Goodix>>> Capture request: to down
+ Goodix>>> to set state to DEVICE_ACTION
+ Goodix>>> to set state from 1 to 3
+ Goodix>>> temperature not occure, to FDT DOWN
+ Goodix>>> enter, Mode 3, Type 1, base_type 1
+ Goodix>>> setmode: Fdt down
+ Goodix>>> fdt-down TIMESTAMP 0xda62
+ Goodix>>> switch to FDT mode 1
+ Goodix>>> data sent::0x80b080c380a680b880a880b8
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-1-0x10-1000-0
+ write    4 -  0000: a0 14 00 b4
+
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x32, cfg flag 0x1
+ write   20 -  0000: 32 11 00 08 01 80 b0 80 c3 80 a6 80 b8 80 a8 80
+ write   20 -  0010: b8 62 da f1
+
+  read    4 -  0000: a0 06 00 a6
+
+  read    6 -  0000: b0 03 00 32 01 c4
+ Goodix>>> to set state to DEVICE_ENABLE
+ Goodix>>> to set state from 3 to 1
+ Goodix>>> ******** to Register CaptureFramedone for capture a frame ********
+ Goodix>>> exit
+ Goodix>>> entry
+ Goodix>>> exit
+ Goodix>>> entry
+ Goodix>>> activate 0
+ Goodix>>> last OnActivate done.
+ Goodix>>> exit
+ Goodix>>> target state: 4, power action: 0
+ Goodix>>> no pov data
+ Goodix>>> enter
+ Goodix>>> suspend all
+ Goodix>>> enter S0 idle
