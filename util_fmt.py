@@ -46,7 +46,7 @@ def to_hex_string(byte_array: bytearray | bytes | list[int]):
 
 
 def to_utf_string(byte_array: bytearray | bytes | list[int]):
-    return bytearray(byte_array[3:-1]).decode('utf-8', errors='ignore')
+    return bytearray(byte_array).decode('utf-8', errors='ignore')
 
 
 def format_validity(is_valid: bool) -> str:
