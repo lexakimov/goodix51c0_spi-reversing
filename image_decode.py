@@ -17,6 +17,40 @@ SENSOR_WIDTH = 80  # cols
 SENSOR_HEIGHT = 64  # rows
 
 
+def main():
+    packet_str = packets[1]
+    packet = bytes.fromhex(packet_str.replace(" ", ""))
+    show_image(packet)
+
+
+def show_image(packet: bytes | list[int]):
+    # полный пакет - длина 7693
+    # 0x20 - тип пакета, 0A 1E = 0x1E0A = 7690 (полезные данные пакета)
+    payload = packet[3:]  # отрезали 20 0A 1E - длина теперь 7690
+    payload = payload[:-1]  # отрезали 88 - длина теперь 7689
+    # col:80 x row:64 = 5120 pixels
+    # 5120 * 1.5 = 7680 - нужная длина данных
+    image = payload[:-4]  # trim image crc checksum
+    image = image[5:]  # trim header (first 5 0x00 bytes)
+    # check_crc(payload)
+    decoded = decode_to_16bit(image)
+    image_matrix = numpy.reshape(decoded, (SENSOR_WIDTH, SENSOR_HEIGHT))
+    # pyplot.ion()
+    pyplot.imshow(image_matrix, interpolation='none')
+    pyplot.axis('off')
+    pyplot.show()
+    # pyplot.pause(0.1)
+
+
+def check_crc(payload):
+    crc_sum = payload[-4:]
+    crc32_func = crcmod.predefined.mkCrcFun('crc-32-mpeg')
+    exp_crc = struct.unpack_from('<I', crc_sum)[0]  # CRC is on the last 4 bytes, in little-endian format
+    act_crc = crc32_func(payload[:-4])
+    print("expected: " + hex(exp_crc))
+    print("  actual: " + hex(act_crc))
+
+
 # unpacks packed 12 bit values.
 # FROM 01 23 45 67 89 ab
 # TO   0x123, 0x670, 0xb45, 0x89a
@@ -32,43 +66,6 @@ def decode_to_16bit(data):
         o4 = (chunk[4] << 4) + (chunk[5] >> 4)
         out += [o1, o2, o3, o4]
     return out
-
-
-def main():
-    packet_str = packets[1]
-    packet = bytes.fromhex(packet_str.replace(" ", ""))  # полный пакет - длина 7693
-    print(f'[length: {len(packet)}] - ' + ' '.join('{:02X}'.format(num) for num in packet))
-
-    # 0x20 - тип пакета, 0A 1E = 0x1E0A = 7690 (полезные данные пакета)
-    payload = packet[3:]  # отрезали 200A1E - длина теперь 7690
-    print(f'[length: {len(payload)}] - ' + ' '.join('{:02X}'.format(num) for num in payload))
-
-    payload = payload[:-1]  # отрезали 88 - длина теперь 7689
-    print(f'[length: {len(payload)}] - ' + ' '.join('{:02X}'.format(num) for num in payload))
-
-    # col:80, row:64
-    # 80 x 64 = 5120
-    # 5120 * 1.5 = 7680 - нужная длина изображения
-
-    image = payload[:-4]  # trim image crc checksum
-    image = image[5:]  # trim header (first 5 0x00 bytes)
-    print(f'[image   length: {len(image)}] - ' + ' '.join('{:02X}'.format(num) for num in image))
-
-    crc_sum = payload[-4:]
-    print(f'[crc_sum length: {len(crc_sum)}] - ' + ' '.join('{:02X}'.format(num) for num in crc_sum))
-    crc32_func = crcmod.predefined.mkCrcFun('crc-32-mpeg')
-    exp_crc = struct.unpack_from('<I', crc_sum)[0]  # CRC is on the last 4 bytes, in little-endian format
-    act_crc = crc32_func(payload[:-4])
-    print("expected: " + hex(exp_crc))
-    print("  actual: " + hex(act_crc))
-
-    decoded = decode_to_16bit(image)
-
-    image_matrix = numpy.reshape(decoded, (SENSOR_WIDTH, SENSOR_HEIGHT))
-    # pyplot.ion()
-    pyplot.imshow(image_matrix)
-    pyplot.show()
-    # pyplot.pause(0.1)
 
 
 if __name__ == "__main__":
