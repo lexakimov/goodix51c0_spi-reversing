@@ -1,3 +1,4 @@
+import struct
 import sys
 import time
 from datetime import datetime
@@ -8,6 +9,7 @@ from periphery import CdevGPIO
 from periphery.gpio import GPIOError
 from spidev import SpiDev
 
+from image_decode import show_image
 from packet_parsing import types_by_code
 from util_fmt import Colors, log, to_hex_string, format_validity, print_frame, crop, to_utf_string
 
@@ -559,15 +561,15 @@ def main():
     # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ get tls handshake package ".ljust(120, '━'))
 
-    read_is_ready.acquire()
-    read_is_done.acquire()
+    # read_is_ready.acquire()
+    # read_is_done.acquire()
+    #
+    # perform_write(spi, 0xa0, 'd1 03 00 00 00 d7')
+    # acquire_then_release(read_is_ready, 'read_is_ready')
+    # perform_read(spi)  # not to wait for ack
+    # acquire_then_release(read_is_done, 'read_is_done')
 
-    perform_write(spi, 0xa0, 'd1 03 00 00 00 d7')
-    acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)  # not to wait for ack
-    acquire_then_release(read_is_done, 'read_is_done')
-
-    #    print()
+    print()
     # ----------------------------------------------------------------------------------------------------------------
 
     # отправляем пакет в ssl сервер (TLS-PSK-WITH-AES-128-GCM-SHA256)
@@ -592,6 +594,7 @@ def main():
     acquire_then_release(read_is_done, 'read_is_done')
 
     # log(Colors.ITALIC, "image packet bytes:\n" + ' '.join('{:02X}'.format(num) for num in image_packet))
+    show_image(image_packet)
 
     print()
     # ----------------------------------------------------------------------------------------------------------------
