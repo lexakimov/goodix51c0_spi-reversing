@@ -326,7 +326,7 @@ def main():
 
     print()
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "━━━ get psk hash ".ljust(120, '━'))
+    log(Colors.HI_GREEN, "━━━ get psk hash (0xbb010002) ".ljust(120, '━'))
 
     read_is_ready.acquire()
     read_is_done.acquire()
@@ -376,7 +376,7 @@ def main():
 
     print()
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "━━━ get psk ".ljust(120, '━'))
+    log(Colors.HI_GREEN, "━━━ get psk (0xbb020003) ".ljust(120, '━'))
 
     read_is_ready.acquire()
     read_is_done.acquire()
