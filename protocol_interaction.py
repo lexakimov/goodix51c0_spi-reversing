@@ -421,22 +421,6 @@ def main():
     perform_read(spi)
     acquire_then_release(read_is_done, 'read_is_done')
 
-    #  Goodix>>> reset sensor
-    #  Goodix>>> reset device, reset_flag 1
-    #  Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-1-0x2-1000-0
-    #  write    4 -  0000: a0 06 00 a6
-    #  write    6 -  0000: a2 03 00 01 14 f0
-    #   read    4 -  0000: a0 06 00 a6
-    #   read    6 -  0000: b0 03 00 a2 07 4e
-    #  Goodix>>> recvd data cmd-len: 0xb0-3
-    #  Goodix>>> get ack for cmd 0xa2, cfg flag 0x7
-    #  Goodix>>> MCU has no config
-    #   read    4 -  0000: a0 07 00 a7
-    #   read    7 -  0000: a2 04 00 01 00 08 fb
-    #  Goodix>>> recvd data cmd-len: 0xa2-4
-    #  Goodix>>> --- cmd: other
-    #  Goodix>>> CHIP_RESET::0x010008
-
     print()
     # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ get MILAN_CHIPID ".ljust(120, '━'))
@@ -450,20 +434,6 @@ def main():
     manual_sleep(0.05)
     perform_read(spi)
     acquire_then_release(read_is_done, 'read_is_done')
-
-    #  Goodix>>> --- MILAN_CHIPID
-    #  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x8-1-0x5-1000-0
-    #  write    4 -  0000: a0 09 00 a9
-    #  write    9 -  0000: 82 06 00 00 00 00 04 00 1e
-    #   read    4 -  0000: a0 06 00 a6
-    #   read    6 -  0000: b0 03 00 82 07 6e
-    #  Goodix>>> recvd data cmd-len: 0xb0-3
-    #  Goodix>>> get ack for cmd 0x82, cfg flag 0x7
-    #  Goodix>>> MCU has no config
-    #  Goodix>>> --- cmd: regrw
-    #   read    4 -  0000: a0 08 00 a8
-    #   read    8 -  0000: 82 05 00 a2 04 25 00 58
-    #  Goodix>>> recvd data cmd-len: 0x82-5
 
     print()
     # ----------------------------------------------------------------------------------------------------------------
