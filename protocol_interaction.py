@@ -49,6 +49,16 @@ def make_header_packet(packet_type: int, payload_length: int) -> bytearray:
     return header_packet
 
 
+def make_payload_packet(packet_type: int, data):
+    payload = bytes((packet_type,))
+    target_len = len(data) + 1  # includes checksum byte
+    payload += struct.pack("<h", target_len)
+    payload += data
+    checksum = 0xaa - sum(payload) & 0xff
+    payload += bytes((checksum,))
+    return payload
+
+
 def calculate_checksum_for_mcu_timestamp(packet: list[int] | bytes) -> int:
     return (0xaa - sum(packet) & 0xff) + 1
 
@@ -326,7 +336,175 @@ def main():
 
     print()
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "━━━ get psk hash (0xbb010002) ".ljust(120, '━'))
+    log(Colors.HI_GREEN, "━━━ write (0xbb010002) ".ljust(120, '━'))
+    # можно изменить текущий psk
+
+    # fromhex = bytes.fromhex(f"020001bb 0e00 0000 4141414142424242434343434444".replace(" ", ""))
+    str_1 = '020001bb'
+    str_2 = '4c01000001000000d08c9ddf0115d1118c7a00c04fc297eb010000004c9ce67c50c6b04bb637cd1c725114ee04000000400000005400680069007300200069007300200074006800650020006400650073006300720069007000740069006f006e00200073007400720069006e0067002e0000001066000000010000200000006e4fa0f0c6eb2c205bf30919735f8e39ce6a751a66e135de92fdaa1c9f16df43000000000e8000000002000020000000be119bea5888c588612186d6e3326314be59647949eb5552b8d6c9c5ad0d981130000000cb4ab34e61d04580cacc208521685be96bbba73559878d70df9f85738ab57436d506a8d012f893387fe332fe3253f9bc400000005aa42ac11c54b4e8af8abc02e1cf9ebda823bd056513e6c5dc7de5a0baa3c5e357da67a34bd335f15429c6c449a3c45b3792f827d392e5f72a001530c0817a3a6be5a0cbeef03c0b'
+    str_3 = '030001bb'
+    str_4 = '66000000fad1e5b87930265db0ed2544e3615056f619fc11e6a558f8e0d92003e479ff4102ff200000007ddcfcdba9e81b0c4815638d0305303b562e5f4014f40b9d76edf2755d9e5dbd8694b0508df786193deddfca4854fef93f68a5d5cfdeec1524290576fdad0c670000'
+    fromhex = bytes.fromhex(f"{str_1}{str_2}{str_3}{str_4}".replace(" ", ""))
+
+    data = make_payload_packet(0xe0, fromhex)
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    perform_write(spi, 0xa0, data)
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read(spi)  # get ack for cmd 0xe4, cfg flag 0x7
+    manual_sleep(0.05)
+    perform_read(spi)
+    acquire_then_release(read_is_done, 'read_is_done')
+
+    manual_sleep(0.2)
+
+    print()
+    # ----------------------------------------------------------------------------------------------------------------
+    log(Colors.HI_GREEN, "━━━ Write PSK (0xbb010003) ".ljust(120, '━'))
+
+    # read_is_ready.acquire()
+    # read_is_done.acquire()
+    #
+    # PSK_WB = 'ec35ae3abb45ed3f12c4751f1e5c2cc05b3c5452e9104d9f2a3118644f37a04b6fd66b1d97cf80f1345f76c84f03ff30bb51bf308f2a9875c41e6592cd2a2f9e60809b17b5316037b69bb2fa5d4c8ac31edb3394046ec06bbdacc57da6a756c5'
+    # fromhex = bytes.fromhex(f"030001bb 6000 0000 {PSK_WB}".replace(" ", ""))
+    # data = make_payload_packet(0xe0, fromhex)
+    #
+    # perform_write(spi, 0xa0, data)
+    # acquire_then_release(read_is_ready, 'read_is_ready')
+    # perform_read(spi)  # get ack for cmd 0xe4, cfg flag 0x7
+    # manual_sleep(0.05)
+    # perform_read(spi)
+    # acquire_then_release(read_is_done, 'read_is_done')
+
+    print()
+    # ----------------------------------------------------------------------------------------------------------------
+
+    # TODO поставить в IDA остановки на "1.seal psk", "Random sequence generated"
+    # попытаться выцепить psk + зашифрованный psk. и pmk
+
+    # [production_psk_process:01953]    Goodix>>> . write psk to mcu (total times:2)
+    # [production_psk_process:01956]    Goodix>>> write psk to mcu (times:1)
+    # [generate_entropy2:02082]         Goodix>>> random not exist or invalid, generate new data
+    # [generate_rand:00185]             Goodix>>> CryptAcquireContext succeeded
+    # [generate_rand:00210]             Goodix>>> Random sequence generated: 8
+    # [generate_entropy2:02094]         Goodix>>> generate rootkey
+    # [production_write_key:02183]      Goodix>>> 0.generate random psk
+    # [generate_rand:00185]             Goodix>>> CryptAcquireContext succeeded
+    # [generate_rand:00210]             Goodix>>> Random sequence generated: 32
+    # [production_write_key:02193]      Goodix>>> 1.seal psk
+    # [gf_seal_data:00034]              Goodix>>> inbuf_len 32, entropy_len 48, len_out 2048
+    # [gf_seal_data:00066]              Goodix>>> The encryption phase worked, 32, 324
+
+    # [production_write_key:02203]      Goodix>>> seal psk, ret 0x0 length before 32, length after:324
+    # [production_write_key:02211]      Goodix>>> 2.process encrypted psk
+    # [production_write_key:02222]      Goodix>>> process ret 0x0 type 0xbb010003, length before 32, length after:102
+    # [production_write_key:02231]      Goodix>>> 3.write to mcu
+    # [production_write_key:02256]      Goodix>>> data_to_mcu_len 450 bytes, remainder4 is 2 bytes
+    # [production_write_key:02260]      Goodix>>> remainder4 is not 0, add 2 bytes then finally data_to_mcu_len 452 bytes
+    # [production_write_key:02276]      Goodix>>> write data: length 452, type 0xbb010002
+    # [production_write_mcu:02606]      Goodix>>> Entry, length 452
+    # [clean_psk_cache:02662]           Goodix>>> Will Clear the cache buffer.
+    # [production_write_mcu:02616]      Goodix>>> 1.SpiSendDataToDeviceLock
+    # [SpiSendDataToDevice:03392]       Goodix>>> cmd0-cmd1-Len-ackt-ec:0xe-0-0x1c4-1000-0
+    #  write    4 -  0000: a0 c8 01 69
+    #  write  456 -  0000: e0 c5 01 02 00 01 bb 4c 01 00 00 01 00 00 00 d0
+    #  write  456 -  0010: 8c 9d df 01 15 d1 11 8c 7a 00 c0 4f c2 97 eb 01
+    #  write  456 -  0020: 00 00 00 4c 9c e6 7c 50 c6 b0 4b b6 37 cd 1c 72
+    #  write  456 -  0030: 51 14 ee 04 00 00 00 40 00 00 00 54 00 68 00 69
+    #  write  456 -  0040: 00 73 00 20 00 69 00 73 00 20 00 74 00 68 00 65
+    #  write  456 -  0050: 00 20 00 64 00 65 00 73 00 63 00 72 00 69 00 70
+    #  write  456 -  0060: 00 74 00 69 00 6f 00 6e 00 20 00 73 00 74 00 72
+    #  write  456 -  0070: 00 69 00 6e 00 67 00 2e 00 00 00 10 66 00 00 00
+    #  write  456 -  0080: 01 00 00 20 00 00 00 6e 4f a0 f0 c6 eb 2c 20 5b
+    #  write  456 -  0090: f3 09 19 73 5f 8e 39 ce 6a 75 1a 66 e1 35 de 92
+    #  write  456 -  00a0: fd aa 1c 9f 16 df 43 00 00 00 00 0e 80 00 00 00
+    #  write  456 -  00b0: 02 00 00 20 00 00 00 be 11 9b ea 58 88 c5 88 61
+    #  write  456 -  00c0: 21 86 d6 e3 32 63 14 be 59 64 79 49 eb 55 52 b8
+    #  write  456 -  00d0: d6 c9 c5 ad 0d 98 11 30 00 00 00 cb 4a b3 4e 61
+    #  write  456 -  00e0: d0 45 80 ca cc 20 85 21 68 5b e9 6b bb a7 35 59
+    #  write  456 -  00f0: 87 8d 70 df 9f 85 73 8a b5 74 36 d5 06 a8 d0 12
+    #  write  456 -  0100: f8 93 38 7f e3 32 fe 32 53 f9 bc 40 00 00 00 5a
+    #  write  456 -  0110: a4 2a c1 1c 54 b4 e8 af 8a bc 02 e1 cf 9e bd a8
+    #  write  456 -  0120: 23 bd 05 65 13 e6 c5 dc 7d e5 a0 ba a3 c5 e3 57
+    #  write  456 -  0130: da 67 a3 4b d3 35 f1 54 29 c6 c4 49 a3 c4 5b 37
+    #  write  456 -  0140: 92 f8 27 d3 92 e5 f7 2a 00 15 30 c0 81 7a 3a 6b
+    #  write  456 -  0150: e5 a0 cb ee f0 3c 0b 03 00 01 bb 66 00 00 00 fa
+    #  write  456 -  0160: d1 e5 b8 79 30 26 5d b0 ed 25 44 e3 61 50 56 f6
+    #  write  456 -  0170: 19 fc 11 e6 a5 58 f8 e0 d9 20 03 e4 79 ff 41 02
+    #  write  456 -  0180: ff 20 00 00 00 7d dc fc db a9 e8 1b 0c 48 15 63
+    #  write  456 -  0190: 8d 03 05 30 3b 56 2e 5f 40 14 f4 0b 9d 76 ed f2
+    #  write  456 -  01a0: 75 5d 9e 5d bd 86 94 b0 50 8d f7 86 19 3d ed df
+    #  write  456 -  01b0: ca 48 54 fe f9 3f 68 a5 d5 cf de ec 15 24 29 05
+    #  write  456 -  01c0: 76 fd ad 0c 67 00 00 ad
+    #
+    # ---------------------------------------------
+    # полный пакет [длина 456]
+    #
+    # e0
+    # c5 01 			[указание полезной длины + контрольная сумма = 453]
+    # 02 00 01 bb 	[specific data_type 0xbb010002 (был указан в запросе)]
+    # 4c 01 			   [длина блока 0xbb010002 (332)]
+    # 00 00
+    #
+    # [далее host_psk_data (содержимое Goodix_Cache.bin), длина 332]
+    #
+    # 01 00 00 00
+    # d0 8c 9d df 01 15 d1 11 8c 7a 00 c0 4f c2 97 eb
+    # 01 00 00 00 4c 9c e6 7c 50 c6 b0 4b b6 37 cd 1c
+    # 72 51 14 ee 04 00 00 00 40 00 00 00 54 00 68 00
+    # 69 00 73 00 20 00 69 00 73 00 20 00 74 00 68 00
+    # 65 00 20 00 64 00 65 00 73 00 63 00 72 00 69 00
+    # 70 00 74 00 69 00 6f 00 6e 00 20 00 73 00 74 00
+    # 72 00 69 00 6e 00 67 00 2e 00 00 00 10 66 00 00
+    # 00 01 00 00 20 00 00 00 6e 4f a0 f0 c6 eb 2c 20
+    # 5b f3 09 19 73 5f 8e 39 ce 6a 75 1a 66 e1 35 de
+    # 92 fd aa 1c 9f 16 df 43 00 00 00 00 0e 80 00 00
+    # 00 02 00 00 20 00 00 00 be 11 9b ea 58 88 c5 88
+    # 61 21 86 d6 e3 32 63 14 be 59 64 79 49 eb 55 52
+    # b8 d6 c9 c5 ad 0d 98 11 30 00 00 00 cb 4a b3 4e
+    # 61 d0 45 80 ca cc 20 85 21 68 5b e9 6b bb a7 35
+    # 59 87 8d 70 df 9f 85 73 8a b5 74 36 d5 06 a8 d0
+    # 12 f8 93 38 7f e3 32 fe 32 53 f9 bc 40 00 00 00
+    # 5a a4 2a c1 1c 54 b4 e8 af 8a bc 02 e1 cf 9e bd
+    # a8 23 bd 05 65 13 e6 c5 dc 7d e5 a0 ba a3 c5 e3
+    # 57 da 67 a3 4b d3 35 f1 54 29 c6 c4 49 a3 c4 5b
+    # 37 92 f8 27 d3 92 e5 f7 2a 00 15 30 c0 81 7a 3a
+    # 6b e5 a0 cb ee f0 3c 0b
+    #
+    # 03 00 01 bb 	[specific data_type 0xbb010003 (был указан в запросе)]
+    # 66 00 			   [длина блока 0xbb010003 (102)]
+    # 00 00
+    #
+    # [102]
+    #
+    # fa d1 e5 b8 79 30 26 5d b0 ed 25 44 e3 61 50 56
+    # f6 19 fc 11 e6 a5 58 f8 e0 d9 20 03 e4 79 ff 41
+    # 02 ff 20 00 00 00 7d dc fc db a9 e8 1b 0c 48 15
+    # 63 8d 03 05 30 3b 56 2e 5f 40 14 f4 0b 9d 76 ed
+    # f2 75 5d 9e 5d bd 86 94 b0 50 8d f7 86 19 3d ed
+    # df ca 48 54 fe f9 3f 68 a5 d5 cf de ec 15 24 29
+    # 05 76 fd ad 0c 67
+    #
+    # 00 00
+    # ad 				[контрольная сумма]
+    # ---------------------------------------------
+    #
+    # [data_from_device:04920]  Goodix>>> recvd data cmd-len: 0xb0-3
+    # [get_msg_data:06260]      Goodix>>> get ack for cmd 0xe0, cfg flag 0x7
+    #   read    4 -  0000: a0 06 00 a6
+    #   read    6 -  0000: b0 03 00 e0 07 10
+    # [get_msg_data:06277]      Goodix>>> MCU has no config
+    # [data_from_device:04920]  Goodix>>> recvd data cmd-len: 0xe0-3
+    # [data_from_device:05201]  Goodix>>> --- Received production response
+    # [data_from_device:05205]  Goodix>>> production response pure data length=2
+    #   read    4 -  0000: a0 06 00 a6
+    #   read    6 -  0000: e0 03 00 00 51 76
+
+    print()
+    # ----------------------------------------------------------------------------------------------------------------
+    log(Colors.HI_GREEN, "━━━ read host psk hash (0xbb010002) ".ljust(120, '━'))
 
     read_is_ready.acquire()
     read_is_done.acquire()
@@ -338,45 +516,9 @@ def main():
     perform_read(spi)
     acquire_then_release(read_is_done, 'read_is_done')
 
-    # # полный пакет [длина 345]
-    # e4
-    # 56 01 [указание полезной длины + контрольная сумма = 342]
-    # 00
-    # # specific data_type 0xbb010002 (был указан в запросе)
-    # 02 00 01 bb
-    # # длина host_psk_data (332)
-    # 4c 01
-    # 00 00
-    # # далее host_psk_data (содержимое Goodix_Cache.bin, длина 332)
-    # 01 00 00 00
-    # d0 8c 9d df 01 15 d1 11 8c 7a 00 c0 4f c2 97 eb
-    # 01 00 00 00 ce 4b 48 a6 19 9f e1 4c a7 a3 2e 7a
-    # 0e 0b 6b 59 04 00 00 00 40 00 00 00 54 00 68 00
-    # 69 00 73 00 20 00 69 00 73 00 20 00 74 00 68 00
-    # 65 00 20 00 64 00 65 00 73 00 63 00 72 00 69 00
-    # 70 00 74 00 69 00 6f 00 6e 00 20 00 73 00 74 00
-    # 72 00 69 00 6e 00 67 00 2e 00 00 00 10 66 00 00
-    # 00 01 00 00 20 00 00 00 d7 77 c2 10 c1 bc 73 d2
-    # 87 fb 57 99 53 16 39 0e 39 eb 6a d0 43 cd 08 19
-    # e0 82 a6 cb 14 8b 38 47 00 00 00 00 0e 80 00 00
-    # 00 02 00 00 20 00 00 00 e9 2d 13 48 1b e6 8b 22
-    # b5 b3 7a b3 9a 65 4b 3e 73 f6 6a a7 af 47 49 31
-    # a6 4c 47 84 bd c4 32 f9 30 00 00 00 15 67 c9 fc
-    # 68 79 ba 11 cc 3e fb 30 82 be 3a b7 1c 18 f9 cd
-    # ef 08 0d dc 1a b9 17 79 17 9b 79 42 73 1a b8 2d
-    # 8e 31 b6 8a 0f b1 cb 3b 0c 83 15 8e 40 00 00 00
-    # ee b8 30 22 43 74 f3 15 cf 0c 60 c9 c7 40 32 6f
-    # 7e e7 99 f2 21 75 11 58 d2 71 59 33 66 ed a7 a3
-    # 43 66 12 5b e1 11 73 2a a3 59 83 1e 83 66 50 88
-    # f4 2c 6f c8 f7 5e 93 3d 07 c9 97 fc 05 f9 30 9c
-    # b6 a0 6b f1 a4 18 8a cf
-    #
-    # .. контрольная сумма
-    # 3b
-
     print()
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "━━━ get psk (0xbb020003) ".ljust(120, '━'))
+    log(Colors.HI_GREEN, "━━━ read psk mcu hash (0xbb020003) ".ljust(120, '━'))
 
     read_is_ready.acquire()
     read_is_done.acquire()
@@ -388,21 +530,7 @@ def main():
     perform_read(spi)
     acquire_then_release(read_is_done, 'read_is_done')
 
-    # # полный пакет [длина 45]
-    # E4
-    # 2A 00 [указание полезной длины + контрольная сумма = 42]
-    # 00
-    # # specific data_type 0xbb020003 (был указан в запросе)
-    # 03 00 02 BB
-    # # длина psk (32)
-    # 20 00
-    # 00 00
-    # # далее psk (длина 32)
-    # FB 67 D3 ED E2 44 FF EE B2 76 3C B5 0E E3 81 A3 E6 18 D5 23 8D 61 94 53 43 35 8D 08 0F D0 2D A7 [len 32] PSK
-    #
-    # # контрольная сумма
-    # CE
-
+    # TODO write 0xbb020003
     print()
     # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ reset sensor ".ljust(120, '━'))
