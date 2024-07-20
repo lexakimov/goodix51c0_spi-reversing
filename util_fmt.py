@@ -32,9 +32,15 @@ class Colors:
     CROSSED = "\033[9m"
 
 
+log_timestamps = False
+
+
 def log(color, message):
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
-    print(color, '[', timestamp, '] ', message, Colors.END, sep='')
+    if log_timestamps:
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
+        print(color, '[', timestamp, '] ', message, Colors.END, sep='')
+    else:
+        print(color, message, Colors.END, sep='')
 
 
 def crop(s, length):
