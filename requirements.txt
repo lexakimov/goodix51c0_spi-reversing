@@ -3,3 +3,4 @@ spidev==3.6
 matplotlib==3.8.2
 numpy==1.26.3
 crcmod==1.7
+python-mbedtls==2.9.0
