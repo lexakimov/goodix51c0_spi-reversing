@@ -1906,7 +1906,7 @@
 
   read    6 -  0000: b0 03 00 34 01 c2
 
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -3133,7 +3133,7 @@
 
   read    6 -  0000: b0 03 00 34 01 c2
 
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -4359,7 +4359,7 @@
 
   read    6 -  0000: b0 03 00 34 01 c2
 
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -5620,7 +5620,7 @@
 
   read    6 -  0000: b0 03 00 34 01 c2
 
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -6847,7 +6847,7 @@
 
   read    6 -  0000: b0 03 00 34 01 c2
 
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -8073,7 +8073,7 @@
 
   read    6 -  0000: b0 03 00 34 01 c2
 
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -9300,7 +9300,7 @@
 
   read    6 -  0000: b0 03 00 34 01 c2
 
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -10526,7 +10526,7 @@
 
   read    6 -  0000: b0 03 00 34 01 c2
 
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -11753,7 +11753,7 @@
 
   read    6 -  0000: b0 03 00 34 01 c2
 
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -12979,7 +12979,7 @@
 
   read    6 -  0000: b0 03 00 34 01 c2
 
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -14206,7 +14206,7 @@
 
   read    6 -  0000: b0 03 00 34 01 c2
 
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -15432,7 +15432,7 @@
 
   read    6 -  0000: b0 03 00 34 01 c2
 
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -16659,7 +16659,7 @@
 
   read    6 -  0000: b0 03 00 34 01 c2
 
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -17885,7 +17885,7 @@
 
   read    6 -  0000: b0 03 00 34 01 c2
 
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -19111,7 +19111,7 @@
 
   read    6 -  0000: b0 03 00 34 01 c2
 
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -20337,7 +20337,7 @@
 
   read    6 -  0000: b0 03 00 34 01 c2
 
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> recvd data cmd-len: 0x34-17
  Goodix>>> --- cmd: fdt
  Goodix>>> IrqStatus:0x200 cmd1 2
@@ -21558,7 +21558,7 @@
 
   read    6 -  0000: b0 03 00 34 01 c2
 
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -22784,7 +22784,7 @@
 
   read    6 -  0000: b0 03 00 34 01 c2
 
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -24010,7 +24010,7 @@
 
   read    6 -  0000: b0 03 00 34 01 c2
 
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -25236,7 +25236,7 @@
 
   read    6 -  0000: b0 03 00 34 01 c2
 
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> recvd data cmd-len: 0x34-17
  Goodix>>> --- cmd: fdt
  Goodix>>> IrqStatus:0x200 cmd1 2

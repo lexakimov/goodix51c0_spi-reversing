@@ -647,7 +647,7 @@
 [0103-19:52:15:138][debug][CompletePendingRequest:03321] Goodix>>> status:0x0
 [0103-19:52:15:138][info][gf_captureFingerdata:07738] Goodix>>> exit 1
 [0103-19:52:15:139][debug][OnGetDeviceInfo:03436] Goodix>>> Entry
-[0103-19:52:15:140][info][OnGetDeviceInfo:03480] Goodix>>> 212 == 212 ? 
+[0103-19:52:15:140][info][OnGetDeviceInfo:03480] Goodix>>> 212 == 212 ?
 [0103-19:52:15:140][info][OnGetDeviceInfo:03487] Goodix>>> got device info, size 212 project_type:18, tcode 256, driver_version:1.1.142.8,  firmware_version: GF_HC460SEC_APP_14210
 [0103-19:52:15:235][debug][OnIdentifyFinished:03683] Goodix>>> enter switch 1, delay time 3, submit delay 0
 [0103-19:52:15:235][debug][OnIdentifyFinished:03713] Goodix>>> Exit
@@ -1405,7 +1405,7 @@
 [0103-19:52:15:704][debug][gf_check_baseisvalid:07295] Goodix>>> :void
 [0103-19:52:15:705][info][gf_check_baseisvalid:07308] Goodix>>> update navbase
 [0103-19:52:15:705][debug][gf_savebaseTofile:07153] Goodix>>> nav buffer size:3200 buffer size:10240
-[0103-19:52:15:705][debug][gf_savebaseTofile:07159] Goodix>>> save imagebase 
+[0103-19:52:15:705][debug][gf_savebaseTofile:07159] Goodix>>> save imagebase
 [0103-19:52:15:706][error][gf_savebaseTofile:07165] Goodix>>> fail to create dir C:\ProgramData\Goodix, errno 17
 [0103-19:52:15:708][info][gf_savebaseTofile:07176] Goodix>>> write 13520-13520 bytes to C:\ProgramData\Goodix\goodix.dat
 [0103-19:52:15:708][debug][gf_savebaseTofile:07185] Goodix>>> exit size:13520(dec)

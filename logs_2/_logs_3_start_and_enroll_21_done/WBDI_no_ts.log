@@ -337,7 +337,7 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x34, cfg flag 0x1
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -534,7 +534,7 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x34, cfg flag 0x1
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -730,7 +730,7 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x34, cfg flag 0x1
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -947,7 +947,7 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x34, cfg flag 0x1
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -1144,7 +1144,7 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x34, cfg flag 0x1
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -1340,7 +1340,7 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x34, cfg flag 0x1
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -1537,7 +1537,7 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x34, cfg flag 0x1
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -1733,7 +1733,7 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x34, cfg flag 0x1
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -1930,7 +1930,7 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x34, cfg flag 0x1
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -2126,7 +2126,7 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x34, cfg flag 0x1
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -2323,7 +2323,7 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x34, cfg flag 0x1
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -2519,7 +2519,7 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x34, cfg flag 0x1
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -2716,7 +2716,7 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x34, cfg flag 0x1
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -2912,7 +2912,7 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x34, cfg flag 0x1
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -3108,7 +3108,7 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x34, cfg flag 0x1
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -3304,7 +3304,7 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x34, cfg flag 0x1
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> recvd data cmd-len: 0x34-17
  Goodix>>> --- cmd: fdt
  Goodix>>> IrqStatus:0x200 cmd1 2
@@ -3495,7 +3495,7 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x34, cfg flag 0x1
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -3691,7 +3691,7 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x34, cfg flag 0x1
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -3887,7 +3887,7 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x34, cfg flag 0x1
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> entry, request:FFFFFE11E1ECF008
  Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
  Goodix>>> enter
@@ -4083,7 +4083,7 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x34, cfg flag 0x1
- Goodix>>> exit return result 1, fdt_is_down 1 1, 
+ Goodix>>> exit return result 1, fdt_is_down 1 1,
  Goodix>>> recvd data cmd-len: 0x34-17
  Goodix>>> --- cmd: fdt
  Goodix>>> IrqStatus:0x200 cmd1 2

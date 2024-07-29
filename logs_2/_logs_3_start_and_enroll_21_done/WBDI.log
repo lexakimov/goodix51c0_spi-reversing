@@ -337,7 +337,7 @@
 [0211-10:13:12:928][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
 [0211-10:13:12:960][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0211-10:13:12:960][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x34, cfg flag 0x1
-[0211-10:13:12:991][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:12:991][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:13:007][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:13:007][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:13:007][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -534,7 +534,7 @@
 [0211-10:13:13:993][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
 [0211-10:13:14:024][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0211-10:13:14:024][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x34, cfg flag 0x1
-[0211-10:13:14:055][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:14:055][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:14:066][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:14:066][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:14:066][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -730,7 +730,7 @@
 [0211-10:13:15:081][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
 [0211-10:13:15:097][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0211-10:13:15:097][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x34, cfg flag 0x1
-[0211-10:13:15:128][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:15:128][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:15:143][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:15:143][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:15:143][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -947,7 +947,7 @@
 [0211-10:13:16:386][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
 [0211-10:13:16:402][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0211-10:13:16:402][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x34, cfg flag 0x1
-[0211-10:13:16:418][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:16:418][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:16:428][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:16:428][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:16:428][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -1144,7 +1144,7 @@
 [0211-10:13:17:398][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
 [0211-10:13:17:413][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0211-10:13:17:413][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x34, cfg flag 0x1
-[0211-10:13:17:429][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:17:429][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:17:439][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:17:439][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:17:439][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -1340,7 +1340,7 @@
 [0211-10:13:18:634][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
 [0211-10:13:18:650][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0211-10:13:18:650][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x34, cfg flag 0x1
-[0211-10:13:18:681][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:18:681][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:18:692][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:18:692][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:18:692][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -1537,7 +1537,7 @@
 [0211-10:13:19:723][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
 [0211-10:13:19:749][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0211-10:13:19:749][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x34, cfg flag 0x1
-[0211-10:13:19:775][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:19:775][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:19:791][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:19:791][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:19:791][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -1733,7 +1733,7 @@
 [0211-10:13:20:722][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
 [0211-10:13:20:738][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0211-10:13:20:738][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x34, cfg flag 0x1
-[0211-10:13:20:764][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:20:764][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:20:775][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:20:775][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:20:775][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -1930,7 +1930,7 @@
 [0211-10:13:21:671][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
 [0211-10:13:21:697][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0211-10:13:21:697][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x34, cfg flag 0x1
-[0211-10:13:21:728][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:21:728][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:21:738][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:21:738][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:21:738][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -2126,7 +2126,7 @@
 [0211-10:13:22:475][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
 [0211-10:13:22:490][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0211-10:13:22:490][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x34, cfg flag 0x1
-[0211-10:13:22:506][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:22:506][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:22:516][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:22:516][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:22:516][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -2323,7 +2323,7 @@
 [0211-10:13:23:564][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
 [0211-10:13:23:580][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0211-10:13:23:580][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x34, cfg flag 0x1
-[0211-10:13:23:595][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:23:595][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:23:611][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:23:611][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:23:611][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -2519,7 +2519,7 @@
 [0211-10:13:24:454][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
 [0211-10:13:24:496][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0211-10:13:24:496][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x34, cfg flag 0x1
-[0211-10:13:24:522][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:24:522][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:24:548][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:24:548][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:24:548][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -2716,7 +2716,7 @@
 [0211-10:13:25:470][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
 [0211-10:13:25:513][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0211-10:13:25:513][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x34, cfg flag 0x1
-[0211-10:13:25:539][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:25:539][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:25:565][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:25:565][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:25:565][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -2912,7 +2912,7 @@
 [0211-10:13:26:343][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
 [0211-10:13:26:374][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0211-10:13:26:374][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x34, cfg flag 0x1
-[0211-10:13:26:406][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:26:406][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:26:437][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:26:437][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:26:437][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -3108,7 +3108,7 @@
 [0211-10:13:27:485][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
 [0211-10:13:27:501][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0211-10:13:27:501][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x34, cfg flag 0x1
-[0211-10:13:27:516][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:27:516][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:27:543][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:27:543][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:27:543][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -3304,7 +3304,7 @@
 [0211-10:13:28:424][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
 [0211-10:13:28:456][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0211-10:13:28:456][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x34, cfg flag 0x1
-[0211-10:13:28:487][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:28:487][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:28:487][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x34-17
 [0211-10:13:28:487][debug][data_from_device:05033] Goodix>>> --- cmd: fdt
 [0211-10:13:28:487][debug][chicagoHUget_fdtdata:00815] Goodix>>> IrqStatus:0x200 cmd1 2
@@ -3495,7 +3495,7 @@
 [0211-10:13:29:330][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
 [0211-10:13:29:362][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0211-10:13:29:362][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x34, cfg flag 0x1
-[0211-10:13:29:393][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:29:393][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:29:409][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:29:409][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:29:409][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -3691,7 +3691,7 @@
 [0211-10:13:30:256][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
 [0211-10:13:30:287][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0211-10:13:30:287][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x34, cfg flag 0x1
-[0211-10:13:30:329][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:30:329][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:30:360][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:30:360][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:30:360][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -3887,7 +3887,7 @@
 [0211-10:13:31:178][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
 [0211-10:13:31:209][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0211-10:13:31:209][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x34, cfg flag 0x1
-[0211-10:13:31:240][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:31:240][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:31:271][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:31:271][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:31:271][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -4083,7 +4083,7 @@
 [0211-10:13:32:335][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
 [0211-10:13:32:363][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0211-10:13:32:363][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x34, cfg flag 0x1
-[0211-10:13:32:394][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:32:394][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:32:394][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x34-17
 [0211-10:13:32:394][debug][data_from_device:05033] Goodix>>> --- cmd: fdt
 [0211-10:13:32:394][debug][chicagoHUget_fdtdata:00815] Goodix>>> IrqStatus:0x200 cmd1 2

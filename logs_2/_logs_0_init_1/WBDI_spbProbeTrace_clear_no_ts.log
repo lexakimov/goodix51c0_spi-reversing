@@ -40,7 +40,7 @@
  Goodix>>> --- start
  Goodix>>> Resume fdtdata analyze
  Goodix>>> exit 1
- Goodix>>> exit, status: 0x0, bret:1 
+ Goodix>>> exit, status: 0x0, bret:1
  Goodix>>> entry, prev state: 5(4-D3,5-D3Final), power action: 0, driver version 1.1.142.8
  Goodix>>> enter
  Goodix>>> to create init creater
@@ -199,7 +199,7 @@
  Goodix>>> .get seal data
  Goodix>>> read 0 bytes
  Goodix>>> Entry
- Goodix>>> 0.read specific data_type 0xbb010002 
+ Goodix>>> 0.read specific data_type 0xbb010002
  Goodix>>> 2.read data from mcu
  Goodix>>> Entry
  Goodix>>> 1.SpiSendDataToDeviceLock
@@ -245,7 +245,7 @@
 
  Goodix>>> 2.parse return data
  Goodix>>> return data, len_payload_mcu  341 bytes, passed 2048 bytes, result 0.
- Goodix>>> read from mcu done, copy 340 bytes back 
+ Goodix>>> read from mcu done, copy 340 bytes back
  Goodix>>> Exit ret:0x0.
  Goodix>>> read data from mcu ret:0x0, length: 340
  Goodix>>> Exit with 0x0
@@ -254,15 +254,15 @@
  Goodix>>> inbuf_len 324, entropy_len 48, len_out 32
  Goodix>>> The decryption phase worked, 324, 32
  Goodix>>> unseal return 0x0 length before 324, length after:32
- Goodix>>> .wb data 
- Goodix>>> wb return 0x0 length before 32, length after:102 
+ Goodix>>> .wb data
+ Goodix>>> wb return 0x0 length before 32, length after:102
  Goodix>>> .hash
  Goodix>>> hash return 0x0 length before 102, length after:32
  Goodix>>> exit with 0x0
- Goodix>>> ret 0x0, psk len 32, hash len 32, seal len 332, data from file flag 0 
+ Goodix>>> ret 0x0, psk len 32, hash len 32, seal len 332, data from file flag 0
  Goodix>>> 2.get mcu hash
  Goodix>>> Entry
- Goodix>>> 0.read specific data_type 0xbb020003 
+ Goodix>>> 0.read specific data_type 0xbb020003
  Goodix>>> 2.read data from mcu
  Goodix>>> Entry
  Goodix>>> 1.SpiSendDataToDeviceLock
@@ -289,13 +289,13 @@
 
  Goodix>>> 2.parse return data
  Goodix>>> return data, len_payload_mcu  41 bytes, passed 2048 bytes, result 0.
- Goodix>>> read from mcu done, copy 40 bytes back 
+ Goodix>>> read from mcu done, copy 40 bytes back
  Goodix>>> Exit ret:0x0.
  Goodix>>> read data from mcu ret:0x0, length: 40
  Goodix>>> Exit with 0x0
  Goodix>>> get mcu hash, ret 0x0, len 32
  Goodix>>> 3.verify
- Goodix>>> !!!hash equal !!! 
+ Goodix>>> !!!hash equal !!!
  Goodix>>> written 332:332 bytes to file
  Goodix>>> exit with 0x0
  Goodix>>> check psk: psk is valid!
@@ -914,7 +914,7 @@
 
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0xd4, cfg flag 0x1
- Goodix>>> Client TLS connection setup 
+ Goodix>>> Client TLS connection setup
  write    6 -  0000: d4 03 00 00 00 d3
 
   read    4 -  0000: a0 06 00 a6
@@ -1807,7 +1807,7 @@
  Goodix>>> gf_get_fdtbase 2 finshed
  Goodix>>> --- base not exist, update imagebase
  Goodix>>> nav buffer size:3200 buffer size:10240
- Goodix>>> save imagebase 
+ Goodix>>> save imagebase
  Goodix>>> fail to create dir C:\ProgramData\Goodix, errno 17
  Goodix>>> write 13520-13520 bytes to C:\ProgramData\Goodix\goodix.dat
  Goodix>>> exit size:13520(dec)

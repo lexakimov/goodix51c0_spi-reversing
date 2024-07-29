@@ -140,7 +140,7 @@
  Goodix>>> status:0x0
  Goodix>>> exit 1
  Goodix>>> Entry
- Goodix>>> 212 == 212 ? 
+ Goodix>>> 212 == 212 ?
  Goodix>>> got device info, size 212 project_type:18, tcode 256, driver_version:1.1.142.8,  firmware_version: GF_HC460SEC_APP_14210
  Goodix>>> enter switch 1, delay time 3, submit delay 0
  Goodix>>> Exit
@@ -246,7 +246,7 @@
  Goodix>>> :void
  Goodix>>> update navbase
  Goodix>>> nav buffer size:3200 buffer size:10240
- Goodix>>> save imagebase 
+ Goodix>>> save imagebase
  Goodix>>> fail to create dir C:\ProgramData\Goodix, errno 17
  Goodix>>> write 13520-13520 bytes to C:\ProgramData\Goodix\goodix.dat
  Goodix>>> exit size:13520(dec)

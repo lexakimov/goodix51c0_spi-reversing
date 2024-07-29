@@ -37,7 +37,7 @@
 [0103-18:29:48:765][info][device_fdtdata_analyze:07746] Goodix>>> --- start
 [0103-18:29:48:781][info][startfdtDataAnalyzeMonitoring:08065] Goodix>>> Resume fdtdata analyze
 [0103-18:29:48:781][info][_init_global_hal_context:00639] Goodix>>> exit 1
-[0103-18:29:48:781][debug][MilanEvtDevicePrepareHardware:05491] Goodix>>> exit, status: 0x0, bret:1 
+[0103-18:29:48:781][debug][MilanEvtDevicePrepareHardware:05491] Goodix>>> exit, status: 0x0, bret:1
 [0103-18:29:48:781][info][MilanEvtDeviceD0Entry:04731] Goodix>>> entry, prev state: 5(4-D3,5-D3Final), power action: 0, driver version 1.1.142.8
 [0103-18:29:48:781][debug][_StartInitCreaterThread:06477] Goodix>>> enter
 [0103-18:29:48:781][info][_StartInitCreaterThread:06502] Goodix>>> to create init creater
@@ -138,7 +138,7 @@
 
 [0103-18:29:49:074][debug][production_get_host_psk_data:02738] Goodix>>> read 0 bytes
 [0103-18:29:49:074][debug][production_read_specific_data:02942] Goodix>>> Entry
-[0103-18:29:49:074][debug][production_read_specific_data:02956] Goodix>>> 0.read specific data_type 0xbb010002 
+[0103-18:29:49:074][debug][production_read_specific_data:02956] Goodix>>> 0.read specific data_type 0xbb010002
 [0103-18:29:49:074][debug][production_read_specific_data:02961] Goodix>>> 2.read data from mcu
 [0103-18:29:49:075][debug][production_read_mcu:02349] Goodix>>> Entry
 [0103-18:29:49:075][debug][production_read_mcu:02360] Goodix>>> 1.SpiSendDataToDeviceLock
@@ -151,7 +151,7 @@
 [0103-18:29:49:088][debug][data_from_device:05205] Goodix>>> production response pure data length=341
 [0103-18:29:49:100][debug][production_read_mcu:02375] Goodix>>> 2.parse return data
 [0103-18:29:49:100][info][production_read_mcu:02380] Goodix>>> return data, len_payload_mcu  341 bytes, passed 2048 bytes, result 0.
-[0103-18:29:49:100][debug][production_read_mcu:02402] Goodix>>> read from mcu done, copy 340 bytes back 
+[0103-18:29:49:100][debug][production_read_mcu:02402] Goodix>>> read from mcu done, copy 340 bytes back
 [0103-18:29:49:100][debug][production_read_mcu:02418] Goodix>>> Exit ret:0x0.
 [0103-18:29:49:101][debug][production_read_specific_data:02964] Goodix>>> read data from mcu ret:0x0, length: 340
 [0103-18:29:49:101][debug][production_read_specific_data:02980] Goodix>>> Exit with 0x0
@@ -161,15 +161,15 @@
 [0103-18:29:49:102][info][gf_unseal_data:00102] Goodix>>> inbuf_len 324, entropy_len 48, len_out 32
 [0103-18:29:49:108][debug][gf_unseal_data:00129] Goodix>>> The decryption phase worked, 324, 32
 [0103-18:29:49:108][debug][production_get_host_psk_data:02814] Goodix>>> unseal return 0x0 length before 324, length after:32
-[0103-18:29:49:108][debug][production_get_host_psk_data:02827] Goodix>>> .wb data 
-[0103-18:29:49:109][debug][production_get_host_psk_data:02829] Goodix>>> wb return 0x0 length before 32, length after:102 
+[0103-18:29:49:108][debug][production_get_host_psk_data:02827] Goodix>>> .wb data
+[0103-18:29:49:109][debug][production_get_host_psk_data:02829] Goodix>>> wb return 0x0 length before 32, length after:102
 [0103-18:29:49:109][debug][production_get_host_psk_data:02838] Goodix>>> .hash
 [0103-18:29:49:109][debug][production_get_host_psk_data:02845] Goodix>>> hash return 0x0 length before 102, length after:32
 [0103-18:29:49:109][debug][production_get_host_psk_data:02854] Goodix>>> exit with 0x0
-[0103-18:29:49:109][debug][production_check_psk_is_valid:02889] Goodix>>> ret 0x0, psk len 32, hash len 32, seal len 332, data from file flag 0 
+[0103-18:29:49:109][debug][production_check_psk_is_valid:02889] Goodix>>> ret 0x0, psk len 32, hash len 32, seal len 332, data from file flag 0
 [0103-18:29:49:109][debug][production_check_psk_is_valid:02897] Goodix>>> 2.get mcu hash
 [0103-18:29:49:110][debug][production_read_specific_data:02942] Goodix>>> Entry
-[0103-18:29:49:110][debug][production_read_specific_data:02956] Goodix>>> 0.read specific data_type 0xbb020003 
+[0103-18:29:49:110][debug][production_read_specific_data:02956] Goodix>>> 0.read specific data_type 0xbb020003
 [0103-18:29:49:110][debug][production_read_specific_data:02961] Goodix>>> 2.read data from mcu
 [0103-18:29:49:110][debug][production_read_mcu:02349] Goodix>>> Entry
 [0103-18:29:49:110][debug][production_read_mcu:02360] Goodix>>> 1.SpiSendDataToDeviceLock
@@ -182,13 +182,13 @@
 [0103-18:29:49:120][debug][data_from_device:05205] Goodix>>> production response pure data length=41
 [0103-18:29:49:132][debug][production_read_mcu:02375] Goodix>>> 2.parse return data
 [0103-18:29:49:132][info][production_read_mcu:02380] Goodix>>> return data, len_payload_mcu  41 bytes, passed 2048 bytes, result 0.
-[0103-18:29:49:132][debug][production_read_mcu:02402] Goodix>>> read from mcu done, copy 40 bytes back 
+[0103-18:29:49:132][debug][production_read_mcu:02402] Goodix>>> read from mcu done, copy 40 bytes back
 [0103-18:29:49:132][debug][production_read_mcu:02418] Goodix>>> Exit ret:0x0.
 [0103-18:29:49:132][debug][production_read_specific_data:02964] Goodix>>> read data from mcu ret:0x0, length: 40
 [0103-18:29:49:132][debug][production_read_specific_data:02980] Goodix>>> Exit with 0x0
 [0103-18:29:49:132][debug][production_check_psk_is_valid:02900] Goodix>>> get mcu hash, ret 0x0, len 32
 [0103-18:29:49:133][debug][production_check_psk_is_valid:02909] Goodix>>> 3.verify
-[0103-18:29:49:133][info][production_check_psk_is_valid:02921] Goodix>>> !!!hash equal !!! 
+[0103-18:29:49:133][info][production_check_psk_is_valid:02921] Goodix>>> !!!hash equal !!!
 [0103-18:29:49:133][debug][production_check_psk_is_valid:02930] Goodix>>> written 332:332 bytes to file
 [0103-18:29:49:133][debug][production_check_psk_is_valid:02935] Goodix>>> exit with 0x0
 [0103-18:29:49:134][debug][production_psk_process:01947] Goodix>>> check psk: psk is valid!
@@ -658,7 +658,7 @@
 [0103-18:29:49:862][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xd-2-0x2-1000-0
 [0103-18:29:49:879][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0103-18:29:49:879][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0xd4, cfg flag 0x1
-[0103-18:29:49:879][warn][get_msg_data:06289] Goodix>>> Client TLS connection setup 
+[0103-18:29:49:879][warn][get_msg_data:06289] Goodix>>> Client TLS connection setup
 [0103-18:29:49:904][debug][OnGetAttributes:02450] Goodix>>> entry
 [0103-18:29:49:905][debug][OnGetAttributes:02496] Goodix>>> outputBufferSize:0x62c, struct size:0x62c
 [0103-18:29:49:905][debug][OnGetAttributes:02533] Goodix>>> exit
@@ -828,7 +828,7 @@
 [0103-18:29:50:217][info][gf_update_all_base:06993] Goodix>>> gf_get_fdtbase 2 finshed
 [0103-18:29:50:217][debug][gf_update_all_base:07104] Goodix>>> --- base not exist, update imagebase
 [0103-18:29:50:217][debug][gf_savebaseTofile:07153] Goodix>>> nav buffer size:3200 buffer size:10240
-[0103-18:29:50:218][debug][gf_savebaseTofile:07159] Goodix>>> save imagebase 
+[0103-18:29:50:218][debug][gf_savebaseTofile:07159] Goodix>>> save imagebase
 [0103-18:29:50:218][error][gf_savebaseTofile:07165] Goodix>>> fail to create dir C:\ProgramData\Goodix, errno 17
 [0103-18:29:50:219][info][gf_savebaseTofile:07176] Goodix>>> write 13520-13520 bytes to C:\ProgramData\Goodix\goodix.dat
 [0103-18:29:50:219][debug][gf_savebaseTofile:07185] Goodix>>> exit size:13520(dec)

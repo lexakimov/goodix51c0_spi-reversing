@@ -1906,7 +1906,7 @@
 
 [0211-10:13:12:962]  read    6 -  0000: b0 03 00 34 01 c2
 
-[0211-10:13:12:991][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:12:991][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:13:007][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:13:007][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:13:007][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -3133,7 +3133,7 @@
 
 [0211-10:13:14:027]  read    6 -  0000: b0 03 00 34 01 c2
 
-[0211-10:13:14:055][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:14:055][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:14:066][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:14:066][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:14:066][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -4359,7 +4359,7 @@
 
 [0211-10:13:15:099]  read    6 -  0000: b0 03 00 34 01 c2
 
-[0211-10:13:15:128][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:15:128][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:15:143][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:15:143][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:15:143][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -5620,7 +5620,7 @@
 
 [0211-10:13:16:404]  read    6 -  0000: b0 03 00 34 01 c2
 
-[0211-10:13:16:418][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:16:418][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:16:428][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:16:428][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:16:428][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -6847,7 +6847,7 @@
 
 [0211-10:13:17:415]  read    6 -  0000: b0 03 00 34 01 c2
 
-[0211-10:13:17:429][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:17:429][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:17:439][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:17:439][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:17:439][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -8073,7 +8073,7 @@
 
 [0211-10:13:18:651]  read    6 -  0000: b0 03 00 34 01 c2
 
-[0211-10:13:18:681][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:18:681][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:18:692][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:18:692][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:18:692][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -9300,7 +9300,7 @@
 
 [0211-10:13:19:751]  read    6 -  0000: b0 03 00 34 01 c2
 
-[0211-10:13:19:775][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:19:775][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:19:791][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:19:791][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:19:791][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -10526,7 +10526,7 @@
 
 [0211-10:13:20:740]  read    6 -  0000: b0 03 00 34 01 c2
 
-[0211-10:13:20:764][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:20:764][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:20:775][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:20:775][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:20:775][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -11753,7 +11753,7 @@
 
 [0211-10:13:21:700]  read    6 -  0000: b0 03 00 34 01 c2
 
-[0211-10:13:21:728][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:21:728][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:21:738][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:21:738][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:21:738][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -12979,7 +12979,7 @@
 
 [0211-10:13:22:492]  read    6 -  0000: b0 03 00 34 01 c2
 
-[0211-10:13:22:506][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:22:506][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:22:516][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:22:516][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:22:516][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -14206,7 +14206,7 @@
 
 [0211-10:13:23:581]  read    6 -  0000: b0 03 00 34 01 c2
 
-[0211-10:13:23:595][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:23:595][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:23:611][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:23:611][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:23:611][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -15432,7 +15432,7 @@
 
 [0211-10:13:24:499]  read    6 -  0000: b0 03 00 34 01 c2
 
-[0211-10:13:24:522][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:24:522][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:24:548][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:24:548][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:24:548][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -16659,7 +16659,7 @@
 
 [0211-10:13:25:515]  read    6 -  0000: b0 03 00 34 01 c2
 
-[0211-10:13:25:539][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:25:539][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:25:565][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:25:565][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:25:565][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -17885,7 +17885,7 @@
 
 [0211-10:13:26:377]  read    6 -  0000: b0 03 00 34 01 c2
 
-[0211-10:13:26:406][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:26:406][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:26:437][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:26:437][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:26:437][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -19111,7 +19111,7 @@
 
 [0211-10:13:27:502]  read    6 -  0000: b0 03 00 34 01 c2
 
-[0211-10:13:27:516][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:27:516][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:27:543][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:27:543][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:27:543][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -20337,7 +20337,7 @@
 
 [0211-10:13:28:458]  read    6 -  0000: b0 03 00 34 01 c2
 
-[0211-10:13:28:487][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:28:487][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:28:487][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x34-17
 [0211-10:13:28:487][debug][data_from_device:05033] Goodix>>> --- cmd: fdt
 [0211-10:13:28:487][debug][chicagoHUget_fdtdata:00815] Goodix>>> IrqStatus:0x200 cmd1 2
@@ -21558,7 +21558,7 @@
 
 [0211-10:13:29:364]  read    6 -  0000: b0 03 00 34 01 c2
 
-[0211-10:13:29:393][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:29:393][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:29:409][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:29:409][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:29:409][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -22784,7 +22784,7 @@
 
 [0211-10:13:30:290]  read    6 -  0000: b0 03 00 34 01 c2
 
-[0211-10:13:30:329][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:30:329][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:30:360][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:30:360][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:30:360][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -24010,7 +24010,7 @@
 
 [0211-10:13:31:211]  read    6 -  0000: b0 03 00 34 01 c2
 
-[0211-10:13:31:240][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:31:240][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:31:271][debug][OnCaptureData:02956] Goodix>>> entry, request:FFFFFE11E1ECF008
 [0211-10:13:31:271][debug][OnCaptureData:03051] Goodix>>> Purpose=4, Type=1025, Owner=27, Flags=0x20
 [0211-10:13:31:271][debug][clear_submit_delay:05854] Goodix>>> enter
@@ -25236,7 +25236,7 @@
 
 [0211-10:13:32:365]  read    6 -  0000: b0 03 00 34 01 c2
 
-[0211-10:13:32:394][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1, 
+[0211-10:13:32:394][info][OnRetryCaptureIMG:04368] Goodix>>> exit return result 1, fdt_is_down 1 1,
 [0211-10:13:32:394][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0x34-17
 [0211-10:13:32:394][debug][data_from_device:05033] Goodix>>> --- cmd: fdt
 [0211-10:13:32:394][debug][chicagoHUget_fdtdata:00815] Goodix>>> IrqStatus:0x200 cmd1 2
