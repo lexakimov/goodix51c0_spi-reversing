@@ -20,28 +20,28 @@
 [0103-19:46:11:350][info][InitThread:01398] Goodix>>> Init: pov 1, pba 0, tls-client-server-rebuild-session 1-1-1-0-0, have config 1, device inited 1, base inited 1
 [0103-19:46:11:351][debug][OnActivate:04082] Goodix>>> exit
 [0103-19:46:11:351][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
-[0103-19:46:11:364][    ] device   3: ##00 write    4 -  0000: a0 08 00 a8
+[0103-19:46:11:364][    ] write    4 -  0000: a0 08 00 a8
 [0103-19:46:11:377][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
-[0103-19:46:11:378][    ] device   3: ##00 write    8 -  0000: 01 05 00 00 00 00 00 88
+[0103-19:46:11:378][    ] write    8 -  0000: 01 05 00 00 00 00 00 88
 [0103-19:46:11:392][info][UnlockTlsForce:01327] Goodix>>> force unlock it
 [0103-19:46:11:392][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xd-2-0x2-0-0
-[0103-19:46:11:393][    ] device   3: ##00 write    4 -  0000: a0 06 00 a6
+[0103-19:46:11:393][    ] write    4 -  0000: a0 06 00 a6
 [0103-19:46:11:408][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
-[0103-19:46:11:409][    ] device   3: ##00 write    6 -  0000: d5 03 00 00 00 d3
+[0103-19:46:11:409][    ] write    6 -  0000: d5 03 00 00 00 d3
 [0103-19:46:11:424][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
-[0103-19:46:11:425][    ] device   3: ##00 write    4 -  0000: a0 08 00 a8
+[0103-19:46:11:425][    ] write    4 -  0000: a0 08 00 a8
 [0103-19:46:11:441][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
-[0103-19:46:11:441][    ] device   3: ##00 write    8 -  0000: 01 05 00 00 00 00 00 88
+[0103-19:46:11:441][    ] write    8 -  0000: 01 05 00 00 00 00 00 88
 [0103-19:46:11:456][warn][GetMcuState:04101] Goodix>>> mcu-state TIMESTAMP 0x2cc0
 [0103-19:46:11:457][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-7-0x5-0-0
-[0103-19:46:11:458][    ] device   3: ##00 write    4 -  0000: a0 09 00 a9
+[0103-19:46:11:458][    ] write    4 -  0000: a0 09 00 a9
 [0103-19:46:11:472][debug][SpiSendDataToDevice:03475] Goodix>>> !!not to wait for ack
-[0103-19:46:11:472][    ] device   3: ##00 write    9 -  0000: af 06 00 55 c0 2c 00 00 b5
+[0103-19:46:11:472][    ] write    9 -  0000: af 06 00 55 c0 2c 00 00 b5
 [0103-19:46:11:473][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xae-23
 [0103-19:46:11:473][debug][data_from_device:05100] Goodix>>> --- cmd: other
-[0103-19:46:11:473][    ] device   3: ##00  read    4 -  0000: a0 1a 00 ba
-[0103-19:46:11:473][    ] device   3: ##00  read   26 -  0000: ae 17 00 04 06 30 00 00 00 00 00 20 00 01 00 00
-[0103-19:46:11:473][    ] device   3: ##00  read   26 -  0010: 01 80 01 04 25 02 00 01 00 dc
+[0103-19:46:11:473][    ]  read    4 -  0000: a0 1a 00 ba
+[0103-19:46:11:473][    ]  read   26 -  0000: ae 17 00 04 06 30 00 00 00 00 00 20 00 01 00 00
+[0103-19:46:11:473][    ]  read   26 -  0010: 01 80 01 04 25 02 00 01 00 dc
 [0103-19:46:11:473][info][GetMcuState:04178] Goodix>>> pov 1, pba 0, tls-client-server-lock 1-1-1-0, have config 1, pov valid 0
 [0103-19:46:11:473][debug][PrintMcuState:04046] Goodix>>> mcu state::0x04063000000000002000010000018001042502000100
 [0103-19:46:11:473][info][PrintMcuState:04074] Goodix>>> mcu state: version:4, isPOVImageValid:0, isTlsConnected:1, isTlsUsed:1, isLocked:0, availImgCnt:0, povImgCnt:3
@@ -78,11 +78,11 @@
 [0103-19:46:15:605][debug][ChicagoHUSetMode:00640] Goodix>>> switch to FDT mode 1
 [0103-19:46:15:605][debug][ChicagoHUSetMode:00641] Goodix>>> data sent::0xb1b1c4c4a7a7b9b9a9a9b9b9
 [0103-19:46:15:605][debug][SpiSendDataToDevice:03392] Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-1-0x10-1000-0
-[0103-19:46:15:618][    ] device   3: ##00 write    4 -  0000: a0 14 00 b4
-[0103-19:46:15:631][    ] device   3: ##00 write   20 -  0000: 32 11 00 08 01 b1 b1 c4 c4 a7 a7 b9 b9 a9 a9 b9
-[0103-19:46:15:631][    ] device   3: ##00 write   20 -  0010: b9 f4 3c c0
-[0103-19:46:15:632][    ] device   3: ##00  read    4 -  0000: a0 06 00 a6
-[0103-19:46:15:632][    ] device   3: ##00  read    6 -  0000: b0 03 00 32 01 c4
+[0103-19:46:15:618][    ] write    4 -  0000: a0 14 00 b4
+[0103-19:46:15:631][    ] write   20 -  0000: 32 11 00 08 01 b1 b1 c4 c4 a7 a7 b9 b9 a9 a9 b9
+[0103-19:46:15:631][    ] write   20 -  0010: b9 f4 3c c0
+[0103-19:46:15:632][    ]  read    4 -  0000: a0 06 00 a6
+[0103-19:46:15:632][    ]  read    6 -  0000: b0 03 00 32 01 c4
 [0103-19:46:15:633][debug][data_from_device:04920] Goodix>>> recvd data cmd-len: 0xb0-3
 [0103-19:46:15:633][debug][get_msg_data:06260] Goodix>>> get ack for cmd 0x32, cfg flag 0x1
 [0103-19:46:15:662][debug][device_action:04408] Goodix>>> to set state to DEVICE_ENABLE
