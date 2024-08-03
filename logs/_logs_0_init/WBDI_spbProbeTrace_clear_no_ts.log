@@ -54,65 +54,76 @@
  Goodix>>> exit
  Goodix>>> --- exit
  Goodix>>> --- Init: start
+
  Goodix>>> Init: pov 1, pba 0, tls-client-server-rebuild-session 1-0-0-0-0, have config 0, device inited 0, base inited 0
+
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
- Goodix>>> !!not to wait for ack
  write    4 -  0000: a0 08 00 a8
  write    8 -  0000: 01 05 00 00 00 00 00 88
+ Goodix>>> !!not to wait for ack
+
  Goodix>>> force unlock it
+
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0xd-2-0x2-0-0
  write    4 -  0000: a0 06 00 a6
- Goodix>>> !!not to wait for ack
  write    6 -  0000: d5 03 00 00 00 d3
+ Goodix>>> !!not to wait for ack
+
  Goodix>>> Get Evk Version...retry count 3
  Goodix>>> enter, project type 18
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
  write    4 -  0000: a0 08 00 a8
- Goodix>>> !!not to wait for ack
  write    8 -  0000: 01 05 00 00 00 00 00 88
+ Goodix>>> !!not to wait for ack
+
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-4-0x2-1000-0
  write    4 -  0000: a0 06 00 a6
  write    6 -  0000: a8 03 00 00 00 ff
- Goodix>>> recvd data cmd-len: 0xb0-3
- Goodix>>> get ack for cmd 0xa8, cfg flag 0x7
- Goodix>>> MCU has no config
- Goodix>>> recvd data cmd-len: 0xa8-23
- Goodix>>> --- cmd: other
+
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: b0 03 00 a8 07 48
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0xa8, cfg flag 0x7
+
   read    4 -  0000: a0 1a 00 ba
   read   26 -  0000: a8 17 00 47 46 5f 48 43 34 36 30 53 45 43 5f 41
   read   26 -  0010: 50 50 5f 31 34 32 31 30 00 68
+ Goodix>>> MCU has no config
+ Goodix>>> recvd data cmd-len: 0xa8-23
+ Goodix>>> --- cmd: other
  Goodix>>> got evk version: GF_HC460SEC_APP_14210
+
  Goodix>>> DriverState:Install
  Goodix>>> driver type win spi
- Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
 
- Goodix>>> !!not to wait for ack
+ Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
  write    4 -  0000: a0 08 00 a8
  write    8 -  0000: 01 05 00 00 00 00 00 88
+ Goodix>>> !!not to wait for ack
 
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x9-3-0x2-0-0
  write    4 -  0000: a0 06 00 a6
- Goodix>>> !!not to wait for ack
  write    6 -  0000: 97 03 00 01 01 0f
+ Goodix>>> !!not to wait for ack
 
  Goodix>>> mcu-state TIMESTAMP 0xbf5c
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-7-0x5-0-0
  write    4 -  0000: a0 09 00 a9
  write    9 -  0000: af 06 00 55 5c bf 00 00 86
  Goodix>>> !!not to wait for ack
+
+  read    4 -  0000: a0 1a 00 ba
+  read   26 -  0000: ae 17 00 04 00 30 00 00 00 00 00 20 00 00 00 00
+  read   26 -  0010: 01 00 00 04 25 02 00 00 00 65
  Goodix>>> recvd data cmd-len: 0xae-23
  Goodix>>> --- cmd: other
+
  Goodix>>> pov 1, pba 0, tls-client-server-lock 1-0-0-0, have config 0, pov valid 0
  Goodix>>> mcu state::0x04003000000000002000000000010000042502000000
  Goodix>>> mcu state: version:4, isPOVImageValid:0, isTlsConnected:0, isTlsUsed:0, isLocked:0, availImgCnt:0, povImgCnt:3
  Goodix>>> mcu state: sensor_data_int_timeout_count:0, image_crc_fail_count:0, povTouchAccidentCnt:0x0, readChipIDCnt:0, sensorExceptionFlag:0, sensorUnexpectedIntCnt:0, to_master_timeout_count:0
  Goodix>>> mcu state: psk_len:32, psk_check_fail:0, psk_write_fail:0, ec_falling_count:0, system_up_stop_cnt:0, system_down_pov_stop_cnt:0, system_up_cleared_pov_count:0
  Goodix>>> mcu state: pov_wake_by_fp:1, pov_wake_by_ec:0, pov_procedure:0x0, config_down_flag:0, sensor_chip_id:0x2504, sensor_type:2, pov_capture_count:0, normal_capture_count:0, otp_mcu_check_status:0x0
-  read    4 -  0000: a0 1a 00 ba
-  read   26 -  0000: ae 17 00 04 00 30 00 00 00 00 00 20 00 00 00 00
-  read   26 -  0010: 01 00 00 04 25 02 00 00 00 65
  Goodix>>> tls not alive
  Goodix>>> ensure tls handshake will be done 0
  Goodix>>> Init: pov 1, pba 0, tls-client-server-rebuild-session 1-0-0-0-0, have config 0, device inited 0, base inited 0, d0exit 0
@@ -128,24 +139,27 @@
  Goodix>>> enter, project 18, tls 1, firmware update 1, simulation 0, retry count 3
  Goodix>>> Get Evk Version...retry count 3
  Goodix>>> enter, project type 18
+
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
  write    4 -  0000: a0 08 00 a8
- Goodix>>> !!not to wait for ack
  write    8 -  0000: 01 05 00 00 00 00 00 88
+ Goodix>>> !!not to wait for ack
 
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-4-0x2-1000-0
  write    4 -  0000: a0 06 00 a6
- Goodix>>> recvd data cmd-len: 0xb0-3
- Goodix>>> get ack for cmd 0xa8, cfg flag 0x7
  write    6 -  0000: a8 03 00 00 00 ff
+
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: b0 03 00 a8 07 48
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0xa8, cfg flag 0x7
  Goodix>>> MCU has no config
- Goodix>>> recvd data cmd-len: 0xa8-23
- Goodix>>> --- cmd: other
+
   read    4 -  0000: a0 1a 00 ba
   read   26 -  0000: a8 17 00 47 46 5f 48 43 34 36 30 53 45 43 5f 41
   read   26 -  0010: 50 50 5f 31 34 32 31 30 00 68
+ Goodix>>> recvd data cmd-len: 0xa8-23
+ Goodix>>> --- cmd: other
 
  Goodix>>> got evk version: GF_HC460SEC_APP_14210
  Goodix>>> !!!REE SPI MCU:Update firmware
@@ -182,17 +196,17 @@
  Goodix>>> 2.read data from mcu
  Goodix>>> Entry
  Goodix>>> 1.SpiSendDataToDeviceLock
+
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0xe-2-0x8-1000-0
  write    4 -  0000: a0 0c 00 ac
  write   12 -  0000: e4 09 00 02 00 01 bb 00 00 00 00 ff
- Goodix>>> recvd data cmd-len: 0xb0-3
+
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: b0 03 00 e4 07 0c
+ Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0xe4, cfg flag 0x7
  Goodix>>> MCU has no config
- Goodix>>> recvd data cmd-len: 0xe4-342
- Goodix>>> --- Received production response
- Goodix>>> production response pure data length=341
+
   read    4 -  0000: a0 59 01 fa
   read  345 -  0000: e4 56 01 00 02 00 01 bb 4c 01 00 00 01 00 00 00
   read  345 -  0010: d0 8c 9d df 01 15 d1 11 8c 7a 00 c0 4f c2 97 eb
@@ -216,6 +230,9 @@
   read  345 -  0130: 43 66 12 5b e1 11 73 2a a3 59 83 1e 83 66 50 88
   read  345 -  0140: f4 2c 6f c8 f7 5e 93 3d 07 c9 97 fc 05 f9 30 9c
   read  345 -  0150: b6 a0 6b f1 a4 18 8a cf 3b
+ Goodix>>> recvd data cmd-len: 0xe4-342
+ Goodix>>> --- Received production response
+ Goodix>>> production response pure data length=341
  Goodix>>> 2.parse return data
  Goodix>>> return data, len_payload_mcu  341 bytes, passed 2048 bytes, result 0.
  Goodix>>> read from mcu done, copy 340 bytes back
@@ -244,19 +261,19 @@
  write    4 -  0000: a0 0c 00 ac
  write   12 -  0000: e4 09 00 03 00 02 bb 00 00 00 00 fd
 
- Goodix>>> recvd data cmd-len: 0xb0-3
- Goodix>>> get ack for cmd 0xe4, cfg flag 0x7
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: b0 03 00 e4 07 0c
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0xe4, cfg flag 0x7
  Goodix>>> MCU has no config
- Goodix>>> recvd data cmd-len: 0xe4-42
- Goodix>>> --- Received production response
- Goodix>>> production response pure data length=41
+
   read    4 -  0000: a0 2d 00 cd
   read   45 -  0000: e4 2a 00 00 03 00 02 bb 20 00 00 00 fb 67 d3 ed
   read   45 -  0010: e2 44 ff ee b2 76 3c b5 0e e3 81 a3 e6 18 d5 23
   read   45 -  0020: 8d 61 94 53 43 35 8d 08 0f d0 2d a7 ce
+ Goodix>>> recvd data cmd-len: 0xe4-42
+ Goodix>>> --- Received production response
+ Goodix>>> production response pure data length=41
 
  Goodix>>> 2.parse return data
  Goodix>>> return data, len_payload_mcu  41 bytes, passed 2048 bytes, result 0.
@@ -282,11 +299,13 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-1-0x2-1000-0
  write    4 -  0000: a0 06 00 a6
  write    6 -  0000: a2 03 00 01 14 f0
+
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: b0 03 00 a2 07 4e
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0xa2, cfg flag 0x7
  Goodix>>> MCU has no config
+
   read    4 -  0000: a0 07 00 a7
   read    7 -  0000: a2 04 00 01 00 08 fb
  Goodix>>> recvd data cmd-len: 0xa2-4
@@ -297,11 +316,13 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x8-1-0x5-1000-0
  write    4 -  0000: a0 09 00 a9
  write    9 -  0000: 82 06 00 00 00 00 04 00 1e
+
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: b0 03 00 82 07 6e
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x82, cfg flag 0x7
  Goodix>>> MCU has no config
+
   read    4 -  0000: a0 08 00 a8
   read    8 -  0000: 82 05 00 a2 04 25 00 58
  Goodix>>> recvd data cmd-len: 0x82-5
@@ -324,8 +345,12 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-3-0x2-1000-0
  write    4 -  0000: a0 06 00 a6
  write    6 -  0000: a6 03 00 00 00 01
+
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: b0 03 00 a6 07 4a
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0xa6, cfg flag 0x7
+ Goodix>>> MCU has no config
 
   read    4 -  0000: a0 44 00 e4
   read   68 -  0000: a6 41 00 53 34 30 36 36 36 2e 00 0a 7d 82 b3 72
@@ -333,9 +358,7 @@
   read   68 -  0020: 80 7f 0c 07 81 30 38 e4 80 dd fc 0a be bb 44 01
   read   68 -  0030: bb b3 b5 b3 b3 b3 b5 b3 b3 41 33 e4 1b dd 22 0c
   read   68 -  0040: f0 17 db 1c
- Goodix>>> recvd data cmd-len: 0xb0-3
- Goodix>>> get ack for cmd 0xa6, cfg flag 0x7
- Goodix>>> MCU has no config
+
  Goodix>>> recvd data cmd-len: 0xa6-65
  Goodix>>> --- cmd: other
 
@@ -378,13 +401,17 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-1-0x2-1000-0
  write    4 -  0000: a0 06 00 a6
  write    6 -  0000: a2 03 00 01 14 f0
+
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: b0 03 00 a2 07 4e
+
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0xa2, cfg flag 0x7
+ Goodix>>> MCU has no config
+
   read    4 -  0000: a0 07 00 a7
   read    7 -  0000: a2 04 00 01 00 08 fb
- Goodix>>> MCU has no config
+
  Goodix>>> recvd data cmd-len: 0xa2-4
  Goodix>>> --- cmd: other
  Goodix>>> CHIP_RESET::0x010008
@@ -394,25 +421,27 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x7-0-0x2-1000-0
  write    4 -  0000: a0 06 00 a6
  write    6 -  0000: 70 03 00 14 00 23
+
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: b0 03 00 70 07 80
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x70, cfg flag 0x7
  Goodix>>> MCU has no config
 
- write    4 -  0000: a0 0c 00 ac
- write   12 -  0000: 98 09 00 38 0b b5 00 b3 00 b3 00 ab
-  read    4 -  0000: a0 06 00 a6
-  read    6 -  0000: b0 03 00 98 07 58
  Goodix>>> Dac sent::0x380bb500b300b300
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x9-4-0x8-1000-0
- Goodix>>> recvd data cmd-len: 0xb0-3
+ write    4 -  0000: a0 0c 00 ac
+ write   12 -  0000: 98 09 00 38 0b b5 00 b3 00 b3 00 ab
 
+  read    4 -  0000: a0 06 00 a6
+  read    6 -  0000: b0 03 00 98 07 58
+ Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x98, cfg flag 0x7
  Goodix>>> MCU has no config
- Goodix>>> recvd data cmd-len: 0x98-3
+
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: 98 03 00 01 00 0e
+ Goodix>>> recvd data cmd-len: 0x98-3
 
  Goodix>>> wrote down dac 0xb38, dac1 0xb5,dac2 0xb3, dac3 0xb3
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x9-0-0xe0-1000-0
@@ -433,15 +462,15 @@
  write  228 -  00d0: 52 00 08 00 54 00 00 01 66 00 03 00 7c 00 00 58
  write  228 -  00e0: 00 53 66 8f
 
- Goodix>>> recvd data cmd-len: 0xb0-3
- Goodix>>> get ack for cmd 0x90, cfg flag 0x7
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: b0 03 00 90 07 60
-
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x90, cfg flag 0x7
  Goodix>>> MCU has no config
- Goodix>>> recvd data cmd-len: 0x90-3
+
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: 90 03 00 01 00 16
+ Goodix>>> recvd data cmd-len: 0x90-3
 
  Goodix>>> exit, ret 1
  Goodix>>> to set state to DEVICE_ENABLE
@@ -468,21 +497,21 @@
  ret:0
  Goodix>>> exit with ret:0
  Goodix>>> TLS Init Success, Set tls inited to TRUE
+
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0xd-0-0x2-0-0
  write    4 -  0000: a0 06 00 a6
  write    6 -  0000: d1 03 00 00 00 d7
  Goodix>>> !!not to wait for ack
 
- Goodix>>> enter
- Goodix>>>  ---- pack len: 52
- Goodix>>> enter
- Goodix>>> tls handshake package, state: 0
   read    4 -  0000: b0 34 00 e4
   read   52 -  0000: 16 03 03 00 2f 01 00 00 2b 03 03 2d f4 51 58 cf
   read   52 -  0010: 8c b1 40 46 f6 b5 4b 29 31 03 47 04 5b 70 30 b4
   read   52 -  0020: 5d fd 20 78 7f 8b 1a d8 59 29 50 00 00 04 00 a8
   read   52 -  0030: 00 ff 01 00
-
+ Goodix>>> enter
+ Goodix>>>  ---- pack len: 52
+ Goodix>>> enter
+ Goodix>>> tls handshake package, state: 0
  Goodix>>> TLS LOG: => read
  Goodix>>> TLS LOG: => handshake
  Goodix>>> TLS LOG: server state: 0
@@ -564,9 +593,9 @@
  Goodix>>> TLS LOG: => flush output
  Goodix>>> TLS LOG: message length: 9, out_left: 9
  Goodix>>> enter, tls inited 1
- Goodix>>> SENT DATA LEN: 9, 13
  write    4 -  0000: b0 09 00 b9
  write    9 -  0000: 16 03 03 00 04 0e 00 00 00
+ Goodix>>> SENT DATA LEN: 9, 13
 
  Goodix>>> enter
   read    4 -  0000: b0 1a 00 ca
@@ -781,9 +810,9 @@
  Goodix>>> TLS LOG: => flush output
  Goodix>>> TLS LOG: message length: 6, out_left: 6
  Goodix>>> enter, tls inited 1
- Goodix>>> SENT DATA LEN: 6, 10
  write    4 -  0000: b0 06 00 b6
  write    6 -  0000: 14 03 03 00 01 01
+ Goodix>>> SENT DATA LEN: 6, 10
 
  Goodix>>> exit len 6
  Goodix>>> sent ret:6.
@@ -852,10 +881,10 @@
  write    4 -  0000: a0 06 00 a6
  write    6 -  0000: d4 03 00 00 00 d3
 
- Goodix>>> recvd data cmd-len: 0xb0-3
- Goodix>>> get ack for cmd 0xd4, cfg flag 0x1
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: b0 03 00 d4 01 22
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0xd4, cfg flag 0x1
 
  Goodix>>> Client TLS connection setup
  Goodix>>> entry
@@ -866,15 +895,14 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-7-0x5-0-0
  write    4 -  0000: a0 09 00 a9
  write    9 -  0000: af 06 00 55 14 c3 00 00 ca
-
  Goodix>>> !!not to wait for ack
- Goodix>>> recvd data cmd-len: 0xae-23
- Goodix>>> --- cmd: other
- Goodix>>> pov 1, pba 0, tls-client-server-lock 1-1-0-0, have config 1, pov valid 0
+
   read    4 -  0000: a0 1a 00 ba
   read   26 -  0000: ae 17 00 04 06 30 00 00 00 00 00 20 00 00 00 00
   read   26 -  0010: 01 00 01 04 25 02 00 00 00 5e
-
+ Goodix>>> recvd data cmd-len: 0xae-23
+ Goodix>>> --- cmd: other
+ Goodix>>> pov 1, pba 0, tls-client-server-lock 1-1-0-0, have config 1, pov valid 0
  Goodix>>> mcu state::0x04063000000000002000000000010001042502000000
  Goodix>>> mcu state: version:4, isPOVImageValid:0, isTlsConnected:1, isTlsUsed:1, isLocked:0, availImgCnt:0, povImgCnt:3
  Goodix>>> mcu state: sensor_data_int_timeout_count:0, image_crc_fail_count:0, povTouchAccidentCnt:0x0, readChipIDCnt:0, sensorExceptionFlag:0, sensorUnexpectedIntCnt:0, to_master_timeout_count:0
@@ -902,10 +930,10 @@
  write   18 -  0000: 36 0f 00 09 01 00 00 00 00 00 00 00 00 00 00 00
  write   18 -  0010: 00 5b
 
- Goodix>>> recvd data cmd-len: 0xb0-3
- Goodix>>> get ack for cmd 0x36, cfg flag 0x1
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: b0 03 00 36 01 c0
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x36, cfg flag 0x1
 
  Goodix>>> recvd data cmd-len: 0x36-17
  Goodix>>> --- cmd: fdt
@@ -937,10 +965,10 @@
  write    4 -  0000: a0 06 00 a6
  write    6 -  0000: 50 03 00 01 00 56
 
- Goodix>>> recvd data cmd-len: 0xb0-3
- Goodix>>> get ack for cmd 0x50, cfg flag 0x1
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: b0 03 00 50 01 a6
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x50, cfg flag 0x1
 
  Goodix>>> recvd data cmd-len: 0x50-2410
  Goodix>>> --- recv nav data......length:2410
@@ -1111,20 +1139,20 @@
  write   18 -  0000: 36 0f 00 09 01 80 b1 80 c5 80 a6 80 b9 80 a8 80
  write   18 -  0010: b8 26
 
- Goodix>>> recvd data cmd-len: 0xb0-3
- Goodix>>> get ack for cmd 0x36, cfg flag 0x1
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: b0 03 00 36 01 c0
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x36, cfg flag 0x1
 
+  read    4 -  0000: a0 14 00 b4
+  read   20 -  0000: 36 11 00 00 01 00 00 62 01 88 01 4e 01 73 01 52
+  read   20 -  0010: 01 72 01 ed
  Goodix>>> recvd data cmd-len: 0x36-17
  Goodix>>> --- cmd: fdt
  Goodix>>> IrqStatus:0x100 cmd1 3
  Goodix>>> IRQ for fdt-manual, get fdt-up base, current mode is fdt-manual, touchflag 0x0
  Goodix>>> received fdt base::0x620188014e01730152017201
  Goodix>>> get fdt-down base, current mode is fdt-manual
-  read    4 -  0000: a0 14 00 b4
-  read   20 -  0000: 36 11 00 00 01 00 00 62 01 88 01 4e 01 73 01 52
-  read   20 -  0010: 01 72 01 ed
 
  Goodix>>> fdt base:0x620188014e01730152017201
 :0xb180
@@ -1138,15 +1166,16 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x8-1-0x5-1000-0
  write    4 -  0000: a0 09 00 a9
  write    9 -  0000: 82 06 00 00 82 00 02 00 9e
- Goodix>>> recvd data cmd-len: 0xb0-3
- Goodix>>> get ack for cmd 0x82, cfg flag 0x1
+
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: b0 03 00 82 01 74
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x82, cfg flag 0x1
 
- Goodix>>> recvd data cmd-len: 0x82-3
- Goodix>>> --- cmd: regrw
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: 82 03 00 80 1b 8a
+ Goodix>>> recvd data cmd-len: 0x82-3
+ Goodix>>> --- cmd: regrw
 
  Goodix>>> fdt_delta 0x1b
  Goodix>>> enter, tls-client-server 1-1-1
@@ -1157,10 +1186,10 @@
  write    4 -  0000: a0 06 00 a6
  write    6 -  0000: 20 03 00 01 00 86
 
- Goodix>>> recvd data cmd-len: 0xb0-3
- Goodix>>> get ack for cmd 0x20, cfg flag 0x1
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: b0 03 00 20 01 d6
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x20, cfg flag 0x1
 
  Goodix>>> enter
  Goodix>>>  ---- pack len: 7722
@@ -1699,15 +1728,15 @@
  write   18 -  0000: 36 0f 00 09 01 80 b1 80 c4 80 a7 80 b9 80 a9 80
  write   18 -  0010: b9 24
 
- Goodix>>> recvd data cmd-len: 0xb0-3
- Goodix>>> get ack for cmd 0x36, cfg flag 0x1
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: b0 03 00 36 01 c0
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x36, cfg flag 0x1
 
- Goodix>>> recvd data cmd-len: 0x36-17
   read    4 -  0000: a0 14 00 b4
   read   20 -  0000: 36 11 00 00 01 00 00 62 01 88 01 4e 01 72 01 52
   read   20 -  0010: 01 73 01 ed
+ Goodix>>> recvd data cmd-len: 0x36-17
 
  Goodix>>> --- cmd: fdt
  Goodix>>> IrqStatus:0x100 cmd1 3
