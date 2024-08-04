@@ -1,4 +1,3 @@
-
  Goodix>>> entry, prev state: 4(4-D3,5-D3Final), power action: 0, driver version 1.1.142.8
  Goodix>>> suspended 1
  Goodix>>> resume from S0 idle
@@ -10,14 +9,14 @@
  Goodix>>> exit
  Goodix>>> enter
  Goodix>>> to wait for init thread to complete
- Goodix>>> init thread completed
  Goodix>>> entry
- Goodix>>> to create init thread
+ Goodix>>> init thread completed
  Goodix>>> activate 1
- Goodix>>> exit
- Goodix>>> --- Init: start
+ Goodix>>> to create init thread
  Goodix>>> last OnActivate done.
+ Goodix>>> exit
  Goodix>>> --- exit
+ Goodix>>> --- Init: start
  Goodix>>> Init: pov 1, pba 0, tls-client-server-rebuild-session 1-1-1-0-0, have config 1, device inited 1, base inited 1
  Goodix>>> exit
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
@@ -136,25 +135,6 @@
   read    6 -  0000: b0 03 00 22 01 d4
 
   read    4 -  0000: b0 2a 1e f8
-
- Goodix>>> enter
- Goodix>>>  ---- pack len: 7722
- Goodix>>> enter
- Goodix>>> TLS LOG: => read
- Goodix>>> TLS LOG: => read record
- Goodix>>> TLS LOG: => fetch input
- Goodix>>> TLS LOG: in_left: 0, nb_want: 5
- Goodix>>> enter, tls inited 1
- Goodix>>> bytes to read: 5, bytes left: 7722
- Goodix>>> bytes read: 5, bytes left: 7717
- Goodix>>> recv ret:5.
- Goodix>>> TLS LOG: in_left: 0, nb_want: 5
- Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 5 (-0xfffffffb)
- Goodix>>> TLS LOG: <= fetch input
- Goodix>>> TLS LOG: => fetch input
- Goodix>>> TLS LOG: in_left: 5, nb_want: 7722
- Goodix>>> enter, tls inited 1
- Goodix>>> bytes to read: 7717, bytes left: 7717
   read 7722 -  0000: 17 03 03 1e 25 00 00 00 00 00 00 00 04 fc 45 2d
   read 7722 -  0010: e0 14 57 96 a5 ea e7 d0 c1 99 ec be ed ed df a4
   read 7722 -  0020: c6 b5 47 f4 ad 0c 3a 79 62 46 e2 e6 20 4d ca a2
@@ -639,6 +619,24 @@
   read 7722 -  1e10: af 05 63 ab 6c dc 37 c2 90 e0 34 c6 89 c4 cd 72
   read 7722 -  1e20: 9c d7 c8 23 01 4a e7 9b f6 ee
 
+ Goodix>>> enter
+ Goodix>>>  ---- pack len: 7722
+ Goodix>>> enter
+ Goodix>>> TLS LOG: => read
+ Goodix>>> TLS LOG: => read record
+ Goodix>>> TLS LOG: => fetch input
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> enter, tls inited 1
+ Goodix>>> bytes to read: 5, bytes left: 7722
+ Goodix>>> bytes read: 5, bytes left: 7717
+ Goodix>>> recv ret:5.
+ Goodix>>> TLS LOG: in_left: 0, nb_want: 5
+ Goodix>>> TLS LOG: ssl->f_recv(_timeout)() returned 5 (-0xfffffffb)
+ Goodix>>> TLS LOG: <= fetch input
+ Goodix>>> TLS LOG: => fetch input
+ Goodix>>> TLS LOG: in_left: 5, nb_want: 7722
+ Goodix>>> enter, tls inited 1
+ Goodix>>> bytes to read: 7717, bytes left: 7717
  Goodix>>> bytes read: 7717, bytes left: 0
  Goodix>>> recv ret:7717.
  Goodix>>> TLS LOG: in_left: 5, nb_want: 7722
@@ -25218,8 +25216,8 @@
  Goodix>>> <= with ret(BOOL):1.
  Goodix>>> exit
  Goodix>>> Retyimageret 0x1
- Goodix>>> fdt_is_down 1, purpose 4
  Goodix>>> exit
+ Goodix>>> fdt_is_down 1, purpose 4
  Goodix>>> enter, Mode 3, Type 2, base_type 1
  Goodix>>> setmode: Fdt up
  Goodix>>> switch to FDT mode 2
@@ -25233,7 +25231,6 @@
  write   18 -  0010: 9f 76
 
   read    4 -  0000: a0 06 00 a6
-
   read    6 -  0000: b0 03 00 34 01 c2
 
  Goodix>>> exit return result 1, fdt_is_down 1 1,
@@ -25251,7 +25248,6 @@
 :0xb780
  Goodix>>> receive fdt up or reset... 0x2, 2UP,9Reset, temp occure 0, base_is_valid 1
   read    4 -  0000: a0 14 00 b4
-
   read   20 -  0000: 34 11 00 00 02 00 00 5e 01 85 01 4b 01 70 01 4f
   read   20 -  0010: 01 6f 01 01
  Goodix>>> entry

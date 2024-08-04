@@ -21,27 +21,31 @@
  Goodix>>> Init: pov 1, pba 0, tls-client-server-rebuild-session 1-1-1-0-0, have config 1, device inited 1, base inited 1
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
  write    4 -  0000: a0 08 00 a8
- Goodix>>> !!not to wait for ack
  write    8 -  0000: 01 05 00 00 00 00 00 88
- write    4 -  0000: a0 06 00 a6
+ Goodix>>> !!not to wait for ack
+
  Goodix>>> force unlock it
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0xd-2-0x2-0-0
- Goodix>>> !!not to wait for ack
+ write    4 -  0000: a0 06 00 a6
  write    6 -  0000: d5 03 00 00 00 d3
+ Goodix>>> !!not to wait for ack
+
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x0-0-0x4-0-0
  write    4 -  0000: a0 08 00 a8
- Goodix>>> !!not to wait for ack
  write    8 -  0000: 01 05 00 00 00 00 00 88
+ Goodix>>> !!not to wait for ack
+
  Goodix>>> mcu-state TIMESTAMP 0x2144
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0xa-7-0x5-0-0
  write    4 -  0000: a0 09 00 a9
- Goodix>>> !!not to wait for ack
  write    9 -  0000: af 06 00 55 44 21 00 00 3c
- Goodix>>> recvd data cmd-len: 0xae-23
- Goodix>>> --- cmd: other
+ Goodix>>> !!not to wait for ack
+
   read    4 -  0000: a0 1a 00 ba
   read   26 -  0000: ae 17 00 04 06 30 00 00 00 00 00 20 00 02 00 00
   read   26 -  0010: 01 80 01 04 25 02 00 01 00 db
+ Goodix>>> recvd data cmd-len: 0xae-23
+ Goodix>>> --- cmd: other
  Goodix>>> pov 1, pba 0, tls-client-server-lock 1-1-1-0, have config 1, pov valid 0
  Goodix>>> mcu state::0x04063000000000002000020000018001042502000100
  Goodix>>> mcu state: version:4, isPOVImageValid:0, isTlsConnected:1, isTlsUsed:1, isLocked:0, availImgCnt:0, povImgCnt:3
@@ -76,20 +80,23 @@
  write    4 -  0000: a0 14 00 b4
  write   20 -  0000: 32 11 00 08 01 b1 b1 c4 c4 a7 a7 b9 b9 a9 a9 b9
  write   20 -  0010: b9 c4 31 fb
- Goodix>>> recvd data cmd-len: 0xb0-3
- Goodix>>> get ack for cmd 0x32, cfg flag 0x1
+
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: b0 03 00 32 01 c4
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x32, cfg flag 0x1
+
  Goodix>>> to set state to DEVICE_ENABLE
  Goodix>>> to set state from 3 to 1
  Goodix>>> ******** to Register CaptureFramedone for capture a frame ********
  Goodix>>> exit
   read    4 -  0000: a0 14 00 b4
- Goodix>>> recvd data cmd-len: 0x32-17
   read   20 -  0000: 32 11 00 02 00 1f 00 ca 00 fd 00 da 00 04 01 f1
   read   20 -  0010: 00 54 01 5a
+ Goodix>>> recvd data cmd-len: 0x32-17
  Goodix>>> --- cmd: fdt
  Goodix>>> IrqStatus:0x2 cmd1 1
+
  Goodix>>> IRQ for fdt-down, get fdt-up base, current mode is fdt-down, touchflag 0x1f
  Goodix>>> received fdt base::0xca00fd00da000401f1005401
  Goodix>>> iSecondFlag 0, need_fdt_up_twice 0, diff_use 27, touchflag 0x1f
@@ -105,15 +112,18 @@
  Goodix>>> entry
  Goodix>>> enter, tls-client-server 1-1-1
  Goodix>>> g_halcontext.sensor_ops.SetMode:0x00007FFDE5D5BB50.
+
  Goodix>>> enter, Mode 2, Type 1, base_type 0
  Goodix>>> setmode: Image
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x2-1-0x2-1000-0
  write    4 -  0000: a0 06 00 a6
  write    6 -  0000: 22 03 00 01 00 84
- Goodix>>> recvd data cmd-len: 0xb0-3
- Goodix>>> get ack for cmd 0x22, cfg flag 0x1
+
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: b0 03 00 22 01 d4
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x22, cfg flag 0x1
+
   read    4 -  0000: b0 2a 1e f8
   read 7722 -  0000: 17 03 03 1e 25 00 00 00 00 00 00 00 02 e1 e2 0b
   read 7722 -  0010: 41 e6 91 fe 73 14 3e 0c 00 eb 43 63 61 57 83 52
@@ -489,7 +499,6 @@
   read 7722 -  1730: 94 62 b6 76 cc f7 0b 87 b7 3f 3d d3 bd 4f 16 8a
   read 7722 -  1740: a9 3d 74 17 e1 7b 6e 21 6b 9c 86 3d cd fd 91 c2
   read 7722 -  1750: d5 33 9b 73 fa 49 e3 b9 ee ba 5d 1a d4 17 e4 9a
- Goodix>>> enter
   read 7722 -  1760: e8 ae 9f 2e 81 6b 94 74 63 7e 65 bf b4 30 6e 10
   read 7722 -  1770: 5c 88 1c fd fc 64 1a 08 b7 9b 5a 78 bb c4 ab 97
   read 7722 -  1780: fb 7c 04 e4 bd 8e a2 40 5d 2b 7c 6c 0b 45 da 7e
@@ -599,6 +608,8 @@
   read 7722 -  1e00: 7e 76 22 20 72 71 01 15 9c f5 a4 66 10 99 6b e3
   read 7722 -  1e10: cd 8c cf 9c 5e 5d 9d 3d 95 46 d5 7f 56 83 a0 01
   read 7722 -  1e20: af 4b 1c cf 96 e3 f4 54 0a ee
+
+ Goodix>>> enter
  Goodix>>>  ---- pack len: 7722
  Goodix>>> enter
  Goodix>>> TLS LOG: => read
@@ -671,18 +682,21 @@
  write    4 -  0000: a0 12 00 b2
  write   18 -  0000: 34 0f 00 0a 01 80 80 80 99 80 88 80 9d 80 93 80
  write   18 -  0010: 19 72
- Goodix>>> recvd data cmd-len: 0xb0-3
- Goodix>>> get ack for cmd 0x34, cfg flag 0x1
+
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: b0 03 00 34 01 c2
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x34, cfg flag 0x1
+
  Goodix>>> to set state to DEVICE_ENABLE
  Goodix>>> to set state from 3 to 1
  Goodix>>> ******** to Register CaptureFramedone for capture a frame ********
  Goodix>>> exit
- Goodix>>> recvd data cmd-len: 0x34-17
+
   read    4 -  0000: a0 14 00 b4
   read   20 -  0000: 34 11 00 00 02 00 00 60 01 87 01 4d 01 72 01 51
   read   20 -  0010: 01 71 01 f5
+ Goodix>>> recvd data cmd-len: 0x34-17
  Goodix>>> --- cmd: fdt
  Goodix>>> IrqStatus:0x200 cmd1 2
  Goodix>>> IRQ for fdt-up, get fdt-down base, current mode is fdt-up, touchflag 0x0
@@ -704,10 +718,12 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x2-0-0x2-1000-0
  write    4 -  0000: a0 06 00 a6
  write    6 -  0000: 20 03 00 01 00 86
+
   read    4 -  0000: a0 06 00 a6
+  read    6 -  0000: b0 03 00 20 01 d6
  Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x20, cfg flag 0x1
-  read    6 -  0000: b0 03 00 20 01 d6
+
   read    4 -  0000: b0 2a 1e f8
   read 7722 -  0000: 17 03 03 1e 25 00 00 00 00 00 00 00 03 3e 42 fa
   read 7722 -  0010: 8b 0b 85 44 30 5c 82 1d 3a e2 70 8f 11 52 5c d3
@@ -1071,7 +1087,6 @@
   read 7722 -  1670: c6 e7 23 ac c0 0a e0 f4 e2 da a6 35 75 a1 7a 12
   read 7722 -  1680: 3e 1d fe 1b 99 da c6 7d 71 50 cd 20 58 f1 ad 36
   read 7722 -  1690: ec 8a 40 c7 95 a7 d6 10 56 e8 be 4a ef 6b 5f ef
- Goodix>>> enter
   read 7722 -  16a0: 79 15 e0 e2 77 cd a9 39 6e 86 78 ac b4 6b d2 7d
   read 7722 -  16b0: 1e 72 58 a6 3b 6f d3 a3 09 ef 3b 38 d3 22 f7 be
   read 7722 -  16c0: 65 05 5a dd a2 c4 6d be b6 7c aa ec df ce e8 52
@@ -1193,6 +1208,8 @@
   read 7722 -  1e00: 68 9d 7c 96 08 7b b2 84 c2 90 be 6a 73 14 c9 d1
   read 7722 -  1e10: 7b c2 6b 0e d2 aa 0e 60 a8 a5 25 8d dd 25 9f f6
   read 7722 -  1e20: 99 e8 42 08 02 f4 95 1e 05 18
+
+ Goodix>>> enter
  Goodix>>>  ---- pack len: 7722
  Goodix>>> enter
  Goodix>>> TLS LOG: => read
@@ -1240,12 +1257,13 @@
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x5-0-0x2-1000-0
  write    4 -  0000: a0 06 00 a6
  write    6 -  0000: 50 03 00 01 00 56
- Goodix>>> recvd data cmd-len: 0xb0-3
+
   read    4 -  0000: a0 06 00 a6
- Goodix>>> get ack for cmd 0x50, cfg flag 0x1
   read    6 -  0000: b0 03 00 50 01 a6
+ Goodix>>> recvd data cmd-len: 0xb0-3
+ Goodix>>> get ack for cmd 0x50, cfg flag 0x1
+
   read    4 -  0000: a0 6d 09 16
- Goodix>>> recvd data cmd-len: 0x50-2410
   read 2413 -  0000: 50 6a 09 1e 25 00 00 00 47 f4 ab 7f 91 f8 39 b8
   read 2413 -  0010: 17 a0 a3 4a fa 13 20 aa a8 ca 7a db 13 a8 b0 3b
   read 2413 -  0020: 0a f8 3b b3 b8 8b 8b 70 a7 b2 ba 3b bb 54 d3 bd
@@ -1397,6 +1415,8 @@
   read 2413 -  0940: b0 ba bd cb bb 6f e0 b2 bb fb 0b 73 e0 b8 b9 bb
   read 2413 -  0950: 8b 7b df bc bb 7b bb b0 a3 b7 ba 8b 4b 8c 84 ba
   read 2413 -  0960: b2 fb bb 27 38 a7 93 b9 4f e7 6f 02 88
+
+ Goodix>>> recvd data cmd-len: 0x50-2410
  Goodix>>> --- recv nav data......length:2410
  Goodix>>> 2404 2404 3200
  Goodix>>> Regroup pixels:1600
@@ -1420,18 +1440,15 @@
  write    4 -  0000: a0 14 00 b4
  write   20 -  0000: 32 11 00 08 01 80 b0 80 c3 80 a6 80 b9 80 a8 80
  write   20 -  0010: b8 5d 3d 92
- Goodix>>> recvd data cmd-len: 0xb0-3
+
   read    4 -  0000: a0 06 00 a6
   read    6 -  0000: b0 03 00 32 01 c4
+ Goodix>>> recvd data cmd-len: 0xb0-3
  Goodix>>> get ack for cmd 0x32, cfg flag 0x1
+
  Goodix>>> entry
  Goodix>>> exit
  Goodix>>> entry
  Goodix>>> activate 0
  Goodix>>> last OnActivate done.
  Goodix>>> exit
- Goodix>>> target state: 4, power action: 0
- Goodix>>> no pov data
- Goodix>>> enter
- Goodix>>> suspend all
- Goodix>>> enter S0 idle

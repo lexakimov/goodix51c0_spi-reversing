@@ -500,7 +500,6 @@
   read 7722 -  17d0: 0a 02 62 d1 b0 86 51 4c 90 d7 00 6e 2f 9b 10 66
   read 7722 -  17e0: ae 35 6f 75 9a b3 6f 22 e9 7e 45 87 3c b7 d4 d6
   read 7722 -  17f0: 79 6d a4 ff e7 d5 de 24 99 1e 97 fc 28 07 6c ac
- Goodix>>>  ---- pack len: 7722
   read 7722 -  1800: 91 87 3b e2 14 50 8e a9 23 d5 50 e4 c5 6b d8 28
   read 7722 -  1810: a1 73 d5 cf e5 23 19 08 13 df 06 7b 0a e9 69 3c
   read 7722 -  1820: c0 c0 59 07 fc 24 41 3c 2b fd d6 a2 55 7a ac 5c
@@ -600,7 +599,10 @@
   read 7722 -  1e00: bd 21 b2 9f 0a 5b fb d1 96 48 b7 df 7c 66 dd fb
   read 7722 -  1e10: ac 5e 91 f5 05 a7 e7 1d 45 c9 c0 90 b6 86 0d 16
   read 7722 -  1e20: 25 fc da bb 78 68 61 76 05 17
+
+
  Goodix>>> enter
+ Goodix>>>  ---- pack len: 7722
  Goodix>>> TLS LOG: => read
  Goodix>>> TLS LOG: => read record
  Goodix>>> TLS LOG: => fetch input
@@ -24604,10 +24606,11 @@ write    6 -  0000: 20 03 00 01 00 86
  Goodix>>> switch to FDT mode 2
  Goodix>>> data sent::0x80848099808a808b8019809a
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0x3-2-0xe-1000-0
-write    4 -  0000: a0 12 00 b2
+ write    4 -  0000: a0 12 00 b2
+ write   18 -  0000: 34 0f 00 0a 01 80 84 80 99 80 8a 80 8b 80 19 80
+ write   18 -  0010: 9a 77
  Goodix>>> recvd data cmd-len: 0xb0-3
-write   18 -  0000: 34 0f 00 0a 01 80 84 80 99 80 8a 80 8b 80 19 80
-write   18 -  0010: 9a 77
+
  Goodix>>> get ack for cmd 0x34, cfg flag 0x1
  read    4 -  0000: a0 06 00 a6
  read    6 -  0000: b0 03 00 34 01 c2
