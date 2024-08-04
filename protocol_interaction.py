@@ -91,7 +91,7 @@ def reset_spi():
     gpio_reset.close()
 
 
-def perform_read(spi: SpiDev) -> list[int]:
+def perform_read() -> list[int]:
     log(Colors.HI_BLUE, "reading from device...")
     header_packet = spi.readbytes(4)
     is_valid = is_header_packet_checksum_valid(header_packet)
@@ -129,9 +129,8 @@ def perform_read(spi: SpiDev) -> list[int]:
     return payload_packet
 
 
-def perform_write(spi: SpiDev, packet_type: int, payload: bytes | str | list[int]):
+def perform_write(packet_type: int, payload: bytes | str | list[int]):
     """
-    :param spi: SPI device
     :param packet_type:
     :param payload:      possible values '00' or  [0x00] or bytearray([0x00])
     """
@@ -160,7 +159,7 @@ def perform_write(spi: SpiDev, packet_type: int, payload: bytes | str | list[int
     print_frame(Colors.HI_PURPLE, '', 120, [f'[length:{payload_length:>4}] command: (0x{type_hex}) {packet_type}', ])
 
 
-def interrupt_monitoring(gpio_line: CdevGPIO, read_is_ready: Lock, read_is_done: Lock):
+def interrupt_monitoring():
     is_high = False
     i = 0
     last_ts = time.time_ns()
@@ -208,6 +207,11 @@ def interrupt_monitoring(gpio_line: CdevGPIO, read_is_ready: Lock, read_is_done:
 
 
 def main():
+    global spi
+    global gpio_line
+    global read_is_ready
+    global read_is_done
+
     gpio_line = CdevGPIO('/dev/gpiochip0', 321, 'in', edge='both', bias='default')
     spi = SpiDev(1, 0)
     spi.max_speed_hz = 0x00989680  # 10 000 000
@@ -215,7 +219,7 @@ def main():
 
     read_is_ready = Lock()
     read_is_done = Lock()
-    isr_thread = Thread(daemon=True, target=interrupt_monitoring, args=(gpio_line, read_is_ready, read_is_done))
+    isr_thread = Thread(daemon=True, target=interrupt_monitoring, args=())
     isr_thread.start()
     manual_sleep(0.05)  # delay so that the interrupt thread has time to enter gpio_line.read_event()
 
@@ -229,46 +233,43 @@ def main():
     read_is_done.release()
     read_is_ready.acquire()
     read_is_ready.release()
+    manual_sleep(0.1)
     log(Colors.RED, "reset done")
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "━━━ init ".ljust(120, '━'))
-
-    perform_write(spi, 0xa0, '01 05 00 00 00 00 00 88')
-    # not to wait for ack
-
-    print()
-    # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ force unlock TLS ".ljust(120, '━'))
-    perform_write(spi, 0xa0, 'd5 03 00 00 00 d3')
+
+    perform_write(0xa0, '01 05 00 00 00 00 00 88')
     # not to wait for ack
-    manual_sleep(0.1)  # если после записи нет прерывания надо подождать
+
+    perform_write(0xa0, 'd5 03 00 00 00 d3')
+    # not to wait for ack
 
     print()
     # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ get evk version ".ljust(120, '━'))
 
-    perform_write(spi, 0xa0, '01 05 00 00 00 00 00 88')
+    perform_write(0xa0, '01 05 00 00 00 00 00 88')
     # not to wait for ack
     manual_sleep(0.05)
 
     read_is_ready.acquire()
     read_is_done.acquire()
 
-    perform_write(spi, 0xa0, 'a8 03 00 00 00 ff')
+    perform_write(0xa0, 'a8 03 00 00 00 ff')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)  # get ack for cmd 0xa8, cfg flag 0x7
+    perform_read()  # get ack for cmd 0xa8, cfg flag 0x7
     manual_sleep(0.05)
-    perform_read(spi)
+    perform_read()
     acquire_then_release(read_is_done, 'read_is_done')
 
     print()
     # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ get mcu state ".ljust(120, '━'))
 
-    # perform_write(spi, 0xa0, '01 05 00 00 00 00 00 88')
+    # perform_write(0xa0, '01 05 00 00 00 00 00 88')
     # # not to wait for ack
-    # perform_write(spi, 0xa0, '97 03 00 01 01 0f')
+    # perform_write(0xa0, '97 03 00 01 01 0f')
     # # not to wait for ack
 
     read_is_ready.acquire()
@@ -279,10 +280,12 @@ def main():
     millis = to_hex_string(now_milliseconds.to_bytes(2, 'little'))
     get_mcu_state_payload = bytes.fromhex(f'af 06 00 55 {millis} 00 00'.replace(' ', ''))
     get_mcu_state_payload += calculate_checksum_for_mcu_timestamp(get_mcu_state_payload).to_bytes()
-    perform_write(spi, 0xa0, get_mcu_state_payload)
-    # perform_write(spi, 0xa0, 'af 06 00 55 5c bf 00 00 86')
+    perform_write(0xa0, get_mcu_state_payload)
+    # perform_write(0xa0, 'af 06 00 55 5c bf 00 00 86')
+    # not to wait for ack
+
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)
+    perform_read()
     acquire_then_release(read_is_done, 'read_is_done')
 
     print()
@@ -292,11 +295,11 @@ def main():
     # read_is_ready.acquire()
     # read_is_done.acquire()
     #
-    # perform_write(spi, 0xa0, 'e4 09 00 02 00 01 bb 00 00 00 00 ff')
+    # perform_write(0xa0, 'e4 09 00 02 00 01 bb 00 00 00 00 ff')
     # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read(spi)  # get ack for cmd 0xe4, cfg flag 0x7
+    # perform_read()  # get ack for cmd 0xe4, cfg flag 0x7
     # manual_sleep(0.05)
-    # perform_read(spi)
+    # perform_read()
     # acquire_then_release(read_is_done, 'read_is_done')
 
     # > E4 03 00 01 51 71
@@ -309,14 +312,12 @@ def main():
     # read_is_ready.acquire()
     # read_is_done.acquire()
     #
-    # perform_write(spi, 0xa0, 'e4 09 00 03 00 02 bb 00 00 00 00 fd')
+    # perform_write(0xa0, 'e4 09 00 03 00 02 bb 00 00 00 00 fd')
     # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read(spi)  # get ack for cmd 0xe4, cfg flag 0x7
+    # perform_read()  # get ack for cmd 0xe4, cfg flag 0x7
     # manual_sleep(0.05)
-    # perform_read(spi)
+    # perform_read()
     # acquire_then_release(read_is_done, 'read_is_done')
-
-    # > E4 2A 00 00 03 00 02 BB 20 00 00 00 BA 1A 86 03 7C 1D 3C 71 C3 AF 34 49 55 BD 69 A9 A9 86 1D 9E 91 1F A2 49 85 B6 77 E8 DB D7 2D 43 C5
 
     print()
     # ----------------------------------------------------------------------------------------------------------------
@@ -340,16 +341,14 @@ def main():
     read_is_ready.acquire()
     read_is_done.acquire()
 
-    perform_write(spi, 0xa0, data)
+    perform_write(0xa0, data)
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)  # get ack for cmd 0xe4, cfg flag 0x7
+    perform_read()  # get ack for cmd 0xe4, cfg flag 0x7
     manual_sleep(0.05)
-    perform_read(spi)
+    perform_read()
     acquire_then_release(read_is_done, 'read_is_done')
 
     manual_sleep(0.2)
-
-    # > E0 03 00 00 03 C4
 
     print()
     # ----------------------------------------------------------------------------------------------------------------
@@ -358,11 +357,11 @@ def main():
     # read_is_ready.acquire()
     # read_is_done.acquire()
     #
-    # perform_write(spi, 0xa0, 'e0 09 00 03 00 02 bb 00 00 00 00 fd')
+    # perform_write(0xa0, 'e0 09 00 03 00 02 bb 00 00 00 00 fd')
     # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read(spi)  # get ack for cmd 0xe0, cfg flag 0x7
+    # perform_read()  # get ack for cmd 0xe0, cfg flag 0x7
     # manual_sleep(0.05)
-    # perform_read(spi)
+    # perform_read()
     # acquire_then_release(read_is_done, 'read_is_done')
 
     print()
@@ -377,11 +376,11 @@ def main():
     # fromhex = bytes.fromhex(f"030001bb 6000 0000 {PSK_WB}".replace(" ", ""))
     # data = make_payload_packet(0xe0, fromhex)
     #
-    # perform_write(spi, 0xa0, data)
+    # perform_write(0xa0, data)
     # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read(spi)  # get ack for cmd 0xe4, cfg flag 0x7
+    # perform_read()  # get ack for cmd 0xe4, cfg flag 0x7
     # manual_sleep(0.05)
-    # perform_read(spi)
+    # perform_read()
     # acquire_then_release(read_is_done, 'read_is_done')
 
     # > E0 03 00 00 03 C4
@@ -393,11 +392,11 @@ def main():
     read_is_ready.acquire()
     read_is_done.acquire()
 
-    perform_write(spi, 0xa0, 'e4 09 00 02 00 01 bb 00 00 00 00 ff')
+    perform_write(0xa0, 'e4 09 00 02 00 01 bb 00 00 00 00 ff')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)  # get ack for cmd 0xe4, cfg flag 0x7
+    perform_read()  # get ack for cmd 0xe4, cfg flag 0x7
     manual_sleep(0.05)
-    perform_read(spi)
+    perform_read()
     acquire_then_release(read_is_done, 'read_is_done')
 
     print()
@@ -407,11 +406,11 @@ def main():
     read_is_ready.acquire()
     read_is_done.acquire()
 
-    perform_write(spi, 0xa0, 'e4 09 00 03 00 02 bb 00 00 00 00 fd')
+    perform_write(0xa0, 'e4 09 00 03 00 02 bb 00 00 00 00 fd')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)  # get ack for cmd 0xe4, cfg flag 0x7
+    perform_read()  # get ack for cmd 0xe4, cfg flag 0x7
     manual_sleep(0.05)
-    perform_read(spi)
+    perform_read()
     acquire_then_release(read_is_done, 'read_is_done')
 
     print()
@@ -421,15 +420,15 @@ def main():
     read_is_ready.acquire()
     read_is_done.acquire()
 
-    perform_write(spi, 0xa0, 'a2 03 00 01 14 f0')
+    perform_write(0xa0, 'a2 03 00 01 14 f0')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)  # get ack for cmd 0xa2, cfg flag 0x7
+    perform_read()  # get ack for cmd 0xa2, cfg flag 0x7
     acquire_then_release(read_is_done, 'read_is_done')
 
     read_is_ready.acquire()
     read_is_done.acquire()
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)
+    perform_read()
     acquire_then_release(read_is_done, 'read_is_done')
 
     print()
@@ -439,11 +438,11 @@ def main():
     read_is_ready.acquire()
     read_is_done.acquire()
 
-    perform_write(spi, 0xa0, '82 06 00 00 00 00 04 00 1e')
+    perform_write(0xa0, '82 06 00 00 00 00 04 00 1e')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)  # get ack for cmd 0x82, cfg flag 0x7
+    perform_read()  # get ack for cmd 0x82, cfg flag 0x7
     manual_sleep(0.05)
-    perform_read(spi)
+    perform_read()
     acquire_then_release(read_is_done, 'read_is_done')
 
     print()
@@ -453,15 +452,15 @@ def main():
     read_is_ready.acquire()
     read_is_done.acquire()
 
-    perform_write(spi, 0xa0, 'a6 03 00 00 00 01')
+    perform_write(0xa0, 'a6 03 00 00 00 01')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)  # get ack for cmd 0xa6, cfg flag 0x7
+    perform_read()  # get ack for cmd 0xa6, cfg flag 0x7
     acquire_then_release(read_is_done, 'read_is_done')
 
     read_is_ready.acquire()
     read_is_done.acquire()
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)
+    perform_read()
     acquire_then_release(read_is_done, 'read_is_done')
 
     print()
@@ -471,15 +470,15 @@ def main():
     read_is_ready.acquire()
     read_is_done.acquire()
 
-    perform_write(spi, 0xa0, 'a2 03 00 01 14 f0')
+    perform_write(0xa0, 'a2 03 00 01 14 f0')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)  # get ack for cmd 0xa2, cfg flag 0x7
+    perform_read()  # get ack for cmd 0xa2, cfg flag 0x7
     acquire_then_release(read_is_done, 'read_is_done')
 
     read_is_ready.acquire()
     read_is_done.acquire()
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)
+    perform_read()
     acquire_then_release(read_is_done, 'read_is_done')
 
     print()
@@ -489,9 +488,9 @@ def main():
     read_is_ready.acquire()
     read_is_done.acquire()
 
-    perform_write(spi, 0xa0, '70 03 00 14 00 23')
+    perform_write(0xa0, '70 03 00 14 00 23')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)  # get ack for cmd 0x70, cfg flag 0x7
+    perform_read()  # get ack for cmd 0x70, cfg flag 0x7
     acquire_then_release(read_is_done, 'read_is_done')
 
     # > B0 03 00 70 07 80
@@ -504,11 +503,11 @@ def main():
     read_is_ready.acquire()
     read_is_done.acquire()
 
-    perform_write(spi, 0xa0, '98 09 00 38 0b b5 00 b3 00 b3 00 ab')
+    perform_write(0xa0, '98 09 00 38 0b b5 00 b3 00 b3 00 ab')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)  # get ack for cmd 0x98, cfg flag 0x7
+    perform_read()  # get ack for cmd 0x98, cfg flag 0x7
     manual_sleep(0.05)
-    perform_read(spi)
+    perform_read()
     acquire_then_release(read_is_done, 'read_is_done')
 
     # > 98 03 00 01 00 0E
@@ -520,18 +519,18 @@ def main():
     read_is_ready.acquire()
     read_is_done.acquire()
 
-    perform_write(spi, 0xa0, '90 E1 00 70 11 74 85 00 85 2C B1 18 C9 14 DD 00 DD 00 DD 00 BA 00 01 80 CA 00 04 00 84 '
-                             '00 15 B3 86 00 00 C4 88 00 00 BA 8A 00 00 B2 8C 00 00 AA 8E 00 00 C1 90 00 BB BB 92 00 '
-                             'B1 B1 94 00 00 A8 96 00 00 B6 98 00 00 00 9A 00 00 00 D2 00 00 00 D4 00 00 00 D6 00 00 '
-                             '00 D8 00 00 00 50 00 01 05 D0 00 00 00 70 00 00 00 72 00 78 56 74 00 34 12 20 00 10 40 '
-                             '5C 00 00 01 20 02 38 0B 36 02 B5 00 38 02 B3 00 3A 02 B3 00 2A 01 82 03 22 00 01 20 24 '
-                             '00 14 00 80 00 01 00 5C 00 00 01 56 00 04 20 58 00 03 02 32 00 0C 02 66 00 03 00 7C 00 '
-                             '00 58 82 00 80 1B 2A 01 08 00 54 00 10 01 62 00 04 03 64 00 19 00 66 00 03 00 7C 00 00 '
-                             '58 2A 01 08 00 52 00 08 00 54 00 00 01 66 00 03 00 7C 00 00 58 00 53 66 8F')
+    perform_write(0xa0, '90 E1 00 70 11 74 85 00 85 2C B1 18 C9 14 DD 00 DD 00 DD 00 BA 00 01 80 CA 00 04 00 84 '
+                        '00 15 B3 86 00 00 C4 88 00 00 BA 8A 00 00 B2 8C 00 00 AA 8E 00 00 C1 90 00 BB BB 92 00 '
+                        'B1 B1 94 00 00 A8 96 00 00 B6 98 00 00 00 9A 00 00 00 D2 00 00 00 D4 00 00 00 D6 00 00 '
+                        '00 D8 00 00 00 50 00 01 05 D0 00 00 00 70 00 00 00 72 00 78 56 74 00 34 12 20 00 10 40 '
+                        '5C 00 00 01 20 02 38 0B 36 02 B5 00 38 02 B3 00 3A 02 B3 00 2A 01 82 03 22 00 01 20 24 '
+                        '00 14 00 80 00 01 00 5C 00 00 01 56 00 04 20 58 00 03 02 32 00 0C 02 66 00 03 00 7C 00 '
+                        '00 58 82 00 80 1B 2A 01 08 00 54 00 10 01 62 00 04 03 64 00 19 00 66 00 03 00 7C 00 00 '
+                        '58 2A 01 08 00 52 00 08 00 54 00 00 01 66 00 03 00 7C 00 00 58 00 53 66 8F')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)  # get ack for cmd 0x90, cfg flag 0x7
+    perform_read()  # get ack for cmd 0x90, cfg flag 0x7
     manual_sleep(0.05)
-    perform_read(spi)
+    perform_read()
     acquire_then_release(read_is_done, 'read_is_done')
 
     # > 90 03 00 01 00 16
@@ -543,12 +542,10 @@ def main():
     read_is_ready.acquire()
     read_is_done.acquire()
 
-    perform_write(spi, 0xa0, 'd1 03 00 00 00 d7')
+    perform_write(0xa0, 'd1 03 00 00 00 d7')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)  # not to wait for ack
+    perform_read()  # not to wait for ack
     acquire_then_release(read_is_done, 'read_is_done')
-
-    # > 16 03 03 00 2F 01 00 00 2B 03 03 2D F4 51 58 CF 8C B1 40 46 F6 B5 4B 29 31 03 47 04 5B 70 30 B4 5D FD 20 78 7F 8B 1A D8 59 29 50 00 00 04 00 A8 00 FF 01 00
 
     print()
     # ----------------------------------------------------------------------------------------------------------------
@@ -557,21 +554,49 @@ def main():
     # поучаем ответ от ssl сервера, отправляем сканеру
 
     # ----------------------------------------------------------------------------------------------------------------
+    # log(Colors.HI_GREEN, "━━━ get fdt base ".ljust(120, '━'))
+    #
+    # read_is_ready.acquire()
+    # read_is_done.acquire()
+    #
+    # perform_write(0xa0, '36 0f 00 09 01 00 00 00 00 00 00 00 00 00 00 00 00 5b')
+    # acquire_then_release(read_is_ready, 'read_is_ready')
+    # perform_read()
+    # manual_sleep(0.05)
+    # perform_read()
+    # acquire_then_release(read_is_done, 'read_is_done')
+    #
+    # print()
+    # ----------------------------------------------------------------------------------------------------------------
+    # log(Colors.HI_GREEN, "━━━ get nav base ".ljust(120, '━'))
+    #
+    # read_is_ready.acquire()
+    # read_is_done.acquire()
+    #
+    # perform_write(0xa0, '50 03 00 01 00 56')
+    # acquire_then_release(read_is_ready, 'read_is_ready')
+    # perform_read()
+    # manual_sleep(0.05)
+    # perform_read()
+    # acquire_then_release(read_is_done, 'read_is_done')
+    #
+    # print()
+    # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ get image ".ljust(120, '━'))
 
     read_is_ready.acquire()
     read_is_done.acquire()
 
-    perform_write(spi, 0xa0, '20 03 00 01 00 86')
+    perform_write(0xa0, '20 03 00 01 00 86')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(spi)  # get ack for cmd 0x20, cfg flag 0x1
+    perform_read()  # get ack for cmd 0x20, cfg flag 0x1
     acquire_then_release(read_is_done, 'read_is_done')
 
     read_is_ready.acquire()
     read_is_done.acquire()
 
     acquire_then_release(read_is_ready, 'read_is_ready')
-    image_packet = perform_read(spi)
+    image_packet = perform_read()
     acquire_then_release(read_is_done, 'read_is_done')
 
     # log(Colors.ITALIC, "image packet bytes:\n" + ' '.join('{:02X}'.format(num) for num in image_packet))
