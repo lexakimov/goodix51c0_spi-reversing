@@ -1,5 +1,6 @@
 from datetime import datetime
 
+log_timestamps = False
 
 class Colors:
     END = "\033[0m"
@@ -30,10 +31,6 @@ class Colors:
     BLINK = "\033[5m"
     NEGATIVE = "\033[7m"
     CROSSED = "\033[9m"
-
-
-log_timestamps = False
-
 
 def log(color, message):
     if log_timestamps:
