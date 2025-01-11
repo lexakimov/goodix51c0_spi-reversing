@@ -113,3 +113,30 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 ### Отладка
 Запуск отладки через клик ПКМ на [protocol_interaction.py](protocol_interaction.py) -> `Debug 'protocol_interaction.py'`.
+
+### Логи
+
+| logs_1                              |                                                                                              |
+|-------------------------------------|----------------------------------------------------------------------------------------------|
+| _cache                              | файлы `Goodix_Cache.bin`, `goodix.dat`, `goodix_calib.dat`                                   |
+| _logs_0_init                        | начальная загрузка драйвера (нет файлов `Goodix_Cache.bin`, `goodix.dat`, `goodix_calib.dat` |
+| _logs_0_init_2                      | повторная загрузка драйвера                                                                  |
+| _logs_1_start_and_cancel            | добавление нового отпечатка - начало и отмена                                                |
+| _logs_2_start_and_enroll_one_finger | добавление нового отпечатка - скан пальца (1 попытка)                                        |
+| _logs_3_start_and_enroll_21_done    | добавление нового отпечатка - скан пальца (21 попытка) - успешно завершено                   |
+| _logs_4_delete                      | удаление отпечатка                                                                           |
+
+| logs_2                              |                                                                                                              |
+|-------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| _logs_0_init_1                      | начальная загрузка драйвера (нет файлов `Goodix_Cache.bin`, `goodix.dat`, `goodix_calib.dat`                 |
+| _logs_0_init_1_psk                  | начальная загрузка драйвера (нет файлов `Goodix_Cache.bin`, `goodix.dat`, `goodix_calib.dat` и PSK поврежден |
+| _logs_0_init_2                      | повторная загрузка драйвера                                                                                  |
+| _logs_1_start_and_cancel            | добавление нового отпечатка - начало и отмена                                                                |
+| _logs_2_start_and_enroll_one_finger | добавление нового отпечатка - скан пальца (1 попытка)                                                        |
+| _logs_3_start_and_enroll_21_done    | добавление нового отпечатка - скан пальца (21 попытка) - успешно завершено                                   |
+| _logs_4_lock_then_unlock_screen     | блокировка и разблокировка экрана                                                                            |
+| _logs_5_delete                      | удаление отпечатка                                                                                           |
+
+#### logs_3
+
+Логи USB драйверов (найдены в интернете)
