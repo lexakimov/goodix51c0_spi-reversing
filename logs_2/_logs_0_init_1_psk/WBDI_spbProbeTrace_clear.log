@@ -31,9 +31,9 @@
  Goodix>>> Start to create the target
  Goodix>>> Start to open IO target
  Goodix>>> Open the target success
- Goodix>>> enter inital headcount 0xa27c
  SPI Connection Descriptor FFFFD50E5E5EA038 ConnectionSpeed:10000000
  Connected to SPBTARGET 00002AF1B3C493A8 at address 0x0 from WDFDEVICE 00002AF1AFDBA478
+ Goodix>>> enter inital headcount 0xa27c
  Opening handle to SPB target via \Device\RESOURCE_HUB\0000000000000003
 
  Goodix>>> --- start
