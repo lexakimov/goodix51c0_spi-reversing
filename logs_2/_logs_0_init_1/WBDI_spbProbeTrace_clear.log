@@ -181,16 +181,28 @@
  Goodix>>> <= with 0x1.
  Goodix>>> update firmware result 1
  Goodix>>> Find :APP
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━ процесс проверки PSK:
+
  Goodix>>> production process...
  Goodix>>> Entry
  Goodix>>> . check psk if valid (total times:2)
+
+━━━ первая попытка проверки хэша PSK:
+
  Goodix>>> check psk times: 1
  Goodix>>> entry
  Goodix>>> 1.get host hash
  Goodix>>> entry
  Goodix>>> .get seal data
 
+━━━ в рамках первой попытки смотрим в файл Goodix_Cache.bin
+
  Goodix>>> read 0 bytes
+
+━━━ файл пуст, читаем specific data_type 0xbb010002
+
  Goodix>>> Entry
  Goodix>>> 0.read specific data_type 0xbb010002
  Goodix>>> 2.read data from mcu
@@ -235,11 +247,16 @@
  Goodix>>> production response pure data length=341
  Goodix>>> 2.parse return data
  Goodix>>> return data, len_payload_mcu  341 bytes, passed 2048 bytes, result 0.
+
+━━━ получили нормальный ответ, сохраняем в файл
+
  Goodix>>> read from mcu done, copy 340 bytes back
  Goodix>>> Exit ret:0x0.
  Goodix>>> read data from mcu ret:0x0, length: 340
  Goodix>>> Exit with 0x0
  Goodix>>> get from mcu, return 0x0, len 332
+
+━━━ файл Goodix_Cache.bin не пуст
 
  Goodix>>> generate rootkey
  Goodix>>> inbuf_len 324, entropy_len 48, len_out 32
@@ -251,6 +268,7 @@
  Goodix>>> hash return 0x0 length before 102, length after:32
  Goodix>>> exit with 0x0
  Goodix>>> ret 0x0, psk len 32, hash len 32, seal len 332, data from file flag 0
+
  Goodix>>> 2.get mcu hash
  Goodix>>> Entry
  Goodix>>> 0.read specific data_type 0xbb020003

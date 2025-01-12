@@ -64,7 +64,6 @@
 
  Goodix>>> force unlock it
 
-
  Goodix>>> Entry
  Goodix>>> Exit
  Goodix>>> Entry
@@ -186,16 +185,28 @@
  Goodix>>> <= with 0x1.
  Goodix>>> update firmware result 1
  Goodix>>> Find :APP
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━ процесс проверки PSK:
+
  Goodix>>> production process...
  Goodix>>> Entry
  Goodix>>> . check psk if valid (total times:2)
+
+━━━ первая попытка проверки хэша PSK:
+
  Goodix>>> check psk times: 1
  Goodix>>> entry
  Goodix>>> 1.get host hash
  Goodix>>> entry
  Goodix>>> .get seal data
 
+━━━ в рамках первой попытки смотрим в файл Goodix_Cache.bin
+
  Goodix>>> read 0 bytes
+
+━━━ файл пуст, читаем specific data_type 0xbb010002
+
  Goodix>>> Entry
  Goodix>>> 0.read specific data_type 0xbb010002
  Goodix>>> 2.read data from mcu
@@ -219,6 +230,9 @@
  Goodix>>> production response pure data length=2
  Goodix>>> 2.parse return data
  Goodix>>> return data, len_payload_mcu  2 bytes, passed 2048 bytes, result 1.
+
+━━━ получили плохой ответ
+
  Goodix>>> MCU return execution failed error num: 1.
  Goodix>>> Exit ret:0x200004.
  Goodix>>> read data from mcu ret:0x200004, length: 2048
@@ -231,17 +245,27 @@
  Goodix>>> get host hash failed with 0x200004.
  Goodix>>> exit with 0x200004
  Goodix>>> check psk failed with ret:0x200004.
+
+━━━ вторая попытка (все идентично первой попытке, то же неудача):
+
  Goodix>>> check psk times: 2
  Goodix>>> entry
  Goodix>>> 1.get host hash
  Goodix>>> entry
  Goodix>>> .get seal data
+
+━━━ в рамках второй попытки снова смотрим в файл Goodix_Cache.bin
+
  Goodix>>> read 0 bytes
+
+━━━  файл снова пуст, снова читаем specific data_type 0xbb010002
+
  Goodix>>> Entry
  Goodix>>> 0.read specific data_type 0xbb010002
  Goodix>>> 2.read data from mcu
  Goodix>>> Entry
  Goodix>>> 1.SpiSendDataToDeviceLock
+
  Goodix>>> cmd0-cmd1-Len-ackt-ec:0xe-2-0x8-1000-0
  write    4 -  0000: a0 0c 00 ac
  write   12 -  0000: e4 09 00 02 00 01 bb 00 00 00 00 ff
@@ -257,9 +281,11 @@
  Goodix>>> recvd data cmd-len: 0xe4-3
  Goodix>>> --- Received production response
  Goodix>>> production response pure data length=2
-
  Goodix>>> 2.parse return data
  Goodix>>> return data, len_payload_mcu  2 bytes, passed 2048 bytes, result 1.
+
+━━━ получили плохой ответ (снова)
+
  Goodix>>> MCU return execution failed error num: 1.
  Goodix>>> Exit ret:0x200004.
  Goodix>>> read data from mcu ret:0x200004, length: 2048
@@ -272,6 +298,10 @@
  Goodix>>> get host hash failed with 0x200004.
  Goodix>>> exit with 0x200004
  Goodix>>> check psk failed with ret:0x200004.
+
+━━━ вторая попыка закончилась неудачей
+━━━ нужно сгенерить новый PSK и отдать его сканеру
+
  Goodix>>> . write psk to mcu (total times:2)
  Goodix>>> write psk to mcu (times:1)
  Goodix>>> random not exist or invalid, generate new data
@@ -339,14 +369,23 @@
  Goodix>>> production response pure data length=2
  Goodix>>> 2.data parse
  Goodix>>> exit 0x0
+
+━━━ пишем 332 байта в файл Goodix_Cache.bin
+
  Goodix>>> written 332:332 bytes to file
  Goodix>>> Exit 0x0
  Goodix>>> update key success, check psk again
+
+━━━ PSK задан, ещё раз делаем проверкк хэша PSK:
+
  Goodix>>> entry
  Goodix>>> 1.get host hash
  Goodix>>> entry
  Goodix>>> .get seal data
  Goodix>>> read 332 bytes
+
+━━━ файл Goodix_Cache.bin не пуст
+
  Goodix>>> generate rootkey
  Goodix>>> inbuf_len 324, entropy_len 48, len_out 32
  Goodix>>> The decryption phase worked, 324, 32
@@ -357,6 +396,7 @@
  Goodix>>> hash return 0x0 length before 102, length after:32
  Goodix>>> exit with 0x0
  Goodix>>> ret 0x0, psk len 32, hash len 32, seal len 332, data from file flag 1
+
  Goodix>>> 2.get mcu hash
  Goodix>>> Entry
  Goodix>>> 0.read specific data_type 0xbb020003
