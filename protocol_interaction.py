@@ -153,14 +153,16 @@ def perform_write(packet_type: int, payload: bytes | str | list[int]):
     spi.writebytes(payload)
     is_2_valid = is_payload_packet_checksum_valid(payload)
     validity = format_validity(is_2_valid)
-    hex_string = crop(to_hex_string(payload), log_max_packet_length)
-    log(Colors.HI_PURPLE, f"\t-     packet sent {validity} : {hex_string}")
+    hex_string = to_hex_string(payload)
+    hex_cropped = crop(hex_string, log_max_packet_length)
+    log(Colors.HI_PURPLE, f"\t-     packet sent {validity} : {hex_cropped}")
 
     if log_frames:
         payload_length = extract_length(header_packet)
         type_hex = to_hex_string([payload[0], ])
         packet_type = types_by_code.get(payload[0], "UNKNOWN")
-        print_frame(Colors.HI_PURPLE, '', log_frames_width, [f'[length:{payload_length:>4}] command: (0x{type_hex}) {packet_type}', ])
+        frame_rows = [f'[length:{payload_length:>4}] command: (0x{type_hex}) {packet_type}', hex_string]
+        print_frame(Colors.HI_PURPLE, '', log_frames_width, frame_rows)
 
 
 def interrupt_monitoring():
