@@ -251,6 +251,9 @@
  Goodix>>> check psk: psk is valid!
  Goodix>>> Exit ret:0x0
  Goodix>>> Production Process...Success!
+
+━━━ Проверка PSK пройдена
+
  Goodix>>> exit return 0x0, inited 1
  Goodix>>> enter
  Goodix>>> --- to get CHIP ID
