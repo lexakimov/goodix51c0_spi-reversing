@@ -289,8 +289,8 @@ def main():
     millis = to_hex_string(now_milliseconds.to_bytes(2, 'little'))
     get_mcu_state_payload = bytes.fromhex(f'af 06 00 55 {millis} 00 00'.replace(' ', ''))
     get_mcu_state_payload += calculate_checksum_for_mcu_timestamp(get_mcu_state_payload).to_bytes()
+    # get_mcu_state_payload = bytes.fromhex(f'af 06 00 55 5c bf 00 00 86')
     perform_write(0xa0, get_mcu_state_payload)
-    # perform_write(0xa0, 'af 06 00 55 5c bf 00 00 86')
     # not to wait for ack
 
     acquire_then_release(read_is_ready, 'read_is_ready')
@@ -298,73 +298,48 @@ def main():
     acquire_then_release(read_is_done, 'read_is_done')
     print()
 
-    # TODO
     # ----------------------------------------------------------------------------------------------------------------
-    # log(Colors.HI_GREEN, "━━━ read 0xbb010002 (host psk hash) ".ljust(log_frames_width, '━'))
-    #
-    # read_is_ready.acquire()
-    # read_is_done.acquire()
-    #
-    # perform_write(0xa0, 'e4 09 00 02 00 01 bb 00 00 00 00 ff')
-    # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read()  # get ack for cmd 0xe4, cfg flag 0x7
-    # manual_sleep(0.05)
-    # perform_read()
-    # acquire_then_release(read_is_done, 'read_is_done')
+    log(Colors.HI_GREEN, "━━━ write 0xbb010002 && 0xbb010003 ".ljust(log_frames_width, '━'))
 
-    # > E4 03 00 01 51 71
-    # или [length: 345]
-    # print()
+    # FLAG: PSKID (4 bytes)
+    str_1 = '020001bb'
+    # length 332 (4 bytes) + host_psk_data (332 bytes) = 366 bytes
+    str_2 = '4c010000' + '01000000d08c9ddf0115d1118c7a00c04fc297eb010000004c9ce67c50c6b04bb637cd1c725114ee04000000400000005400680069007300200069007300200074006800650020006400650073006300720069007000740069006f006e00200073007400720069006e0067002e0000001066000000010000200000006e4fa0f0c6eb2c205bf30919735f8e39ce6a751a66e135de92fdaa1c9f16df43000000000e8000000002000020000000be119bea5888c588612186d6e3326314be59647949eb5552b8d6c9c5ad0d981130000000cb4ab34e61d04580cacc208521685be96bbba73559878d70df9f85738ab57436d506a8d012f893387fe332fe3253f9bc400000005aa42ac11c54b4e8af8abc02e1cf9ebda823bd056513e6c5dc7de5a0baa3c5e357da67a34bd335f15429c6c449a3c45b3792f827d392e5f72a001530c0817a3a6be5a0cbeef03c0b'
 
-    # TODO
+    # FLAG: PSK (4 bytes)
+    str_3 = '030001bb'
+    # length 102 (4 bytes) + зашифрованный psk (102 bytes) + remainder (2 bytes) = 108 bytes
+    str_4 = '66000000' + 'fad1e5b87930265db0ed2544e3615056f619fc11e6a558f8e0d92003e479ff4102ff200000007ddcfcdba9e81b0c4815638d0305303b562e5f4014f40b9d76edf2755d9e5dbd8694b0508df786193deddfca4854fef93f68a5d5cfdeec1524290576fdad0c67' + '0000'
+
+    # установить неправильный PSK
+    str_2 = '0F000000' + 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' # это потом получаем в read 0xbb010002
+    str_4 = '0F000000' + 'DDDDDDDDDDDDDDDDDDDDDDDDDDDDDD' + '0000'
+
+    fromhex = bytes.fromhex(f"{str_1}{str_2}{str_3}{str_4}".replace(" ", ""))
+    # fromhex = bytes.fromhex(f"{str_1} 0e00 0000 4141414142424242434343434444 {str_1}".replace(" ", ""))
+
+    data = make_payload_packet(0xe0, fromhex)
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    perform_write(0xa0, data)
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read()  # get ack for cmd 0xe4, cfg flag 0x7
+    manual_sleep(0.05)
+    perform_read()
+    acquire_then_release(read_is_done, 'read_is_done')
+
+    manual_sleep(0.2)
+    print()
+
     # ----------------------------------------------------------------------------------------------------------------
-    # log(Colors.HI_GREEN, "━━━ read 0xbb010002 (host psk hash) ".ljust(log_frames_width, '━'))
-    #
-    # read_is_ready.acquire()
-    # read_is_done.acquire()
-    #
-    # perform_write(0xa0, 'e4 09 00 02 00 01 bb 00 00 00 00 ff')
-    # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read()  # get ack for cmd 0xe4, cfg flag 0x7
-    # manual_sleep(0.05)
-    # perform_read()
-    # acquire_then_release(read_is_done, 'read_is_done')
-    # print()
 
-    # TODO
-    # ----------------------------------------------------------------------------------------------------------------
-    # log(Colors.HI_GREEN, "━━━ write 0xbb010002 && 0xbb010003 ".ljust(log_frames_width, '━'))
-    #
-    # # FLAG: PSKID (4 bytes)
-    # str_1 = '020001bb'
-    # # 366 bytes
-    # str_2 = '4c010000' + '01000000d08c9ddf0115d1118c7a00c04fc297eb010000004c9ce67c50c6b04bb637cd1c725114ee04000000400000005400680069007300200069007300200074006800650020006400650073006300720069007000740069006f006e00200073007400720069006e0067002e0000001066000000010000200000006e4fa0f0c6eb2c205bf30919735f8e39ce6a751a66e135de92fdaa1c9f16df43000000000e8000000002000020000000be119bea5888c588612186d6e3326314be59647949eb5552b8d6c9c5ad0d981130000000cb4ab34e61d04580cacc208521685be96bbba73559878d70df9f85738ab57436d506a8d012f893387fe332fe3253f9bc400000005aa42ac11c54b4e8af8abc02e1cf9ebda823bd056513e6c5dc7de5a0baa3c5e357da67a34bd335f15429c6c449a3c45b3792f827d392e5f72a001530c0817a3a6be5a0cbeef03c0b'
-    # # FLAG: PSK (4 bytes)
-    # str_3 = '030001bb'
-    # # 108 bytes
-    # str_4 = '66000000' + 'fad1e5b87930265db0ed2544e3615056f619fc11e6a558f8e0d92003e479ff4102ff200000007ddcfcdba9e81b0c4815638d0305303b562e5f4014f40b9d76edf2755d9e5dbd8694b0508df786193deddfca4854fef93f68a5d5cfdeec1524290576fdad0c670000'
-    # fromhex = bytes.fromhex(f"{str_1}{str_2}{str_3}{str_4}".replace(" ", ""))
-    #
-    # # можно изменить текущий psk
-    # # fromhex = bytes.fromhex(f"020001bb 0e00 0000 4141414142424242434343434444".replace(" ", ""))
-    #
-    # data = make_payload_packet(0xe0, fromhex)
-    #
-    # read_is_ready.acquire()
-    # read_is_done.acquire()
-    #
-    # perform_write(0xa0, data)
-    # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read()  # get ack for cmd 0xe4, cfg flag 0x7
-    # manual_sleep(0.05)
-    # perform_read()
-    # acquire_then_release(read_is_done, 'read_is_done')
-    #
-    # manual_sleep(0.2)
-    # print()
+    read_bb010002()
+    read_bb020003()
 
-    # TODO
     # ----------------------------------------------------------------------------------------------------------------
+    # TODO
     # log(Colors.HI_GREEN, "━━━ write 0xbb020003 ".ljust(log_frames_width, '━'))
     #
     # read_is_ready.acquire()
@@ -378,8 +353,8 @@ def main():
     # acquire_then_release(read_is_done, 'read_is_done')
     # print()
 
-    # TODO
     # ----------------------------------------------------------------------------------------------------------------
+    # TODO
     # log(Colors.HI_GREEN, "━━━ write 0xbb010003 (PSK WHITE BOX) ".ljust(log_frames_width, '━'))
     #
     # read_is_ready.acquire()
@@ -400,134 +375,104 @@ def main():
     # # > E0 03 00 00 03 C4
     # print()
 
-    # TODO
     # ----------------------------------------------------------------------------------------------------------------
-    # log(Colors.HI_GREEN, "━━━ read 0xbb010002 (host psk hash) ".ljust(log_frames_width, '━'))
-    #
-    # read_is_ready.acquire()
-    # read_is_done.acquire()
-    #
-    # perform_write(0xa0, 'e4 09 00 02 00 01 bb 00 00 00 00 ff')
-    # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read()  # get ack for cmd 0xe4, cfg flag 0x7
-    # manual_sleep(0.05)
-    # perform_read()
-    # acquire_then_release(read_is_done, 'read_is_done')
-    # print()
+    log(Colors.HI_GREEN, "━━━ reset sensor ".ljust(log_frames_width, '━'))
 
-    # TODO
-    # ----------------------------------------------------------------------------------------------------------------
-    # log(Colors.HI_GREEN, "━━━ read 0xbb020003 (psk mcu hash / pmk) ".ljust(log_frames_width, '━'))
-    #
-    # read_is_ready.acquire()
-    # read_is_done.acquire()
-    #
-    # perform_write(0xa0, 'e4 09 00 03 00 02 bb 00 00 00 00 fd')
-    # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read()  # get ack for cmd 0xe4, cfg flag 0x7
-    # manual_sleep(0.05)
-    # perform_read()
-    # acquire_then_release(read_is_done, 'read_is_done')
-    # print()
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    perform_write(0xa0, 'a2 03 00 01 14 f0')
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read()  # get ack for cmd 0xa2, cfg flag 0x7
+    acquire_then_release(read_is_done, 'read_is_done')
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read()
+    acquire_then_release(read_is_done, 'read_is_done')
+    print()
 
     # ----------------------------------------------------------------------------------------------------------------
-    # log(Colors.HI_GREEN, "━━━ reset sensor ".ljust(log_frames_width, '━'))
-    #
-    # read_is_ready.acquire()
-    # read_is_done.acquire()
-    #
-    # perform_write(0xa0, 'a2 03 00 01 14 f0')
-    # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read()  # get ack for cmd 0xa2, cfg flag 0x7
-    # acquire_then_release(read_is_done, 'read_is_done')
-    #
-    # read_is_ready.acquire()
-    # read_is_done.acquire()
-    # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read()
-    # acquire_then_release(read_is_done, 'read_is_done')
-    # print()
+    log(Colors.HI_GREEN, "━━━ get MILAN_CHIPID ".ljust(log_frames_width, '━'))
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    perform_write(0xa0, '82 06 00 00 00 00 04 00 1e')
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read()  # get ack for cmd 0x82, cfg flag 0x7
+    manual_sleep(0.05)
+    perform_read()
+    acquire_then_release(read_is_done, 'read_is_done')
+    print()
 
     # ----------------------------------------------------------------------------------------------------------------
-    # log(Colors.HI_GREEN, "━━━ get MILAN_CHIPID ".ljust(log_frames_width, '━'))
-    #
-    # read_is_ready.acquire()
-    # read_is_done.acquire()
-    #
-    # perform_write(0xa0, '82 06 00 00 00 00 04 00 1e')
-    # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read()  # get ack for cmd 0x82, cfg flag 0x7
-    # manual_sleep(0.05)
-    # perform_read()
-    # acquire_then_release(read_is_done, 'read_is_done')
-    # print()
+    log(Colors.HI_GREEN, "━━━ get OTP ".ljust(log_frames_width, '━'))
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    perform_write(0xa0, 'a6 03 00 00 00 01')
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read()  # get ack for cmd 0xa6, cfg flag 0x7
+    acquire_then_release(read_is_done, 'read_is_done')
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read()
+    acquire_then_release(read_is_done, 'read_is_done')
+    print()
 
     # ----------------------------------------------------------------------------------------------------------------
-    # log(Colors.HI_GREEN, "━━━ get OTP ".ljust(log_frames_width, '━'))
-    #
-    # read_is_ready.acquire()
-    # read_is_done.acquire()
-    #
-    # perform_write(0xa0, 'a6 03 00 00 00 01')
-    # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read()  # get ack for cmd 0xa6, cfg flag 0x7
-    # acquire_then_release(read_is_done, 'read_is_done')
-    #
-    # read_is_ready.acquire()
-    # read_is_done.acquire()
-    # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read()
-    # acquire_then_release(read_is_done, 'read_is_done')
-    # print()
+    log(Colors.HI_GREEN, "━━━ reset sensor ".ljust(log_frames_width, '━'))
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    perform_write(0xa0, 'a2 03 00 01 14 f0')
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read()  # get ack for cmd 0xa2, cfg flag 0x7
+    acquire_then_release(read_is_done, 'read_is_done')
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read()
+    acquire_then_release(read_is_done, 'read_is_done')
+    print()
 
     # ----------------------------------------------------------------------------------------------------------------
-    # log(Colors.HI_GREEN, "━━━ reset sensor ".ljust(log_frames_width, '━'))
-    #
-    # read_is_ready.acquire()
-    # read_is_done.acquire()
-    #
-    # perform_write(0xa0, 'a2 03 00 01 14 f0')
-    # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read()  # get ack for cmd 0xa2, cfg flag 0x7
-    # acquire_then_release(read_is_done, 'read_is_done')
-    #
-    # read_is_ready.acquire()
-    # read_is_done.acquire()
-    # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read()
-    # acquire_then_release(read_is_done, 'read_is_done')
-    # print()
+    log(Colors.HI_GREEN, "━━━ setmode: idle ".ljust(log_frames_width, '━'))
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    perform_write(0xa0, '70 03 00 14 00 23')
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read()  # get ack for cmd 0x70, cfg flag 0x7
+    acquire_then_release(read_is_done, 'read_is_done')
+
+    # > B0 03 00 70 07 80
+    print()
 
     # ----------------------------------------------------------------------------------------------------------------
-    # log(Colors.HI_GREEN, "━━━ setmode: idle ".ljust(log_frames_width, '━'))
-    #
-    # read_is_ready.acquire()
-    # read_is_done.acquire()
-    #
-    # perform_write(0xa0, '70 03 00 14 00 23')
-    # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read()  # get ack for cmd 0x70, cfg flag 0x7
-    # acquire_then_release(read_is_done, 'read_is_done')
-    #
-    # # > B0 03 00 70 07 80
-    # print()
+    log(Colors.HI_GREEN, "━━━ send Dac 0x380bb500b300b300 ".ljust(log_frames_width, '━'))
+    # after that we can get image from sensor
 
-    # ----------------------------------------------------------------------------------------------------------------
-    # log(Colors.HI_GREEN, "━━━ send Dac 0x380bb500b300b300 ".ljust(log_frames_width, '━'))
-    # # after that we can get image from sensor
-    #
-    # read_is_ready.acquire()
-    # read_is_done.acquire()
-    #
-    # perform_write(0xa0, '98 09 00 38 0b b5 00 b3 00 b3 00 ab')
-    # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read()  # get ack for cmd 0x98, cfg flag 0x7
-    # manual_sleep(0.05)
-    # perform_read()
-    # acquire_then_release(read_is_done, 'read_is_done')
-    #
-    # # > 98 03 00 01 00 0E
-    # print()
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    perform_write(0xa0, '98 09 00 38 0b b5 00 b3 00 b3 00 ab')
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read()  # get ack for cmd 0x98, cfg flag 0x7
+    manual_sleep(0.05)
+    perform_read()
+    acquire_then_release(read_is_done, 'read_is_done')
+
+    # > 98 03 00 01 00 0E
+    print()
 
     # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ upload mcu config ".ljust(log_frames_width, '━'))
@@ -555,6 +500,8 @@ def main():
     # > 90 03 00 01 00 16
     print()
 
+    ####################################################### TLS #######################################################
+
     # ----------------------------------------------------------------------------------------------------------------
     # log(Colors.HI_GREEN, "━━━ get tls handshake package ".ljust(log_frames_width, '━'))
     #
@@ -573,7 +520,78 @@ def main():
     # поучаем ответ от ssl сервера, отправляем сканеру
 
     # ----------------------------------------------------------------------------------------------------------------
-    # log(Colors.HI_GREEN, "━━━ get fdt base ".ljust(120, '━'))
+    # log(Colors.HI_GREEN, "━━━ tls 1 ".ljust(log_frames_width, '━'))
+    #
+    # perform_write(0xb0, '16 03 03 00 51 02 00 00 4d 03 03 9c 45 f7 ca 9a 9e b1 ec e4 3f d4 b4 4c 39 72 22 e6 7d 3c e8 '
+    #                     '2b 66 50 80 57 46 a4 17 13 71 b7 8c 20 92 4f f3 83 b8 15 a9 20 19 0c 93 4a 20 4f f3 a7 1b fd '
+    #                     '2d 40 03 cb 18 37 81 b9 6b ce 7c 04 b9 9e 00 a8 00 00 05 ff 01 00 01 00')
+    # manual_sleep(0.1)
+    #
+    # perform_write(0xb0, '16 03 03 00 04 0e 00 00 00')
+    # manual_sleep(0.1)
+    #
+    # perform_read()
+    # manual_sleep(0.1)
+    #
+    # perform_read()
+    # manual_sleep(0.1)
+    #
+    # perform_read()
+    # manual_sleep(0.1)
+    #
+    #
+    # perform_write(0xb0, '14 03 03 00 01 01')
+    # manual_sleep(0.1)
+    #
+    # perform_write(0xb0, '16 03 03 00 28 00 00 00 00 00 00 00 00 ef 3e db fd 53 50 df e4 f2 8e 82 fd e8 8d a8 f7 1d 58 '
+    #                     '8f 15 11 51 59 d5 01 68 40 84 2f 7b fd 76')
+    # manual_sleep(0.1)
+    #
+    # perform_write(0xa0, 'd4 03 00 00 00 d3')
+    # manual_sleep(0.1)
+    # perform_read()
+    # manual_sleep(0.1)
+    #
+    # perform_write(0xa0, 'af 06 00 55 6e a7 00 00 8c')
+    # # no ack
+    # manual_sleep(0.1)
+    #
+    # perform_read()
+    # manual_sleep(0.1)
+    #
+    #
+    # perform_write(0xa0, '36 0f 00 09 01 00 00 00 00 00 00 00 00 00 00 00 00 5b')
+    # manual_sleep(0.1)
+    # perform_read()
+    # manual_sleep(0.1)
+    # perform_read()
+    # manual_sleep(0.1)
+    #
+    #
+    # perform_write(0xa0, '50 03 00 01 00 56')
+    # manual_sleep(0.1)
+    # perform_read()
+    # manual_sleep(0.1)
+    # perform_read()
+    # manual_sleep(0.1)
+    #
+    # perform_write(0xa0, '36 0f 00 09 01 80 b0 80 c3 80 a5 80 b7 80 a7 80 b7 2e')
+    # manual_sleep(0.1)
+    # perform_read()
+    # manual_sleep(0.1)
+    # perform_read()
+    # manual_sleep(0.1)
+    #
+    # perform_write(0xa0, '82 06 00 00 82 00 02 00 9e')
+    # manual_sleep(0.1)
+    # perform_read()
+    # manual_sleep(0.1)
+    # perform_read()
+    # manual_sleep(0.1)
+    # print()
+
+    # ----------------------------------------------------------------------------------------------------------------
+    # log(Colors.HI_GREEN, "━━━ get fdt base ".ljust(log_frames_width, '━'))
     #
     # read_is_ready.acquire()
     # read_is_done.acquire()
@@ -584,10 +602,10 @@ def main():
     # manual_sleep(0.05)
     # perform_read()
     # acquire_then_release(read_is_done, 'read_is_done')
-    #
     # print()
+
     # ----------------------------------------------------------------------------------------------------------------
-    # log(Colors.HI_GREEN, "━━━ get nav base ".ljust(120, '━'))
+    # log(Colors.HI_GREEN, "━━━ get nav base ".ljust(log_frames_width, '━'))
     #
     # read_is_ready.acquire()
     # read_is_done.acquire()
@@ -598,7 +616,6 @@ def main():
     # manual_sleep(0.05)
     # perform_read()
     # acquire_then_release(read_is_done, 'read_is_done')
-    #
     # print()
 
     # ----------------------------------------------------------------------------------------------------------------
@@ -630,6 +647,33 @@ def main():
     gpio_line.close()
     exit(0)
     # ----------------------------------------------------------------------------------------------------------------
+
+
+def read_bb010002():
+    log(Colors.HI_GREEN, "━━━ read 0xbb010002 (host psk hash) ".ljust(log_frames_width, '━'))
+    read_is_ready.acquire()
+    read_is_done.acquire()
+    perform_write(0xa0, 'e4 09 00 02 00 01 bb 00 00 00 00 ff')
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read()  # get ack for cmd 0xe4, cfg flag 0x7
+    manual_sleep(0.05)
+    perform_read()
+    # ответ [length: 345] если PSK задан, либо E4 03 00 01 51 71 если PSK не задан
+    acquire_then_release(read_is_done, 'read_is_done')
+    print()
+
+
+def read_bb020003():
+    log(Colors.HI_GREEN, "━━━ read 0xbb020003 (psk mcu hash / pmk) ".ljust(log_frames_width, '━'))
+    read_is_ready.acquire()
+    read_is_done.acquire()
+    perform_write(0xa0, 'e4 09 00 03 00 02 bb 00 00 00 00 fd')
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read()  # get ack for cmd 0xe4, cfg flag 0x7
+    manual_sleep(0.05)
+    perform_read()
+    acquire_then_release(read_is_done, 'read_is_done')
+    print()
 
 
 if __name__ == "__main__":

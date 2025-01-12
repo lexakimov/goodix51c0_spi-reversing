@@ -1,0 +1,183 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+
+partition "Unlock TLS" {
+    :WRITE 0x01 (len:8, sum:0x88)
+    NO ACK;
+    note right: init (optional)\n
+
+    :WRITE 0xd5 (len:6, sum:0xd3)
+    NO ACK;
+    note right: force unlock TLS
+}
+
+partition "Get Evk version" {
+    :WRITE 0x01 (len:8, sum:0x88)
+    NO ACK;
+    note right: init (required after\ngpio reset or timeout)
+
+    :WRITE 0xa8 (len:6, sum:0xff)
+    ACK
+    READ 0xa8 (len:26, sum:68);
+    note right: Get Evk Version
+}
+
+partition "get mcu state" {
+    :WRITE 0x01 (len:8, sum:0x88)
+    NO ACK;
+    note right: init (required)
+
+    :WRITE 0x97 (len:6, sum:0x0f)
+    NO ACK;
+    note right: ???
+
+    :WRITE 0xaf (len:9, sum:0xc6)
+    NO ACK;
+    note right: mcu-state TIMESTAMP 0xbf5c
+
+    :READ 0xae (len:26, sum:0x65);
+}
+
+partition "Get Evk version (2 check after possible fw update)" {
+    :WRITE 0x01 (len:8, sum:0x88)
+    NO ACK;
+    note right: init (4)
+
+    :WRITE 0xa8 (len:6, sum:0xff)
+    ACK
+    READ 0xa8 (len:26, sum:68);
+    note right: Get Evk Version
+}
+
+'продолжить
+
+partition "PSK Check" {
+    if (Goodix_Cache.bin has data) then (false)
+        :WRITE 0xe4 (len:12, sum:0xff)
+        ACK
+        READ 0xe4 (len:345, sum:3b);
+        note right: read specific data_type 0xbb010002
+    else (true)
+    endif
+
+    :WRITE 0xe4 (len:12, sum:0xfd)
+    ACK
+    READ 0xe4 (len:45, sum:ce);
+    note right: read specific data_type 0xbb020003
+
+    :written 332:332 bytes to file  (Goodix_Cache.bin);
+}
+
+:WRITE 0xa2 (len:6, sum:0xf0)
+ACK
+READ 0xa2 (len:7, sum:fb);
+note right: reset sensor
+
+:WRITE 0x82 (len:9, sum:0x1e)
+ACK
+READ 0x82 (len:8, sum:58);
+note right: MILAN_CHIPID cmd: regrw
+
+:WRITE 0xa6 (len:6, sum:0x01)
+ACK
+READ 0xa6 (len:68, sum:1c);
+note right: GET OTP (хранится в goodix.dat)
+
+:WRITE 0xa2 (len:6, sum:0xf0)
+ACK
+READ 0xa2 (len:7, sum:fb);
+note right: reset sensor (2)
+
+:WRITE 0x70 (len:6, sum:0x23)
+ACK;
+note right: setmode: idle
+
+:WRITE 0x98 (len:12, sum:0xab)
+ACK
+READ 0x98 (len:6, sum:0e);
+note right: Dac sent::0x380bb500b300b300
+
+:WRITE 0x90 (len:228, sum:0x8f)
+ACK
+READ 0x90 (len:6, sum:16);
+note right: upload mcu config
+
+partition "TLS" {
+
+:WRITE 0xd1 (len:6, sum:0xd7);
+
+:READ 0x16 (len:52, sum:0x00);
+
+:WRITE 0x16 (len:86, sum:0x00);
+note right: отправка сканеру пакета от ssl сервера
+
+:WRITE 0x16 (len:9, sum:0x00);
+
+:READ 0x16 (len:26, sum:0x79);
+
+:READ 0x14 (len:6, sum:0x01);
+
+:READ 0x16 (len:45, sum:0xcd);
+
+:WRITE 0x14 (len:6, sum:0x01);
+
+:WRITE 0x16 (len:45, sum:0xb1);
+
+:WRITE 0xd4 (len:6, sum:0xd3)
+ACK;
+
+    partition "get MCU state (2)" {
+
+        :WRITE 0xaf (len:9, sum:0x6a)
+        NO ACK;
+        note right: mcu-state TIMESTAMP
+
+        :READ 0xae (len:26, sum:0x5e);
+    }
+
+}
+
+:read data from file 13520 bytes
+read 0-13520 bytes from C:\ProgramData\Goodix\goodix.dat
+check crc :Crchost:0x82fdcaa1----crcchip:0x0
+если файл существует:
+got file otp::0x5334303636362e000a7d82b372a0460a5
+107050e7d4b172741029a0cf1807f0c07813038e480ddfc0a
+bebb4401bbb3b5b3b3b3b5b3b34133e41bdd220cf017db
+get nav base and image base from from file;
+
+:WRITE 0x36 (len:18, sum:0xed)
+ACK
+READ 0x36 (len:20, sum:ee);
+note right: get fdt base (отправка нулей)
+
+:WRITE 0x50 (len:6, sum:0x56)
+ACK
+READ 0x50 (len:2413, sum:88);
+note right: get nav base
+
+:WRITE 0x36 (len:18, sum:0x26)
+ACK
+READ 0x36 (len:20, sum:ed);
+note right: get fdt base
+
+:WRITE 0x82 (len:9, sum:0x9e)
+ACK
+READ 0x82 (len:6, sum:8a);
+note right: cmd: regrw
+
+:WRITE 0x20 (len:6, sum:0x86)
+ACK
+READ 0x17 (len:7722, sum:bb);
+note right: setmode: Image
+
+:WRITE 0x36 (len:18, sum:0x24)
+ACK
+READ 0x36 (len:20, sum:e7);
+note right: get fdt base (cmd: fdt)
+
+stop
+
+@enduml
