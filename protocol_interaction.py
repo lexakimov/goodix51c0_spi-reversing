@@ -69,6 +69,10 @@ def make_payload_packet(packet_type: int, data):
     return payload
 
 
+def calculate_checksum(packet: list[int] | bytes) -> int:
+    return 0xaa - sum(packet) & 0xff
+
+
 def calculate_checksum_for_mcu_timestamp(packet: list[int] | bytes) -> int:
     return (0xaa - sum(packet) & 0xff) + 1
 
@@ -79,11 +83,11 @@ def is_header_packet_checksum_valid(packet: list[int] | bytearray) -> bool:
     return checksum == fact_sum
 
 
-def is_payload_packet_checksum_valid(packet: list[int] | bytearray) -> bool:
+def is_payload_packet_checksum_valid(packet: list[int] | bytearray):
     checksum = packet[-1]
     if checksum == 0x88:
         return None
-    fact_sum = 0xaa - sum(packet[:-1]) & 0xff
+    fact_sum = calculate_checksum(packet[:-1])
     return checksum == fact_sum
 
 
