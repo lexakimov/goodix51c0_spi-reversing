@@ -52,6 +52,14 @@ def make_header_packet(packet_type: int, payload_length: int) -> bytearray:
 
 
 def make_payload_packet(packet_type: int, data):
+    """
+    :param packet_type:
+    :param data:         possible values '00' or  [0x00] or bytearray([0x00])
+    """
+    if isinstance(data, str):
+        data = bytes.fromhex(data.replace(" ", ""))
+    elif isinstance(data, list):
+        data = bytearray(data)
     payload = bytes((packet_type,))
     target_len = len(data) + 1  # includes checksum byte
     payload += struct.pack("<h", target_len)
