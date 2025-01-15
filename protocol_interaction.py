@@ -74,7 +74,7 @@ def is_header_packet_checksum_valid(packet: list[int] | bytearray) -> bool:
 def is_payload_packet_checksum_valid(packet: list[int] | bytearray) -> bool:
     checksum = packet[-1]
     if checksum == 0x88:
-        return True
+        return None
     fact_sum = 0xaa - sum(packet[:-1]) & 0xff
     return checksum == fact_sum
 

@@ -53,6 +53,8 @@ def to_utf_string(byte_array: bytearray | bytes | list[int]):
 
 
 def format_validity(is_valid: bool) -> str:
+    if is_valid is None:
+        return '⚪'
     return '🟢' if is_valid else '🔴'
 
 
