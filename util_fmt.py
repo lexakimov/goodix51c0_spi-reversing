@@ -58,7 +58,7 @@ def format_validity(is_valid: bool) -> str:
     return '🟢' if is_valid else '🔴'
 
 
-def print_frame(color: Colors, prefix: str, width: int, rows: list[str]):
+def print_frame(color: str, prefix: str, width: int, rows: list[str]):
     indent = ' '
     max_len = width - len(indent) * 2 - 2
     log(color, f'{prefix}╔'.ljust(width - 1, '═') + '╗')
