@@ -41,12 +41,12 @@ _Необходимо наличие Python 3 с установленным `vir
 
 - в корневой папке проекта создайте виртуальное окружение:
 ```shell
-virtualenv venv
+virtualenv .venv
 ```
 
 - активируйте его:
 ```shell
-source ./venv/bin/activate
+source ./.venv/bin/activate
 ```
 
 - установите зависимости:
@@ -66,20 +66,20 @@ sudo python protocol_interaction.py
 
 - создайте в виртуальном окружении скрипт для запуска интерпретатора python из под root-пользователя:
 ```shell
-cat << EOF > ./venv/bin/python-sudo
+cat << EOF > ./.venv/bin/python-sudo
 #!/bin/bash
-sudo $(pwd)/venv/bin/python "\$@"
+sudo $(pwd)/.venv/bin/python "\$@"
 EOF
-chmod +x ./venv/bin/python-sudo
+chmod +x ./.venv/bin/python-sudo
 ```
 
-- создайте файл `/etc/sudoers.d/venv-python` со следующим содержанием:
+- создайте файл `/etc/sudoers.d/python` со следующим содержанием:
 ```
-user_name machine_name = (root) NOPASSWD: /path/to/project/venv/bin/python
+user_name machine_name = (root) NOPASSWD: /path/to/project/.venv/bin/python
 ```
 Например, так:
 ```
-akimov huawei-rlefxx = (root) NOPASSWD: /home/akimov/desktop/gdix51c0-spi-reversing/venv/bin/python
+akimov huawei-rlefxx = (root) NOPASSWD: /home/akimov/desktop/gdix51c0-spi-reversing/.venv/bin/python
 ```
 
 - проверка, что все было выполнено корректно:
@@ -99,7 +99,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 ### Настройка интерпретатора с root-правами в IDE
 - в Intellij IDEA зайдите в `File -> Project Structure -> SDKs -> Add new SDK -> Add Python SDK`
-- на вкладке `Virtual environment -> Existing environment -> Interpreter ...` и выберите файл `[project path]/venv/bin/python-sudo`
+- на вкладке `Virtual environment -> Existing environment -> Interpreter ...` и выберите файл `[project path]/.venv/bin/python-sudo`
 Все будет выглядеть примерно так:
 
 <p align="center">
