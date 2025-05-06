@@ -1,4 +1,24 @@
-## Структура пакетов
+```
+OPTIONAL ━━━ reset device...
+OPTIONAL if reset device или через timeout ━━━ get evk version
+OPTIONAL ━━━ get mcu state
+OPTIONAL ━━━ write 0xbb010002 && 0xbb010003
+OPTIONAL ━━━ read 0xbb010002 (host psk hash)
+OPTIONAL ━━━ read 0xbb020003 (psk mcu hash / pmk)
+OPTIONAL ━━━ reset sensor
+OPTIONAL ━━━ get MILAN_CHIPID
+OPTIONAL ━━━ get OTP
+OPTIONAL ━━━ reset sensor
+OPTIONAL ━━━ setmode: idle
+OPTIONAL ━━━ send Dac 0x380bb500b300b300
+REQUIRED ━━━ upload mcu config
+━━━ get image
+```
+
+> TODO разобраться в разнице пакетов TLS
+
+> COMMAND_TLS_SUCCESSFULLY_ESTABLISHED
+
 
 ## Типы пакетов
 
@@ -342,7 +362,8 @@ read (вариант 2 - неудача: PSK не найден)
     Will Clear the cache buffer.
 ```
 
-`e0 0xbb010002` - записать host_psk_data (содержимое Goodix_Cache.bin) + зашифрованный psk
+Двойная команда
+`e0 0xbb010002 ... 0xbb010003` - записать host_psk_data (содержимое Goodix_Cache.bin) + зашифрованный psk
 
 ```
 write
@@ -771,7 +792,16 @@ read
 
 ### Init TLS - Get TLS handshake package
 
+> TODO выяснить от чего меняется содержимое client hello
+> TODO декодировать все пакеты tls через парсер
+> https://tls12.xargs.org/#server-hello/annotated
+> https://williamlieurance.com/tls-handshake-parser/
+
+> https://aistudio.google.com/app/prompts?state=%7B%22ids%22:%5B%221eL109UOXNQUWn3T6FnA2gKBpy25bIkjp%22%5D,%22action%22:%22open%22,%22userId%22:%22108801036010063453123%22,%22resourceKeys%22:%7B%7D%7D&usp=sharing
+> https://community.netwitness.com/s/article/DecryptIncomingPacketsTLS1-2
 ```
+1. получить Client hello
+
 write
     a0 06 00 a6
         a0    - флаг MSG_PROTOCOL
@@ -792,10 +822,28 @@ read
         3400  - полная длина следующего пакета в LE-notation (52)
         e4    - контрольная сумма
 
-    16 03 03 00 2f 01 00 00 2b 03 03 2d f4 51 58 cf 8c b1 40 46 f6 b5 4b 29 31 03 47 04 5b 70 30 b4 5d fd 20 78 7f 8b 1a d8 59 29 50 00 00 04 00 a8 00 ff 01 00
-        - tls handshake package (52)
+    16 03 03 00 2f 01 00 00 2b 03 03 2d f4 51 58 cf 8c b1 40 46 f6 b5 4b 29 31 03 47 04 5b 70 30 b4
+    5d fd 20 78 7f 8b 1a d8 59 29 50 00 00 04 00 a8 00 ff 01 00               - tls handshake client hello package (52)
+        [
+            {
+                "ClientHello": {
+                    "version": "Tls12",
+                    "random_data": "2df45158cf8cb14046f6b54b293134745b7030b45dfd20787f8b1ad8592950",
+                    "session_id": "",
+                    "cipherlist": [
+                        "0x00a8(TLS_PSK_WITH_AES_128_GCM_SHA256)",
+                        "0x00ff(Unknown cipher)" TLS_EMPTY_RENEGOTIATION_INFO_SCSV
+                    ],
+                    "compressionlist": [
+                        "Null"
+                    ],
+                    "extensions": []
+                }
+            }
+        ]
 
-TODO выяснить от чего меняется содержимое
+
+2. отправить server hello
 
 write
     b0 56 00 06
@@ -805,9 +853,24 @@ write
 
     16 03 03 00 51 02 00 00 4d 03 03 9c 45 f7 ca 9a 9e b1 ec e4 3f d4 b4 4c 39 72 22 e6 7d 3c e8 2b
     66 50 80 57 46 a4 17 13 71 b7 8c 20 92 4f f3 83 b8 15 a9 20 19 0c 93 4a 20 4f f3 a7 1b fd 2d 40
-    03 cb 18 37 81 b9 6b ce 7c 04 b9 9e 00 a8 00 00 05 ff 01 00 01 00
+    03 cb 18 37 81 b9 6b ce 7c 04 b9 9e 00 a8 00 00 05 ff 01 00 01 00         - tls handshake server hello package (86)
+        [
+            {
+                "ServerHello": {
+                    "version": "Tls12",
+                    "random_data": "9c45f7ca9a9eb1ece43fd4b44c397222e67d3ce82b6650805746a4171371b78c",
+                    "session_id": "924ff383b815a92019c934a204ff3a71bfd2d403cb183781b96bce7c4b99e",
+                    "chosen_cipher": "0x00a8(TLS_PSK_WITH_AES_128_GCM_SHA256)",
+                    "chosen_compression": "Null",
+                    "extensions": [
+                        "TlsExtension::RenegotiationInfo(data=[])"
+                    ]
+                }
+            }
+        ]
 
-# одинаковое 16 03 03 00 51 02 00 00 4d 03 03 [..] 00 a8 00 00 05 ff 01 00 01 00
+
+3. отправляет server hello done
 
 write
     b0 09 00 b9
@@ -818,6 +881,8 @@ write
     16 03 03 00 04 0e 00 00 00
 
 
+4. Client Key Exchange
+
 read
     b0 1a 00 ca
         b0    - флаг TLS
@@ -826,6 +891,23 @@ read
 
     16 03 03 00 15 10 00 00 11 00 0f 43 6c 69 65 6e 74 5f 69 64 65 6e 74 69 74 79
 
+      16 03 03 00 15  - Handshake, TLS 1.2, Длина 21 байт.
+      10              - Handshake Type = Client Key Exchange (16).
+      00 00 11        - Длина сообщения Client Key Exchange = 17 байт.
+      Для PSK (RFC 4279): Это сообщение используется для передачи идентификатора PSK.
+      00 0f           - Длина PSK Identity = 15 байт.
+      43 6c 69 65 6e 74 5f 69 64 65 6e 74 69 74 79  - PSK Identity = "Client_identity" (в ASCII).
+
+    Значение: Вот где клиент передает свой идентификатор!
+    Этот способ (передача identity в ClientKeyExchange вместо ClientHello extension) используется в RFC 4279.
+    Это объясняет отсутствие расширения в ClientHello.
+    Сервер теперь знает, какой PSK искать у себя (по строке "Client_identity").
+
+
+5. Change Cipher Spec (client -> server)
+Значение: Клиент сообщает серверу, что все последующие сообщения от него будут зашифрованы с использованием 
+согласованных ключей (выведенных из PSK, Client Random, Server Random с помощью PRF/SHA256).
+    
 read
     b0 06 00 b6
         b0    - флаг TLS
@@ -833,6 +915,11 @@ read
         b6    - контрольная сумма
 
     14 03 03 00 01 01
+      14 03 03 00 01: Change Cipher Spec, TLS 1.2, Длина 1 байт.
+      01: Change Cipher Spec payload.
+
+
+6. зашифрованное сообщение Finished от клиента
 
 read
     b0 2d 00 dd
@@ -842,6 +929,22 @@ read
 
     16 03 03 00 28 00 00 00 00 00 00 00 00 1a e7 d2 ec 99 bc 03 c4 2c b0 3f b0 36 d5 16 24 27 2f c6 0a db 73 10 4a e1 7d eb 51 78 08 1f c7
 
+      16 03 03 00 28: Handshake, TLS 1.2, Длина 40 байт.
+      Это зашифрованное сообщение Finished от клиента. Оно шифруется с помощью AES_128_GCM и ключа client_write_key.
+      Структура данных AES-GCM в TLS 1.2: explicit_nonce (8 байт) + ciphertext (содержит зашифрованное Handshake сообщение) + auth_tag (16 байт).
+      00 00 00 00 00 00 00 00: Explicit Nonce (часть IV, здесь это просто номер записи 0).
+      1a e7 ... 16 24 (16 байт): Зашифрованные данные. Они содержат:
+      Handshake Header (20 00 00 0c): Тип Finished (20), Длина 12 байт.
+      Verify Data (12 байт): MAC (вычисленный PRF/SHA256) всех предыдущих сообщений рукопожатия.
+      27 2f ... fc7 (16 байт): GCM Authentication Tag. Гарантирует целостность и подлинность зашифрованных данных и Nonce.
+
+Значение: Клиент доказывает, что он правильно вычислил ключи (т.е. знает PSK) и что рукопожатие не было подделано.
+Расшифровка: Невозможна без знания Pre-Shared Key (PSK), который использовался для генерации сессионных ключей.
+
+
+7. Change Cipher Spec (server -> client)
+Значение: Сервер сообщает клиенту, что его последующие сообщения будут зашифрованы.
+
 write
     b0 06 00 b6
         b0    - флаг TLS
@@ -849,6 +952,11 @@ write
         b6    - контрольная сумма
 
     14 03 03 00 01 01
+      14 03 03 00 01  - Change Cipher Spec, TLS 1.2, Длина 1 байт.
+      01              - Change Cipher Spec payload.
+
+
+8. зашифрованное сообщение Finished от сервера
 
 write
     b0 2d 00 dd
@@ -857,6 +965,16 @@ write
         dd    - контрольная сумма
 
     16 03 03 00 28 00 00 00 00 00 00 00 00 ef 3e db fd 53 50 df e4 f2 8e 82 fd e8 8d a8 f7 1d 58 8f 15 11 51 59 d5 01 68 40 84 2f 7b fd 76
+
+      16 03 03 00 28: Handshake, TLS 1.2, Длина 40 байт.
+      Это зашифрованное сообщение Finished от сервера. Оно шифруется с помощью AES_128_GCM и ключа server_write_key.
+      Структура аналогична клиентскому Finished:
+      ef 3e ... df e4 (8 байт): Explicit Nonce сервера (номер записи 0).
+      f2 8e ... a8 f7 (16 байт): Зашифрованные данные (Handshake Header 20 00 00 0c + 12 байт Verify Data сервера).
+      1d 58 ... fd 76 (16 байт): GCM Authentication Tag сервера.
+
+Значение: Сервер успешно расшифровал и проверил Finished клиента (значит, PSK и ключи совпали) и отправляет свое подтверждение. Рукопожатие успешно завершено.
+Расшифровка: Невозможна без знания Pre-Shared Key (PSK).
 
 
 write
@@ -1399,9 +1517,11 @@ read
     a9 a6 bd a9 3a 8c 4d 61 cd 58 3f 3c e2 7a 8c d8 7f bf a7 ac 02 22 63 26 5c 10 7c ed 93 b5 00 df f9 b8 e1 0d 2e 1b d3 fd ae 27
 
         TLS-зашифрованный пакет с изображением
-        первые 5 байт - заголовок
-        17 03 03 
-        1e25  - длина последующего с контрольной суммой сообщения в BE-notation (7717)
+        Header
+          17 - type is 0x17 (application data)
+          03 03 - protocol version is "3,3" (TLS 1.2)
+          1e 25  - длина последующего с контрольной суммой сообщения в BE-notation (7717)
+        Encryption IV ?
         остаток 7717 байт:
         00 00 00 00 00 00 00 01 89 42 81 ...  
         после дешифрации - 7693 байт (см далее)
