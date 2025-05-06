@@ -97,17 +97,9 @@ def extract_length(packet: list[int] | bytearray) -> int:
     return length_int
 
 
-def reset_spi():
-    gpio_reset = CdevGPIO('/dev/gpiochip0', 140, 'out', label='goodix-fp-reset')
-    for i in (1, 0):
-        gpio_reset.write(bool(i))
-        sleep(0.01)
-    gpio_reset.close()
-
-
 def perform_read(is_ack=False) -> list[int]:
     logs_color = Colors.GREEN if is_ack else Colors.HI_BLUE
-    log(logs_color, "reading from device...")
+    log(logs_color, f"{'get ack' if is_ack else 'reading'} from device...")
     header_packet = spi.readbytes(4)
     is_valid = is_header_packet_checksum_valid(header_packet)
     validity = format_validity(is_valid)
@@ -584,13 +576,37 @@ def reset_device():
     read_is_ready.acquire()
     read_is_done.acquire()
 
-    reset_spi()
+    gpio_reset = CdevGPIO('/dev/gpiochip0', 140, 'out', label='goodix-fp-reset')
+    for i in (1, 0):
+        gpio_reset.write(bool(i))
+        sleep(0.01)
+    gpio_reset.close()
+
     read_is_done.acquire()
     read_is_done.release()
     read_is_ready.acquire()
     read_is_ready.release()
     manual_sleep(0.15)
     log(Colors.RED, "reset done")
+
+
+def reset_sensor():
+    log(Colors.HI_GREEN, "━━━ reset sensor ".ljust(log_frames_width, '━'))
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    perform_write(0xa0, 'a2 03 00 01 14 f0')
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read(True)  # get ack for cmd 0xa2, cfg flag 0x7
+    acquire_then_release(read_is_done, 'read_is_done')
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read()
+    acquire_then_release(read_is_done, 'read_is_done')
+    print()
 
 
 def get_mcu_state():
@@ -665,25 +681,6 @@ def read_bb020003():
     acquire_then_release(read_is_ready, 'read_is_ready')
     perform_read(True)  # get ack for cmd 0xe4, cfg flag 0x7
     manual_sleep(0.05)
-    perform_read()
-    acquire_then_release(read_is_done, 'read_is_done')
-    print()
-
-
-def reset_sensor():
-    log(Colors.HI_GREEN, "━━━ reset sensor ".ljust(log_frames_width, '━'))
-
-    read_is_ready.acquire()
-    read_is_done.acquire()
-
-    perform_write(0xa0, 'a2 03 00 01 14 f0')
-    acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(True)  # get ack for cmd 0xa2, cfg flag 0x7
-    acquire_then_release(read_is_done, 'read_is_done')
-
-    read_is_ready.acquire()
-    read_is_done.acquire()
-    acquire_then_release(read_is_ready, 'read_is_ready')
     perform_read()
     acquire_then_release(read_is_done, 'read_is_done')
     print()
