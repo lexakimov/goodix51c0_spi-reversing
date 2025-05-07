@@ -251,26 +251,45 @@ def main():
     get_mcu_state()
 
     # ----------------------------------------------------------------------------------------------------------------
+    # Для отладки
+    read_bb010002()
+    read_bb020003()
+    if True: exit()
+
+    # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ write 0xbb010002 && 0xbb010003 ".ljust(log_frames_width, '━'))
 
-    # FLAG: PSKID (4 bytes)
-    str_1 = '020001bb'
-    # length 332 (4 bytes) + host_psk_data (332 bytes) = 366 bytes
-    str_2 = '4c010000' + '01000000d08c9ddf0115d1118c7a00c04fc297eb010000004c9ce67c50c6b04bb637cd1c725114ee04000000400000005400680069007300200069007300200074006800650020006400650073006300720069007000740069006f006e00200073007400720069006e0067002e0000001066000000010000200000006e4fa0f0c6eb2c205bf30919735f8e39ce6a751a66e135de92fdaa1c9f16df43000000000e8000000002000020000000be119bea5888c588612186d6e3326314be59647949eb5552b8d6c9c5ad0d981130000000cb4ab34e61d04580cacc208521685be96bbba73559878d70df9f85738ab57436d506a8d012f893387fe332fe3253f9bc400000005aa42ac11c54b4e8af8abc02e1cf9ebda823bd056513e6c5dc7de5a0baa3c5e357da67a34bd335f15429c6c449a3c45b3792f827d392e5f72a001530c0817a3a6be5a0cbeef03c0b'
+    # FLAG: PSKID (4 bytes) + length 332 (4 bytes) + host_psk_data (332 bytes) = 340 bytes
+    # длина должна быть кратна 4
+    part_1 = '020001bb 4c01 0000 01000000d08c9ddf0115d1118c7a00c04fc297eb010000004c9ce67c50c6b04bb637cd1c725114ee04000000400000005400680069007300200069007300200074006800650020006400650073006300720069007000740069006f006e00200073007400720069006e0067002e0000001066000000010000200000006e4fa0f0c6eb2c205bf30919735f8e39ce6a751a66e135de92fdaa1c9f16df43000000000e8000000002000020000000be119bea5888c588612186d6e3326314be59647949eb5552b8d6c9c5ad0d981130000000cb4ab34e61d04580cacc208521685be96bbba73559878d70df9f85738ab57436d506a8d012f893387fe332fe3253f9bc400000005aa42ac11c54b4e8af8abc02e1cf9ebda823bd056513e6c5dc7de5a0baa3c5e357da67a34bd335f15429c6c449a3c45b3792f827d392e5f72a001530c0817a3a6be5a0cbeef03c0b'
+    # part_1 = '020001bb 1000 0000 44444444444444444444444444444444'
+    # это потом получаем в read 0xbb010002
 
-    # FLAG: PSK (4 bytes)
-    str_3 = '030001bb'
-    # length 102 (4 bytes) + зашифрованный psk (102 bytes) + remainder (2 bytes) = 108 bytes
-    str_4 = '66000000' + 'fad1e5b87930265db0ed2544e3615056f619fc11e6a558f8e0d92003e479ff4102ff200000007ddcfcdba9e81b0c4815638d0305303b562e5f4014f40b9d76edf2755d9e5dbd8694b0508df786193deddfca4854fef93f68a5d5cfdeec1524290576fdad0c67' + '0000'
+    # можно передать незашифрованный PSK (WB?) (который используется для TLS)
+    # FLAG: PSK (4 bytes) + length 102 (4 bytes) + зашифрованный psk (102 bytes) + remainder (2 bytes) = 108 bytes
+    # длина должна быть n*4+3 (3,7,11,15,19,23...)
+    part_2 = '030001bb 6600 0000 fad1e5b87930265db0ed2544e3615056f619fc11e6a558f8e0d92003e479ff4102ff200000007ddcfcdba9e81b0c4815638d0305303b562e5f4014f40b9d76edf2755d9e5dbd8694b0508df786193deddfca4854fef93f68a5d5cfdeec1524290576fdad0c67' + '0000'
+    # part_2 = '030001bb 0F00 0000 777777777777777777777777777777 0000'
+    # part_2 = '030001bb 0e00 0000 4141414142424242434343434444'
+    # part_2 = '030001bb 1000 0000 00000000000000000000000000000000'
+    # от этого меняется ответ read 0xbb020003
 
-    # установить неправильный PSK
-    str_2 = '0F000000' + 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' # это потом получаем в read 0xbb010002
-    str_4 = '0F000000' + 'DDDDDDDDDDDDDDDDDDDDDDDDDDDDDD' + '0000'
+    # -----------------------------------------------------------------------------------------------------------------
+    # write 0xbb010002 -> read 0xbb010002 (получаем 1:1)
+    # 0xbb010002:
+    # 44444444444444444444444444444444  E4 1A 00 00  02 00 01 BB  10 00 00 00  44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44  9E
+    #                                     (26)                   (16)          [                                             ]
 
-    fromhex = bytes.fromhex(f"{str_1}{str_2}{str_3}{str_4}".replace(" ", ""))
-    # fromhex = bytes.fromhex(f"{str_1} 0e00 0000 4141414142424242434343434444 {str_1}".replace(" ", ""))
+    # write 0xbb010003 -> read 0xbb020003 (получаем хеш 32 байта)
+    # 0xbb020003:
+    # 000000000000000000000000000000    E4 2A 00 00  03 00 02 BB  20 00 00 00  53 22 FE CF C9 2A 5E 32 48 A2 97 A3 DF 3E DD FB 9B D9 04 95 04 27 2E 4F 57 2B 87 FA 36 D4 B3 BD  AC
+    # 777777777777777777777777777777    E4 2A 00 00  03 00 02 BB  20 00 00 00  E2 57 7E EB 61 DC 21 97 DF E9 48 16 D7 31 F2 94 1C CD 0B 66 DE 8D C9 7A AC B3 77 BF E8 47 69 70  CC
+    #                                     (42)                   (32)          [                                              32                                             ]
 
-    data = make_payload_packet(0xe0, fromhex)
+    # read  0xbb010003 - не читается
+    # -----------------------------------------------------------------------------------------------------------------
+
+    data = make_payload_packet(0xe0, part_1 + part_2)
 
     read_is_ready.acquire()
     read_is_done.acquire()
@@ -280,42 +299,47 @@ def main():
     perform_read(True)  # get ack for cmd 0xe4, cfg flag 0x7
     manual_sleep(0.05)
     perform_read()
+    # > E0 03 00 00 51 76 - успешно
     acquire_then_release(read_is_done, 'read_is_done')
 
     manual_sleep(0.2)
     print()
 
     # ----------------------------------------------------------------------------------------------------------------
-
-    read_bb010002()
-    read_bb020003()
-
-    # ----------------------------------------------------------------------------------------------------------------
-    # TODO
-    # log(Colors.HI_GREEN, "━━━ write 0xbb020003 ".ljust(log_frames_width, '━'))
-    #
-    # read_is_ready.acquire()
-    # read_is_done.acquire()
-    #
-    # perform_write(0xa0, 'e0 09 00 03 00 02 bb 00 00 00 00 fd')
-    # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read()  # get ack for cmd 0xe0, cfg flag 0x7
-    # manual_sleep(0.05)
-    # perform_read()
-    # acquire_then_release(read_is_done, 'read_is_done')
-    # print()
+    # Для отладки
+    read_bb010002() # (получаем 1:1)
+    read_bb020003() # (получаем хеш - 32 байта)
+    if True: exit()
 
     # ----------------------------------------------------------------------------------------------------------------
-    # TODO
+    # TODO: Не было в логах драйвера, догадался сам
+    log(Colors.HI_GREEN, "━━━ write 0xbb010002 ".ljust(log_frames_width, '━'))
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    data = make_payload_packet(0xe0, '020001bb 0F000000 777777777777777777777777777777')
+
+    perform_write(0xa0, data)
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read()  # get ack for cmd 0xe4, cfg flag 0x7
+    manual_sleep(0.05)
+    perform_read()
+    acquire_then_release(read_is_done, 'read_is_done')
+    print()
+
+    # ----------------------------------------------------------------------------------------------------------------
+    # TODO: Не было в логах драйвера, догадался сам
     # log(Colors.HI_GREEN, "━━━ write 0xbb010003 (PSK WHITE BOX) ".ljust(log_frames_width, '━'))
     #
     # read_is_ready.acquire()
     # read_is_done.acquire()
     #
     # # значение из примеров с USB
-    # PSK_WB = 'ec35ae3abb45ed3f12c4751f1e5c2cc05b3c5452e9104d9f2a3118644f37a04b6fd66b1d97cf80f1345f76c84f03ff30bb51bf308f2a9875c41e6592cd2a2f9e60809b17b5316037b69bb2fa5d4c8ac31edb3394046ec06bbdacc57da6a756c5'
-    # fromhex = bytes.fromhex(f"030001bb 6000 0000 {PSK_WB}".replace(" ", ""))
-    # data = make_payload_packet(0xe0, fromhex)
+    # # payload = '030001bb 60000000 ec35ae3abb45ed3f12c4751f1e5c2cc05b3c5452e9104d9f2a3118644f37a04b6fd66b1d97cf80f1345f76c84f03ff30bb51bf308f2a9875c41e6592cd2a2f9e60809b17b5316037b69bb2fa5d4c8ac31edb3394046ec06bbdacc57da6a756c5'
+    # # payload = '030001bb 60000000 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+    # payload = '030001bb 0F000000 777777777777777777777777777777'
+    # data = make_payload_packet(0xe0, payload)
     #
     # perform_write(0xa0, data)
     # acquire_then_release(read_is_ready, 'read_is_ready')
@@ -325,6 +349,21 @@ def main():
     # acquire_then_release(read_is_done, 'read_is_done')
     #
     # # > E0 03 00 00 03 C4
+    # print()
+
+    # ----------------------------------------------------------------------------------------------------------------
+    # TODO: Не было в логах драйвера, догадался сам
+    # log(Colors.HI_GREEN, "━━━ write 0xbb020003 ".ljust(log_frames_width, '━'))
+    #
+    # read_is_ready.acquire()
+    # read_is_done.acquire()
+    # # perform_write(0xa0, 'e0 09 00 03 00 02 bb 00 00 00 00 01')
+    # perform_write(0xa0, make_payload_packet(0xe0, '03 00 02 bb 00 00 00 00'))
+    # acquire_then_release(read_is_ready, 'read_is_ready')
+    # perform_read()  # get ack for cmd 0xe0, cfg flag 0x7
+    # manual_sleep(0.05)
+    # perform_read()
+    # acquire_then_release(read_is_done, 'read_is_done')
     # print()
 
     # ----------------------------------------------------------------------------------------------------------------
@@ -425,7 +464,7 @@ def main():
     ####################################################### TLS #######################################################
 
     # ----------------------------------------------------------------------------------------------------------------
-    # log(Colors.HI_GREEN, "━━━ get tls handshake package ".ljust(log_frames_width, '━'))
+    # log(Colors.HI_GREEN, "━━━ get tls handshake package (client hello) ".ljust(log_frames_width, '━'))
     #
     # read_is_ready.acquire()
     # read_is_done.acquire()
@@ -435,6 +474,9 @@ def main():
     # perform_read()  # not to wait for ack
     # acquire_then_release(read_is_done, 'read_is_done')
     # print()
+
+    # 16 03 03 00 2F 01 00 00 2B 03 03 2D F4 51 58 CF 8C B1 40 46 F6 B5 4B 29 31 03 47 04 5B 70 30 B4 5D FD 20 78 7F 8B 1A D8 59 29 50 00 00 04 00 A8 00 FF 01 00
+    # 52          47          43
 
     # ----------------------------------------------------------------------------------------------------------------
 
