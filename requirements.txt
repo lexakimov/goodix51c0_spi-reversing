@@ -1,5 +1,5 @@
 python-periphery==2.4.1
-spidev==3.6
+spidev==3.7
 matplotlib==3.8.2
 numpy==1.26.3
 crcmod==1.7

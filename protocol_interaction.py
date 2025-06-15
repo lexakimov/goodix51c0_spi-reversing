@@ -171,6 +171,7 @@ def perform_write(packet_type: int, payload: bytes | str | list[int]):
 
 
 def interrupt_monitoring():
+    current_state = None
     is_high = False
     i = 0
     last_ts = time.time_ns()
@@ -226,7 +227,7 @@ def main():
     gpio_line = CdevGPIO('/dev/gpiochip0', 321, 'in', edge='both', bias='default')
     spi = SpiDev(1, 0)
     spi.max_speed_hz = 0x00989680  # 10 000 000
-    # spi.mode = 0b00
+    spi.mode = 0b00
 
     read_is_ready = Lock()
     read_is_done = Lock()
