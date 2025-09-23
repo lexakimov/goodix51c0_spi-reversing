@@ -253,9 +253,9 @@ def main():
 
     # ----------------------------------------------------------------------------------------------------------------
     # Для отладки
-    read_bb010002()
-    read_bb020003()
-    if True: exit()
+    # read_bb010002()
+    # read_bb020003()
+    # if True: exit()
 
     # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ write 0xbb010002 && 0xbb010003 ".ljust(log_frames_width, '━'))
@@ -308,26 +308,26 @@ def main():
 
     # ----------------------------------------------------------------------------------------------------------------
     # Для отладки
-    read_bb010002() # (получаем 1:1)
-    read_bb020003() # (получаем хеш - 32 байта)
-    if True: exit()
+    # read_bb010002() # (получаем 1:1)
+    # read_bb020003() # (получаем хеш - 32 байта)
+    # if True: exit()
 
     # ----------------------------------------------------------------------------------------------------------------
     # TODO: Не было в логах драйвера, догадался сам
-    log(Colors.HI_GREEN, "━━━ write 0xbb010002 ".ljust(log_frames_width, '━'))
-
-    read_is_ready.acquire()
-    read_is_done.acquire()
-
-    data = make_payload_packet(0xe0, '020001bb 0F000000 777777777777777777777777777777')
-
-    perform_write(0xa0, data)
-    acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read()  # get ack for cmd 0xe4, cfg flag 0x7
-    manual_sleep(0.05)
-    perform_read()
-    acquire_then_release(read_is_done, 'read_is_done')
-    print()
+    # log(Colors.HI_GREEN, "━━━ write 0xbb010002 ".ljust(log_frames_width, '━'))
+    #
+    # read_is_ready.acquire()
+    # read_is_done.acquire()
+    #
+    # data = make_payload_packet(0xe0, '020001bb 0F000000 777777777777777777777777777777')
+    #
+    # perform_write(0xa0, data)
+    # acquire_then_release(read_is_ready, 'read_is_ready')
+    # perform_read()  # get ack for cmd 0xe4, cfg flag 0x7
+    # manual_sleep(0.05)
+    # perform_read()
+    # acquire_then_release(read_is_done, 'read_is_done')
+    # print()
 
     # ----------------------------------------------------------------------------------------------------------------
     # TODO: Не было в логах драйвера, догадался сам
@@ -478,6 +478,8 @@ def main():
 
     # 16 03 03 00 2F 01 00 00 2B 03 03 2D F4 51 58 CF 8C B1 40 46 F6 B5 4B 29 31 03 47 04 5B 70 30 B4 5D FD 20 78 7F 8B 1A D8 59 29 50 00 00 04 00 A8 00 FF 01 00
     # 52          47          43
+
+    # exit()
 
     # ----------------------------------------------------------------------------------------------------------------
 
