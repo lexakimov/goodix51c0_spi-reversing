@@ -19,7 +19,7 @@ ls /sys/bus/spi/devices/
 ```
 Если устройство `spi-GDIX51C0:00` присутствует, выполните шаг за шагом:
 ```shell
-sudo su
+su
 modprobe spidev
 
 # проверить, что spidev загружен:

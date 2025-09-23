@@ -657,7 +657,9 @@ read
         07 81 30 38 e4 80 dd fc 0a be bb 44 01 bb b3 b5 b3 b3 b3 b5 b3 b3 41 33 e4 1b dd 22 0c f0 17 db
             - sensor OTP::0x5334303636362e000a7d82b372a0460a5107050e7d4b172741029a0cf1807f0c07813038e480ddfc0abebb4401bbb3b5b3b3b3b5b3b34133e41bdd220cf017db
               хранится в C:\ProgramData\Goodix\goodix.dat (первые 64 байта в файле)
-        1c      - контрольная сумма    
+        1c      - контрольная сумма   
+        
+    смотри third party, там все написано 
 ```
 
 ### Reset sensor (2)
@@ -870,7 +872,7 @@ write
         ]
 
 
-3. отправляет server hello done
+3. получить server hello done
 
 write
     b0 09 00 b9

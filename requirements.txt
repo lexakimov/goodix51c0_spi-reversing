@@ -1,6 +1,15 @@
+# https://pypi.org/project/python-periphery/
+# https://pypi.org/project/spidev/
+# https://pypi.org/project/gpiod/
+# какую python библиотеку рекомендуешь для работы с gpio в linux ?
 python-periphery==2.4.1
-spidev==3.7
-matplotlib==3.8.2
-numpy==1.26.3
+spidev==3.8
 crcmod==1.7
+numpy==2.3.3
+matplotlib==3.10.6
+
+# https://pypi.org/project/python-mbedtls/
+# https://www.trustedfirmware.org/projects/mbed-tls/
+# sudo pamac install python312
+# virtualenv -p python312 .venv
 python-mbedtls==2.10.1
