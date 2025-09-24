@@ -268,23 +268,8 @@ def main():
     part_2 = '030001bb 6600 0000 fad1e5b87930265db0ed2544e3615056f619fc11e6a558f8e0d92003e479ff4102ff200000007ddcfcdba9e81b0c4815638d0305303b562e5f4014f40b9d76edf2755d9e5dbd8694b0508df786193deddfca4854fef93f68a5d5cfdeec1524290576fdad0c67' + '0000'
     # part_2 = '030001bb 0F00 0000 777777777777777777777777777777 0000'
     # part_2 = '030001bb 0e00 0000 4141414142424242434343434444'
-    # part_2 = '030001bb 1000 0000 00000000000000000000000000000000'
+    # part_2 = '030001bb 1000 0000 00000000000000000000000000000002'
     # от этого меняется ответ read 0xbb020003
-
-    # -----------------------------------------------------------------------------------------------------------------
-    # write 0xbb010002 -> read 0xbb010002 (получаем 1:1)
-    # 0xbb010002:
-    # 44444444444444444444444444444444  E4 1A 00 00  02 00 01 BB  10 00 00 00  44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44  9E
-    #                                     (26)                   (16)          [                                             ]
-
-    # write 0xbb010003 -> read 0xbb020003 (получаем хеш 32 байта)
-    # 0xbb020003:
-    # 000000000000000000000000000000    E4 2A 00 00  03 00 02 BB  20 00 00 00  53 22 FE CF C9 2A 5E 32 48 A2 97 A3 DF 3E DD FB 9B D9 04 95 04 27 2E 4F 57 2B 87 FA 36 D4 B3 BD  AC
-    # 777777777777777777777777777777    E4 2A 00 00  03 00 02 BB  20 00 00 00  E2 57 7E EB 61 DC 21 97 DF E9 48 16 D7 31 F2 94 1C CD 0B 66 DE 8D C9 7A AC B3 77 BF E8 47 69 70  CC
-    #                                     (42)                   (32)          [                                              32                                             ]
-
-    # read  0xbb010003 - не читается
-    # -----------------------------------------------------------------------------------------------------------------
 
     data = make_payload_packet(0xe0, part_1 + part_2)
 
@@ -302,51 +287,35 @@ def main():
     manual_sleep(0.2)
     print()
 
+    # ═════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+    # write 0xbb010002:                          -> read 0xbb010002                        (получаем 1:1)
+    #                                                 (26)                   (16)          [                                             ]
+    # 44444444444444444444444444444444              E4 1A 00 00  02 00 01 BB  10 00 00 00  44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44  9E
+
+    # write 0xbb010003:                          -> read 0xbb020003                        (получаем хеш 32 байта):
+    #                                                 (42)                   (32)          [                                              32                                             ]
+    #           000000000000000000000000000000      E4 2A 00 00  03 00 02 BB  20 00 00 00  53 22 FE CF C9 2A 5E 32 48 A2 97 A3 DF 3E DD FB 9B D9 04 95 04 27 2E 4F 57 2B 87 FA 36 D4 B3 BD  AC
+    #           777777777777777777777777777777      E4 2A 00 00  03 00 02 BB  20 00 00 00  E2 57 7E EB 61 DC 21 97 DF E9 48 16 D7 31 F2 94 1C CD 0B 66 DE 8D C9 7A AC B3 77 BF E8 47 69 70  CC
+    # 1000 0000 00000000000000000000000000000000    E4 2A 00 00  03 00 02 BB  20 00 00 00  37 47 08 FF F7 71 9D D5 97 9E C8 75 D5 6C D2 28 6F 6D 3C F7 EC 31 7A 3B 25 63 2A AB 28 EC 37 BB  6C
+    # 1000 0000 00000000000000000000000000000001    E4 2A 00 00  03 00 02 BB  20 00 00 00  7C 3C CD 10 BB 7E C3 7B 46 D3 79 26 AE 62 74 26 7F 00 7A 34 AE AF 15 C8 82 A7 15 A7 F3 30 05 29  B1
+    # 1000 0000 00000000000000000000000000000002    E4 2A 00 00  03 00 02 BB  20 00 00 00  69 28 65 C9 A3 76 A1 A8 2D 16 1B 0F 95 78 59 55 54 87 37 97 FA 9E BB B0 68 B7 97 82 81 22 E6 1D  E9
+
+    # read  0xbb010003 - не читается
+    # ═════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
     # ----------------------------------------------------------------------------------------------------------------
-    # Для отладки
-    # read_bb010002() # (получаем 1:1)
-    # read_bb020003() # (получаем хеш - 32 байта)
+    # write_bb010002('020001bb 1000 0000 44444444444444444444444444444455')
     # if True: exit()
 
     # ----------------------------------------------------------------------------------------------------------------
-    # TODO: Не было в логах драйвера, догадался сам
-    # log(Colors.HI_GREEN, "━━━ write 0xbb010002 ".ljust(log_frames_width, '━'))
-    #
-    # read_is_ready.acquire()
-    # read_is_done.acquire()
-    #
-    # data = make_payload_packet(0xe0, '020001bb 0F000000 777777777777777777777777777777')
-    #
-    # perform_write(0xa0, data)
-    # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read()  # get ack for cmd 0xe4, cfg flag 0x7
-    # manual_sleep(0.05)
-    # perform_read()
-    # acquire_then_release(read_is_done, 'read_is_done')
-    # print()
+    # write_bb010003('030001bb 1000 0000 00000000000000000000000000000002')
+    # if True: exit()
 
     # ----------------------------------------------------------------------------------------------------------------
-    # TODO: Не было в логах драйвера, догадался сам
-    # log(Colors.HI_GREEN, "━━━ write 0xbb010003 (PSK WHITE BOX) ".ljust(log_frames_width, '━'))
-    #
-    # read_is_ready.acquire()
-    # read_is_done.acquire()
-    #
-    # # значение из примеров с USB
-    # # payload = '030001bb 60000000 ec35ae3abb45ed3f12c4751f1e5c2cc05b3c5452e9104d9f2a3118644f37a04b6fd66b1d97cf80f1345f76c84f03ff30bb51bf308f2a9875c41e6592cd2a2f9e60809b17b5316037b69bb2fa5d4c8ac31edb3394046ec06bbdacc57da6a756c5'
-    # # payload = '030001bb 60000000 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
-    # payload = '030001bb 0F000000 777777777777777777777777777777'
-    # data = make_payload_packet(0xe0, payload)
-    #
-    # perform_write(0xa0, data)
-    # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read()  # get ack for cmd 0xe4, cfg flag 0x7
-    # manual_sleep(0.05)
-    # perform_read()
-    # acquire_then_release(read_is_done, 'read_is_done')
-    #
-    # # > E0 03 00 00 03 C4
-    # print()
+    # Для отладки
+    # read_bb010002() # (получаем 1:1 - то, что писали в 0xbb010002)
+    # read_bb020003() # (получаем хеш - 32 байта, на основе того, что писали в 0xbb010003)
+    # if True: exit()
 
     # ----------------------------------------------------------------------------------------------------------------
     # TODO: Не было в логах драйвера, догадался сам
@@ -726,6 +695,47 @@ def read_bb020003():
     acquire_then_release(read_is_done, 'read_is_done')
     print()
 
+
+def write_bb010002(payload):
+    # ЭТО РАБОТАЕТ
+    # Не было в логах драйвера, догадался сам.
+    log(Colors.HI_GREEN, "━━━ write 0xbb010002 ".ljust(log_frames_width, '━'))
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    data = make_payload_packet(0xe0, payload)
+
+    perform_write(0xa0, data)
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read()  # get ack for cmd 0xe4, cfg flag 0x7
+    manual_sleep(0.05)
+    perform_read()
+    acquire_then_release(read_is_done, 'read_is_done')
+    print()
+
+
+def write_bb010003(payload):
+    # ЭТО РАБОТАЕТ
+    # Не было в логах драйвера, догадался сам.
+    log(Colors.HI_GREEN, "━━━ write 0xbb010003 (PSK WHITE BOX) ".ljust(log_frames_width, '━'))
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    # значение из примеров с USB
+    # payload = '030001bb 60000000 ec35ae3abb45ed3f12c4751f1e5c2cc05b3c5452e9104d9f2a3118644f37a04b6fd66b1d97cf80f1345f76c84f03ff30bb51bf308f2a9875c41e6592cd2a2f9e60809b17b5316037b69bb2fa5d4c8ac31edb3394046ec06bbdacc57da6a756c5'
+    data = make_payload_packet(0xe0, payload)
+
+    perform_write(0xa0, data)
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read()  # get ack for cmd 0xe4, cfg flag 0x7
+    manual_sleep(0.05)
+    perform_read()
+    acquire_then_release(read_is_done, 'read_is_done')
+
+    # > E0 03 00 00 03 C4
+    print()
 
 if __name__ == "__main__":
     try:
