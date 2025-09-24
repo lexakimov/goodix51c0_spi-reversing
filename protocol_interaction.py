@@ -40,6 +40,17 @@ def acquire_then_release(lock, label):
     lock.release()
 
 
+def to_bytes(payload: bytes | str | list[int]) -> bytes:
+    if isinstance(payload, bytes):
+        return payload
+    if isinstance(payload, str):
+        return bytes.fromhex(payload.replace(" ", ""))
+    if isinstance(payload, list):
+        return bytearray(payload)
+    else:
+        raise RuntimeError(f"unhandled type: {type(payload)}")
+
+
 def make_header_packet(packet_type: int, payload_length: int) -> bytearray:
     header_packet = bytearray([packet_type]) + payload_length.to_bytes(2, 'little')
     sum_int = 0x00
@@ -51,15 +62,8 @@ def make_header_packet(packet_type: int, payload_length: int) -> bytearray:
     return header_packet
 
 
-def make_payload_packet(packet_type: int, data):
-    """
-    :param packet_type:
-    :param data:         possible values '00' or  [0x00] or bytearray([0x00])
-    """
-    if isinstance(data, str):
-        data = bytes.fromhex(data.replace(" ", ""))
-    elif isinstance(data, list):
-        data = bytearray(data)
+def make_payload_packet(packet_type: int, data: bytes | str | list[int]):
+    data = to_bytes(data)
     payload = bytes((packet_type,))
     target_len = len(data) + 1  # includes checksum byte
     payload += struct.pack("<h", target_len)
@@ -83,7 +87,7 @@ def is_header_packet_checksum_valid(packet: list[int] | bytearray) -> bool:
     return checksum == fact_sum
 
 
-def is_payload_packet_checksum_valid(packet: list[int] | bytearray):
+def is_payload_packet_checksum_valid(packet: bytes | list[int] | bytearray):
     checksum = packet[-1]
     if checksum == 0x88:
         return None
@@ -138,16 +142,8 @@ def perform_read(is_ack=False) -> list[int]:
 
 
 def perform_write(packet_type: int, payload: bytes | str | list[int]):
-    """
-    :param packet_type:
-    :param payload:      possible values '00' or  [0x00] or bytearray([0x00])
-    """
-    if isinstance(payload, str):
-        payload = bytes.fromhex(payload.replace(" ", ""))
-    elif isinstance(payload, list):
-        payload = bytearray(payload)
-
     log(Colors.HI_PURPLE, "writing to device...")
+    payload = to_bytes(payload)
     header_packet = make_header_packet(packet_type, len(payload))
     spi.writebytes(header_packet)
     is_1_valid = is_header_packet_checksum_valid(header_packet)
