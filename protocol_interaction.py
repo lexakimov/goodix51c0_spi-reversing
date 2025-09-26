@@ -254,16 +254,18 @@ def main():
     # if True: exit()
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "━━━ write 0xbb010002 && 0xbb010003 ".ljust(log_frames_width, '━'))
+    log(Colors.HI_GREEN, "━━━ write 0xbb010002 (encrypted PSK) && 0xbb010003 (PSK WB) ".ljust(log_frames_width, '━'))
 
-    # FLAG: PSKID (4 bytes) + length 332 (4 bytes) + host_psk_data (332 bytes) = 340 bytes
+    # flag (4 bytes) + length 332 (4 bytes) + PSK, зашифрованный через DPAPI (host_psk_data, 332 bytes) = 340 bytes
     # длина должна быть кратна 4
     part_1 = '020001bb 4c01 0000 01000000d08c9ddf0115d1118c7a00c04fc297eb010000004c9ce67c50c6b04bb637cd1c725114ee04000000400000005400680069007300200069007300200074006800650020006400650073006300720069007000740069006f006e00200073007400720069006e0067002e0000001066000000010000200000006e4fa0f0c6eb2c205bf30919735f8e39ce6a751a66e135de92fdaa1c9f16df43000000000e8000000002000020000000be119bea5888c588612186d6e3326314be59647949eb5552b8d6c9c5ad0d981130000000cb4ab34e61d04580cacc208521685be96bbba73559878d70df9f85738ab57436d506a8d012f893387fe332fe3253f9bc400000005aa42ac11c54b4e8af8abc02e1cf9ebda823bd056513e6c5dc7de5a0baa3c5e357da67a34bd335f15429c6c449a3c45b3792f827d392e5f72a001530c0817a3a6be5a0cbeef03c0b'
     # part_1 = '020001bb 1000 0000 44444444444444444444444444444444'
     # это потом получаем в read 0xbb010002
 
-    # можно передать незашифрованный PSK (WB?) (который используется для TLS)
-    # flag: PSK (4 bytes) + length 102 (4 bytes) + зашифрованный psk (102 bytes) + remainder (2 bytes) = 108 bytes
+    # TODO: понять алгоритм преобразования PSK(32) -> PSK WB(102)
+    # TODO: понять алгоритм преобразования PSK WB(102) -> PSK WB HASH(32)
+
+    # flag (4 bytes) + length 102 (4 bytes) + PSK WB (который используется TLS, 102 bytes) + remainder (2 bytes) = 108 bytes
     # длина должна быть n*4+3 (3,7,11,15,19,23...)
     part_2 = '030001bb 6600 0000 fad1e5b87930265db0ed2544e3615056f619fc11e6a558f8e0d92003e479ff4102ff200000007ddcfcdba9e81b0c4815638d0305303b562e5f4014f40b9d76edf2755d9e5dbd8694b0508df786193deddfca4854fef93f68a5d5cfdeec1524290576fdad0c67' + '0000'
     # part_2 = '030001bb 0F00 0000 777777777777777777777777777777 0000'
@@ -669,37 +671,13 @@ def get_evk_version():
     print()
 
 
-def read_bb010002():
-    log(Colors.HI_GREEN, "━━━ read 0xbb010002 (host psk hash) ".ljust(log_frames_width, '━'))
-    read_is_ready.acquire()
-    read_is_done.acquire()
-    perform_write(0xa0, 'e4 09 00 02 00 01 bb 00 00 00 00 ff')
-    acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(True)  # get ack for cmd 0xe4, cfg flag 0x7
-    manual_sleep(0.05)
-    perform_read()
-    # ответ [length: 345] если PSK задан, либо E4 03 00 01 51 71 если PSK не задан
-    acquire_then_release(read_is_done, 'read_is_done')
-    print()
-
-
-def read_bb020003():
-    log(Colors.HI_GREEN, "━━━ read 0xbb020003 (psk mcu hash / pmk) ".ljust(log_frames_width, '━'))
-    read_is_ready.acquire()
-    read_is_done.acquire()
-    perform_write(0xa0, 'e4 09 00 03 00 02 bb 00 00 00 00 fd')
-    acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read(True)  # get ack for cmd 0xe4, cfg flag 0x7
-    manual_sleep(0.05)
-    perform_read()
-    acquire_then_release(read_is_done, 'read_is_done')
-    print()
-
-
 def write_bb010002(payload):
+    """
+    Записать PSK, зашифрованный через DPAPI
+    """
     # ЭТО РАБОТАЕТ
     # Не было в логах драйвера, догадался сам.
-    log(Colors.HI_GREEN, "━━━ write 0xbb010002 ".ljust(log_frames_width, '━'))
+    log(Colors.HI_GREEN, "━━━ write 0xbb010002 (encrypted PSK) ".ljust(log_frames_width, '━'))
 
     read_is_ready.acquire()
     read_is_done.acquire()
@@ -716,9 +694,12 @@ def write_bb010002(payload):
 
 
 def write_bb010003(payload):
+    """
+    Записать PSK WB
+    """
     # ЭТО РАБОТАЕТ
     # Не было в логах драйвера, догадался сам.
-    log(Colors.HI_GREEN, "━━━ write 0xbb010003 (PSK WHITE BOX) ".ljust(log_frames_width, '━'))
+    log(Colors.HI_GREEN, "━━━ write 0xbb010003 (PSK WB) ".ljust(log_frames_width, '━'))
 
     read_is_ready.acquire()
     read_is_done.acquire()
@@ -736,6 +717,39 @@ def write_bb010003(payload):
 
     # > E0 03 00 00 03 C4
     print()
+
+def read_bb010002():
+    """
+    Прочитать PSK, зашифрованный через DPAPI
+    """
+    log(Colors.HI_GREEN, "━━━ read 0xbb010002 (encrypted PSK) ".ljust(log_frames_width, '━'))
+    read_is_ready.acquire()
+    read_is_done.acquire()
+    perform_write(0xa0, 'e4 09 00 02 00 01 bb 00 00 00 00 ff')
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read(True)  # get ack for cmd 0xe4, cfg flag 0x7
+    manual_sleep(0.05)
+    perform_read()
+    # ответ [length: 345] если PSK задан, либо E4 03 00 01 51 71 если PSK не задан
+    acquire_then_release(read_is_done, 'read_is_done')
+    print()
+
+
+def read_bb020003():
+    """
+    Прочитать хеш ранее заданного PSK WB
+    """
+    log(Colors.HI_GREEN, "━━━ read 0xbb020003 (PSK WB hash) ".ljust(log_frames_width, '━'))
+    read_is_ready.acquire()
+    read_is_done.acquire()
+    perform_write(0xa0, 'e4 09 00 03 00 02 bb 00 00 00 00 fd')
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read(True)  # get ack for cmd 0xe4, cfg flag 0x7
+    manual_sleep(0.05)
+    perform_read()
+    acquire_then_release(read_is_done, 'read_is_done')
+    print()
+
 
 if __name__ == "__main__":
     try:

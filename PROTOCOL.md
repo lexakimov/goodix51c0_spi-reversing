@@ -235,16 +235,19 @@ read
 
 ### Проверка PSK
 
+`Goodix_Cache.bin` содержит PSK, зашифрованный через DPAPI
+
 1.get host hash (host_psk_data)
 
 .get seal data - смотрим наличие файла `Goodix_Cache.bin` (332 байта).
 
-Если файл `Goodix_Cache.bin` пуст, то выполняем [read specific data_type 0xbb010002](#read-specific-data_type-0xbb010002)
+Если файл `Goodix_Cache.bin` пуст или не существует, то выполняем [read specific data_type 0xbb010002](#read-specific-data_type-0xbb010002)
+
 Если файл `Goodix_Cache.bin` не пуст, то переходим сразу к [read specific data_type 0xbb020003](#read-specific-data_type-0xbb020003)
 
 ### read specific data_type 0xbb010002
 
-`e4 0xbb010002` - прочитать host_psk_hash
+`e4 0xbb010002` - из MCU прочитать PSK, зашифрованный через DPAPI
 
 ```
 write
@@ -273,8 +276,12 @@ read ack
         07    - cfg flag 0x7
         0c    - контрольная сумма
 
-------
-read (вариант 1 - PSK найден, в ответе его хеш)
+```
+
+#### Вариант 1 - PSK, зашифрованный через DPAPI был ранее записан в MCU
+
+```
+read
     a0 59 01 fa
         a0    - флаг MSG_PROTOCOL
         5901  - полная длина следующего пакета в LE-notation (345)
@@ -298,22 +305,33 @@ read (вариант 1 - PSK найден, в ответе его хеш)
         02 00 01 bb [specific data_type 0xbb010002 (был указан в запросе)]
         4c 01 00 00 [длина host_psk_data (332)]
         
-        [далее host_psk_data (содержимое Goodix_Cache.bin), длина 332]
-        01 00 00 00 d0 8c 9d df 01 15 d1 11 8c 7a 00 c0 4f c2 97 eb
-        01 00 00 00 ce 4b 48 a6 19 9f e1 4c a7 a3 2e 7a 0e 0b 6b 59 04 00 00 00 40 00 00 00 54 00 68 00
-        69 00 73 00 20 00 69 00 73 00 20 00 74 00 68 00 65 00 20 00 64 00 65 00 73 00 63 00 72 00 69 00
-        70 00 74 00 69 00 6f 00 6e 00 20 00 73 00 74 00 72 00 69 00 6e 00 67 00 2e 00 00 00 10 66 00 00
-        00 01 00 00 20 00 00 00 d7 77 c2 10 c1 bc 73 d2 87 fb 57 99 53 16 39 0e 39 eb 6a d0 43 cd 08 19
-        e0 82 a6 cb 14 8b 38 47 00 00 00 00 0e 80 00 00 00 02 00 00 20 00 00 00 e9 2d 13 48 1b e6 8b 22
-        b5 b3 7a b3 9a 65 4b 3e 73 f6 6a a7 af 47 49 31 a6 4c 47 84 bd c4 32 f9 30 00 00 00 15 67 c9 fc
-        68 79 ba 11 cc 3e fb 30 82 be 3a b7 1c 18 f9 cd ef 08 0d dc 1a b9 17 79 17 9b 79 42 73 1a b8 2d
-        8e 31 b6 8a 0f b1 cb 3b 0c 83 15 8e 40 00 00 00 ee b8 30 22 43 74 f3 15 cf 0c 60 c9 c7 40 32 6f
-        7e e7 99 f2 21 75 11 58 d2 71 59 33 66 ed a7 a3 43 66 12 5b e1 11 73 2a a3 59 83 1e 83 66 50 88
-        f4 2c 6f c8 f7 5e 93 3d 07 c9 97 fc 05 f9 30 9c b6 a0 6b f1 a4 18 8a cf
-        3b    - контрольная сумма
+        [далее PSK, зашифрованный через DPAPI (324) + заголовки (host_psk_data, содержимое Goodix_Cache.bin), длина 332]
+            длина 94 байта
+            01 00 00 00 d0 8c 9d df 01 15 d1 11 8c 7a 00 c0 4f c2 97 eb
+            01 00 00 00 ce 4b 48 a6 19 9f e1 4c a7 a3 2e 7a 0e 0b 6b 59 04 00 00 00 40 00 00
+            
+            "This is the description string." (UTF-16, длина 62)
+               00 54 00 68 00
+            69 00 73 00 20 00 69 00 73 00 20 00 74 00 68 00 65 00 20 00 64 00 65 00 73 00 63 00 72 00 69 00
+            70 00 74 00 69 00 6f 00 6e 00 20 00 73 00 74 00 72 00 69 00 6e 00 67 00 2e
+            
+            00 00 00 10 66 00 00
+            00 01 00 00 20 00 00 00 d7 77 c2 10 c1 bc 73 d2 87 fb 57 99 53 16 39 0e 39 eb 6a d0 43 cd 08 19
+            e0 82 a6 cb 14 8b 38 47 00 00 00 00 0e 80 00 00 00 02 00 00 20 00 00 00 e9 2d 13 48 1b e6 8b 22
+            b5 b3 7a b3 9a 65 4b 3e 73 f6 6a a7 af 47 49 31 a6 4c 47 84 bd c4 32 f9 30 00 00 00 15 67 c9 fc
+            68 79 ba 11 cc 3e fb 30 82 be 3a b7 1c 18 f9 cd ef 08 0d dc 1a b9 17 79 17 9b 79 42 73 1a b8 2d
+            8e 31 b6 8a 0f b1 cb 3b 0c 83 15 8e 40 00 00 00 ee b8 30 22 43 74 f3 15 cf 0c 60 c9 c7 40 32 6f
+            7e e7 99 f2 21 75 11 58 d2 71 59 33 66 ed a7 a3 43 66 12 5b e1 11 73 2a a3 59 83 1e 83 66 50 88
+            f4 2c 6f c8 f7 5e 93 3d 07 c9 97 fc 05 f9 30 9c b6 a0 6b f1 a4 18 8a cf
+            3b    - контрольная сумма
+```
 
-------
-read (вариант 2 - неудача: PSK не найден)
+Если (вариант 1 - PSK найден) - записываем host_psk_data (332 байта) в файл Goodix_Cache.bin
+
+#### Вариант 2 - неудача: PSK ранее не был записан в MCU
+
+```
+read
     a0 06 00 a6
         a0    - флаг MSG_PROTOCOL
         0600  - полная длина следующего пакета в LE-notation
@@ -326,9 +344,8 @@ read (вариант 2 - неудача: PSK не найден)
         71    - контрольная сумма
 ```
 
-Если (вариант 1 - PSK найден) - записываем host_psk_data (332 байта) в файл Goodix_Cache.bin
+При неудаче проверка повторяется еше раз.
 
-При неудаче (вариант 2 - PSK не найден) проверка повторяется еше раз.
 Если после повтора опять неудача - выполняем [Generate, encrypt and write PSK to MCU](#generate-encrypt-and-write-psk-to-mcu)
 
 ### Generate, encrypt and write PSK to MCU
@@ -343,17 +360,17 @@ read (вариант 2 - неудача: PSK не найден)
     CryptAcquireContext succeeded
     Random sequence generated: 32
 
-шифруем его (на выходе 324 байта):
+шифруем его через DPAPI (на выходе 324 байта):
     1.seal psk
     inbuf_len 32, entropy_len 48, len_out 2048
     The encryption phase worked, 32, 324
     seal psk, ret 0x0 length before 32, length after:324
 
-шифруем его (???) (на выходе 102 байта):
+делаем psk wb (на выходе 102 байта):
     2.process encrypted psk
     process ret 0x0 type 0xbb010003, length before 32, length after:102
 
-пишем его в сканнер:
+пишем 0xbb010002 и 0xbb010003 в сканнер:
     3.write to mcu
     data_to_mcu_len 450 bytes, remainder4 is 2 bytes
     remainder4 is not 0, add 2 bytes then finally data_to_mcu_len 452 bytes
@@ -363,7 +380,7 @@ read (вариант 2 - неудача: PSK не найден)
 ```
 
 Двойная команда
-`e0 0xbb010002 ... 0xbb010003` - записать host_psk_data (содержимое Goodix_Cache.bin) + зашифрованный psk
+`e0 0xbb010002 ... 0xbb010003` - записать host_psk_data (PSK, зашифрованный через DPAPI = содержимое Goodix_Cache.bin) + psk wb
 
 ```
 write
@@ -393,23 +410,29 @@ write
         020001bb    - data_type в LE-notation [specific data_type 0xbb010002 (был указан в запросе)]
         4c010000    - длина последующего блока 0xbb010002 (332)
 
-        [далее host_psk_data (содержимое Goodix_Cache.bin), длина 332]
-        01 00 00 00 d0 8c 9d df 01 15 d1 11 8c 7a 00 c0 4f c2 97 eb 01 
-        00 00 00 4c 9c e6 7c 50 c6 b0 4b b6 37 cd 1c 72 51 14 ee 04 00 00 00 40 00 00 00 54 00 68 00 69 
-        00 73 00 20 00 69 00 73 00 20 00 74 00 68 00 65 00 20 00 64 00 65 00 73 00 63 00 72 00 69 00 70 
-        00 74 00 69 00 6f 00 6e 00 20 00 73 00 74 00 72 00 69 00 6e 00 67 00 2e 00 00 00 10 66 00 00 00 
-        01 00 00 20 00 00 00 6e 4f a0 f0 c6 eb 2c 20 5b f3 09 19 73 5f 8e 39 ce 6a 75 1a 66 e1 35 de 92 
-        fd aa 1c 9f 16 df 43 00 00 00 00 0e 80 00 00 00 02 00 00 20 00 00 00 be 11 9b ea 58 88 c5 88 61 
-        21 86 d6 e3 32 63 14 be 59 64 79 49 eb 55 52 b8 d6 c9 c5 ad 0d 98 11 30 00 00 00 cb 4a b3 4e 61 
-        d0 45 80 ca cc 20 85 21 68 5b e9 6b bb a7 35 59 87 8d 70 df 9f 85 73 8a b5 74 36 d5 06 a8 d0 12 
-        f8 93 38 7f e3 32 fe 32 53 f9 bc 40 00 00 00 5a a4 2a c1 1c 54 b4 e8 af 8a bc 02 e1 cf 9e bd a8 
-        23 bd 05 65 13 e6 c5 dc 7d e5 a0 ba a3 c5 e3 57 da 67 a3 4b d3 35 f1 54 29 c6 c4 49 a3 c4 5b 37 
-        92 f8 27 d3 92 e5 f7 2a 00 15 30 c0 81 7a 3a 6b e5 a0 cb ee f0 3c 0b
+        [далее PSK, зашифрованный через DPAPI (324) + заголовки (host_psk_data, содержимое Goodix_Cache.bin), длина 332]
+            длина 94 байта
+            01 00 00 00 d0 8c 9d df 01 15 d1 11 8c 7a 00 c0 4f c2 97 eb 01 
+            00 00 00 4c 9c e6 7c 50 c6 b0 4b b6 37 cd 1c 72 51 14 ee 04 00 00 00 40 00 00
+            
+            "This is the description string." (UTF-16, длина 62)
+            00 54 00 68 00 69 
+            00 73 00 20 00 69 00 73 00 20 00 74 00 68 00 65 00 20 00 64 00 65 00 73 00 63 00 72 00 69 00 70 
+            00 74 00 69 00 6f 00 6e 00 20 00 73 00 74 00 72 00 69 00 6e 00 67 00 2e
+            
+            00 00 00 10 66 00 00 00 
+            01 00 00 20 00 00 00 6e 4f a0 f0 c6 eb 2c 20 5b f3 09 19 73 5f 8e 39 ce 6a 75 1a 66 e1 35 de 92 
+            fd aa 1c 9f 16 df 43 00 00 00 00 0e 80 00 00 00 02 00 00 20 00 00 00 be 11 9b ea 58 88 c5 88 61 
+            21 86 d6 e3 32 63 14 be 59 64 79 49 eb 55 52 b8 d6 c9 c5 ad 0d 98 11 30 00 00 00 cb 4a b3 4e 61 
+            d0 45 80 ca cc 20 85 21 68 5b e9 6b bb a7 35 59 87 8d 70 df 9f 85 73 8a b5 74 36 d5 06 a8 d0 12 
+            f8 93 38 7f e3 32 fe 32 53 f9 bc 40 00 00 00 5a a4 2a c1 1c 54 b4 e8 af 8a bc 02 e1 cf 9e bd a8 
+            23 bd 05 65 13 e6 c5 dc 7d e5 a0 ba a3 c5 e3 57 da 67 a3 4b d3 35 f1 54 29 c6 c4 49 a3 c4 5b 37 
+            92 f8 27 d3 92 e5 f7 2a 00 15 30 c0 81 7a 3a 6b e5 a0 cb ee f0 3c 0b
         
         030001bb    - data_type в LE-notation [specific data_type 0xbb010003 (был указан в запросе)]
         66000000    - длина последующего блока 0xbb010003 (102)
 
-        [далее зашифрованный psk (до - 32, после шифрования - 102 байта]
+        [далее psk wb (до - 32, после шифрования - 102 байта]
         fa
         d1 e5 b8 79 30 26 5d b0 ed 25 44 e3 61 50 56 f6 19 fc 11 e6 a5 58 f8 e0 d9 20 03 e4 79 ff 41 02
         ff 20 00 00 00 7d dc fc db a9 e8 1b 0c 48 15 63 8d 03 05 30 3b 56 2e 5f 40 14 f4 0b 9d 76 ed f2
@@ -448,6 +471,8 @@ read
 
 ### read specific data_type 0xbb020003
 
+Чтение хеша PSK WB с MCU (32 байта).
+
 ```
 расшифровываем 324 -> 32
   generate rootkey
@@ -465,7 +490,7 @@ read
   ret 0x0, psk len 32, hash len 32, seal len 332, data from file flag 1 
 ```
 
-`e4 0xbb020003` - прочитать mcu hash
+`e4 0xbb020003` - прочитать хеш PSK WB
 
 ```
 write
@@ -505,13 +530,13 @@ read
         2a00  - длина последующего с контрольной суммой сообщения в LE-notation (42)
 
         [далее payload + контролльная сумма = длина 42]:
-        00 [далее остается 41 байт]
-        030002bb    - data_type в LE-notation
-        20 00 00 00 - длина в LE-notation (32)
-
-        далее mcu hash (32 байта)
-        8d 8e 99 80 5d 1e 22 89 c5 41 12 5d 5a dd 5d d5 30 89 4c c8 50 0d 03 55 41 b8 c0 a5 96 1e c0 5d
-        d3    - контрольная сумма
+            00 [далее остается 41 байт]
+            030002bb    - data_type в LE-notation
+            20 00 00 00 - длина в LE-notation (32)
+    
+            далее mcu hash (32 байта)
+            8d 8e 99 80 5d 1e 22 89 c5 41 12 5d 5a dd 5d d5 30 89 4c c8 50 0d 03 55 41 b8 c0 a5 96 1e c0 5d
+            d3    - контрольная сумма
 
 ```
 
