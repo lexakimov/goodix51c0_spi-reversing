@@ -262,9 +262,6 @@ def main():
     # part_1 = '020001bb 1000 0000 44444444444444444444444444444444'
     # это потом получаем в read 0xbb010002
 
-    # TODO: понять алгоритм преобразования PSK(32) -> PSK WB(102)
-    # TODO: понять алгоритм преобразования PSK WB(102) -> PSK WB HASH(32)
-
     # flag (4 bytes) + length 102 (4 bytes) + PSK WB (который используется TLS, 102 bytes) + remainder (2 bytes) = 108 bytes
     # длина должна быть n*4+3 (3,7,11,15,19,23...)
     part_2 = '030001bb 6600 0000 fad1e5b87930265db0ed2544e3615056f619fc11e6a558f8e0d92003e479ff4102ff200000007ddcfcdba9e81b0c4815638d0305303b562e5f4014f40b9d76edf2755d9e5dbd8694b0508df786193deddfca4854fef93f68a5d5cfdeec1524290576fdad0c67' + '0000'
