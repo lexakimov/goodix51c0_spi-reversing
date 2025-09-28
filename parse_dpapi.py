@@ -1,5 +1,4 @@
 import hashlib
-import os
 import uuid
 
 from impacket.dpapi import DPAPI_BLOB
@@ -9,18 +8,19 @@ hex_data = (
     # "020001bb"
     # "4c010000"
 
-    "01000000d08c9ddf0115d1118c7a00c04fc297eb01000000e66e08836590"
-    "e048adc7635ec505d3cd0400000040000000540068006900730020006900"
+    # Содержимое Goodix_Cache.bin:
+    "01000000d08c9ddf0115d1118c7a00c04fc297eb010000004c9ce67c50c6"
+    "b04bb637cd1c725114ee0400000040000000540068006900730020006900"
     "730020007400680065002000640065007300630072006900700074006900"
     "6f006e00200073007400720069006e0067002e0000001066000000010000"
-    "2000000082237ac4c2ed87b105088f7f0c371c9e0a3b7698348b2936ec25"
-    "64f1ea5b63ad000000000e80000000020000200000001e7f858920fb2f14"
-    "76a78888c662b81d2aa2dc2517dab6069bba4faadb6b9ba2300000001a01"
-    "548cbf2a2ce7068826d60d424dd5aaa5c1c210d4c7eca123e4ea2e803c4c"
-    "56a8a9e61a9f67aa3449303004b76e4240000000b0415015ce04b87912f2"
-    "e3a2b774eca180225311da4c9e9a8370484df3a41cc4a21627d8d88edce6"
-    "a40513f1e877a81e79a2edec29cc6a7edb02657efdeb7ee125a573f9fe87"
-    "97c9"
+    "200000006e4fa0f0c6eb2c205bf30919735f8e39ce6a751a66e135de92fd"
+    "aa1c9f16df43000000000e8000000002000020000000be119bea5888c588"
+    "612186d6e3326314be59647949eb5552b8d6c9c5ad0d981130000000cb4a"
+    "b34e61d04580cacc208521685be96bbba73559878d70df9f85738ab57436"
+    "d506a8d012f893387fe332fe3253f9bc400000005aa42ac11c54b4e8af8a"
+    "bc02e1cf9ebda823bd056513e6c5dc7de5a0baa3c5e357da67a34bd335f1"
+    "5429c6c449a3c45b3792f827d392e5f72a001530c0817a3a6be5a0cbeef0"
+    "3c0b"
 )
 blob_bytes = bytes.fromhex(hex_data)
 
@@ -59,53 +59,44 @@ print(f"Data             : ({len(blob['Data'])}) {blob['Data'].hex()}")
 print()
 print(f"SignLen          : {blob['SignLen']}")
 print(f"Sign             : ({len(blob['Sign'])}) {blob['Sign'].hex()}")
+print()
+print()
 
-print("-------------------------------------------------------")
-
+print("--- Извлекаем seed ---")
 if len(blob_bytes) < 332:
     raise ValueError("DPAPI blob too short to contain seed bytes")
-seed_from_cache = blob_bytes[324:332]
-print(f"Seed             : {seed_from_cache.hex()}")
+seed = blob_bytes[324:332]
+# seed = os.urandom(8)
+print(f"Seed             : {seed.hex()}")
 print()
+
+print("--- Генерим root key из констант (заданы в коде драйвера) ---")
+CONST_1 = bytes.fromhex("9d 79 92 b3 84 02 b6 6c 81 d1 f5 55 21 89 42 a9".replace(" ", ""))
+CONST_2 = bytes.fromhex("18 48 d7 15 50 d2 70 d2 19 c8 06 32 ab 4f 8b b3".replace(" ", ""))
+CONST_3 = bytes.fromhex("e4 7c 89 38 db 52 50 f0 20 56 17 ee 17 da 4e b4".replace(" ", ""))
+
+root_key_buffer = bytearray(16)
+
+for i in range(8):
+    root_key_buffer[i] = CONST_1[i] ^ CONST_2[i] ^ CONST_1[i + 8]
+
+for i in range(8, 16):
+    root_key_buffer[i] = CONST_2[i] ^ CONST_3[i] ^ CONST_3[i - 8]
+
+root_key = bytes(root_key_buffer)
+print(f"Root key        : {root_key.hex()}")
 print()
 
-CONST_A = bytes.fromhex("84170400881b040004b24d00881b0400")
-CONST_B = bytes.fromhex("a4210400e8b24d00a421040043220400")
-CONST_C = bytes.fromhex("18af4d0044220400b22604003cb34d00")
-
-
-def _derive_root_key() -> bytes:
-    root = bytearray(16)
-    for i in range(8):
-        root[i] = CONST_A[i] ^ CONST_B[i] ^ CONST_A[i + 8]
-    for i in range(8, 16):
-        root[i] = CONST_B[i] ^ CONST_C[i] ^ CONST_C[i - 8]
-    return bytes(root)
-
-
-ROOT_KEY = _derive_root_key()
-
-
-def generate_random_bytes(count: int) -> bytes:
-    return os.urandom(count)
-
-
-def build_dpapi_entropy(seed_: bytes | None) -> tuple[bytes, bytes]:
-    if not seed_ or len(seed_) != 8 or seed_ == b"\x00" * 8:
-        seed_ = generate_random_bytes(8)
-    seed_hash = hashlib.sha256(seed_).digest()
-    entropy_material = seed_hash[:16] + ROOT_KEY
-    entropy_hash = hashlib.sha256(entropy_material).digest()
-    entropy_ = seed_hash[16:] + entropy_hash  # 16 + 32 = 48 байт
-    return entropy_, seed_
-
-
-
-entropy, seed = build_dpapi_entropy(seed_from_cache)
-
-print(f"Root key        : {ROOT_KEY.hex()}")
-print(f"Seed (in use)   : {seed.hex()}")
+print("--- Генерим entropy для DPAPI ---")
+# entropy
+seed_hash = hashlib.sha256(seed).digest()
+entropy_material = seed_hash[:16] + root_key
+entropy_hash = hashlib.sha256(entropy_material).digest()
+entropy = seed_hash[16:] + entropy_hash  # 16 + 32 = 48 байт
 print(f"DPAPI entropy   : {entropy.hex()}")
+
+# Расшифровать PSK на Windows можно через mimikatz указав энтропию (под тем же пользователем):
+# dpapi::blob /in:"C:\ProgramData\Goodix\Goodix_Cache.bin" /entropy:633b9d417af094e9b570069f30cd42ee0d050aa6e65127f7907c1087319821ccde810722cd73529701e9b6160dd6ee1c /unprotect
 
 # Для расшифровки с помощью impacket потребуется сам Мастер-ключ в расшифрованном виде.
 # master_key = bytes.fromhex("0000")

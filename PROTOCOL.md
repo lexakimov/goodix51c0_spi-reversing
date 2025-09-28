@@ -434,8 +434,8 @@ write
         ff 20 00 00 00 7d dc fc db a9 e8 1b 0c 48 15 63 8d 03 05 30 3b 56 2e 5f 40 14 f4 0b 9d 76 ed f2
         75 5d 9e 5d bd 86 94 b0 50 8d f7 86 19 3d ed df ca 48 54 fe f9 3f 68 a5 d5 cf de ec 15 24 29 05
         76 fd ad 0c 67
-            0000    - remainder4 is not 0, add 2 bytes
-              ad    - контрольная сумма
+        0000    - remainder4 is not 0, add 2 bytes
+        ad    - контрольная сумма
 
 read ack
     a0 06 00 a6
