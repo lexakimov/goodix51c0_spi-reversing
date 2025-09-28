@@ -11,9 +11,10 @@ c9fc6879ba11cc3efb3082be3ab71c18f9cdef080ddc1ab91779179b7942
 a359831e83665088f42c6fc8f75e933d07c997fc05f9309cb6a06bf1a418
 8acf
 
-(332 байта)
+xxd -ps Goodix_Cache.bin
+xxd -ps -c0 Goodix_Cache.bin
 
-020001bb 0xbb010002     PSK, зашифрованный через DPAPI  (324 байта) + b6a06bf1a4188acf (контрольная сумма, 8 байт)
+020001bb 0xbb010002 (332 байта) = DPAPI blob c зашифрованным PSK (324 байта) + seed для повторной генерации энтропии при расшифровке (8 байт)
 
 ------
 
