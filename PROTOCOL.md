@@ -237,13 +237,9 @@ read
 
 `Goodix_Cache.bin` содержит PSK, зашифрованный через DPAPI
 
-1.get host hash (host_psk_data)
-
-.get seal data - смотрим наличие файла `Goodix_Cache.bin` (332 байта).
-
-Если файл `Goodix_Cache.bin` пуст или не существует, то выполняем [read specific data_type 0xbb010002](#read-specific-data_type-0xbb010002)
-
-Если файл `Goodix_Cache.bin` не пуст, то переходим сразу к [read specific data_type 0xbb020003](#read-specific-data_type-0xbb020003)
+- смотрим наличие файла `Goodix_Cache.bin` (332 байта)
+  - Если файл `Goodix_Cache.bin` пуст или не существует, то выполняем [read specific data_type 0xbb010002](#read-specific-data_type-0xbb010002)
+  - Если файл `Goodix_Cache.bin` не пуст, то переходим сразу к [read specific data_type 0xbb020003](#read-specific-data_type-0xbb020003)
 
 ### read specific data_type 0xbb010002
 
@@ -305,7 +301,9 @@ read
         02 00 01 bb [specific data_type 0xbb010002 (был указан в запросе)]
         4c 01 00 00 [длина host_psk_data (332)]
         
-        [далее PSK, зашифрованный через DPAPI (host_psk_data, содержимое Goodix_Cache.bin), длина 332 = 324 + 8]
+        [далее host_psk_data, содержимое Goodix_Cache.bin (332)]
+
+            [PSK, зашифрованный через DPAPI (324)]
             01 00 00 00 d0 8c 9d df 01 15 d1 11 8c 7a 00 c0 4f c2 97 eb
             01 00 00 00 ce 4b 48 a6 19 9f e1 4c a7 a3 2e 7a 0e 0b 6b 59 04 00 00 00 40 00 00 00 54 00 68 00
             69 00 73 00 20 00 69 00 73 00 20 00 74 00 68 00 65 00 20 00 64 00 65 00 73 00 63 00 72 00 69 00
@@ -318,13 +316,13 @@ read
             7e e7 99 f2 21 75 11 58 d2 71 59 33 66 ed a7 a3 43 66 12 5b e1 11 73 2a a3 59 83 1e 83 66 50 88
             f4 2c 6f c8 f7 5e 93 3d 07 c9 97 fc 05 f9 30 9c
             
-            seed для повторной генерации энтропии при расшифровке (8 байт)
+            [seed для повторной генерации энтропии при расшифровке (8)]
             b6 a0 6b f1 a4 18 8a cf
         
         3b    - контрольная сумма
 ```
 
-Если (вариант 1 - PSK найден) - записываем host_psk_data (332 байта) в файл Goodix_Cache.bin
+Если "вариант 1 - PSK найден" - записываем host_psk_data (332 байта) в файл Goodix_Cache.bin
 
 #### Вариант 2 - неудача: PSK ранее не был записан в MCU
 
@@ -348,37 +346,24 @@ read
 
 ### Generate, encrypt and write PSK to MCU
 
-```
-генерим PSK (32 байта):
-    random not exist or invalid, generate new data
-    CryptAcquireContext succeeded
-    Random sequence generated: 8
-    generate rootkey
-    0.generate random psk
-    CryptAcquireContext succeeded
-    Random sequence generated: 32
+- генерим случайный PSK (32 байта)
 
-шифруем его через DPAPI (на выходе 324 байта):
-    1.seal psk
-    inbuf_len 32, entropy_len 48, len_out 2048
-    The encryption phase worked, 32, 324
-    seal psk, ret 0x0 length before 32, length after:324
+- генерим root key из констант, заданных в коде драйвера - 16 байт (всегда постоянен)
+- генерим random seed (8 байт)
+- генерим энтропию (48 байт) из random seed и root key
 
-делаем psk wb (на выходе 102 байта):
-    2.process encrypted psk
-    process ret 0x0 type 0xbb010003, length before 32, length after:102
+- зашифровываем PSK через DPAPI с помощью ранее полученой энтропии (324 байта)
+- формируем пакет 0xbb010002: DPAPI blob (324 байта) + random seed (8 байт) = 332 байта
 
-пишем 0xbb010002 и 0xbb010003 в сканнер:
+- преобразуем PSK в PSK WB (102 байта) - пакет 0xbb010003
+
+- пишем 0xbb010002 и 0xbb010003 в MCU
     3.write to mcu
     data_to_mcu_len 450 bytes, remainder4 is 2 bytes
     remainder4 is not 0, add 2 bytes then finally data_to_mcu_len 452 bytes
     write data: length 452, type 0xbb010002
-    Entry, length 452
-    Will Clear the cache buffer.
-```
 
-Двойная команда
-`e0 0xbb010002 ... 0xbb010003` - записать host_psk_data (PSK, зашифрованный через DPAPI = содержимое Goodix_Cache.bin) + psk wb
+`e0 0xbb010002 ... 0xbb010003` - Двойная команда: записать host_psk_data (содержимое Goodix_Cache.bin) + psk wb
 
 ```
 write
@@ -409,7 +394,8 @@ write
         020001bb    - data_type в LE-notation [specific data_type 0xbb010002 (был указан в запросе)]
         4c010000    - длина последующего блока 0xbb010002 (332)
 
-        [далее PSK, зашифрованный через DPAPI (host_psk_data, содержимое Goodix_Cache.bin), длина 332 = 324 + 8]
+        [далее host_psk_data, содержимое Goodix_Cache.bin (332)]
+            [PSK, зашифрованный через DPAPI (324)]
             01 00 00 00 d0 8c 9d df 01 15 d1 11 8c 7a 00 c0 4f c2 97 eb 01 
             00 00 00 4c 9c e6 7c 50 c6 b0 4b b6 37 cd 1c 72 51 14 ee 04 00 00 00 40 00 00 00 54 00 68 00 69 
             00 73 00 20 00 69 00 73 00 20 00 74 00 68 00 65 00 20 00 64 00 65 00 73 00 63 00 72 00 69 00 70 
@@ -422,9 +408,9 @@ write
             23 bd 05 65 13 e6 c5 dc 7d e5 a0 ba a3 c5 e3 57 da 67 a3 4b d3 35 f1 54 29 c6 c4 49 a3 c4 5b 37 
             92 f8 27 d3 92 e5 f7 2a 00 15 30 c0 81 7a 3a
             
-            seed для повторной генерации энтропии при расшифровке (8 байт)
+            [seed для повторной генерации энтропии при расшифровке (8)]
             6b e5 a0 cb ee f0 3c 0b
-        
+
         030001bb    - data_type в LE-notation [specific data_type 0xbb010003 (был указан в запросе)]
         66000000    - длина последующего блока 0xbb010003 (102)
 
@@ -434,8 +420,9 @@ write
         ff 20 00 00 00 7d dc fc db a9 e8 1b 0c 48 15 63 8d 03 05 30 3b 56 2e 5f 40 14 f4 0b 9d 76 ed f2
         75 5d 9e 5d bd 86 94 b0 50 8d f7 86 19 3d ed df ca 48 54 fe f9 3f 68 a5 d5 cf de ec 15 24 29 05
         76 fd ad 0c 67
+
         0000    - remainder4 is not 0, add 2 bytes
-        ad    - контрольная сумма
+          ad    - контрольная сумма
 
 read ack
     a0 06 00 a6
@@ -467,24 +454,7 @@ read
 
 ### read specific data_type 0xbb020003
 
-Чтение хеша PSK WB с MCU (32 байта).
-
-```
-расшифровываем 324 -> 32
-  generate rootkey
-  inbuf_len 324, entropy_len 48, len_out 32
-  The decryption phase worked, 324, 32
-  unseal return 0x0 length before 324, length after:32
-
-преобразуем PSK в WB (32 -> 102)
-  .wb data 
-  wb return 0x0 length before 32, length after:102
-
-хешируем WB (102 -> 32)
-  .hash
-  hash return 0x0 length before 102, length after:32
-  ret 0x0, psk len 32, hash len 32, seal len 332, data from file flag 1 
-```
+Чтение SHA-256 хеша PSK WB с MCU (32 байта).
 
 `e4 0xbb020003` - прочитать хеш PSK WB
 
@@ -530,22 +500,17 @@ read
             030002bb    - data_type в LE-notation
             20 00 00 00 - длина в LE-notation (32)
     
-            далее mcu hash (32 байта)
+            далее SHA-256 hash (32 байта)
             8d 8e 99 80 5d 1e 22 89 c5 41 12 5d 5a dd 5d d5 30 89 4c c8 50 0d 03 55 41 b8 c0 a5 96 1e c0 5d
             d3    - контрольная сумма
 
 ```
 
-Далее полученный хеш проверяется с сохраненным:
-
-```
-3.verify
-!!!hash equal !!! 
-check psk: psk is valid!
-Production Process...Success!
-```
-
-Проверка PSK пройдена.
+- расшифровываем DPAPI blob с помощью вызова `CryptUnprotectData` и ранее полученного seed (324 -> 32)
+- преобразуем PSK в WB (32 -> 102)
+- хешируем WB с помощью SHA-256 (102 -> 32)
+- сравниваем рассчитанный хеш с полученным
+- проверка PSK пройдена
 
 ---
 

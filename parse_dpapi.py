@@ -71,9 +71,9 @@ print(f"Seed             : {seed.hex()}")
 print()
 
 print("--- Генерим root key из констант (заданы в коде драйвера) ---")
-CONST_1 = bytes.fromhex("9d 79 92 b3 84 02 b6 6c 81 d1 f5 55 21 89 42 a9".replace(" ", ""))
-CONST_2 = bytes.fromhex("18 48 d7 15 50 d2 70 d2 19 c8 06 32 ab 4f 8b b3".replace(" ", ""))
-CONST_3 = bytes.fromhex("e4 7c 89 38 db 52 50 f0 20 56 17 ee 17 da 4e b4".replace(" ", ""))
+CONST_1 = bytes.fromhex("9d 79 92 b3 84 02 b6 6c 81 d1 f5 55 21 89 42 a9")
+CONST_2 = bytes.fromhex("18 48 d7 15 50 d2 70 d2 19 c8 06 32 ab 4f 8b b3")
+CONST_3 = bytes.fromhex("e4 7c 89 38 db 52 50 f0 20 56 17 ee 17 da 4e b4")
 
 root_key_buffer = bytearray(16)
 
@@ -94,6 +94,23 @@ entropy_material = seed_hash[:16] + root_key
 entropy_hash = hashlib.sha256(entropy_material).digest()
 entropy = seed_hash[16:] + entropy_hash  # 16 + 32 = 48 байт
 print(f"DPAPI entropy   : {entropy.hex()}")
+print()
+
+expected_hash = bytes.fromhex("8d8e99805d1e2289c541125d5add5dd530894cc8500d035541b8c0a5961ec05d")
+psk_wb = bytes.fromhex(
+    "fad1e5b87930265db0ed2544e3615056f619fc11e6a558f8e0d92003e479ff41"
+    "02ff200000007ddcfcdba9e81b0c4815638d0305303b562e5f4014f40b9d76ed"
+    "f2755d9e5dbd8694b0508df786193deddfca4854fef93f68a5d5cfdeec152429"
+    "0576fdad0c67"
+)
+sha256_hash = hashlib.sha256()
+sha256_hash.update(psk_wb)
+actual_hash = sha256_hash.digest()
+
+print(f"Expected PSK WB hash : {expected_hash.hex()}")
+print(f"  Actual PSK WB hash : {actual_hash.hex()}")
+print("hash are equal" if expected_hash == actual_hash else "hash are different")
+print()
 
 # Расшифровать PSK на Windows можно через mimikatz указав энтропию (под тем же пользователем):
 # dpapi::blob /in:"C:\ProgramData\Goodix\Goodix_Cache.bin" /entropy:633b9d417af094e9b570069f30cd42ee0d050aa6e65127f7907c1087319821ccde810722cd73529701e9b6160dd6ee1c /unprotect
