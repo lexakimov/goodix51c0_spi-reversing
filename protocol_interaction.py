@@ -5,6 +5,9 @@ from datetime import datetime
 from threading import Lock, Thread
 from time import sleep
 
+from mbedtls._tls import _enable_debug_output, _set_debug_level
+from mbedtls.tls import TLSConfiguration, TLSWrappedBuffer, HandshakeStep, TLSVersion, ServerContext, WantReadError, \
+    WantWriteError
 from periphery import CdevGPIO
 from periphery.gpio import GPIOError
 from spidev import SpiDev
@@ -418,6 +421,82 @@ def main():
     print()
 
     ####################################################### TLS #######################################################
+
+    log(Colors.HI_GREEN, "━━━ TLS handshake ".ljust(log_frames_width, '━'))
+
+    psk = to_bytes("ed7557814ffa54b33b8aaa724e118e17de06346b90a21d6a56e5aaacc7a3a8f0")
+
+    config = TLSConfiguration(
+        validate_certificates=False,
+        ciphers=("TLS-PSK-WITH-AES-128-GCM-SHA256",),
+        lowest_supported_version=TLSVersion.TLSv1_2,
+        highest_supported_version=TLSVersion.TLSv1_2,
+        # pre_shared_key=("Client_identity", psk),
+        pre_shared_key_store={"Client_identity": psk},
+    )
+    ctx = ServerContext(config)
+    tls = TLSWrappedBuffer(ctx)
+
+    _enable_debug_output(ctx)
+    _set_debug_level(4) # Its values can be between 0 and 5, where 5 is the most logs.
+
+    def _read_from_device():
+        while True:
+            # frame = link.recv_tls()
+            acquire_then_release(read_is_ready, 'read_is_ready')
+            _frame = perform_read()
+            acquire_then_release(read_is_done, 'read_is_done')
+            print()
+            if _frame is not None:
+                return _frame
+
+    def _flush_outgoing():
+        while True:
+            chunk = tls.peek_outgoing(4096)
+            if not chunk:
+                break
+            # link.send_tls(chunk)
+            perform_write(0xb0, chunk)
+            tls.consume_outgoing(len(chunk))
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    # start_handshake:
+
+    # получить Client hello
+    perform_write(0xa0, 'd1 03 00 00 00 d7')
+
+    _flush_outgoing()
+    while tls._handshake_state is not HandshakeStep.HANDSHAKE_OVER:
+        log(Colors.HI_YELLOW, f"handshake state: {tls._handshake_state}")
+        try:
+            tls.do_handshake()
+        except WantReadError as e:
+            log(Colors.HI_YELLOW, f"WantReadError: {e}")
+            frame = _read_from_device()
+            if frame:
+                tls.receive_from_network(bytes(frame))
+        except WantWriteError as e:
+            log(Colors.HI_YELLOW, f"WantWriteError: {e}")
+            _flush_outgoing()
+        else:
+            _flush_outgoing()
+    _flush_outgoing()
+
+    # ----------------------------------------------------------------------------------------------------------------
+
+    # Резюме обмена TLS-пакетами:
+    #
+    # 1.  **Устройство -> Хост:** `ServerHello + ServerKeyExchange(PSK Hint) + ServerHelloDone` (в одном B0 чтении)
+    # 2.  **Хост -> Устройство:** `ClientKeyExchange(PSK Identity)` (в одном B0 записи)
+    # 3.  **Хост -> Устройство:** `ChangeCipherSpec` (в отдельной B0 записи)
+    # 4.  **Хост -> Устройство:** `Finished` (зашифровано, в отдельной B0 записи)
+    # 5.  **Устройство -> Хост:** `ChangeCipherSpec` (в отдельном B0 чтении)
+    # 6.  **Устройство -> Хост:** `Finished` (зашифровано, в отдельном B0 чтении)
+    #
+    # После обмена пакетами Finished с обеих сторон TLS-хендшейк успешно завершен, и дальнейшая коммуникация
+    # (если она происходит через TLS) будет зашифрована с использованием сессионных ключей, выведенных из PSK.
 
     # ----------------------------------------------------------------------------------------------------------------
     # log(Colors.HI_GREEN, "━━━ get tls handshake package (client hello) ".ljust(log_frames_width, '━'))
