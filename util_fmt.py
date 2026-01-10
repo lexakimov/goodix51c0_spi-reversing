@@ -44,11 +44,11 @@ def crop(s, length):
     return (s[:length - 3] + '...') if len(s) > length else s
 
 
-def to_hex_string(byte_array: bytearray | bytes | list[int]):
+def to_hex_string(byte_array: bytearray | bytes):
     return ' '.join('{:02X}'.format(num) for num in byte_array)
 
 
-def to_utf_string(byte_array: bytearray | bytes | list[int]):
+def to_utf_string(byte_array: bytearray | bytes):
     return bytearray(byte_array).decode('utf-8', errors='ignore')
 
 

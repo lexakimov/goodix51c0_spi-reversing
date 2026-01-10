@@ -43,29 +43,27 @@ def acquire_then_release(lock, label):
     lock.release()
 
 
-def to_bytes(payload: bytes | str | list[int]) -> bytes:
+def to_bytes(payload: bytes | bytearray | str) -> bytes:
     if isinstance(payload, bytes):
+        return payload
+    if isinstance(payload, bytearray):
         return payload
     if isinstance(payload, str):
         return bytes.fromhex(payload.replace(" ", ""))
-    if isinstance(payload, list):
-        return bytearray(payload)
     else:
         raise RuntimeError(f"unhandled type: {type(payload)}")
 
 
-def make_header_packet(packet_type: int, payload_length: int) -> bytearray:
-    header_packet = bytearray([packet_type]) + payload_length.to_bytes(2, 'little')
-    sum_int = 0x00
-    for b in header_packet:
-        sum_int = (sum_int + b) & 0xFF
-    checksum: bytes = sum_int.to_bytes()
-    header_packet += checksum
+def make_header_packet(packet_type: int, payload_length: int) -> bytes:
+    packet = bytearray([packet_type])
+    packet.extend(payload_length.to_bytes(2, 'little'))
+    checksum = sum(packet) & 0xFF
+    packet.append(checksum)
 
-    return header_packet
+    return packet
 
 
-def make_payload_packet(packet_type: int, data: bytes | str | list[int]):
+def make_payload_packet(packet_type: int, data: bytes | bytearray | str):
     data = to_bytes(data)
     payload = bytes((packet_type,))
     target_len = len(data) + 1  # includes checksum byte
@@ -76,21 +74,21 @@ def make_payload_packet(packet_type: int, data: bytes | str | list[int]):
     return payload
 
 
-def calculate_checksum(packet: list[int] | bytes) -> int:
+def calculate_checksum(packet: bytes | bytearray) -> int:
     return 0xaa - sum(packet) & 0xff
 
 
-def calculate_checksum_for_mcu_timestamp(packet: list[int] | bytes) -> int:
+def calculate_checksum_for_mcu_timestamp(packet: bytes | bytearray) -> int:
     return (0xaa - sum(packet) & 0xff) + 1
 
 
-def is_header_packet_checksum_valid(packet: list[int] | bytearray) -> bool:
+def is_header_packet_checksum_valid(packet: bytes | bytearray) -> bool:
     checksum = packet[-1]
     fact_sum = sum(packet[:-1]) & 0xff
     return checksum == fact_sum
 
 
-def is_payload_packet_checksum_valid(packet: bytes | list[int] | bytearray):
+def is_payload_packet_checksum_valid(packet: bytes | bytearray):
     checksum = packet[-1]
     if checksum == 0x88:
         return None
@@ -98,17 +96,17 @@ def is_payload_packet_checksum_valid(packet: bytes | list[int] | bytearray):
     return checksum == fact_sum
 
 
-def extract_length(packet: list[int] | bytearray) -> int:
+def extract_length(packet: bytes | bytearray) -> int:
     length_bytes = packet[1:3]
     length_int = int.from_bytes(length_bytes, byteorder="little")
     return length_int
 
 
-def perform_read(is_ack=False) -> list[int]:
+def perform_read(is_ack=False) -> bytes:
     logs_color = Colors.GREEN if is_ack else Colors.HI_BLUE
     log(logs_color, f"{'get ack' if is_ack else 'reading'} from device...")
     header_packet = spi.readbytes(4)
-    is_valid = is_header_packet_checksum_valid(header_packet)
+    is_valid = is_header_packet_checksum_valid(bytes(header_packet))
     validity = format_validity(is_valid)
     hex_cropped = crop(to_hex_string(header_packet), log_packet_max_length)
     log(logs_color, f"\t- packet received {validity} : {hex_cropped}")
@@ -119,11 +117,11 @@ def perform_read(is_ack=False) -> list[int]:
     if payload_length == 0xFFFF:
         raise RuntimeError('read error: FF bytes are received')
 
-    payload_packet = list()
+    payload_packet = bytearray()
     bytes_left = payload_length
     while bytes_left > 0:
         chunk = spi.readbytes(bytes_left)
-        payload_packet += chunk
+        payload_packet += bytes(chunk)
         bytes_left -= len(chunk)
 
     is_valid = is_payload_packet_checksum_valid(payload_packet)
@@ -144,7 +142,7 @@ def perform_read(is_ack=False) -> list[int]:
     return payload_packet
 
 
-def perform_write(packet_type: int, payload: bytes | str | list[int]):
+def perform_write(packet_type: int, payload: bytes | bytearray | str):
     log(Colors.HI_PURPLE, "writing to device...")
     payload = to_bytes(payload)
     header_packet = make_header_packet(packet_type, len(payload))
@@ -468,7 +466,7 @@ def main():
             log(Colors.NEGATIVE, f"WantReadError: {e}")
             frame = _read_from_device(tls._handshake_state)
             if frame:
-                tls.receive_from_network(bytes(frame))
+                tls.receive_from_network(frame)
         except WantWriteError as e:
             log(Colors.NEGATIVE, f"WantWriteError: {e}")
             _flush_outgoing()
@@ -565,7 +563,7 @@ def main():
     with_tls = True
 
     if with_tls:
-        tls.receive_from_network(bytes(image_packet))
+        tls.receive_from_network(image_packet)
         image_packet = tls.read(7693)
 
     # log(Colors.ITALIC, "image packet bytes:\n" + ' '.join('{:02X}'.format(num) for num in image_packet))
