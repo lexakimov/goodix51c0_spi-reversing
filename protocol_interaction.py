@@ -437,159 +437,90 @@ def main():
     ctx = ServerContext(config)
     tls = TLSWrappedBuffer(ctx)
 
-    _enable_debug_output(ctx)
-    _set_debug_level(4) # Its values can be between 0 and 5, where 5 is the most logs.
+    # _enable_debug_output(ctx)
+    # _set_debug_level(5) # Its values can be between 0 and 5, where 5 is the most logs.
 
-    def _read_from_device():
+    def _read_from_device(hs_state):
+        read_is_ready.acquire()
+        read_is_done.acquire()
         while True:
-            # frame = link.recv_tls()
-            acquire_then_release(read_is_ready, 'read_is_ready')
-            _frame = perform_read()
-            acquire_then_release(read_is_done, 'read_is_done')
-            print()
-            if _frame is not None:
-                return _frame
+            if hs_state is HandshakeStep.CLIENT_CHANGE_CIPHER_SPEC:
+                acquire_then_release(read_is_ready, 'read_is_ready')
+                _frame = perform_read(True)
+                manual_sleep(0.1)
+                _frame2 = perform_read()
+                acquire_then_release(read_is_done, 'read_is_done')
+                if _frame is not None:
+                    return _frame + _frame2
+            else:
+                acquire_then_release(read_is_ready, 'read_is_ready')
+                _frame = perform_read()
+                acquire_then_release(read_is_done, 'read_is_done')
+                print()
+                if _frame is not None:
+                    return _frame
 
     def _flush_outgoing():
         while True:
             chunk = tls.peek_outgoing(4096)
             if not chunk:
                 break
-            # link.send_tls(chunk)
             perform_write(0xb0, chunk)
             tls.consume_outgoing(len(chunk))
-
-    read_is_ready.acquire()
-    read_is_done.acquire()
-
-    # start_handshake:
 
     # получить Client hello
     perform_write(0xa0, 'd1 03 00 00 00 d7')
 
     _flush_outgoing()
     while tls._handshake_state is not HandshakeStep.HANDSHAKE_OVER:
-        log(Colors.HI_YELLOW, f"handshake state: {tls._handshake_state}")
+        log(Colors.HI_YELLOW, f"handshake state: {tls._handshake_state} ({tls._handshake_state.value})")
         try:
             tls.do_handshake()
         except WantReadError as e:
             log(Colors.HI_YELLOW, f"WantReadError: {e}")
-            frame = _read_from_device()
+            frame = _read_from_device(tls._handshake_state)
             if frame:
                 tls.receive_from_network(bytes(frame))
         except WantWriteError as e:
             log(Colors.HI_YELLOW, f"WantWriteError: {e}")
             _flush_outgoing()
+        except Exception as e:
+            log(Colors.HI_YELLOW, f"Exception: {e}")
+            _flush_outgoing()
         else:
+            log(Colors.HI_YELLOW, f"...flush...")
             _flush_outgoing()
     _flush_outgoing()
 
-    # ----------------------------------------------------------------------------------------------------------------
+    log(Colors.NEGATIVE, "handshake закончен!")
+    exit()
 
-    # Резюме обмена TLS-пакетами:
-    #
-    # 1.  **Устройство -> Хост:** `ServerHello + ServerKeyExchange(PSK Hint) + ServerHelloDone` (в одном B0 чтении)
-    # 2.  **Хост -> Устройство:** `ClientKeyExchange(PSK Identity)` (в одном B0 записи)
-    # 3.  **Хост -> Устройство:** `ChangeCipherSpec` (в отдельной B0 записи)
-    # 4.  **Хост -> Устройство:** `Finished` (зашифровано, в отдельной B0 записи)
-    # 5.  **Устройство -> Хост:** `ChangeCipherSpec` (в отдельном B0 чтении)
-    # 6.  **Устройство -> Хост:** `Finished` (зашифровано, в отдельном B0 чтении)
-    #
-    # После обмена пакетами Finished с обеих сторон TLS-хендшейк успешно завершен, и дальнейшая коммуникация
-    # (если она происходит через TLS) будет зашифрована с использованием сессионных ключей, выведенных из PSK.
 
-    # ----------------------------------------------------------------------------------------------------------------
-    # log(Colors.HI_GREEN, "━━━ get tls handshake package (client hello) ".ljust(log_frames_width, '━'))
-    #
-    # read_is_ready.acquire()
-    # read_is_done.acquire()
-    #
-    # perform_write(0xa0, 'd1 03 00 00 00 d7')
-    # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read()  # not to wait for ack
-    # acquire_then_release(read_is_done, 'read_is_done')
-    # print()
+    # handshake state: HandshakeStep.HELLO_REQUEST (0)
+    # handshake state: HandshakeStep.CLIENT_HELLO (1)
+    # handshake state: HandshakeStep.CLIENT_HELLO (1)
+    # handshake state: HandshakeStep.SERVER_HELLO (2)
+    # handshake state: HandshakeStep.SERVER_CERTIFICATE (3)
+    # handshake state: HandshakeStep.SERVER_KEY_EXCHANGE (4)
+    # handshake state: HandshakeStep.CERTIFICATE_REQUEST (5)
+    # handshake state: HandshakeStep.SERVER_HELLO_DONE (6)
+    # handshake state: HandshakeStep.CLIENT_CERTIFICATE (7)
+    # handshake state: HandshakeStep.CLIENT_KEY_EXCHANGE (8)
+    # handshake state: HandshakeStep.CLIENT_KEY_EXCHANGE (8)
+    # handshake state: HandshakeStep.CERTIFICATE_VERIFY (9)
+    # handshake state: HandshakeStep.CLIENT_CHANGE_CIPHER_SPEC (10)
+    # handshake state: HandshakeStep.CLIENT_CHANGE_CIPHER_SPEC (10)
+    # handshake state: HandshakeStep.CLIENT_FINISHED (11)
+    # handshake state: HandshakeStep.SERVER_CHANGE_CIPHER_SPEC (12)
+    # handshake state: HandshakeStep.FLUSH_BUFFERS (14)
+    # handshake state: HandshakeStep.HANDSHAKE_WRAPUP (15)
 
-    # 16 03 03 00 2F 01 00 00 2B 03 03 2D F4 51 58 CF 8C B1 40 46 F6 B5 4B 29 31 03 47 04 5B 70 30 B4 5D FD 20 78 7F 8B 1A D8 59 29 50 00 00 04 00 A8 00 FF 01 00
-    # 52          47          43
-
-    # exit()
-
-    # ----------------------------------------------------------------------------------------------------------------
-
-    # отправляем пакет в ssl сервер (TLS-PSK-WITH-AES-128-GCM-SHA256)
-    # поучаем ответ от ssl сервера, отправляем в MCU
-
-    # ----------------------------------------------------------------------------------------------------------------
-    # log(Colors.HI_GREEN, "━━━ tls 1 ".ljust(log_frames_width, '━'))
+    # Понять что это после handshake
+    # write    4 -  0000: a0 06 00 a6
+    # write    6 -  0000: d4 03 00 00 00 d3
     #
-    # perform_write(0xb0, '16 03 03 00 51 02 00 00 4d 03 03 9c 45 f7 ca 9a 9e b1 ec e4 3f d4 b4 4c 39 72 22 e6 7d 3c e8 '
-    #                     '2b 66 50 80 57 46 a4 17 13 71 b7 8c 20 92 4f f3 83 b8 15 a9 20 19 0c 93 4a 20 4f f3 a7 1b fd '
-    #                     '2d 40 03 cb 18 37 81 b9 6b ce 7c 04 b9 9e 00 a8 00 00 05 ff 01 00 01 00')
-    # manual_sleep(0.1)
-    #
-    # perform_write(0xb0, '16 03 03 00 04 0e 00 00 00')
-    # manual_sleep(0.1)
-    #
-    # perform_read()
-    # manual_sleep(0.1)
-    #
-    # perform_read()
-    # manual_sleep(0.1)
-    #
-    # perform_read()
-    # manual_sleep(0.1)
-    #
-    #
-    # perform_write(0xb0, '14 03 03 00 01 01')
-    # manual_sleep(0.1)
-    #
-    # perform_write(0xb0, '16 03 03 00 28 00 00 00 00 00 00 00 00 ef 3e db fd 53 50 df e4 f2 8e 82 fd e8 8d a8 f7 1d 58 '
-    #                     '8f 15 11 51 59 d5 01 68 40 84 2f 7b fd 76')
-    # manual_sleep(0.1)
-    #
-    # perform_write(0xa0, 'd4 03 00 00 00 d3')
-    # manual_sleep(0.1)
-    # perform_read()
-    # manual_sleep(0.1)
-    #
-    # perform_write(0xa0, 'af 06 00 55 6e a7 00 00 8c')
-    # # no ack
-    # manual_sleep(0.1)
-    #
-    # perform_read()
-    # manual_sleep(0.1)
-    #
-    #
-    # perform_write(0xa0, '36 0f 00 09 01 00 00 00 00 00 00 00 00 00 00 00 00 5b')
-    # manual_sleep(0.1)
-    # perform_read()
-    # manual_sleep(0.1)
-    # perform_read()
-    # manual_sleep(0.1)
-    #
-    #
-    # perform_write(0xa0, '50 03 00 01 00 56')
-    # manual_sleep(0.1)
-    # perform_read()
-    # manual_sleep(0.1)
-    # perform_read()
-    # manual_sleep(0.1)
-    #
-    # perform_write(0xa0, '36 0f 00 09 01 80 b0 80 c3 80 a5 80 b7 80 a7 80 b7 2e')
-    # manual_sleep(0.1)
-    # perform_read()
-    # manual_sleep(0.1)
-    # perform_read()
-    # manual_sleep(0.1)
-    #
-    # perform_write(0xa0, '82 06 00 00 82 00 02 00 9e')
-    # manual_sleep(0.1)
-    # perform_read()
-    # manual_sleep(0.1)
-    # perform_read()
-    # manual_sleep(0.1)
-    # print()
+    # read    4 -  0000: a0 06 00 a6
+    # read    6 -  0000: b0 03 00 d4 01 22
 
     # ----------------------------------------------------------------------------------------------------------------
     # log(Colors.HI_GREEN, "━━━ get fdt base ".ljust(log_frames_width, '━'))
