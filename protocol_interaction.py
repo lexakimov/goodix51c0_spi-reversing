@@ -155,11 +155,14 @@ def perform_write(packet_type: int, payload: bytes | str | list[int]):
     log(Colors.HI_PURPLE, f"\t-     packet sent {validity} : {hex_string}")
 
     spi.writebytes(payload)
+    # status = spi.xfer(payload)
     is_2_valid = is_payload_packet_checksum_valid(payload)
     validity = format_validity(is_2_valid)
     hex_string = to_hex_string(payload)
     hex_cropped = crop(hex_string, log_packet_max_length)
     log(Colors.HI_PURPLE, f"\t-     packet sent {validity} : {hex_cropped}")
+    # hex_string2 = to_hex_string(status)
+    # log(Colors.HI_PURPLE, f"\t-        tx response : {hex_string2}")
 
     if log_frames:
         payload_length = extract_length(header_packet)
@@ -311,21 +314,6 @@ def main():
     # if True: exit()
 
     # ----------------------------------------------------------------------------------------------------------------
-    # TODO: Не было в логах драйвера, догадался сам
-    # log(Colors.HI_GREEN, "━━━ write 0xbb020003 ".ljust(log_frames_width, '━'))
-    #
-    # read_is_ready.acquire()
-    # read_is_done.acquire()
-    # # perform_write(0xa0, 'e0 09 00 03 00 02 bb 00 00 00 00 01')
-    # perform_write(0xa0, make_payload_packet(0xe0, '03 00 02 bb 00 00 00 00'))
-    # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read()  # get ack for cmd 0xe0, cfg flag 0x7
-    # manual_sleep(0.05)
-    # perform_read()
-    # acquire_then_release(read_is_done, 'read_is_done')
-    # print()
-
-    # ----------------------------------------------------------------------------------------------------------------
     reset_sensor()
 
     # ----------------------------------------------------------------------------------------------------------------
@@ -473,26 +461,26 @@ def main():
 
     _flush_outgoing()
     while tls._handshake_state is not HandshakeStep.HANDSHAKE_OVER:
-        log(Colors.HI_YELLOW, f"handshake state: {tls._handshake_state} ({tls._handshake_state.value})")
+        log(Colors.NEGATIVE, f"handshake state: {tls._handshake_state} ({tls._handshake_state.value})")
         try:
             tls.do_handshake()
         except WantReadError as e:
-            log(Colors.HI_YELLOW, f"WantReadError: {e}")
+            log(Colors.NEGATIVE, f"WantReadError: {e}")
             frame = _read_from_device(tls._handshake_state)
             if frame:
                 tls.receive_from_network(bytes(frame))
         except WantWriteError as e:
-            log(Colors.HI_YELLOW, f"WantWriteError: {e}")
+            log(Colors.NEGATIVE, f"WantWriteError: {e}")
             _flush_outgoing()
         except Exception as e:
-            log(Colors.HI_YELLOW, f"Exception: {e}")
+            log(Colors.NEGATIVE, f"Exception: {e}")
             _flush_outgoing()
         else:
-            log(Colors.HI_YELLOW, "no error - just flush outgoing")
+            log(Colors.NEGATIVE, "no error - just flush outgoing")
             _flush_outgoing()
     _flush_outgoing()
 
-    log(Colors.HI_YELLOW, f"handshake state: {tls._handshake_state} ({tls._handshake_state.value})")
+    log(Colors.NEGATIVE, f"handshake state: {tls._handshake_state} ({tls._handshake_state.value})")
     log(Colors.NEGATIVE, "handshake is done!")
 
     # handshake state: HandshakeStep.HELLO_REQUEST (0)
@@ -516,18 +504,16 @@ def main():
     # handshake state: HandshakeStep.HANDSHAKE_OVER (16)
 
     # ----------------------------------------------------------------------------------------------------------------
-    log(Colors.HI_GREEN, "━━━ ???? ".ljust(log_frames_width, '━'))
+    log(Colors.HI_GREEN, "━━━ necessary for get image step (with TLS) ".ljust(log_frames_width, '━'))
 
-    # Понять что это после handshake
-    # write    4 -  0000: a0 06 00 a6
-    # write    6 -  0000: d4 03 00 00 00 d3
-    #
-    # read    4 -  0000: a0 06 00 a6
-    # read    6 -  0000: b0 03 00 d4 01 22
+    manual_sleep(0.1)
 
+    read_is_ready.acquire()
+    read_is_done.acquire()
     perform_write(0xa0, 'd4 03 00 00 00 d3')
-    manual_sleep(0.05)
+    acquire_then_release(read_is_ready, 'read_is_ready')
     perform_read()
+    acquire_then_release(read_is_done, 'read_is_done')
     print()
 
     # ----------------------------------------------------------------------------------------------------------------
@@ -725,6 +711,7 @@ def write_bb010003(payload):
 
     # > E0 03 00 00 03 C4
     print()
+
 
 def read_bb010002():
     """
