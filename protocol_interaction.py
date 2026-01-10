@@ -488,13 +488,12 @@ def main():
             log(Colors.HI_YELLOW, f"Exception: {e}")
             _flush_outgoing()
         else:
-            log(Colors.HI_YELLOW, f"...flush...")
+            log(Colors.HI_YELLOW, "no error - just flush outgoing")
             _flush_outgoing()
     _flush_outgoing()
 
-    log(Colors.NEGATIVE, "handshake закончен!")
-    exit()
-
+    log(Colors.HI_YELLOW, f"handshake state: {tls._handshake_state} ({tls._handshake_state.value})")
+    log(Colors.NEGATIVE, "handshake is done!")
 
     # handshake state: HandshakeStep.HELLO_REQUEST (0)
     # handshake state: HandshakeStep.CLIENT_HELLO (1)
@@ -514,6 +513,10 @@ def main():
     # handshake state: HandshakeStep.SERVER_CHANGE_CIPHER_SPEC (12)
     # handshake state: HandshakeStep.FLUSH_BUFFERS (14)
     # handshake state: HandshakeStep.HANDSHAKE_WRAPUP (15)
+    # handshake state: HandshakeStep.HANDSHAKE_OVER (16)
+
+    # ----------------------------------------------------------------------------------------------------------------
+    log(Colors.HI_GREEN, "━━━ ???? ".ljust(log_frames_width, '━'))
 
     # Понять что это после handshake
     # write    4 -  0000: a0 06 00 a6
@@ -521,6 +524,11 @@ def main():
     #
     # read    4 -  0000: a0 06 00 a6
     # read    6 -  0000: b0 03 00 d4 01 22
+
+    perform_write(0xa0, 'd4 03 00 00 00 d3')
+    manual_sleep(0.05)
+    perform_read()
+    print()
 
     # ----------------------------------------------------------------------------------------------------------------
     # log(Colors.HI_GREEN, "━━━ get fdt base ".ljust(log_frames_width, '━'))
@@ -530,7 +538,7 @@ def main():
     #
     # perform_write(0xa0, '36 0f 00 09 01 00 00 00 00 00 00 00 00 00 00 00 00 5b')
     # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read()
+    # perform_read(True)
     # manual_sleep(0.05)
     # perform_read()
     # acquire_then_release(read_is_done, 'read_is_done')
@@ -567,6 +575,8 @@ def main():
     acquire_then_release(read_is_ready, 'read_is_ready')
     image_packet = perform_read()
     acquire_then_release(read_is_done, 'read_is_done')
+
+    exit()
 
     # log(Colors.ITALIC, "image packet bytes:\n" + ' '.join('{:02X}'.format(num) for num in image_packet))
     show_image(image_packet)
