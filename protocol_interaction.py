@@ -562,7 +562,11 @@ def main():
     image_packet = perform_read()
     acquire_then_release(read_is_done, 'read_is_done')
 
-    exit()
+    with_tls = True
+
+    if with_tls:
+        tls.receive_from_network(bytes(image_packet))
+        image_packet = tls.read(7693)
 
     # log(Colors.ITALIC, "image packet bytes:\n" + ' '.join('{:02X}'.format(num) for num in image_packet))
     show_image(image_packet)
