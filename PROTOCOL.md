@@ -791,17 +791,22 @@ read
         16    - контрольная сумма
 ```
 
-### Init TLS - Get TLS handshake package
+### Init TLS (TLS handshake)
 
-> TODO выяснить от чего меняется содержимое client hello
-> TODO декодировать все пакеты tls через парсер
-> https://tls12.xargs.org/#server-hello/annotated
-> https://williamlieurance.com/tls-handshake-parser/
+Делается через библиотеку mbedtls как посредника:
+    - mbedtls должен знать PSK
+    - инициируем процесс рукопожатия через `tls.do_handshake()`
+    - если сканер прислал данные - отправляем из в mbedtls через `tls.receive_from_network(frame)`
+    - если прочитали ответ от mbedtls через `tls.peek_outgoing(length)` + `tls.consume_outgoing(length)` - отправляем его в сканер
 
-> https://aistudio.google.com/app/prompts?state=%7B%22ids%22:%5B%221eL109UOXNQUWn3T6FnA2gKBpy25bIkjp%22%5D,%22action%22:%22open%22,%22userId%22:%22108801036010063453123%22,%22resourceKeys%22:%7B%7D%7D&usp=sharing
-> https://community.netwitness.com/s/article/DecryptIncomingPacketsTLS1-2
+Ниже только пакеты взаимодействия со сканером:
+
+Для помощи:
+[Декодер пакетов](https://williamlieurance.com/tls-handshake-parser/)
+[Иллюстрированный процесс](https://tls12.xargs.org/)
+
 ```
-1. получить Client hello
+1. Получить "Client Hello" от сканера, и отправить в mbedtls
 
 write
     a0 06 00 a6
@@ -817,14 +822,17 @@ write
 
 not to wait for ack
 
+handshake state: HandshakeStep.HELLO_REQUEST (0)
+handshake state: HandshakeStep.CLIENT_HELLO (1)
+
 read
     b0 34 00 e4
         b0    - флаг TLS
         3400  - полная длина следующего пакета в LE-notation (52)
         e4    - контрольная сумма
 
-    16 03 03 00 2f 01 00 00 2b 03 03 2d f4 51 58 cf 8c b1 40 46 f6 b5 4b 29 31 03 47 04 5b 70 30 b4
-    5d fd 20 78 7f 8b 1a d8 59 29 50 00 00 04 00 a8 00 ff 01 00               - tls handshake client hello package (52)
+    16 03 03 00 2f 01 00 00 2b 03 03 2d f4 51 58 cf 8c b1 40 46 f6 b5 4b 29 31 03 47 04 5b 70 30 b4 5d fd 20 78 7f 8b 1a d8 59 29 50 00 00 04 00 a8 00 ff 01 00
+        "Client Hello" (52):
         [
             {
                 "ClientHello": {
@@ -843,8 +851,11 @@ read
             }
         ]
 
+handshake state: HandshakeStep.CLIENT_HELLO (1)
+handshake state: HandshakeStep.SERVER_HELLO (2)
 
-2. отправить server hello
+
+2. Отправить сканеру "Server Hello", полученный от mbedtls
 
 write
     b0 56 00 06
@@ -852,15 +863,16 @@ write
         5600  - полная длина следующего пакета в LE-notation (86)
         06    - контрольная сумма
 
-    16 03 03 00 51 02 00 00 4d 03 03 9c 45 f7 ca 9a 9e b1 ec e4 3f d4 b4 4c 39 72 22 e6 7d 3c e8 2b
-    66 50 80 57 46 a4 17 13 71 b7 8c 20 92 4f f3 83 b8 15 a9 20 19 0c 93 4a 20 4f f3 a7 1b fd 2d 40
-    03 cb 18 37 81 b9 6b ce 7c 04 b9 9e 00 a8 00 00 05 ff 01 00 01 00         - tls handshake server hello package (86)
+    16 03 03 00 51 02 00 00 4D 03 03 69 62 3B BC 6C 1A 96 2D 46 42 75 BD 80 6C 8C FD A0 EF 8C 1A CE
+    04 8E 54 35 E6 8A EC 4A 51 B2 48 20 9D 62 CE 4F 12 59 73 31 77 97 DD F6 25 E6 73 A1 7D D7 B4 3F
+    0A F4 58 29 D3 5B 53 95 A0 2B C1 8B 00 A8 00 00 05 FF 01 00 01 00
+        "Server Hello" (86)
         [
             {
                 "ServerHello": {
                     "version": "Tls12",
-                    "random_data": "9c45f7ca9a9eb1ece43fd4b44c397222e67d3ce82b6650805746a4171371b78c",
-                    "session_id": "924ff383b815a92019c934a204ff3a71bfd2d403cb183781b96bce7c4b99e",
+                    "random_data": "69623bbc6c1a962d464275bd806c8cfda0ef8c1ace48e5435e68aec4a51b248",
+                    "session_id": "9d62ce4f125973317797ddf625e673a17dd7b43faf45829d35b5395a02bc18b",
                     "chosen_cipher": "0x00a8(TLS_PSK_WITH_AES_128_GCM_SHA256)",
                     "chosen_compression": "Null",
                     "extensions": [
@@ -870,8 +882,13 @@ write
             }
         ]
 
+handshake state: HandshakeStep.SERVER_CERTIFICATE (3)
+handshake state: HandshakeStep.SERVER_KEY_EXCHANGE (4)
+handshake state: HandshakeStep.CERTIFICATE_REQUEST (5)
+handshake state: HandshakeStep.SERVER_HELLO_DONE (6)
 
-3. получить server hello done
+
+3. Отправить сканеру "Server Hello Done", полученый от mbedtls
 
 write
     b0 09 00 b9
@@ -881,8 +898,11 @@ write
 
     16 03 03 00 04 0e 00 00 00
 
+handshake state: HandshakeStep.CLIENT_CERTIFICATE (7)
+handshake state: HandshakeStep.CLIENT_KEY_EXCHANGE (8)
 
-4. Client Key Exchange
+
+4. Получить "Client Key Exchange" от сканера, и отправить в mbedtls
 
 read
     b0 1a 00 ca
@@ -892,23 +912,15 @@ read
 
     16 03 03 00 15 10 00 00 11 00 0f 43 6c 69 65 6e 74 5f 69 64 65 6e 74 69 74 79
 
-      16 03 03 00 15  - Handshake, TLS 1.2, Длина 21 байт.
-      10              - Handshake Type = Client Key Exchange (16).
-      00 00 11        - Длина сообщения Client Key Exchange = 17 байт.
-      Для PSK (RFC 4279): Это сообщение используется для передачи идентификатора PSK.
-      00 0f           - Длина PSK Identity = 15 байт.
-      43 6c 69 65 6e 74 5f 69 64 65 6e 74 69 74 79  - PSK Identity = "Client_identity" (в ASCII).
-
-    Значение: Вот где клиент передает свой идентификатор!
-    Этот способ (передача identity в ClientKeyExchange вместо ClientHello extension) используется в RFC 4279.
-    Это объясняет отсутствие расширения в ClientHello.
-    Сервер теперь знает, какой PSK искать у себя (по строке "Client_identity").
+handshake state: HandshakeStep.CLIENT_KEY_EXCHANGE (8)
+handshake state: HandshakeStep.CERTIFICATE_VERIFY (9)
+handshake state: HandshakeStep.CLIENT_CHANGE_CIPHER_SPEC (10)
 
 
-5. Change Cipher Spec (client -> server)
+5. Получаем от сканера "Change Cipher Spec", отправляем в mbedtls
 Значение: Клиент сообщает серверу, что все последующие сообщения от него будут зашифрованы с использованием 
 согласованных ключей (выведенных из PSK, Client Random, Server Random с помощью PRF/SHA256).
-    
+
 read
     b0 06 00 b6
         b0    - флаг TLS
@@ -916,11 +928,9 @@ read
         b6    - контрольная сумма
 
     14 03 03 00 01 01
-      14 03 03 00 01: Change Cipher Spec, TLS 1.2, Длина 1 байт.
-      01: Change Cipher Spec payload.
 
 
-6. зашифрованное сообщение Finished от клиента
+5. Получаем от сканера "Finished", отправляем в mbedtls
 
 read
     b0 2d 00 dd
@@ -928,23 +938,15 @@ read
         2d00  - полная длина следующего пакета в LE-notation (45)
         dd    - контрольная сумма
 
-    16 03 03 00 28 00 00 00 00 00 00 00 00 1a e7 d2 ec 99 bc 03 c4 2c b0 3f b0 36 d5 16 24 27 2f c6 0a db 73 10 4a e1 7d eb 51 78 08 1f c7
-
-      16 03 03 00 28: Handshake, TLS 1.2, Длина 40 байт.
-      Это зашифрованное сообщение Finished от клиента. Оно шифруется с помощью AES_128_GCM и ключа client_write_key.
-      Структура данных AES-GCM в TLS 1.2: explicit_nonce (8 байт) + ciphertext (содержит зашифрованное Handshake сообщение) + auth_tag (16 байт).
-      00 00 00 00 00 00 00 00: Explicit Nonce (часть IV, здесь это просто номер записи 0).
-      1a e7 ... 16 24 (16 байт): Зашифрованные данные. Они содержат:
-      Handshake Header (20 00 00 0c): Тип Finished (20), Длина 12 байт.
-      Verify Data (12 байт): MAC (вычисленный PRF/SHA256) всех предыдущих сообщений рукопожатия.
-      27 2f ... fc7 (16 байт): GCM Authentication Tag. Гарантирует целостность и подлинность зашифрованных данных и Nonce.
-
-Значение: Клиент доказывает, что он правильно вычислил ключи (т.е. знает PSK) и что рукопожатие не было подделано.
-Расшифровка: Невозможна без знания Pre-Shared Key (PSK), который использовался для генерации сессионных ключей.
+    16 03 03 00 28 00 00 00 00 00 00 00 00 A1 7B 71 A6 31 C6 A4 4B 34 E6 FB 62 E2 9A 69 B4 41 EE B0 C3 6D D9 49 54 38 C2 5C DD A7 2C 77 AC
 
 
-7. Change Cipher Spec (server -> client)
-Значение: Сервер сообщает клиенту, что его последующие сообщения будут зашифрованы.
+handshake state: HandshakeStep.CLIENT_CHANGE_CIPHER_SPEC (10)
+handshake state: HandshakeStep.CLIENT_FINISHED (11)
+handshake state: HandshakeStep.SERVER_CHANGE_CIPHER_SPEC (12)
+
+
+7. Получаем от mbedtls "Change Cipher Spec", отправляем в сканер
 
 write
     b0 06 00 b6
@@ -953,11 +955,12 @@ write
         b6    - контрольная сумма
 
     14 03 03 00 01 01
-      14 03 03 00 01  - Change Cipher Spec, TLS 1.2, Длина 1 байт.
-      01              - Change Cipher Spec payload.
 
 
-8. зашифрованное сообщение Finished от сервера
+handshake state: HandshakeStep.SERVER_FINISHED (13)
+
+
+8. Получаем от mbedtls "Finished", отправляем в сканер
 
 write
     b0 2d 00 dd
@@ -965,19 +968,18 @@ write
         2d00  - полная длина следующего пакета в LE-notation (45)
         dd    - контрольная сумма
 
-    16 03 03 00 28 00 00 00 00 00 00 00 00 ef 3e db fd 53 50 df e4 f2 8e 82 fd e8 8d a8 f7 1d 58 8f 15 11 51 59 d5 01 68 40 84 2f 7b fd 76
-
-      16 03 03 00 28: Handshake, TLS 1.2, Длина 40 байт.
-      Это зашифрованное сообщение Finished от сервера. Оно шифруется с помощью AES_128_GCM и ключа server_write_key.
-      Структура аналогична клиентскому Finished:
-      ef 3e ... df e4 (8 байт): Explicit Nonce сервера (номер записи 0).
-      f2 8e ... a8 f7 (16 байт): Зашифрованные данные (Handshake Header 20 00 00 0c + 12 байт Verify Data сервера).
-      1d 58 ... fd 76 (16 байт): GCM Authentication Tag сервера.
-
-Значение: Сервер успешно расшифровал и проверил Finished клиента (значит, PSK и ключи совпали) и отправляет свое подтверждение. Рукопожатие успешно завершено.
-Расшифровка: Невозможна без знания Pre-Shared Key (PSK).
+    16 03 03 00 28 00 00 00 00 00 00 00 00 C1 DB EB 61 73 93 05 C0 35 38 9A CB 6C 80 01 18 4F 8D 7F B2 15 CC 81 A9 E1 B2 B4 25 B1 53 6C EA
 
 
+handshake state: HandshakeStep.FLUSH_BUFFERS (14)
+handshake state: HandshakeStep.HANDSHAKE_WRAPUP (15)
+handshake state: HandshakeStep.HANDSHAKE_OVER (16)
+handshake is done!
+```
+
+Также за рамками handshake необходимо еще отправить пакет:
+
+```
 write
     a0 06 00 a6
         a0    - флаг MSG_PROTOCOL
@@ -1002,9 +1004,6 @@ read ack
         d4      - cmd (?)
         01      - cfg flag 0x1
         22    - контрольная сумма
-
-tls handshake done
-
 ```
 
 ### Get MCU config (2)
