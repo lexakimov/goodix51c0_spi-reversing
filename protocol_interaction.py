@@ -457,28 +457,21 @@ def main():
     # получить Client hello
     perform_write(0xa0, 'd1 03 00 00 00 d7')
 
-    _flush_outgoing()
     while tls._handshake_state is not HandshakeStep.HANDSHAKE_OVER:
-        log(Colors.NEGATIVE, f"handshake state: {tls._handshake_state} ({tls._handshake_state.value})")
+        log(Colors.NEGATIVE, f"TLS handshake state: {tls._handshake_state.name} ({tls._handshake_state.value})")
         try:
             tls.do_handshake()
-        except WantReadError as e:
-            log(Colors.NEGATIVE, f"WantReadError: {e}")
+        except WantReadError:
+            log(Colors.NEGATIVE, "client -> server...")
             frame = _read_from_device(tls._handshake_state)
             if frame:
                 tls.receive_from_network(frame)
-        except WantWriteError as e:
-            log(Colors.NEGATIVE, f"WantWriteError: {e}")
+        except WantWriteError:
+            log(Colors.NEGATIVE, "server -> client...")
             _flush_outgoing()
-        except Exception as e:
-            log(Colors.NEGATIVE, f"Exception: {e}")
-            _flush_outgoing()
-        else:
-            log(Colors.NEGATIVE, "no error - just flush outgoing")
-            _flush_outgoing()
-    _flush_outgoing()
 
-    log(Colors.NEGATIVE, f"handshake state: {tls._handshake_state} ({tls._handshake_state.value})")
+
+    log(Colors.NEGATIVE, f"TLS handshake state: {tls._handshake_state.name} ({tls._handshake_state.value})")
     log(Colors.NEGATIVE, "handshake is done!")
 
     # handshake state: HandshakeStep.HELLO_REQUEST (0)
