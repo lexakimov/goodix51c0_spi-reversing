@@ -20,7 +20,7 @@ log_isr_events = False
 log_synchronization_events = False
 log_manual_sleeps = False
 
-log_frames = True
+log_frames = False
 log_frames_width = 240
 log_packet_max_length = 200
 
@@ -104,7 +104,7 @@ def extract_length(packet: bytes | bytearray) -> int:
 
 def perform_read(is_ack=False) -> bytes:
     logs_color = Colors.GREEN if is_ack else Colors.HI_BLUE
-    log(logs_color, f"{'get ack' if is_ack else 'reading'} from device...")
+    log(logs_color, f"{'get ack' if is_ack else 'read'} from device...")
     header_packet = spi.readbytes(4)
     is_valid = is_header_packet_checksum_valid(bytes(header_packet))
     validity = format_validity(is_valid)
@@ -143,7 +143,7 @@ def perform_read(is_ack=False) -> bytes:
 
 
 def perform_write(packet_type: int, payload: bytes | bytearray | str):
-    log(Colors.HI_PURPLE, "writing to device...")
+    log(Colors.HI_PURPLE, "write to device...")
     payload = to_bytes(payload)
     header_packet = make_header_packet(packet_type, len(payload))
     spi.writebytes(header_packet)
@@ -429,30 +429,22 @@ def main():
     def _read_from_device(hs_state):
         read_is_ready.acquire()
         read_is_done.acquire()
-        while True:
-            if hs_state is HandshakeStep.CLIENT_CHANGE_CIPHER_SPEC:
-                acquire_then_release(read_is_ready, 'read_is_ready')
-                _frame = perform_read(True)
-                manual_sleep(0.1)
-                _frame2 = perform_read()
-                acquire_then_release(read_is_done, 'read_is_done')
-                if _frame is not None:
-                    return _frame + _frame2
-            else:
-                acquire_then_release(read_is_ready, 'read_is_ready')
-                _frame = perform_read()
-                acquire_then_release(read_is_done, 'read_is_done')
-                print()
-                if _frame is not None:
-                    return _frame
+        acquire_then_release(read_is_ready, 'read_is_ready')
+        _frame1 = perform_read()
+        if hs_state is HandshakeStep.CLIENT_CHANGE_CIPHER_SPEC:
+            manual_sleep(0.1)
+            _frame2 = perform_read()
+            _frame1 += _frame2
 
-    def _flush_outgoing():
-        while True:
-            chunk = tls.peek_outgoing(4096)
-            if not chunk:
-                break
-            perform_write(0xb0, chunk)
-            tls.consume_outgoing(len(chunk))
+        acquire_then_release(read_is_done, 'read_is_done')
+
+        if _frame1:
+            tls.receive_from_network(_frame1)
+
+    def _write_to_device():
+        chunk = tls.peek_outgoing(4096)
+        perform_write(0xb0, chunk)
+        tls.consume_outgoing(len(chunk))
 
     # получить Client hello
     perform_write(0xa0, 'd1 03 00 00 00 d7')
@@ -463,12 +455,10 @@ def main():
             tls.do_handshake()
         except WantReadError:
             log(Colors.NEGATIVE, "client -> server...")
-            frame = _read_from_device(tls._handshake_state)
-            if frame:
-                tls.receive_from_network(frame)
+            _read_from_device(tls._handshake_state)
         except WantWriteError:
             log(Colors.NEGATIVE, "server -> client...")
-            _flush_outgoing()
+            _write_to_device()
 
 
     log(Colors.NEGATIVE, f"TLS handshake state: {tls._handshake_state.name} ({tls._handshake_state.value})")
