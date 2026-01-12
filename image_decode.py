@@ -23,7 +23,7 @@ def main():
     show_image(packet)
 
 
-def show_image(packet: bytes | list[int]):
+def show_image(packet: bytes | bytearray):
     # полный пакет - длина 7693
     # 0x20 - тип пакета, 0A 1E = 0x1E0A = 7690 (полезные данные пакета)
     payload = packet[3:]  # отрезали 20 0A 1E - длина теперь 7690

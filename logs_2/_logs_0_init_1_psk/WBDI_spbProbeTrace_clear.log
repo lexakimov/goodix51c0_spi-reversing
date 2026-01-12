@@ -1290,6 +1290,7 @@
   read    4 -  0000: a0 14 00 b4
   read   20 -  0000: 36 11 00 00 01 00 00 60 01 87 01 4c 01 71 01 51
   read   20 -  0010: 01 71 01 f6
+
  Goodix>>> recvd data cmd-len: 0x36-17
  Goodix>>> --- cmd: fdt
  Goodix>>> IrqStatus:0x100 cmd1 3

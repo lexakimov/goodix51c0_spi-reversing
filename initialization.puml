@@ -125,18 +125,19 @@ note right: отправка сканеру пакета от ssl сервера
 
 :WRITE 0x16 (len:45, sum:0xb1);
 
+}
+
 :WRITE 0xd4 (len:6, sum:0xd3)
 ACK;
+note right: это за рамками TLS handshake
 
-    partition "get MCU state (2)" {
+partition "get MCU state (2)" {
 
-        :WRITE 0xaf (len:9, sum:0x6a)
-        NO ACK;
-        note right: mcu-state TIMESTAMP
+    :WRITE 0xaf (len:9, sum:0x6a)
+    NO ACK;
+    note right: mcu-state TIMESTAMP
 
-        :READ 0xae (len:26, sum:0x5e);
-    }
-
+    :READ 0xae (len:26, sum:0x5e);
 }
 
 :read data from file 13520 bytes

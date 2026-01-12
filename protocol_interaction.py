@@ -619,6 +619,7 @@ def get_mcu_state():
     millis = to_hex_string(now_milliseconds.to_bytes(2, 'little'))
     get_mcu_state_payload = bytes.fromhex(f'af 06 00 55 {millis} 00 00'.replace(' ', ''))
     get_mcu_state_payload += calculate_checksum_for_mcu_timestamp(get_mcu_state_payload).to_bytes()
+
     # get_mcu_state_payload = bytes.fromhex(f'af 06 00 55 5c bf 00 00 86')
 
     perform_write(0xa0, get_mcu_state_payload)

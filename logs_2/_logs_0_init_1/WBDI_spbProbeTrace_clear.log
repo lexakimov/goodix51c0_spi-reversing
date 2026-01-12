@@ -1167,12 +1167,14 @@
   read    4 -  0000: a0 14 00 b4
   read   20 -  0000: 36 11 00 00 01 00 00 60 01 86 01 4c 01 70 01 50
   read   20 -  0010: 01 70 01 fa
+
  Goodix>>> recvd data cmd-len: 0x36-17
  Goodix>>> --- cmd: fdt
  Goodix>>> IrqStatus:0x100 cmd1 3
  Goodix>>> IRQ for fdt-manual, get fdt-up base, current mode is fdt-manual, touchflag 0x0
  Goodix>>> received fdt base::0x600186014c01700150017001
  Goodix>>> get fdt-down base, current mode is fdt-manual
+
  Goodix>>> fdt base:0x600186014c01700150017001
 :0xb080
 :0xc380
