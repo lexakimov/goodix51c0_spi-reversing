@@ -13,6 +13,7 @@ from periphery.gpio import GPIOError
 from spidev import SpiDev
 
 from image_decode import show_image
+from mcu_state import parse_mcu_state
 from packet_parsing import types_by_code
 from util_fmt import Colors, log, to_hex_string, format_validity, print_frame, crop, to_utf_string
 
@@ -20,7 +21,7 @@ log_isr_events = False
 log_synchronization_events = False
 log_manual_sleeps = False
 
-log_frames = False
+log_frames = True
 log_frames_width = 240
 log_packet_max_length = 200
 
@@ -137,6 +138,16 @@ def perform_read(is_ack=False) -> bytes:
         frame_rows = [f'[length:{payload_length:>4}] command: (0x{type_hex}) {packet_type}', hex_string]
         if packet_type_code == 0xA8:
             frame_rows.append(to_utf_string(payload_packet[3:-2]))
+        if packet_type_code == 0xAE:
+            mcu_state_dict = parse_mcu_state(payload_packet[3:-1])
+            mcu_state_str = ''
+            for k,v in mcu_state_dict.items():
+                if k == 'sensor_chip_id' or k == 'pov_procedure':
+                    v = "0x" + to_hex_string([v, ])
+                mcu_state_str += f"{k:<30} : {v}\n"
+
+            frame_rows.append(mcu_state_str)
+
         print_frame(logs_color, '', log_frames_width, frame_rows)
 
     return payload_packet
