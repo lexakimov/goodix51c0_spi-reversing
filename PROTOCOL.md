@@ -221,52 +221,51 @@ read
     ae 17 00 04 00 30 00 00 00 00 01 60 00 00 00 00 01 00 00 04 25 02 00 00 00 24
         ae    - cmd (MCU_CONFIG)
         1700  - длина последующего с контрольной суммой сообщения в LE-notation
-        04003000000000016000000000010000042502000000
+        04003000000000016000000000010000042502000000 - mcu state
         24    - контрольная сумма
 ```
 
 Формат mcu state (22 bytes):
 
-- byte 0: `version`
-- byte 1 (flags):
-  - bit3 `isPOVImageValid`
-  - bit2 `isTlsConnected`
-  - bit1 `isTlsUsed`
-  - bit0 `isLocked`
-- byte 2 (image counts):
-  - младший nibble (биты 0–3) `availImgCnt`
-  - старший nibble (биты 4–7) `povImgCnt`
-- byte 3: `sensor_data_int_timeout_count`
-- byte 4: `image_crc_fail_count`
-- byte 5: `povTouchAccidentCnt`
-- byte 6: `readChipIDCnt`
-
-  - где то здесь `sensorExceptionFlag` : 0
-  - где то здесь `sensorUnexpectedIntCnt` : 0
-
-- byte 7: `to_master_timeout_count`
-- byte 8 (psk):
-  - bits0..5 `psk_len`
-  - bit6 `psk_check_fail`
-- byte 9:
-  - bit0 `psk_write_fail`
-  - bits1..7 `ec_falling_count`
-- byte 10: `system_up_stop_cnt`
-- byte 11: `system_down_pov_stop_cnt`
-- byte 12: `system_up_cleared_pov_count`
-- byte 13 (wake flags):
-  - bit0 `pov_wake_by_fp`
-  - bit1 `pov_wake_by_ec`
-- byte 14: `pov_procedure`
-- byte 15:
-  - bit0 `config_down_flag`
-- bytes 16..17 (little-endian): `sensor_chip_id`
-- byte 18: `sensor_type`
-- byte 19: `pov_capture_count`
-- byte 20: `normal_capture_count`
-- byte 21: `otp_mcu_check_status`
+- 0x00 : `version`
+- 0x01 :
+  - bit0 : `isPOVImageValid`
+  - bit1 : `isTlsConnected`
+  - bit2 : `isTlsUsed`
+  - bit3 : `isLocked`
+- 0x02 :
+  - младший nibble (биты 0–3) : `availImgCnt`
+  - старший nibble (биты 4–7) : `povImgCnt`
+- 0x03 : `sensor_data_int_timeout_count`
+- 0x04 : `image_crc_fail_count`
+- 0x05 :
+  - bits0-6 : `povTouchAccidentCnt` (0x00–0x7F)
+- 0x06 :
+  - bits0-2 : `readChipIDCnt` (0–7)
+  - bit3 : `sensorExceptionFlag`
+  - bits4-7 : `sensorUnexpectedIntCnt` (0–15)
+- 0x07 : `to_master_timeout_count`
+- 0x08 :
+  - bits0-5 : `psk_len` (0–63)
+  - bit6 : `psk_check_fail`
+  - bit7 : `psk_write_fail`
+- 0x09 : `ec_falling_count`
+- 0x0A : `system_up_stop_cnt`
+- 0x0B : `system_down_pov_stop_cnt`
+- 0x0C : `system_up_cleared_pov_count`
+- 0x0D :
+  - bit0 : `pov_wake_by_fp`
+  - bit1 : `pov_wake_by_ec`
+- 0x0E : `pov_procedure`
+- 0x0F : `config_down_flag`
+- 0x10–0x11 : `sensor_chip_id` (little-endian)
+- 0x12 : `sensor_type`
+- 0x13 : `pov_capture_count`
+- 0x14 : `normal_capture_count`
+- 0x15 : `otp_mcu_check_status`
 
 ### Get Evk Version (повтор)
+
 + init (так же как раньше)
 
 Полагаю что на случай если после первой проверки пришлось обновить прошивку
