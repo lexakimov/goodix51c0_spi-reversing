@@ -4,11 +4,12 @@
 <img src="images/enrolled-fingerprint.png" alt="images/enrolled-fingerprint.png" width="200">
 </p>
 
-| Скрипт                                             | Описание                                                                           |
-|----------------------------------------------------|------------------------------------------------------------------------------------|
-| [protocol_interaction.py](protocol_interaction.py) | prove-of-concept работы со сканером. Запускать из под root.                        |
-| [image_decode.py](image_decode.py)                 | пример декодирования изображения из пакета данных, полученных в предыдущем скрипте |
-| [parse_dpapi.py](parse_dpapi.py)                   | извлечение entropy из содержимого Goodix_Cache.bin для расшифровки PSK             |
+| Скрипт                                             | Описание                                                               |
+|----------------------------------------------------|------------------------------------------------------------------------|
+| [protocol_interaction.py](protocol_interaction.py) | prove-of-concept работы со сканером. Запускать из под root.            |
+| [parse_dpapi_blob.py](parse_dpapi_blob.py)         | извлечение entropy из содержимого Goodix_Cache.bin для расшифровки PSK |
+| [parse_mcu_state.py](parse_mcu_state.py)           | парсинг данных о состоянии сканера                                     |
+| [image_decode.py](image_decode.py)                 | пример декодирования изображения из пакета данных                      |
 
 ## Настройка драйвера spidev
 
@@ -55,16 +56,16 @@ pip install -r requirements.txt
 ```
 
 ## Запуск скрипта
-Т.к. для доступа к SPI и GPIO-устройствам нужны права суперпользователя, его нужно запускать из под root:
+Так как для доступа к SPI и GPIO-устройствам нужны права суперпользователя, его нужно запускать из-под root:
 ```shell
 sudo python protocol_interaction.py
 ```
 
 ## Отладка в IDE
-Для отладки можно запускать скрипт в среде разработки (например PyCharm или Intellij IDEA с установленным плагином 
+Для отладки можно запускать скрипт в среде разработки (например PyCharm или IntelliJ IDEA с установленным плагином 
 [Python](https://www.jetbrains.com/help/idea/plugin-overview.html)), предварительно отключив запрос пароля для root-пользователя. Для этого:
 
-- создайте в виртуальном окружении скрипт для запуска интерпретатора python из под root-пользователя:
+- создайте в виртуальном окружении скрипт для запуска интерпретатора python из-под root-пользователя:
 ```shell
 cat << EOF > ./.venv/bin/python-sudo
 #!/bin/bash
@@ -93,12 +94,12 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> exit()
 ```
 
-Теперь в виртуальном окружении можно запускать python из под root пользователя без запроса пароля.
+Теперь в виртуальном окружении можно запускать python из-под root пользователя без запроса пароля.
 
 вместо `python` используйте команду `python-sudo`.
 
 ### Настройка интерпретатора с root-правами в IDE
-- в Intellij IDEA зайдите в `File -> Project Structure -> SDKs -> Add new SDK -> Add Python SDK`
+- в IntelliJ IDEA зайдите в `File -> Project Structure -> SDKs -> Add new SDK -> Add Python SDK`
 - на вкладке `Virtual environment -> Existing environment -> Interpreter ...` и выберите файл `[project path]/.venv/bin/python-sudo`
 Все будет выглядеть примерно так:
 
