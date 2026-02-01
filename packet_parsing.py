@@ -14,6 +14,7 @@ types_by_code: dict[int, str] = {
     0xA8: 'FIRMWARE_VERSION',
     0xAE: 'QUERY_MCU_STATE',
     0xB0: 'ACK',
+    0xD4: 'TLS_SUCCESSFULLY_ESTABLISHED',
     0xE0: 'PRESET_PSK_WRITE',
     0xE4: 'PRESET_PSK_READ',
 }
