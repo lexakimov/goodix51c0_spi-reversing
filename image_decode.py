@@ -1,6 +1,6 @@
 import crcmod
-import matplotlib.pyplot as pyplot
-import numpy
+import matplotlib.pyplot as plot
+import numpy as np
 
 packets = [
     # 20 0A 1E 00 00 00 00 00 - useless header
@@ -29,15 +29,22 @@ def show_image(packet: bytes | bytearray):
     payload = payload[:-1]  # отрезали 88 - длина теперь 7689
     check_crc(payload)
     image = payload[:-4]  # trim image crc checksum - длина теперь 7680
+
+    # dump packed - (7680 байт) без CRC, или (7684 байт) с CRC в конце.
+    with open("frame.bin", "wb") as f:
+        f.write(image)
+
     # col:80 x row:64 = 5120 pixels
     # 5120 * 1.5 = 7680 - нужная длина данных
     decoded = decode_to_16bit(image)
-    image_matrix = numpy.reshape(decoded, (SENSOR_WIDTH, SENSOR_HEIGHT))
-    # pyplot.ion()
-    pyplot.imshow(image_matrix, interpolation='none')
-    pyplot.axis('off')
-    pyplot.show()
-    # pyplot.pause(0.1)
+    image_matrix = np.reshape(decoded, (SENSOR_WIDTH, SENSOR_HEIGHT))
+
+    plot.ion()
+    plot.imshow(image_matrix, cmap="gray", interpolation='none')
+    plot.axis('off')
+    plot.figure(figsize=(2, 2))
+    plot.show()
+    plot.pause(5)
 
 
 def check_crc(payload):

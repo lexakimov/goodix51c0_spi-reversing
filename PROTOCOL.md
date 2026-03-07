@@ -1142,171 +1142,120 @@ read
         a0    - флаг MSG_PROTOCOL
         6d09  - полная длина следующего пакета в LE-notation (2413)
         16    - контрольная сумма
+    
+    дальше идет здоровый пакет: 3 байта (cmd+len) + 5 байт (нули) + 2400 байт (данные) + 4 байта (CRC) + 1 байт (checksum) = 2413 байт.
+    50 6a 09 00 00 00 00 00 37 ef ... 39 d6 41 1b 2c 88 (2413)
 
-    50 6a 09 00 00 00 00 00 37 ef b4 7f 92 78 f9 b7
-    ...
-    b3 0b 0b 24 40 a7 94 39 d6 41 1b 2c 88 (2413)
-        50    - cmd ()
-        6a09  - длина последующего с контрольной суммой сообщения в LE-notation (2410)
+он состоит из:
+50    - cmd
+6a09  - длина последующего с контрольной суммой сообщения в LE-notation (2410)
 
+нули
 00 00 00 00 00
 
+дальше 2400 байт:
 37 ef b4 7f 92 78 f9 b7
-14 9f a3 8a 8a 0b 1c aa a8 ba 8a d3 0f a8 af fb
-3a f4 3c b3 b8 cb 4b 73 a4 b2 ba 4b cb 58 d4 bd
-bf 7b fb d3 df c2 c1 7b 7b d8 eb ba be cb bc 30
-28 c0 c7 4c 3c 4b 48 bf be fc bc 23 2b c6 c4 fc
-bc 4b 47 c0 c5 cc 4c 9f ef c8 c1 fb 8c 70 23 c4
-be 0c cb bf 14 b1 a1 8a c7 d7 b8 7d 96 48 f9 eb
-1f 9c a4 8a c9 df 24 aa a8 4a 0a 97 10 aa ad 8b
-8a dc 60 b4 b5 3b fb 78 73 b0 b5 cb cb 80 83 ba
-bf bb 4b af a3 bc bf 8b cb eb af b9 c2 3b 8b d3
-03 bc c0 7c fc 14 ff bc be bb cb d3 00 c2 c1 3c
-8c 28 13 c2 c2 7c fc 13 d8 c3 bf fb 8c 43 1c bc
-b9 7c 4b 94 0c ae a0 ca b8 47 eb 84 96 c8 49 d0
-d8 9c a2 c9 f9 fb 3c a6 a4 ba ca 7b c8 a5 ac fa
-8a cb bb b5 b2 8a fb 43 8c b0 b2 fb fb 53 78 b4
-bb fb fb 78 c7 b6 b8 fb 0b c7 c3 b9 bf 7b 8b af
-8b bf bd 3b 7b e3 d3 bb bd fb 3c 0b b7 ba bc 7b
-7c 17 ef bb ba fb 4b db 9b bc be bb bb b3 a8 b8
-bf 3b 3b 1f bf a7 9c 09 b7 b8 af 7b 94 38 39 8c
-13 98 9e ca 0a 30 d7 a1 a2 79 7a 37 73 a6 a8 0a
-8a 74 73 b0 b0 0a 4b 0b 33 ab b3 0b bb 0b 2b b6
-b0 bb 3b 50 44 b1 b4 4b bb 94 40 b7 b3 7b bb 77
-93 b8 b4 0b 7b 53 57 b6 ba 0b 0b 2b 53 b9 b4 fb
-bb 7b 7b b9 bc 8b bb 83 68 b9 b8 0b 3b 38 5f b4
-b4 fb 4a db 68 a6 96 c9 07 6c bb 77 92 f8 09 7c
-a3 9c a0 39 f9 cb a4 a2 a3 39 ba 88 97 a2 aa 3a
-4a 6c 9f ac af ba 7a c3 14 b1 ae 8b 7b 5f 8c b5
-b4 8b cb 5b 9f b3 b2 3b 4b 6f 60 b4 b7 3b fb 27
-83 b4 bb 0b bb 63 93 b7 b8 bb bb a7 48 b5 ba 7b
-3b 97 a8 b7 b8 cb bb 93 8b b9 b9 7b fb 64 77 b3
-b3 0b ba bf 88 ab 98 c9 b7 b8 e4 7b 96 88 39 cb
-ff a0 9e f9 7a 04 17 a5 a5 3a 8a 8f c0 a9 ac fa
-4a cb d4 ae b5 4a ca fb 2f b2 b1 bb 7b 60 a4 b5
-b8 3b fb 48 88 b7 bb cb fb 7b 7b b6 b9 7b 3b 80
-cb bb b8 fb cb 9c b7 b8 b6 bb 3b b3 9f b8 b9 bb
-cb b4 bf b7 b9 3b cb 93 98 ba b9 8b cb 4b 87 b2
-b3 8b 7b 07 6c a9 96 f9 37 b0 af 7b 94 88 39 93
-c3 9c 9c f9 b9 cc 4f a1 a3 ba ba 5f 7c a2 ab ba
-ca a4 94 aa af 7a ca ff 44 b5 b0 0b fb 74 4b b4
-bd 8b 3b 70 7b b7 b6 8b fb 73 33 b8 b9 fb 0b 77
-94 bc b9 7b 3b 84 af b4 bc fb 4b ac 48 bc ba 0b
-3b af db bc b7 3b 8b 88 57 b8 b7 fb bb 83 7f bb
-b2 fb 0a e4 5f a8 96 49 c7 6b ab 76 93 88 89 6c
-8f 99 9b f9 c9 cf b7 9e 9e 39 0a 37 77 a4 a5 8a
-8a a4 dc a9 b3 ca 7a b8 24 ab ab 8b 8b 2b 14 b2
-b4 bb 3b 4f 58 b1 b0 8b bb 57 44 b3 b4 3b 3b 2f
-40 b5 b5 4b 7b 3f 73 b6 b1 4b fb 18 37 b4 b7 7b
-cb 6b 68 b6 b5 0b 8b 77 38 b7 b5 cb cb 24 e8 ac
-af 8a 4a 9b f7 a0 8f b8 f7 af 8c 7a 93 48 49 8f
-9c 9a 9c c9 3a 28 08 9d a2 3a 3a 2b c8 a7 a9 7a
-8a 7b 73 ad ac ba 3a d4 28 af b1 3b ba f7 7b b7
-bb cb bb 1c 53 b3 b3 7b 0b 64 47 b4 b7 8b 3b af
-57 b8 b8 7b 4b 94 73 b9 b9 8b 0b 83 83 bd b9 4b
-fb cc 6f b6 ba bb 0b 87 78 bb b7 4b 7b 47 6c b2
-b1 3b 7a c0 67 a3 96 79 b7 ab cc 7a 92 38 79 90
-bb 99 9b f9 39 e8 5f a1 a4 7a fa 7f 88 a6 a7 3a
-7a bf 9b ad b0 ca 4a fc 64 b3 b0 3b fb 1f 64 b7
-ba 0b fb 80 6f b4 b6 bb cb ec 6f b4 b9 fb 7b 98
-a8 b6 b4 7b 7b b8 a8 ba b9 fb bb 8b 7c ba b8 cb
-fb 9f 6f b7 bc 8b fb 4f 78 b9 ba 4b fb 63 7c b2
-b3 7b 8a c7 5b a1 95 c9 37 df b7 7e 90 38 79 70
-78 96 9c b9 49 b4 e8 a1 a3 f9 ba 6f 57 a4 a5 7a
-3a e7 bc af b0 0a 0b 24 0f b0 b3 fb 0b 33 3b b5
-b7 8b 3b 48 a3 ba b5 fb 4b e0 64 b1 b4 fb fb a0
-44 b6 b3 bb 3b a4 97 b5 b6 3b 3b 73 4c bc b9 cb
-7b b4 83 b8 b5 bb 4b 63 63 b5 b7 cb 3b 87 57 b3
-ad bb 8a d7 83 a3 98 49 87 78 90 77 8e b8 49 1f
-83 97 96 89 f9 b3 b3 9e a1 49 fa 28 68 9d a6 3a
-4a 74 5c a8 ab 3a 0a d3 27 a9 ae cb 4b 2f f3 b3
-af 0a 7b 23 23 b0 af fb bb 44 6f b5 b7 0b 0b 14
-5f b5 af fb 8b 77 48 b0 b8 8b cb 2f 43 b5 b3 bb
-fb 4c 60 b4 b6 0b 8b 53 34 b7 b6 4b 4b 2b 27 ac
-ac fb 7a cf d3 a4 8d 48 87 3c a8 73 8c 48 09 30
-63 91 9a 09 49 8b db 9c 9d b9 4a 04 33 a4 a9 3a
-4a 9f 9c a8 ae 8a 8a e3 f7 a8 b1 4a bb 20 0b b4
-b2 7b bb 1f 73 b1 b4 3b 3b 4f 2b b7 b5 0b 3b 1c
-68 b5 b4 0b 4b a3 64 b6 b8 fb fb 87 40 ba b7 7b
-8b a8 6c b5 b4 fb 7b 9f 08 b8 b8 fb 7b 6b 47 b2
-b1 7b 8a ec 5b a4 95 b9 47 c3 04 7c 95 f9 09 b7
-f0 9b 9d 39 8a 1b e4 a5 a4 c9 fa c8 84 a5 ad 7a
-3a ff eb b0 b4 fa cb 5f 90 b3 b2 bb 7b 63 63 b9
-b9 bb cb 6c cc b5 b9 cb 3b 9f 5f bb b8 7b 4b 5b
-b7 b8 ba 4b 3b f0 ab bc b9 3b 7b 8b 73 bd b9 8b
-7b c0 fc bb bd fb bb 83 ab ba bb 3b bb 90 b3 ba
-b4 8b bb 24 db aa 9d b9 47 68 80 76 8c b8 39 88
-78 97 9c 39 39 b4 07 9e a0 ca fa 97 1b a2 ac 8a
-fa 48 8f a8 ac ba 4a db fc ad ae 7a 4b 07 2b b2
-b7 0b 7b 0f 14 b1 b4 cb cb 2c bc b3 b4 fa bb 33
-27 b6 b3 cb 4b 2b 4f b7 b1 fb 3b 24 14 b0 b0 4b
-fb 0f 0c b1 b2 4b fb 14 18 b4 b2 cb 4b 3f 0f aa
-ad cb 0a 8c 14 a4 91 89 c7 3f 6c 73 90 48 39 34
-cf 96 9c b9 39 d0 88 a2 9b 89 3a 48 43 a1 a1 3a
-3a cb 8b ab aa fa ca 8f 03 a9 a8 fb ba bc 17 af
-ae fb 0a f4 e4 b2 b8 ba cb 50 1c ae ad 4b cb 2f
-7c b2 b5 3b fa e3 28 af af cb bb 1f 1c b6 b2 0b
-0b 68 7b b2 b1 3b 8b 1b a8 ad b3 4a 4a ec f0 ae
-ae ba 8a a0 0b a1 91 09 87 9b 74 79 8b b8 09 74
-a8 95 98 89 79 7c e0 9f a1 09 3a 3f a3 a5 a8 fa
-3a b3 c4 ac b1 fa 7a d3 07 b1 b1 8b bb 48 40 b8
-b9 4b fb 64 3f b4 b6 4b cb 4c 70 b3 b9 8b cb 50
-87 ba b3 8b bb 60 3c b6 b8 cb 7b b4 63 b6 bd 0b
-bb b7 a7 b9 b5 3b 7b 8c 7f b8 b5 fb 7b 8c 48 b8
-b0 7b 0b 04 88 a2 98 b9 77 a8 c4 7a 92 08 89 5f
-c3 98 9c 89 89 ff ec a2 a2 b9 ca 5f 88 a4 ab 3a
-7a b3 fc aa b1 4a ba fb 07 b1 b0 4b 0b 2b 28 b2
-b6 7b 4b 53 44 b4 b3 cb fb 6f 77 b3 ba 3b cb 78
-74 b8 b5 fb bb 7f 98 b9 b8 bb bb 87 68 ba bc 4b
-3b bb af b9 b9 7b fb c7 9c bc b7 bb 3b 8b 53 b6
-b0 0b fb 57 a8 a4 9a 79 b7 9c b0 79 8f b8 c9 57
-8c 97 9c 49 b9 cc 03 9c 9e ba fa 60 5f a1 a7 4a
-ba a0 a3 ac aa ba 7b 00 e7 af ad 4a 0b 33 cf b1
-b1 7a 8a cc 70 b2 b5 cb fb 93 60 b1 b6 bb 3b 04
-68 b5 b8 4b 0b 3b 5c b2 af 4b 3b 3f 94 b5 b5 3b
-7b db 37 b7 b1 8b 8b 63 77 b8 b6 8b 7b 0f 44 b2
-b1 0b ba c3 eb a3 8e b8 37 48 af 74 8e f8 89 94
-87 93 9a 79 49 a4 0f 9b 9e 8a 4a 4c 2f a5 a8 7a
-ba 6f 90 a6 b0 7a ba ac 0c ae ae 7b 7a b3 e7 b3
-b3 0a 3a f8 ff ae b4 4a bb 17 d7 b2 b7 7a 7b 0b
-37 b3 b2 7b ba f8 ff af b8 4a cb 67 33 b3 b3 7b
-3b 17 7b b5 b5 0b ba b7 50 b4 b3 fb 7b 60 54 b3
-af bb fa a3 18 a6 91 b9 07 73 8c 77 89 38 09 44
-bb 93 9b 79 b9 ab d8 9d a1 09 f9 ff 5f a3 a2 ca
-0a 3c 7b ad b1 3a fa a4 bc ac aa 4a 7b 14 0c b1
-b4 3b 3b 43 4c b3 b4 7b 0b 57 3f b1 b9 3b 0b 64
-2b b9 b4 cb 4b 1f 64 b4 b6 7b cb 6f 07 b4 b2 0b
-3b 80 77 b8 b6 fb 0b 28 4f b6 b5 cb 7b 53 f4 b1
-b3 4a 7a db 43 a6 94 39 87 6b ec 76 92 b8 89 a4
-cf 96 a0 49 49 cc 27 a4 a1 3a 8a 48 5c a4 a8 7a
-4a af c4 ad b0 4a 0a ff 23 b0 b4 3b 3b 2c 4f b3
-b8 fb bb 3f 4b b7 b2 8b 8b 9b 6b b7 b9 3b bb 37
-97 b7 b7 7b fb af a8 b6 b8 8b 8b d4 5b bc b5 fb
-8b c0 af ba ba bb fb 7c 2f bb bc 8b fb 48 4c b3
-b2 8b 7b 13 57 a9 95 89 87 7f a8 77 8f f8 c9 54
-c8 98 a0 49 49 c3 17 a1 a4 0a 4a 67 a7 a8 a4 0a
-8a 9c e8 ad ae 7a 7b 23 3f b1 b0 7b 8a fc 47 b5
-b8 8b bb 20 8b b3 b3 3b bb 8c 7f b8 b9 0b 3b 7c
-7f bf b5 fb bb 1f 5b b6 b5 4b 8b 88 bf b4 b8 cb
-8b 80 a0 b8 bb fb 7b 6f 77 be b7 8b cb 53 83 b3
-b0 7b 7b 3f 8c a5 98 c9 37 57 58 75 8f 48 c9 5c
-df 97 9d 89 49 d4 87 a2 a2 39 3a 73 8f a4 a5 ba
-fa 68 98 aa ac 8a 3a c8 24 aa ae cb ba e8 3b b0
-b2 fb 3a ef 6f b1 b0 cb 3b 2b 3b b3 b2 4b 7b 10
-3c b0 b3 fb 8b 1f 67 b4 b4 8b 0b 2b 0f b8 b6 bb
-3b 7f 43 b4 b1 3b fb 6f 14 b6 b3 cb cb 2b 03 b3
-ad 7b 0a ab 2f 9f 93 09 77 7c bb 77 90 08 09 6c
-8b 96 9e 79 79 f3 27 a4 a2 4a 4a 57 73 a7 a8 fa
-fa 88 af ae b2 ca 3a bc 3c b0 b3 7b fb 48 30 b7
-b7 fb 7b 2b b3 b4 b6 0b 7b b8 48 b6 ba bb 3b cb
-a3 b9 bd 4b 3b 60 d8 b2 bb bb 7b 6f d3 b7 b9 8b
-cb 6b db bb ba fb 3b a8 9b b7 b9 fb bb 8c 7f b9
-b3 0b 0b 24 40 a7 94 39
+14 9f a3 8a 8a 0b 1c aa a8 ba 8a d3 0f a8 af fb 3a f4 3c b3 b8 cb 4b 73 a4 b2 ba 4b cb 58 d4 bd
+bf 7b fb d3 df c2 c1 7b 7b d8 eb ba be cb bc 30 28 c0 c7 4c 3c 4b 48 bf be fc bc 23 2b c6 c4 fc
+bc 4b 47 c0 c5 cc 4c 9f ef c8 c1 fb 8c 70 23 c4 be 0c cb bf 14 b1 a1 8a c7 d7 b8 7d 96 48 f9 eb
+1f 9c a4 8a c9 df 24 aa a8 4a 0a 97 10 aa ad 8b 8a dc 60 b4 b5 3b fb 78 73 b0 b5 cb cb 80 83 ba
+bf bb 4b af a3 bc bf 8b cb eb af b9 c2 3b 8b d3 03 bc c0 7c fc 14 ff bc be bb cb d3 00 c2 c1 3c
+8c 28 13 c2 c2 7c fc 13 d8 c3 bf fb 8c 43 1c bc b9 7c 4b 94 0c ae a0 ca b8 47 eb 84 96 c8 49 d0
+d8 9c a2 c9 f9 fb 3c a6 a4 ba ca 7b c8 a5 ac fa 8a cb bb b5 b2 8a fb 43 8c b0 b2 fb fb 53 78 b4
+bb fb fb 78 c7 b6 b8 fb 0b c7 c3 b9 bf 7b 8b af 8b bf bd 3b 7b e3 d3 bb bd fb 3c 0b b7 ba bc 7b
+7c 17 ef bb ba fb 4b db 9b bc be bb bb b3 a8 b8 bf 3b 3b 1f bf a7 9c 09 b7 b8 af 7b 94 38 39 8c
+13 98 9e ca 0a 30 d7 a1 a2 79 7a 37 73 a6 a8 0a 8a 74 73 b0 b0 0a 4b 0b 33 ab b3 0b bb 0b 2b b6
+b0 bb 3b 50 44 b1 b4 4b bb 94 40 b7 b3 7b bb 77 93 b8 b4 0b 7b 53 57 b6 ba 0b 0b 2b 53 b9 b4 fb
+bb 7b 7b b9 bc 8b bb 83 68 b9 b8 0b 3b 38 5f b4 b4 fb 4a db 68 a6 96 c9 07 6c bb 77 92 f8 09 7c
+a3 9c a0 39 f9 cb a4 a2 a3 39 ba 88 97 a2 aa 3a 4a 6c 9f ac af ba 7a c3 14 b1 ae 8b 7b 5f 8c b5
+b4 8b cb 5b 9f b3 b2 3b 4b 6f 60 b4 b7 3b fb 27 83 b4 bb 0b bb 63 93 b7 b8 bb bb a7 48 b5 ba 7b
+3b 97 a8 b7 b8 cb bb 93 8b b9 b9 7b fb 64 77 b3 b3 0b ba bf 88 ab 98 c9 b7 b8 e4 7b 96 88 39 cb
+ff a0 9e f9 7a 04 17 a5 a5 3a 8a 8f c0 a9 ac fa 4a cb d4 ae b5 4a ca fb 2f b2 b1 bb 7b 60 a4 b5
+b8 3b fb 48 88 b7 bb cb fb 7b 7b b6 b9 7b 3b 80 cb bb b8 fb cb 9c b7 b8 b6 bb 3b b3 9f b8 b9 bb
+cb b4 bf b7 b9 3b cb 93 98 ba b9 8b cb 4b 87 b2 b3 8b 7b 07 6c a9 96 f9 37 b0 af 7b 94 88 39 93
+c3 9c 9c f9 b9 cc 4f a1 a3 ba ba 5f 7c a2 ab ba ca a4 94 aa af 7a ca ff 44 b5 b0 0b fb 74 4b b4
+bd 8b 3b 70 7b b7 b6 8b fb 73 33 b8 b9 fb 0b 77 94 bc b9 7b 3b 84 af b4 bc fb 4b ac 48 bc ba 0b
+3b af db bc b7 3b 8b 88 57 b8 b7 fb bb 83 7f bb b2 fb 0a e4 5f a8 96 49 c7 6b ab 76 93 88 89 6c
+8f 99 9b f9 c9 cf b7 9e 9e 39 0a 37 77 a4 a5 8a 8a a4 dc a9 b3 ca 7a b8 24 ab ab 8b 8b 2b 14 b2
+b4 bb 3b 4f 58 b1 b0 8b bb 57 44 b3 b4 3b 3b 2f 40 b5 b5 4b 7b 3f 73 b6 b1 4b fb 18 37 b4 b7 7b
+cb 6b 68 b6 b5 0b 8b 77 38 b7 b5 cb cb 24 e8 ac af 8a 4a 9b f7 a0 8f b8 f7 af 8c 7a 93 48 49 8f
+9c 9a 9c c9 3a 28 08 9d a2 3a 3a 2b c8 a7 a9 7a 8a 7b 73 ad ac ba 3a d4 28 af b1 3b ba f7 7b b7
+bb cb bb 1c 53 b3 b3 7b 0b 64 47 b4 b7 8b 3b af 57 b8 b8 7b 4b 94 73 b9 b9 8b 0b 83 83 bd b9 4b
+fb cc 6f b6 ba bb 0b 87 78 bb b7 4b 7b 47 6c b2 b1 3b 7a c0 67 a3 96 79 b7 ab cc 7a 92 38 79 90
+bb 99 9b f9 39 e8 5f a1 a4 7a fa 7f 88 a6 a7 3a 7a bf 9b ad b0 ca 4a fc 64 b3 b0 3b fb 1f 64 b7
+ba 0b fb 80 6f b4 b6 bb cb ec 6f b4 b9 fb 7b 98 a8 b6 b4 7b 7b b8 a8 ba b9 fb bb 8b 7c ba b8 cb
+fb 9f 6f b7 bc 8b fb 4f 78 b9 ba 4b fb 63 7c b2 b3 7b 8a c7 5b a1 95 c9 37 df b7 7e 90 38 79 70
+78 96 9c b9 49 b4 e8 a1 a3 f9 ba 6f 57 a4 a5 7a 3a e7 bc af b0 0a 0b 24 0f b0 b3 fb 0b 33 3b b5
+b7 8b 3b 48 a3 ba b5 fb 4b e0 64 b1 b4 fb fb a0 44 b6 b3 bb 3b a4 97 b5 b6 3b 3b 73 4c bc b9 cb
+7b b4 83 b8 b5 bb 4b 63 63 b5 b7 cb 3b 87 57 b3 ad bb 8a d7 83 a3 98 49 87 78 90 77 8e b8 49 1f
+83 97 96 89 f9 b3 b3 9e a1 49 fa 28 68 9d a6 3a 4a 74 5c a8 ab 3a 0a d3 27 a9 ae cb 4b 2f f3 b3
+af 0a 7b 23 23 b0 af fb bb 44 6f b5 b7 0b 0b 14 5f b5 af fb 8b 77 48 b0 b8 8b cb 2f 43 b5 b3 bb
+fb 4c 60 b4 b6 0b 8b 53 34 b7 b6 4b 4b 2b 27 ac ac fb 7a cf d3 a4 8d 48 87 3c a8 73 8c 48 09 30
+63 91 9a 09 49 8b db 9c 9d b9 4a 04 33 a4 a9 3a 4a 9f 9c a8 ae 8a 8a e3 f7 a8 b1 4a bb 20 0b b4
+b2 7b bb 1f 73 b1 b4 3b 3b 4f 2b b7 b5 0b 3b 1c 68 b5 b4 0b 4b a3 64 b6 b8 fb fb 87 40 ba b7 7b
+8b a8 6c b5 b4 fb 7b 9f 08 b8 b8 fb 7b 6b 47 b2 b1 7b 8a ec 5b a4 95 b9 47 c3 04 7c 95 f9 09 b7
+f0 9b 9d 39 8a 1b e4 a5 a4 c9 fa c8 84 a5 ad 7a 3a ff eb b0 b4 fa cb 5f 90 b3 b2 bb 7b 63 63 b9
+b9 bb cb 6c cc b5 b9 cb 3b 9f 5f bb b8 7b 4b 5b b7 b8 ba 4b 3b f0 ab bc b9 3b 7b 8b 73 bd b9 8b
+7b c0 fc bb bd fb bb 83 ab ba bb 3b bb 90 b3 ba b4 8b bb 24 db aa 9d b9 47 68 80 76 8c b8 39 88
+78 97 9c 39 39 b4 07 9e a0 ca fa 97 1b a2 ac 8a fa 48 8f a8 ac ba 4a db fc ad ae 7a 4b 07 2b b2
+b7 0b 7b 0f 14 b1 b4 cb cb 2c bc b3 b4 fa bb 33 27 b6 b3 cb 4b 2b 4f b7 b1 fb 3b 24 14 b0 b0 4b
+fb 0f 0c b1 b2 4b fb 14 18 b4 b2 cb 4b 3f 0f aa ad cb 0a 8c 14 a4 91 89 c7 3f 6c 73 90 48 39 34
+cf 96 9c b9 39 d0 88 a2 9b 89 3a 48 43 a1 a1 3a 3a cb 8b ab aa fa ca 8f 03 a9 a8 fb ba bc 17 af
+ae fb 0a f4 e4 b2 b8 ba cb 50 1c ae ad 4b cb 2f 7c b2 b5 3b fa e3 28 af af cb bb 1f 1c b6 b2 0b
+0b 68 7b b2 b1 3b 8b 1b a8 ad b3 4a 4a ec f0 ae ae ba 8a a0 0b a1 91 09 87 9b 74 79 8b b8 09 74
+a8 95 98 89 79 7c e0 9f a1 09 3a 3f a3 a5 a8 fa 3a b3 c4 ac b1 fa 7a d3 07 b1 b1 8b bb 48 40 b8
+b9 4b fb 64 3f b4 b6 4b cb 4c 70 b3 b9 8b cb 50 87 ba b3 8b bb 60 3c b6 b8 cb 7b b4 63 b6 bd 0b
+bb b7 a7 b9 b5 3b 7b 8c 7f b8 b5 fb 7b 8c 48 b8 b0 7b 0b 04 88 a2 98 b9 77 a8 c4 7a 92 08 89 5f
+c3 98 9c 89 89 ff ec a2 a2 b9 ca 5f 88 a4 ab 3a 7a b3 fc aa b1 4a ba fb 07 b1 b0 4b 0b 2b 28 b2
+b6 7b 4b 53 44 b4 b3 cb fb 6f 77 b3 ba 3b cb 78 74 b8 b5 fb bb 7f 98 b9 b8 bb bb 87 68 ba bc 4b
+3b bb af b9 b9 7b fb c7 9c bc b7 bb 3b 8b 53 b6 b0 0b fb 57 a8 a4 9a 79 b7 9c b0 79 8f b8 c9 57
+8c 97 9c 49 b9 cc 03 9c 9e ba fa 60 5f a1 a7 4a ba a0 a3 ac aa ba 7b 00 e7 af ad 4a 0b 33 cf b1
+b1 7a 8a cc 70 b2 b5 cb fb 93 60 b1 b6 bb 3b 04 68 b5 b8 4b 0b 3b 5c b2 af 4b 3b 3f 94 b5 b5 3b
+7b db 37 b7 b1 8b 8b 63 77 b8 b6 8b 7b 0f 44 b2 b1 0b ba c3 eb a3 8e b8 37 48 af 74 8e f8 89 94
+87 93 9a 79 49 a4 0f 9b 9e 8a 4a 4c 2f a5 a8 7a ba 6f 90 a6 b0 7a ba ac 0c ae ae 7b 7a b3 e7 b3
+b3 0a 3a f8 ff ae b4 4a bb 17 d7 b2 b7 7a 7b 0b 37 b3 b2 7b ba f8 ff af b8 4a cb 67 33 b3 b3 7b
+3b 17 7b b5 b5 0b ba b7 50 b4 b3 fb 7b 60 54 b3 af bb fa a3 18 a6 91 b9 07 73 8c 77 89 38 09 44
+bb 93 9b 79 b9 ab d8 9d a1 09 f9 ff 5f a3 a2 ca 0a 3c 7b ad b1 3a fa a4 bc ac aa 4a 7b 14 0c b1
+b4 3b 3b 43 4c b3 b4 7b 0b 57 3f b1 b9 3b 0b 64 2b b9 b4 cb 4b 1f 64 b4 b6 7b cb 6f 07 b4 b2 0b
+3b 80 77 b8 b6 fb 0b 28 4f b6 b5 cb 7b 53 f4 b1 b3 4a 7a db 43 a6 94 39 87 6b ec 76 92 b8 89 a4
+cf 96 a0 49 49 cc 27 a4 a1 3a 8a 48 5c a4 a8 7a 4a af c4 ad b0 4a 0a ff 23 b0 b4 3b 3b 2c 4f b3
+b8 fb bb 3f 4b b7 b2 8b 8b 9b 6b b7 b9 3b bb 37 97 b7 b7 7b fb af a8 b6 b8 8b 8b d4 5b bc b5 fb
+8b c0 af ba ba bb fb 7c 2f bb bc 8b fb 48 4c b3 b2 8b 7b 13 57 a9 95 89 87 7f a8 77 8f f8 c9 54
+c8 98 a0 49 49 c3 17 a1 a4 0a 4a 67 a7 a8 a4 0a 8a 9c e8 ad ae 7a 7b 23 3f b1 b0 7b 8a fc 47 b5
+b8 8b bb 20 8b b3 b3 3b bb 8c 7f b8 b9 0b 3b 7c 7f bf b5 fb bb 1f 5b b6 b5 4b 8b 88 bf b4 b8 cb
+8b 80 a0 b8 bb fb 7b 6f 77 be b7 8b cb 53 83 b3 b0 7b 7b 3f 8c a5 98 c9 37 57 58 75 8f 48 c9 5c
+df 97 9d 89 49 d4 87 a2 a2 39 3a 73 8f a4 a5 ba fa 68 98 aa ac 8a 3a c8 24 aa ae cb ba e8 3b b0
+b2 fb 3a ef 6f b1 b0 cb 3b 2b 3b b3 b2 4b 7b 10 3c b0 b3 fb 8b 1f 67 b4 b4 8b 0b 2b 0f b8 b6 bb
+3b 7f 43 b4 b1 3b fb 6f 14 b6 b3 cb cb 2b 03 b3 ad 7b 0a ab 2f 9f 93 09 77 7c bb 77 90 08 09 6c
+8b 96 9e 79 79 f3 27 a4 a2 4a 4a 57 73 a7 a8 fa fa 88 af ae b2 ca 3a bc 3c b0 b3 7b fb 48 30 b7
+b7 fb 7b 2b b3 b4 b6 0b 7b b8 48 b6 ba bb 3b cb a3 b9 bd 4b 3b 60 d8 b2 bb bb 7b 6f d3 b7 b9 8b
+cb 6b db bb ba fb 3b a8 9b b7 b9 fb bb 8c 7f b9 b3 0b 0b 24 40 a7 94 39
 
 d6 41 1b 2c    nav crc check ok
 
-88
+88 - контрольная сумма пакета
 ```
+
+• В контексте этого Goodix-драйвера (по gfspi.dll) это три разных «базовых» эталона, с которыми сравнивают текущие данные сенсора.
+
+- image base
+  Это эталонное полное изображение сенсора (большая матрица).
+  Нужно для компенсации фона/температуры и проверки «палец/не палец» на полном кадре.
+  Для твоего профиля (goodix.dat 13520 байт, ChicagoHS) размер блока image base = 0x2800 байт = 64x80 uint16.
+- nav base
+  Это эталонный «навигационный» кадр (уменьшенная матрица, быстрее и дешевле обрабатывать).
+  Используется для быстрой оценки состояния (в логах: temperature / finger down / void / bad) и для обновления валидности базы.
+  Для ChicagoHS размер nav base = 0x0C80 байт = 64x25 uint16.
+- fdt base
+  Это маленький эталон для FDT-детекта (finger detect threshold / быстрый детект касания, переключение режимов fdt-up/down/manual).
+  По нему считают дельты между несколькими замерами и решают, можно ли доверять текущей базе или откатиться к базе из файла.
+  Для ChicagoHS размер fdt base = 0x0C байт (очень маленький служебный вектор).
+
+Итого:
+fdt base — быстрый контроль стабильности/режима,
+nav base — быстрый рабочий baseline,
+image base — основной baseline полного кадра для точной обработки.
+
 
 ### setmode: Fdt manual
 
@@ -1768,3 +1717,12 @@ fail to create dir C:\ProgramData\Goodix, errno 17
 write 13520-13520 bytes to C:\ProgramData\Goodix\goodix.dat
 
 ```
+
+Разобраться с
+- OTP
+- DAC
+- Upload MCU config
+- imagebase
+- Fdt manual
+- nav image
+- fdt_delta

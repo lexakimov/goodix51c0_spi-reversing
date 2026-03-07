@@ -13,8 +13,8 @@ from periphery.gpio import GPIOError
 from spidev import SpiDev
 
 from image_decode import show_image
-from mcu_state import parse_mcu_state
 from packet_parsing import types_by_code
+from parse_mcu_state import parse_mcu_state
 from util_fmt import Colors, log, to_hex_string, format_validity, print_frame, crop, to_utf_string
 
 log_isr_events = False
@@ -504,7 +504,7 @@ def main():
     read_is_done.acquire()
     perform_write(0xa0, 'd4 03 00 00 00 d3')
     acquire_then_release(read_is_ready, 'read_is_ready')
-    perform_read()
+    perform_read(True)
     acquire_then_release(read_is_done, 'read_is_done')
     print()
 
@@ -523,18 +523,19 @@ def main():
     # print()
 
     # ----------------------------------------------------------------------------------------------------------------
-    # log(Colors.HI_GREEN, "━━━ get nav base ".ljust(log_frames_width, '━'))
-    #
-    # read_is_ready.acquire()
-    # read_is_done.acquire()
-    #
-    # perform_write(0xa0, '50 03 00 01 00 56')
-    # acquire_then_release(read_is_ready, 'read_is_ready')
-    # perform_read()
-    # manual_sleep(0.05)
-    # perform_read()
-    # acquire_then_release(read_is_done, 'read_is_done')
-    # print()
+    log(Colors.HI_GREEN, "━━━ get nav base ".ljust(log_frames_width, '━'))
+
+    read_is_ready.acquire()
+    read_is_done.acquire()
+
+    perform_write(0xa0, '50 03 00 01 00 56')
+    acquire_then_release(read_is_ready, 'read_is_ready')
+    perform_read(True)
+    manual_sleep(0.05)
+    perform_read()
+    acquire_then_release(read_is_done, 'read_is_done')
+    print()
+    exit(0)
 
     # ----------------------------------------------------------------------------------------------------------------
     log(Colors.HI_GREEN, "━━━ get image ".ljust(log_frames_width, '━'))
