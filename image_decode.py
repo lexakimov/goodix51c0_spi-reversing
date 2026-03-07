@@ -1,5 +1,3 @@
-import struct
-
 import crcmod
 import matplotlib.pyplot as pyplot
 import numpy
@@ -27,12 +25,12 @@ def show_image(packet: bytes | bytearray):
     # полный пакет - длина 7693
     # 0x20 - тип пакета, 0A 1E = 0x1E0A = 7690 (полезные данные пакета)
     payload = packet[3:]  # отрезали 20 0A 1E - длина теперь 7690
+    payload = payload[5:]  # отрезали header (first 5 0x00 bytes) - длина теперь 7684
     payload = payload[:-1]  # отрезали 88 - длина теперь 7689
+    check_crc(payload)
+    image = payload[:-4]  # trim image crc checksum - длина теперь 7680
     # col:80 x row:64 = 5120 pixels
     # 5120 * 1.5 = 7680 - нужная длина данных
-    image = payload[:-4]  # trim image crc checksum
-    image = image[5:]  # trim header (first 5 0x00 bytes)
-    # check_crc(payload)
     decoded = decode_to_16bit(image)
     image_matrix = numpy.reshape(decoded, (SENSOR_WIDTH, SENSOR_HEIGHT))
     # pyplot.ion()
@@ -44,11 +42,14 @@ def show_image(packet: bytes | bytearray):
 
 def check_crc(payload):
     crc_sum = payload[-4:]
+    exp_crc = int.from_bytes(crc_sum, 'big')
     crc32_func = crcmod.predefined.mkCrcFun('crc-32-mpeg')
-    exp_crc = struct.unpack_from('<I', crc_sum)[0]  # CRC is on the last 4 bytes, in little-endian format
     act_crc = crc32_func(payload[:-4])
-    print("expected: " + hex(exp_crc))
-    print("  actual: " + hex(act_crc))
+    act_crc = ((act_crc & 0xFFFF) << 16) | (act_crc >> 16)  # 0x6A09FA08
+    if act_crc != exp_crc:
+        print("expected: " + hex(exp_crc))
+        print("  actual: " + hex(act_crc))
+        raise ValueError(f"Контрольные суммы не совпадают")
 
 
 # unpacks packed 12 bit values.
