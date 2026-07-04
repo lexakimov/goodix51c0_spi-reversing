@@ -89,7 +89,7 @@ def is_header_packet_checksum_valid(packet: bytes | bytearray) -> bool:
     return checksum == fact_sum
 
 
-def is_payload_packet_checksum_valid(packet: bytes | bytearray):
+def is_payload_packet_checksum_valid(packet: bytes | bytearray) -> bool | None:
     checksum = packet[-1]
     if checksum == 0x88:
         return None
@@ -473,7 +473,7 @@ def main():
 
 
     log(Colors.NEGATIVE, f"TLS handshake state: {tls._handshake_state.name} ({tls._handshake_state.value})")
-    log(Colors.NEGATIVE, "handshake is done!")
+    log(Colors.NEGATIVE, "TLS handshake is over!")
 
     # handshake state: HandshakeStep.HELLO_REQUEST (0)
     # handshake state: HandshakeStep.CLIENT_HELLO (1)
@@ -715,7 +715,7 @@ def read_bb010002():
     """
     Прочитать PSK, зашифрованный через DPAPI
     """
-    log(Colors.HI_GREEN, "━━━ read 0xbb010002 (encrypted PSK) ".ljust(log_frames_width, '━'))
+    log(Colors.HI_GREEN, "━━━ read 0xbb010002 (PSK encrypted via Windows DPAPI) ".ljust(log_frames_width, '━'))
     read_is_ready.acquire()
     read_is_done.acquire()
     perform_write(0xa0, 'e4 09 00 02 00 01 bb 00 00 00 00 ff')

@@ -225,21 +225,21 @@ read
 
 - 0x00 : `version`
 - 0x01 :
-  - bit0 : `isPOVImageValid`
-  - bit1 : `isTlsConnected`
-  - bit2 : `isTlsUsed`
-  - bit3 : `isLocked`
+  - bit0 : `is_pov_imagevalid`
+  - bit1 : `is_tls_connected`
+  - bit2 : `is_tls_used`
+  - bit3 : `is_locked`
 - 0x02 :
-  - младший nibble (биты 0–3) : `availImgCnt`
-  - старший nibble (биты 4–7) : `povImgCnt`
+  - младший nibble (биты 0–3) : `avail_img_cnt`
+  - старший nibble (биты 4–7) : `pov_img_cnt`
 - 0x03 : `sensor_data_int_timeout_count`
 - 0x04 : `image_crc_fail_count`
 - 0x05 :
-  - bits0-6 : `povTouchAccidentCnt` (0x00–0x7F)
+  - bits0-6 : `pov_touch_accident_cnt` (0x00–0x7F)
 - 0x06 :
-  - bits0-2 : `readChipIDCnt` (0–7)
-  - bit3 : `sensorExceptionFlag`
-  - bits4-7 : `sensorUnexpectedIntCnt` (0–15)
+  - bits0-2 : `read_chip_id_cnt` (0–7)
+  - bit3 : `sensor_exception_flag`
+  - bits4-7 : `sensor_unexpected_int_cnt` (0–15)
 - 0x07 : `to_master_timeout_count`
 - 0x08 :
   - bits0-5 : `psk_len` (0–63)

@@ -1,15 +1,27 @@
 # Реверс-инжиниринг протокола сканера отпечатка пальцев Goodix 51C0 (SPI)
 
 <p align="center">
-<img src="images/enrolled-fingerprint.png" alt="images/enrolled-fingerprint.png" width="200">
+<img src="images/enrolled-fingerprint.png" alt="images/enrolled-fingerprint.png" width="90">
 </p>
 
-| Скрипт                                             | Описание                                                               |
-|----------------------------------------------------|------------------------------------------------------------------------|
-| [protocol_interaction.py](protocol_interaction.py) | prove-of-concept работы со сканером. Запускать из под root.            |
-| [parse_dpapi_blob.py](parse_dpapi_blob.py)         | извлечение entropy из содержимого Goodix_Cache.bin для расшифровки PSK |
-| [parse_mcu_state.py](parse_mcu_state.py)           | парсинг данных о состоянии сканера                                     |
-| [image_decode.py](image_decode.py)                 | пример декодирования изображения из пакета данных                      |
+#### для справки:
+- PROTOCOL.md
+- driver_flow.drawio
+- initialization.puml
+
+#### скрипты:
+- [protocol_interaction.py](protocol_interaction.py) prove-of-concept работы со сканером. Запускать из под root.
+- [image_decode.py](image_decode.py) - пример декодирования изображения из пакета данных
+- [parse_dpapi_blob.py](parse_dpapi_blob.py) - извлечение entropy из содержимого Goodix_Cache.bin для расшифровки PSK
+- parse_goodix_dat.py
+- visualize_frame_minus_base.py
+- nav.py
+
+#### утилиты:
+- util_fmt.py
+- packet_parsing.py
+-  [parse_mcu_state.py](parse_mcu_state.py) - парсинг данных о состоянии сканера
+
 
 ## Настройка драйвера spidev
 

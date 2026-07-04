@@ -1,0 +1,218 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.2 Safari/537.36">
+  <diagram name="Страница — 1" id="YB_lECRzeJ_7-vs6w4R8">
+    <mxGraphModel dx="1333" dy="1962" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="0S2NbgIJJDzErNIjDUbg-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;dashed=1;dashPattern=12 12;align=left;verticalAlign=top;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;container=0;" value="Проверка PSK" vertex="1">
+          <mxGeometry height="1090" width="830" x="150" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-3" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="bns9T-wcxuyaIWXZjJh7-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Начало проверки PSK" vertex="1">
+          <mxGeometry height="60" width="150" x="225" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-4" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="bns9T-wcxuyaIWXZjJh7-5" value="ДА">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="300" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-28" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="bns9T-wcxuyaIWXZjJh7-27" value="НЕТ">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-2" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="&lt;span style=&quot;background-color: rgb(153, 255, 153);&quot;&gt;Goodix_Cache.bin&lt;/span&gt; существует, не пуст и имеет длину 332 байта" vertex="1">
+          <mxGeometry height="50" width="240" x="180" y="315" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-8" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="bns9T-wcxuyaIWXZjJh7-7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Читаем содержимое файла.&lt;div&gt;Первые&amp;nbsp;324 байта - DPAPI blob&lt;/div&gt;&lt;div&gt;Последние 8 байт - seed для расшифровки&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="260" x="170" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-11" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="bns9T-wcxuyaIWXZjJh7-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Расшифровываем DPAPI blob через вызов CryptUnprotectData с помощью ключей пользователя windows + seed" vertex="1">
+          <mxGeometry height="60" width="260" x="170" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-10" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="bns9T-wcxuyaIWXZjJh7-12" value="ДА">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="300" y="695.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a1vTtrnV1JW5JG_RD4zO-5" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" target="bns9T-wcxuyaIWXZjJh7-37" value="НЕТ">
+          <mxGeometry relative="1" x="-0.9403" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="700" y="605" />
+              <mxPoint x="700" y="325" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-9" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="Успех?" vertex="1">
+          <mxGeometry height="30" width="100" x="250" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-15" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="bns9T-wcxuyaIWXZjJh7-14" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Имеем расшифрованный PSK&lt;br&gt;(32 байта)" vertex="1">
+          <mxGeometry height="60" width="200" x="200" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-17" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="bns9T-wcxuyaIWXZjJh7-16" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="Вычисляем PSK WB&lt;br&gt;&lt;div&gt;(0xbb010003, 102 байта)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="200" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-19" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="bns9T-wcxuyaIWXZjJh7-18" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-16" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Вычисляем SHA-256 хэш PSK WB&lt;div&gt;(32 байта)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="200" x="200" y="810" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-21" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="bns9T-wcxuyaIWXZjJh7-20" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-18" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Читаем из MCU хэш PSK WB&amp;nbsp;&lt;div&gt;(e4 0xbb020003)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="200" x="200" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-24" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="bns9T-wcxuyaIWXZjJh7-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-20" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Сравниваем хэш, полученный от MCU&amp;nbsp;с рассчитанным" vertex="1">
+          <mxGeometry height="60" width="200" x="200" y="970" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-25" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="bns9T-wcxuyaIWXZjJh7-26" value="ДА">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="300" y="1195.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-51" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="bns9T-wcxuyaIWXZjJh7-37" value="НЕТ">
+          <mxGeometry relative="1" x="-0.9377" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="720" y="1071" />
+              <mxPoint x="720" y="355" />
+            </Array>
+            <mxPoint x="630" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-23" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="Хеши одинаковы?" vertex="1">
+          <mxGeometry height="30" width="120" x="240" y="1055.5" as="geometry" />
+        </mxCell>
+        <mxCell id="a1vTtrnV1JW5JG_RD4zO-3" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="0S2NbgIJJDzErNIjDUbg-11">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="300.0526315789475" y="1265.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-26" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Успех! PSK у нас, можем создавать TLS-сессию" vertex="1">
+          <mxGeometry height="60" width="120" x="240" y="1125.5" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-30" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="bns9T-wcxuyaIWXZjJh7-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-27" parent="1" style="whiteSpace=wrap;html=1;" value="Читаем из MCU PSK зашифрованный через DPAPI&amp;nbsp;&lt;div&gt;(e4 0xbb010002)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="200" x="480" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-33" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="bns9T-wcxuyaIWXZjJh7-32" value="ДА">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-36" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="bns9T-wcxuyaIWXZjJh7-37" value="НЕТ">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="730" y="275" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-29" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="Успех?" vertex="1">
+          <mxGeometry height="30" width="100" x="530" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-34" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="bns9T-wcxuyaIWXZjJh7-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-32" parent="1" style="whiteSpace=wrap;html=1;" value="Записываем полученый с MCU DPAPI-blob в &lt;span style=&quot;background-color: rgb(153, 255, 153);&quot;&gt;Goodix_Cache.bin&lt;/span&gt;" vertex="1">
+          <mxGeometry height="60" width="200" x="480" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-39" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="bns9T-wcxuyaIWXZjJh7-38" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-37" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Генерим случайный PSK&lt;div&gt;(32 байта)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="750" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-41" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="bns9T-wcxuyaIWXZjJh7-40" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-38" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="генерим root key из констант, заданных в коде драйвера (16 байт)" vertex="1">
+          <mxGeometry height="60" width="160" x="750" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-43" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="bns9T-wcxuyaIWXZjJh7-42" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-40" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="генерим random seed&lt;div&gt;(8 байт)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="750" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-45" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="bns9T-wcxuyaIWXZjJh7-44" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-42" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="из random seed и root key генерим энтропию&lt;div&gt;(48 байт)&amp;nbsp;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="750" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-47" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="bns9T-wcxuyaIWXZjJh7-46" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-44" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="шифруем PSK с помощью энтропии через DPAPI&amp;nbsp;&lt;div&gt;(324 + 8 байт seed =&lt;/div&gt;&lt;div&gt;332 байта 0xbb010002)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="160" x="750" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-49" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="bns9T-wcxuyaIWXZjJh7-48" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-46" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="Вычисляем PSK WB&lt;br&gt;&lt;div&gt;(0xbb010003, 102 байта)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="160" x="750" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-50" edge="1" parent="1" source="bns9T-wcxuyaIWXZjJh7-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="bns9T-wcxuyaIWXZjJh7-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bns9T-wcxuyaIWXZjJh7-48" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Пишем в MCU зашифрованный PSK + random seed + PSK WB&lt;div&gt;(e0 0xbb010002 ... 0xbb010003)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="64.5" width="200" x="730" y="860" as="geometry" />
+        </mxCell>
+        <mxCell id="0S2NbgIJJDzErNIjDUbg-3" edge="1" parent="1" source="0S2NbgIJJDzErNIjDUbg-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="0S2NbgIJJDzErNIjDUbg-2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="0S2NbgIJJDzErNIjDUbg-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Разблокировка TLS" vertex="1">
+          <mxGeometry height="60" width="120" x="240" y="-280" as="geometry" />
+        </mxCell>
+        <mxCell id="0S2NbgIJJDzErNIjDUbg-5" edge="1" parent="1" source="0S2NbgIJJDzErNIjDUbg-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="0S2NbgIJJDzErNIjDUbg-4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="0S2NbgIJJDzErNIjDUbg-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Получение версии прошивки" vertex="1">
+          <mxGeometry height="60" width="120" x="240" y="-140" as="geometry" />
+        </mxCell>
+        <mxCell id="0S2NbgIJJDzErNIjDUbg-7" edge="1" parent="1" source="0S2NbgIJJDzErNIjDUbg-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="bns9T-wcxuyaIWXZjJh7-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0S2NbgIJJDzErNIjDUbg-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Получение флагов MCU" vertex="1">
+          <mxGeometry height="60" width="140" x="230" as="geometry" />
+        </mxCell>
+        <mxCell id="0S2NbgIJJDzErNIjDUbg-8" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="0S2NbgIJJDzErNIjDUbg-1" value="начало инициализации">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="300" y="-360" as="sourcePoint" />
+            <mxPoint x="370" y="-340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0S2NbgIJJDzErNIjDUbg-12" edge="1" parent="1" source="0S2NbgIJJDzErNIjDUbg-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="1490" />
+              <mxPoint x="300" y="1490" />
+            </Array>
+            <mxPoint x="300" y="1510" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0S2NbgIJJDzErNIjDUbg-11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=center;fillColor=#f8cecc;strokeColor=#b85450;" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp; TLS handshake&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;(пакет ssl или mbedTLS)&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="40" width="185" x="207.5" y="1260" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

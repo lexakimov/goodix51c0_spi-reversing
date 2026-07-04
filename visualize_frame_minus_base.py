@@ -5,6 +5,7 @@ import argparse
 from pathlib import Path
 
 import crcmod.predefined
+import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -111,37 +112,35 @@ def load_frame(path: Path, frame_format: str) -> np.ndarray:
     raise ValueError("unknown frame format")
 
 
-def rotate_img(img: np.ndarray, mode: str) -> np.ndarray:
-    if mode == "none":
-        return img
-    if mode == "cw":
-        return np.rot90(img, -1)
-    if mode == "ccw":
-        return np.rot90(img, 1)
-    if mode == "180":
-        return np.rot90(img, 2)
-    raise ValueError("bad rotate mode")
-
-
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--base", required=True, type=Path, help="path to goodix.dat")
     p.add_argument("--frame", required=True, type=Path, help="path to current frame")
     p.add_argument("--frame-format", choices=["packed", "u16le"], default="packed")
-    p.add_argument("--rotate", choices=["none", "cw", "ccw", "180"], default="none")
     p.add_argument("--save", type=Path, default=None, help="save figure to file")
     args = p.parse_args()
 
     base = load_image_base_from_goodix_dat(args.base).astype(np.int32)
     frame = load_frame(args.frame, args.frame_format).astype(np.int32)
 
-    base = rotate_img(base, args.rotate)
-    frame = rotate_img(frame, args.rotate)
+    base = np.rot90(base, -1)
+    frame = np.rot90(frame, -1)
 
-    diff = frame - base
-    lim = max(1, int(np.percentile(np.abs(diff), 99)))
+    diff = frame.astype(np.int32) - base.astype(np.int32)
 
-    fig, ax = plt.subplots(1, 3, figsize=(9, 3))
+    # 1) убрать глобальный сдвиг (DC offset)
+    d = diff - np.median(diff)
+
+    # Если хочешь ещё контрастнее именно структуру папиллярных линий, добавь:
+
+    d = d - d.mean(axis=1, keepdims=True)   # убрать построчный фон
+
+    # robust-диапазон после вычитания построчного фона
+    v = max(1, float(np.percentile(np.abs(d), 99)))
+    norm = mcolors.TwoSlopeNorm(vmin=-v, vcenter=0, vmax=v)
+
+    fig, ax = plt.subplots(1, 3, figsize=(8, 3))
+
     ax[0].imshow(frame, cmap="gray", vmin=0, vmax=4095)
     ax[0].set_title("Current frame")
     ax[0].axis("off")
@@ -150,8 +149,8 @@ def main():
     ax[1].set_title("Image base")
     ax[1].axis("off")
 
-    im = ax[2].imshow(diff, cmap="seismic", vmin=-lim, vmax=lim)
-    ax[2].set_title(f"Frame - Base\nmin={diff.min()} max={diff.max()} mean={diff.mean():.2f}")
+    im = ax[2].imshow(d, cmap="gray", norm=norm)
+    ax[2].set_title(f"Frame-Base gray\nmin={d.min():.1f} max={d.max():.1f}")
     ax[2].axis("off")
     fig.colorbar(im, ax=ax[2], fraction=0.046, pad=0.04)
 
@@ -170,6 +169,6 @@ if __name__ == "__main__":
 # Запуск:
 #
 # pip install numpy matplotlib crcmod
-# python visualize_frame_minus_base.py --base ./logs_1/_cache/goodix.dat --frame frame.bin --frame-format packed --rotate cw
+# python visualize_frame_minus_base.py --base ./logs_1/_cache/goodix.dat --frame frame.bin --frame-format packed
 #
 # Если твой frame.bin уже распакован (uint16 little-endian, 10240 байт), ставь --frame-format u16le.

@@ -52,7 +52,7 @@ def to_utf_string(byte_array: bytearray | bytes):
     return bytearray(byte_array).decode('utf-8', errors='ignore')
 
 
-def format_validity(is_valid: bool) -> str:
+def format_validity(is_valid: bool | None) -> str:
     if is_valid is None:
         return '⚪'
     return '🟢' if is_valid else '🔴'

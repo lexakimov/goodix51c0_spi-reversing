@@ -8,21 +8,21 @@ def parse_mcu_state(payload: bytes) -> dict:
     return {
         "version": b[0],
 
-        "isPOVImageValid": (b[1] >> 0) & 1,
-        "isTlsConnected": (b[1] >> 1) & 1,
-        "isTlsUsed": (b[1] >> 2) & 1,
-        "isLocked": (b[1] >> 3) & 1,
+        "is_pov_image_valid": (b[1] >> 0) & 1,
+        "is_tls_connected": (b[1] >> 1) & 1,
+        "is_tls_used": (b[1] >> 2) & 1,
+        "is_locked": (b[1] >> 3) & 1,
 
-        "availImgCnt": b[2] & 0x0F,
-        "povImgCnt": (b[2] >> 4) & 0x0F,
+        "avail_img_cnt": b[2] & 0x0F,
+        "pov_img_cnt": (b[2] >> 4) & 0x0F,
 
         "sensor_data_int_timeout_count": b[3],
         "image_crc_fail_count": b[4],
-        "povTouchAccidentCnt": b[5] & 0x7F,
-        "readChipIDCnt": b[6] & 0x07,
+        "pov_touch_accident_cnt": b[5] & 0x7F,
+        "read_chip_id_cnt": b[6] & 0x07,
 
-        "sensorExceptionFlag": (b[6] >> 3) & 1,
-        "sensorUnexpectedIntCnt": (b[6] >> 4) & 0x0F,
+        "sensor_exception_flag": (b[6] >> 3) & 1,
+        "sensor_unexpected_int_cnt": (b[6] >> 4) & 0x0F,
 
         "to_master_timeout_count": b[7],
 
