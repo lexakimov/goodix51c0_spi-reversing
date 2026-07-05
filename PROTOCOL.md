@@ -1,59 +1,195 @@
-```
-OPTIONAL ━━━ reset device...
-OPTIONAL if reset device или через timeout ━━━ get evk version
-OPTIONAL ━━━ get mcu state
-OPTIONAL ━━━ write 0xbb010002 && 0xbb010003
-OPTIONAL ━━━ read 0xbb010002 (host psk hash)
-OPTIONAL ━━━ read 0xbb020003 (psk mcu hash / pmk)
-OPTIONAL ━━━ reset sensor
-OPTIONAL ━━━ get MILAN_CHIPID
-OPTIONAL ━━━ get OTP
-OPTIONAL ━━━ reset sensor
-OPTIONAL ━━━ setmode: idle
-OPTIONAL ━━━ send Dac 0x380bb500b300b300
-REQUIRED ━━━ upload mcu config
-━━━ get image
+## Формат пакетов
+
+Обычно используется двухуровневый формат транспортного фрейма:
+
+```text
+transport frame:
+    type:u8  frame_len:u16le  frame_checksum:u8
+    body[frame_len]
 ```
 
+Список типов пакетов описан ниже в разделе [Типы пакетов](#типы-пакетов).
+
+Для обычных незашифрованных команд `type = A0`, а `body` содержит command packet:
+
+```text
+command packet:
+    cmd:u8  body_len:u16le  payload[body_len - 1]  cmd_checksum:u8
+```
+
+Пример transport frame команды init:
+
+```text
+a0 08 00 a8              // type, frame_len, frame_checksum
+01 05 00 00 00 00 00 88  // body (command packet)
+```
+
+Разбор:
+
+```text
+a0        transport type
+08 00     длина command packet = 8 байт
+a8        checksum transport frame
+
+01        cmd = init
+05 00     длина payload + cmd_checksum = 5 байт
+00000000  payload
+88        checksum command packet
+```
+
+ACK использует тот же `A0` transport frame, но внутри имеет команду `0xB0`:
+
+```text
+a0 06 00 a6        // type, frame_len, frame_checksum
+b0 03 00 a8 07 48  // body (command packet)
+
+b0        cmd = ACK
+03 00     длина payload + checksum = 3 байта
+a8        команда, на которую пришел ACK
+07        cfg/status flag
+48        checksum command packet
+```
+
+Для TLS transport frame остается таким же по форме, но `body` уже является TLS record / TLS application data, а не Goodix command packet:
+
+```text
+b0 56 00 06  // type, frame_len, frame_checksum
+16 03 03 ... // body (TLS record)
+```
+
+Поле `cmd:u8` в `command packet` является байтом команды. Список команд и правило формирования `cmd` описаны ниже в разделе [Коды команд](#коды-команд).
 
 ## Типы пакетов
 
-- `A0` - Normal, plaintext packet.
-- `B0` - Used during TLS handshake
-- `B2` - Used when sending TLS encrypted image data
+- `A0` - обычный незашифрованный транспортный пакет Goodix. Используется для команд, ACK, служебных ответов, OTP, MCU state, записи/чтения production data и команд до TLS.
+- `B0` - TLS-транспорт. В этом типе идут TLS handshake records и TLS application data после начала TLS-обмена. Не путать с командой `0xB0` внутри `A0`, где `0xB0` означает ACK.
+- `B2` - TLS-транспорт для зашифрованных данных изображения. Используется на этапе получения image data после TLS.
 
 ## Коды команд
 
-- `0x0` NOP
-    - `0x01` - init
-- `0x2` Ima
-    - `0x20` - setmode image
-- `0x3` FDT(dow/up/man)
-    - `0x36` - fdt manual
-- `0x4` FF
-- `0x5`
-    - `0x50` - nav
-- `0x6` Sle
-- `0x7`
-    - `0x70` - set mode: idle
-- `0x8` REG
-    - `0x82` - reg read write
-- `0x9` CHIP
-    - `0x90` - upload MCU config
-    - `0x98` - send DAC
-- `0xA` OTHER
-    - `0xA6` - get OTP
-    - `0xA8` - get evk version
-- `0xB` MSG
-    - `0xB0` - ACK
-- `0xC` NOTI
-- `0xD` TLSCONN
-    - `0xD1` - get TLS handshake
-    - `0xD5` - unlock TLS
-- `0xE` PROD
-    - `0xE0` - write specific data_type
-    - `0xE4` - read specific data_type
-- `0xF` UPFW
+В SPI-пакете команда передается одним байтом `cmd:u8`. Этот байт формируется из группы команды, подкоманды и флага ожидания ACK:
+
+```text
+cmd = (group << 4) | (subcmd << 1) | ack
+```
+
+Где `ack`:
+
+```text
+0 (wait)   = отправитель ждет ACK
+1 (no_ack) = отправитель не ждет ACK
+```
+
+Например:
+
+```text
+group=0x09, subcmd=0x00, ack=0 -> 0x90  upload MCU config
+group=0x09, subcmd=0x04, ack=0 -> 0x98  send DAC
+group=0x0A, subcmd=0x03, ack=0 -> 0xA6  get OTP
+group=0x08, subcmd=0x01, ack=0 -> 0x82  chip register read
+group=0x00, subcmd=0x00, ack=1 -> 0x01  init без ожидания ACK
+group=0x0A, subcmd=0x07, ack=1 -> 0xAF  get MCU state request
+```
+
+В списке ниже указан байт команды из SPI-пакета (`0xA8`, `0x90`, `0x82` и т.д.), соответствующие `group`/`subcmd` и, где важно, режим ожидания ACK.
+
+| Группа | Описание группы                               | Команда (`group`, `subcmd`, `ack`) | Описание команды                                                                                                                                                 |
+|--------|-----------------------------------------------|------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `0x0`  | базовые/system команды                        | `0x01` (`0x00`, `0x00`, no_ack)    | init. Короткая инициализационная команда без полезной нагрузки; обычно отправляется перед одиночными служебными запросами.                                       |
+| `0x2`  | image mode / image capture                    | `0x20` (`0x02`, `0x00`, wait)      | Перевести сенсор в image mode.                                                                                                                                   |
+| `0x3`  | FDT: finger detection / touch-detect режимы   | `0x36` (`0x03`, `0x03`, wait)      | FDT manual / PC state. Передает FDT baseline/PC-state данные, используется при ручном FDT flow.                                                                  |
+| `0x4`  | FF / factory/feature режимы сенсора           | -                                  | Точное назначение отдельных подкоманд пока не подтверждено.                                                                                                      |
+| `0x5`  | navigation                                    | `0x50` (`0x05`, `0x00`, wait)      | nav mode / получение nav frame.                                                                                                                                  |
+| `0x6`  | sleep/power mode                              | `0x60` (`0x06`, `0x00`, wait)      | sleep mode.                                                                                                                                                      |
+| `0x7`  | idle mode                                     | `0x70` (`0x07`, `0x00`, wait)      | set mode: idle. Payload обычно `14 00`.                                                                                                                          |
+| `0x8`  | доступ к регистрам сенсора                    | `0x80` (`0x08`, `0x00`, wait)      | chip register write. Payload: `00`, адрес регистра LE16, затем данные.                                                                                           |
+|        |                                               | `0x82` (`0x08`, `0x01`, wait)      | chip register read. Payload: `00`, адрес регистра LE16, длина чтения LE16. Так читается chip id через регистр `0x0000`; также читаются/пишутся DAC/FDT-регистры. |
+| `0x9`  | MCU/config/chip commands                      | `0x90` (`0x09`, `0x00`, wait)      | upload MCU config. Payload для текущего профиля `0xe0` байт, формируется после OTP parse/FDT init.                                                               |
+|        |                                               | `0x92` (`0x09`, `0x01`, wait)      | set powerdown FDT scan frequency.                                                                                                                                |
+|        |                                               | `0x97` (`0x09`, `0x03`, no_ack)    | set driver state / служебная команда из flow получения MCU config.                                                                                               |
+|        |                                               | `0x98` (`0x09`, `0x04`, wait)      | send DAC одним пакетом. Payload 8 байт: `dac`, `dac1`, `dac2`, `dac3` как LE16.                                                                                  |
+|        |                                               | `0x9A` (`0x09`, `0x05`, wait)      | SPI communication test package.                                                                                                                                  |
+| `0xA`  | other / MCU service commands                  | `0xA2` (`0x0A`, `0x01`, wait)      | reset MCU/sensor через MCU. Payload: reset flags и delay; для reset sensor используется flag `0x01`.                                                             |
+|        |                                               | `0xA6` (`0x0A`, `0x03`, wait)      | get OTP data. Ответ копируется как OTP buffer и затем передается в sensor-specific OTP parser.                                                                   |
+|        |                                               | `0xA8` (`0x0A`, `0x04`, wait)      | get EVK/firmware version.                                                                                                                                        |
+|        |                                               | `0xAD` (`0x0A`, `0x06`, no_ack)    | set PC state / down-base data для FDT flow.                                                                                                                      |
+|        |                                               | `0xAE` (`0x0A`, `0x07`, wait)      | Ответ MCU config/state.                                                                                                                                          |
+|        |                                               | `0xAF` (`0x0A`, `0x07`, no_ack)    | Запрос MCU config/state; payload содержит timestamp, ответ приходит как `0xAE`.                                                                                  |
+| `0xB`  | message/ACK                                   | `0xB0` (`0x0B`, `0x00`, wait)      | ACK на команду. Payload: исходная команда и cfg/status flag.                                                                                                     |
+| `0xC`  | notification / interrupt events от устройства | -                                  | Детальная карта подкоманд пока не восстановлена.                                                                                                                 |
+| `0xD`  | TLS connection/control                        | `0xD1` (`0x0D`, `0x00`, no_ack)    | TLS handshake data / TLS server connection exchange.                                                                                                             |
+|        |                                               | `0xD4` (`0x0D`, `0x02`, wait)      | TLS-related ACK/control в flow после TLS.                                                                                                                        |
+|        |                                               | `0xD5` (`0x0D`, `0x02`, no_ack)    | unlock TLS.                                                                                                                                                      |
+| `0xE`  | production/specific data                      | `0xE0` (`0x0E`, `0x00`, wait)      | write specific data_type. Используется для записи `0xbb010002` и `0xbb010003`.                                                                                   |
+|        |                                               | `0xE4` (`0x0E`, `0x02`, wait)      | read specific data_type / production read MCU. Используется для чтения `0xbb010002` и `0xbb020003`.                                                              |
+|        |                                               | `0xE6` (`0x0E`, `0x03`, wait)      | production/service command; точное назначение здесь не подтверждено.                                                                                             |
+| `0xF`  | firmware update                               | `0xFE` (`0x0F`, `0x07`, wait)      | erase firmware/app в update flow.                                                                                                                                |
+|        |                                               | `0xFF` (`0x0F`, `0x07`, no_ack)    | erase firmware/app в update flow без ожидания ACK.                                                                                                               |
+
+## Файлы, создаваемые драйвером
+Коротко:
+
+| файл               | что хранит                                                                          |
+|--------------------|-------------------------------------------------------------------------------------|
+| `Goodix_Cache.bin` | PSK для TLS, но не напрямую: DPAPI-зашифрованный blob + seed                        |
+| `goodix.dat`       | кэш баз сенсора: OTP + FDT baseline + nav baseline + image baseline + CRC           |
+| `goodix_calib.dat` | calibration/preprocess данные сенсора/алгоритма; точная структура пока не разобрана |
+
+**Goodix_Cache.bin**
+
+Размер: `332` байта.
+
+Структура:
+
+```text
+0x000..0x143  324 байта  DPAPI blob с зашифрованным PSK
+0x144..0x14b    8 байт   seed для генерации DPAPI entropy
+```
+
+Внутри DPAPI blob лежит 32-байтный PSK, который потом используется для TLS `TLS_PSK_WITH_AES_128_GCM_SHA256`.
+
+Драйвер также хранит в MCU связанные данные:
+
+```text
+0xbb010002 = содержимое Goodix_Cache.bin, 332 байта
+0xbb010003 = PSK WB, 102 байта
+```
+
+**goodix.dat**
+
+Размер: `13520` байт. Для профиля ChicagoHS/HU структура такая:
+
+```text
+0x0000..0x003f  0x40    OTP
+0x0040..0x004b  0x0c    FDT base
+0x004c..0x0ccb  0x0c80  nav_base
+0x0ccc..0x34cb  0x2800  image_base
+0x34cc..0x34cf  4       CRC32-MPEG, little-endian
+```
+
+То есть это кэш "пустого/базового" состояния сенсора. Драйвер читает его при старте, а если базы нет или она невалидна, заново получает FDT/NAV/IMAGE baseline с устройства и перезаписывает файл.
+
+При захвате кадра текущий image статистически сравнивается с `image_base`: драйвер считает блочные `abs(current - image_base)` и классифицирует состояние кадра. Отдельный background-subtracted image в этом месте не формируется.
+
+**goodix_calib.dat**
+
+Размер: `140480` байт (`0x224c0`).
+
+Что подтверждено по файлу:
+
+```text
+0x00000              начинается теми же 16 байтами, что goodix.dat/OTP
+0x00000..0x02818     большой блок данных
+0x09938..0x0c138     второй большой блок, 10240 байт
+0x18498..0x1b6b4     третий большой блок
+0x224a0              строка "Preprocess_v_1.01.01"
+```
+
+Данные выглядят как массивы little-endian `uint16`, то есть это не PSK и не обычный протокольный пакет. По названию, версии `Preprocess_v_1.01.01` и найденной функции `OnCalibrate` это, скорее всего, кэш калибровки/preprocess pipeline: параметры/матрицы коррекции сенсора, используемые алгоритмом перед обработкой кадров.
+
+Пока я бы формулировал осторожно: `goodix_calib.dat` хранит calibration/preprocess state, но точная разметка полей еще не восстановлена.
+
+---
 
 ## Стандартный flow с описанием передаваемых сообщений
 
@@ -221,44 +357,40 @@ read
         24    - контрольная сумма
 ```
 
-Формат mcu state (22 bytes):
+Формат mcu state (22 bytes). Смещения, маски и имена полей подтверждены через декомпилятор; для счетчиков ниже указан смысл по имени логируемого поля.
 
-- 0x00 : `version`
-- 0x01 :
-  - bit0 : `is_pov_imagevalid`
-  - bit1 : `is_tls_connected`
-  - bit2 : `is_tls_used`
-  - bit3 : `is_locked`
-- 0x02 :
-  - младший nibble (биты 0–3) : `avail_img_cnt`
-  - старший nibble (биты 4–7) : `pov_img_cnt`
-- 0x03 : `sensor_data_int_timeout_count`
-- 0x04 : `image_crc_fail_count`
-- 0x05 :
-  - bits0-6 : `pov_touch_accident_cnt` (0x00–0x7F)
-- 0x06 :
-  - bits0-2 : `read_chip_id_cnt` (0–7)
-  - bit3 : `sensor_exception_flag`
-  - bits4-7 : `sensor_unexpected_int_cnt` (0–15)
-- 0x07 : `to_master_timeout_count`
-- 0x08 :
-  - bits0-5 : `psk_len` (0–63)
-  - bit6 : `psk_check_fail`
-  - bit7 : `psk_write_fail`
-- 0x09 : `ec_falling_count`
-- 0x0A : `system_up_stop_cnt`
-- 0x0B : `system_down_pov_stop_cnt`
-- 0x0C : `system_up_cleared_pov_count`
-- 0x0D :
-  - bit0 : `pov_wake_by_fp`
-  - bit1 : `pov_wake_by_ec`
-- 0x0E : `pov_procedure`
-- 0x0F : `config_down_flag`
-- 0x10–0x11 : `sensor_chip_id` (little-endian)
-- 0x12 : `sensor_type`
-- 0x13 : `pov_capture_count`
-- 0x14 : `normal_capture_count`
-- 0x15 : `otp_mcu_check_status`
+| offset      | bits  | поле                            | описание                                                                                                                                      |
+|-------------|-------|---------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| `0x00`      |       | `version`                       | Версия формата MCU state. В текущих логах обычно `4`.                                                                                         |
+| `0x01`      | `0`   | `is_pov_image_valid`            | Флаг валидного POV image/frame.                                                                                                               |
+|             | `1`   | `is_tls_connected`              | MCU считает TLS-соединение установленным. После TLS handshake становится `1`; это поле также копируется в глобальный TLS-alive флаг драйвера. |
+|             | `2`   | `is_tls_used`                   | MCU использует TLS-режим обмена. После TLS handshake становится `1`.                                                                          |
+|             | `3`   | `is_locked`                     | Флаг locked state на стороне MCU/устройства.                                                                                                  |
+| `0x02`      | `0-3` | `avail_img_cnt`                 | Количество доступных обычных image frames.                                                                                                    |
+|             | `4-7` | `pov_img_cnt`                   | Количество доступных POV image frames. В init-логах часто `3`.                                                                                |
+| `0x03`      |       | `sensor_data_int_timeout_count` | Счетчик timeout при ожидании sensor data interrupt.                                                                                           |
+| `0x04`      |       | `image_crc_fail_count`          | Счетчик ошибок CRC image data.                                                                                                                |
+| `0x05`      | `0-6` | `pov_touch_accident_cnt`        | Счетчик случайных/неожиданных touch-событий в POV flow.                                                                                       |
+| `0x06`      | `0-2` | `read_chip_id_cnt`              | Счетчик чтений chip id.                                                                                                                       |
+|             | `3`   | `sensor_exception_flag`         | Флаг исключения/ошибочного состояния сенсора.                                                                                                 |
+|             | `4-7` | `sensor_unexpected_int_cnt`     | Счетчик неожиданных interrupt от сенсора.                                                                                                     |
+| `0x07`      |       | `to_master_timeout_count`       | Счетчик timeout при обмене с host/master.                                                                                                     |
+| `0x08`      | `0-5` | `psk_len`                       | Длина PSK в байтах. В логах нормальное значение `32`.                                                                                         |
+|             | `6`   | `psk_check_fail`                | Флаг ошибки проверки PSK.                                                                                                                     |
+|             | `7`   | `psk_write_fail`                | Флаг ошибки записи PSK.                                                                                                                       |
+| `0x09`      |       | `ec_falling_count`              | Счетчик EC falling events.                                                                                                                    |
+| `0x0A`      |       | `system_up_stop_cnt`            | Счетчик остановок/прерываний system-up flow.                                                                                                  |
+| `0x0B`      |       | `system_down_pov_stop_cnt`      | Счетчик остановок/прерываний system-down POV flow.                                                                                            |
+| `0x0C`      |       | `system_up_cleared_pov_count`   | Счетчик очисток POV state при system-up.                                                                                                      |
+| `0x0D`      | `0`   | `pov_wake_by_fp`                | POV wake был вызван fingerprint/touch-событием.                                                                                               |
+|             | `1`   | `pov_wake_by_ec`                | POV wake был вызван EC-событием.                                                                                                              |
+| `0x0E`      |       | `pov_procedure`                 | Текущая стадия/код POV procedure.                                                                                                             |
+| `0x0F`      |       | `config_down_flag`              | Флаг загруженной/примененной config-down конфигурации. После TLS/config flow в логах меняется с `0` на `1`.                                   |
+| `0x10-0x11` |       | `sensor_chip_id`                | Chip id сенсора, little-endian. Для текущего устройства в логах `0x2504`.                                                                     |
+| `0x12`      |       | `sensor_type`                   | Тип сенсора. Для текущего устройства в логах `2`.                                                                                             |
+| `0x13`      |       | `pov_capture_count`             | Счетчик POV captures.                                                                                                                         |
+| `0x14`      |       | `normal_capture_count`          | Счетчик normal captures.                                                                                                                      |
+| `0x15`      |       | `otp_mcu_check_status`          | Статус проверки OTP на стороне MCU.                                                                                                           |
 
 ### Get Evk Version (повтор)
 
